@@ -922,15 +922,16 @@ function renderAbaIndicadores(a) {
 }
 
 function renderAbaGraficos(a) {
-  const anoIni = ANOS_HIST[0], anoFim = ANOS_HIST[ANOS_HIST.length-1];
+  const anoIniDY = HIST6[0], anoFimDY = HIST6[HIST6.length-1];
+  const anoIniCot = ANOS_HIST[0], anoFimCot = ANOS_HIST[ANOS_HIST.length-1];
   return `
     <div class="graficos-grid">
       <div class="grafico-box">
-        <div class="grafico-title">DY Histórico ${anoIni}–${anoFim} <span style="color:#f59e0b">· linha = mínimo 6%</span> <span style="color:#334155">· ${CURRENT_YEAR} = atual (em curso)</span></div>
+        <div class="grafico-title">DY Histórico ${anoIniDY}–${anoFimDY} <span style="color:#f59e0b">· linha = mínimo 6%</span></div>
         <div class="grafico-canvas"><canvas id="ch-dy"></canvas></div>
       </div>
       <div class="grafico-box">
-        <div class="grafico-title">Cotação indexada ${anoIni}–${anoFim} <span style="color:#334155">· base 100 = jan/${anoIni} · ${CURRENT_YEAR} = ao vivo</span></div>
+        <div class="grafico-title">Cotação indexada ${anoIniCot}–${anoFimCot} <span style="color:#334155">· base 100 = jan/${anoIniCot} · ${CURRENT_YEAR} = ao vivo</span></div>
         <div class="grafico-canvas"><canvas id="ch-cot"></canvas></div>
       </div>
     </div>
@@ -972,9 +973,10 @@ function renderAbaResumo(a) {
 
 function buildCharts(a) {
   const cor = COR(a.setor);
-  const anos = ANOS_HIST.map(String);
-  const dyVals = anos.map(y=>a.dyHist[parseInt(y)]);
-  const cotVals = anos.map(y=>a.cotHist[parseInt(y)]);
+  const anosDY = HIST6.map(String);              // DY: só anos fechados (sem o ano em curso)
+  const anosCot = ANOS_HIST.map(String);         // Cotação: inclui o ano em curso (ao vivo)
+  const dyVals = anosDY.map(y=>a.dyHist[parseInt(y)]);
+  const cotVals = anosCot.map(y=>a.cotHist[parseInt(y)]);
   const opts = {
     responsive:true, maintainAspectRatio:false, animation:{duration:300},
     plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>ctx.parsed.y+(ctx.dataset.label.includes("DY")?"%":"")}},
@@ -986,7 +988,7 @@ function buildCharts(a) {
   const dyEl = document.getElementById("ch-dy");
   if (dyEl) {
     if(chartDY){chartDY.destroy();}
-    chartDY = new Chart(dyEl, {type:"bar",data:{labels:anos,datasets:[{label:"DY (%)",data:dyVals,backgroundColor:cor+"cc",borderRadius:3}]},
+    chartDY = new Chart(dyEl, {type:"bar",data:{labels:anosDY,datasets:[{label:"DY (%)",data:dyVals,backgroundColor:cor+"cc",borderRadius:3}]},
       options:{...opts,scales:{...opts.scales,y:{...opts.scales.y,min:0}},
         plugins:{...opts.plugins,annotation:{annotations:{line1:{type:"line",yMin:6,yMax:6,borderColor:"#f59e0b",borderWidth:1.5,borderDash:[4,3]}}}}}});
   }
@@ -994,7 +996,7 @@ function buildCharts(a) {
   const cotEl = document.getElementById("ch-cot");
   if (cotEl) {
     if(chartCot){chartCot.destroy();}
-    chartCot = new Chart(cotEl, {type:"line",data:{labels:anos,datasets:[{label:"Índice",data:cotVals,borderColor:cor,borderWidth:2.5,pointBackgroundColor:cor,pointRadius:4,tension:0.3,fill:false}]},
+    chartCot = new Chart(cotEl, {type:"line",data:{labels:anosCot,datasets:[{label:"Índice",data:cotVals,borderColor:cor,borderWidth:2.5,pointBackgroundColor:cor,pointRadius:4,tension:0.3,fill:false}]},
       options:{...opts,plugins:{...opts.plugins,annotation:{annotations:{base:{type:"line",yMin:100,yMax:100,borderColor:"#334155",borderWidth:1,borderDash:[4,3]}}}}}});
   }
 
@@ -1012,7 +1014,7 @@ function buildCharts(a) {
 
   const dyResumo = document.getElementById("ch-dy-resumo");
   if (dyResumo) {
-    new Chart(dyResumo, {type:"bar",data:{labels:anos,datasets:[{label:"DY (%)",data:dyVals,backgroundColor:cor+"cc",borderRadius:3}]},
+    new Chart(dyResumo, {type:"bar",data:{labels:anosDY,datasets:[{label:"DY (%)",data:dyVals,backgroundColor:cor+"cc",borderRadius:3}]},
       options:{...opts,scales:{...opts.scales,y:{...opts.scales.y,min:0}},
         plugins:{...opts.plugins,annotation:{annotations:{min6:{type:"line",yMin:6,yMax:6,borderColor:"#f59e0b",borderWidth:1.5,borderDash:[4,3]}}}}}});
   }
