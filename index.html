@@ -179,10 +179,21 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Segoe UI',Arial,sa
         <div class="tb-stat"><div class="tb-stat-v" style="color:#94a3b8">50</div><div class="tb-stat-l">Ações B3</div></div>
       </div>
     </div>
-    <div style="display:flex;align-items:center;gap:14px">
+    <div style="display:flex;align-items:center;gap:14px;position:relative">
       <div id="live-badge" style="display:flex;align-items:center;gap:6px;font-size:11px;color:#475569;background:#0f172a;border:1px solid #1e293b;border-radius:6px;padding:5px 10px;cursor:pointer" title="Clique para atualizar cotações agora">
         <span id="live-dot" style="width:7px;height:7px;border-radius:50%;background:#475569;display:inline-block"></span>
         <span id="live-text">Carregando cotações...</span>
+      </div>
+      <button id="settings-btn" title="Configurar token da API" style="background:#0f172a;border:1px solid #1e293b;border-radius:6px;padding:5px 9px;cursor:pointer;color:#475569;font-size:13px;line-height:1">⚙️</button>
+      <div id="settings-panel" style="display:none;position:absolute;top:38px;right:0;background:#0f172a;border:1px solid #1e293b;border-radius:8px;padding:14px;width:300px;z-index:200;box-shadow:0 8px 24px rgba(0,0,0,.4)">
+        <div style="font-size:12px;font-weight:600;color:#f1f5f9;margin-bottom:6px">Token da API brapi.dev</div>
+        <div style="font-size:10px;color:#475569;margin-bottom:8px;line-height:1.5">Cole abaixo o token gratuito obtido em <a href="https://brapi.dev" target="_blank" style="color:#818cf8">brapi.dev</a>. Ele é salvo apenas neste navegador (localStorage), nunca enviado a outro lugar.</div>
+        <input id="token-input" type="text" placeholder="Cole seu token aqui..." style="width:100%;background:#1e293b;border:1px solid #334155;border-radius:6px;padding:7px 10px;color:#f1f5f9;font-size:12px;outline:none;box-sizing:border-box;margin-bottom:8px">
+        <div style="display:flex;gap:6px">
+          <button id="token-save" style="flex:1;background:#4f46e5;border:none;border-radius:6px;padding:7px 0;color:#fff;font-size:12px;font-weight:600;cursor:pointer">Salvar e atualizar</button>
+          <button id="token-clear" style="background:#1e293b;border:1px solid #334155;border-radius:6px;padding:7px 12px;color:#94a3b8;font-size:12px;cursor:pointer">Limpar</button>
+        </div>
+        <div id="token-status" style="font-size:10px;color:#475569;margin-top:8px"></div>
       </div>
       <div class="tb-note">jun/2026 · Não é recomendação de investimento</div>
     </div>
@@ -1060,7 +1071,7 @@ Chart.register(annotationPlugin);
 // Busca o preço atual de cada ticker e atualiza a.cotacao em memória.
 // Fundamentos (DY, ROE, P/L, etc.) permanecem os valores de referência (jun/2026),
 // mas o "Preço Justo Bazin" e a comparação de preço passam a refletir a cotação real.
-const LIVE_STATE = { ok:0, fail:0, total:ACOES.length, lastUpdate:null };
+const LIVE_STATE = { ok:0, fail:0, total:ACOES.length, lastUpdate:null, unauthorized:false };
 
 function setLiveBadge(text, color) {
   const dot = document.getElementById("live-dot");
@@ -1070,9 +1081,12 @@ function setLiveBadge(text, color) {
 }
 
 async function fetchChunk(tickers) {
-  const url = "https://brapi.dev/api/quote/" + tickers.join(",");
+  const token = localStorage.getItem("brapi_token");
+  let url = "https://brapi.dev/api/quote/" + tickers.join(",");
+  if (token) url += "?token=" + encodeURIComponent(token);
   try {
     const res = await fetch(url);
+    if (res.status === 401) { LIVE_STATE.unauthorized = true; LIVE_STATE.fail += tickers.length; return; }
     if (!res.ok) throw new Error("HTTP " + res.status);
     const data = await res.json();
     if (!data.results) return;
@@ -1093,7 +1107,7 @@ async function fetchChunk(tickers) {
 
 async function updateLiveQuotes(manual=false) {
   setLiveBadge(manual ? "Atualizando..." : "Buscando cotações...", "#facc15");
-  LIVE_STATE.ok = 0; LIVE_STATE.fail = 0;
+  LIVE_STATE.ok = 0; LIVE_STATE.fail = 0; LIVE_STATE.unauthorized = false;
 
   const tickers = ACOES.map(a => a.ticker);
   const CHUNK = 10;
@@ -1108,6 +1122,8 @@ async function updateLiveQuotes(manual=false) {
 
   if (LIVE_STATE.ok > 0) {
     setLiveBadge(`🟢 ${LIVE_STATE.ok}/${LIVE_STATE.total} cotações ao vivo · ${hora}`, "#4ade80");
+  } else if (LIVE_STATE.unauthorized) {
+    setLiveBadge(`🔑 Token necessário — clique em ⚙️`, "#facc15");
   } else {
     setLiveBadge(`⚪ Offline — usando preços de referência (jun/2026)`, "#64748b");
   }
@@ -1115,9 +1131,51 @@ async function updateLiveQuotes(manual=false) {
   renderAll();
 }
 
+// ─── PAINEL DE CONFIGURAÇÕES (token) ───────────────────────────────────────────
+function initSettingsPanel() {
+  const btn = document.getElementById("settings-btn");
+  const panel = document.getElementById("settings-panel");
+  const input = document.getElementById("token-input");
+  const status = document.getElementById("token-status");
+
+  // Pré-popular com token salvo (mascarado)
+  const saved = localStorage.getItem("brapi_token");
+  if (saved) {
+    input.value = saved;
+    status.textContent = "✓ Token salvo neste navegador";
+    status.style.color = "#4ade80";
+  }
+
+  btn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    panel.style.display = panel.style.display === "none" ? "block" : "none";
+  });
+
+  document.addEventListener("click", (e) => {
+    if (!panel.contains(e.target) && e.target !== btn) panel.style.display = "none";
+  });
+
+  document.getElementById("token-save").addEventListener("click", () => {
+    const val = input.value.trim();
+    if (!val) { status.textContent = "Cole um token válido."; status.style.color="#f87171"; return; }
+    localStorage.setItem("brapi_token", val);
+    status.textContent = "✓ Token salvo. Atualizando cotações...";
+    status.style.color = "#4ade80";
+    updateLiveQuotes(true);
+  });
+
+  document.getElementById("token-clear").addEventListener("click", () => {
+    localStorage.removeItem("brapi_token");
+    input.value = "";
+    status.textContent = "Token removido.";
+    status.style.color = "#94a3b8";
+  });
+}
+
 window.selectAcao = selectAcao;
 document.addEventListener("DOMContentLoaded", () => {
   init();
+  initSettingsPanel();
   updateLiveQuotes();
   document.getElementById("live-badge").addEventListener("click", () => updateLiveQuotes(true));
 });
