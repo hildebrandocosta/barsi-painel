@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Barsi 50 — Dashboard Fundamentalista</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:100%;height:100%;overflow:hidden;font-family:'Segoe UI',Arial,sans-serif;background:#020617;color:#f1f5f9}
+::-webkit-scrollbar{width:6px;height:6px}
+::-webkit-scrollbar-track{background:#0f172a}
+::-webkit-scrollbar-thumb{background:#334155;border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:#475569}
+
+#app{display:flex;flex-direction:column;height:100vh;width:100vw}
+
+/* TOPBAR */
+#topbar{background:#0a0f1e;border-bottom:1px solid #1e293b;padding:0 20px;height:52px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.tb-brand{display:flex;align-items:center;gap:16px}
+.tb-label{font-size:10px;letter-spacing:2px;color:#475569;text-transform:uppercase;font-weight:600}
+.tb-title{font-size:17px;font-weight:800;color:#f1f5f9;line-height:1}
+.tb-title span{color:#818cf8}
+.tb-sep{width:1px;height:28px;background:#1e293b}
+.tb-stats{display:flex;gap:20px}
+.tb-stat{text-align:center}
+.tb-stat-v{font-size:14px;font-weight:800;line-height:1}
+.tb-stat-l{font-size:9px;color:#475569}
+.tb-note{font-size:10px;color:#334155}
+
+/* BODY */
+#body{display:flex;flex:1;overflow:hidden}
+
+/* COLUNA ESQUERDA */
+#col-left{width:330px;flex-shrink:0;border-right:1px solid #1e293b;display:flex;flex-direction:column;overflow:hidden;background:#0a0f1e}
+#filters{padding:10px 12px;border-bottom:1px solid #1e293b;display:flex;flex-direction:column;gap:6px}
+#filters input{background:#1e293b;border:1px solid #334155;border-radius:6px;padding:7px 10px;color:#f1f5f9;font-size:12px;outline:none;width:100%}
+.filter-row{display:flex;gap:6px}
+.filter-row select{flex:1;background:#1e293b;border:1px solid #334155;border-radius:6px;padding:5px 8px;color:#94a3b8;font-size:11px;outline:none;cursor:pointer}
+.sort-row{display:flex;gap:4px}
+.sort-btn{flex:1;padding:4px 0;border-radius:4px;border:none;cursor:pointer;font-size:10px;background:#1e293b;color:#64748b;transition:all .15s}
+.sort-btn.active{background:#4f46e5;color:#fff}
+#list-count{font-size:10px;color:#334155}
+#acao-list{flex:1;overflow-y:auto}
+
+.acao-card{padding:9px 14px;cursor:pointer;border-left:3px solid transparent;border-bottom:1px solid #0f172a;transition:background .1s}
+.acao-card:hover{background:#1e293b22}
+.acao-card.selected{border-left-color:var(--cor);background:var(--corbg)}
+.card-row1{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:5px}
+.card-ticker{font-weight:700;font-size:13px}
+.card-nome{font-size:10px;color:#475569;max-width:110px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.card-badge{font-size:9px;padding:2px 6px;border-radius:3px;font-weight:600;white-space:nowrap}
+.card-metricas{display:grid;grid-template-columns:repeat(5,1fr);gap:3px;margin-bottom:5px}
+.card-met{text-align:center;background:#0f172a;border-radius:4px;padding:3px 2px}
+.card-met-l{font-size:8px;color:#334155}
+.card-met-v{font-size:10px;font-weight:700}
+.card-etapas{display:flex;gap:2px;align-items:center}
+.etapa-bar{flex:1;height:3px;border-radius:2px}
+.etapas-score{font-size:9px;color:#475569;margin-left:4px}
+
+/* COLUNA DIREITA */
+#col-right{flex:1;display:flex;flex-direction:column;overflow:hidden}
+#detail-header{background:#0a0f1e;border-bottom:1px solid #1e293b;padding:10px 20px;flex-shrink:0}
+.dh-row1{display:flex;align-items:flex-start;gap:12px;margin-bottom:8px;flex-wrap:wrap}
+.dh-ticker{font-weight:800;font-size:22px}
+.dh-nome{font-size:14px;color:#94a3b8}
+.dh-setor-badge{font-size:10px;padding:2px 8px;border-radius:4px}
+.dh-perene{font-size:9px;background:#052e16;color:#4ade80;padding:2px 6px;border-radius:4px}
+.dh-resumo{font-size:11px;color:#64748b;line-height:1.5;flex:1;min-width:200px}
+.dh-kpis{display:flex;gap:8px;flex-wrap:wrap}
+.dh-kpi{background:#1e293b;border-radius:6px;padding:6px 12px;text-align:center;min-width:72px}
+.dh-kpi-l{font-size:9px;color:#475569;margin-bottom:2px}
+.dh-kpi-v{font-size:12px;font-weight:800}
+
+/* ABAS DIREITA */
+#detail-tabs{background:#0a0f1e;border-bottom:1px solid #1e293b;padding:0 20px;flex-shrink:0;display:flex;gap:2px}
+.dtab{padding:8px 16px;border:none;cursor:pointer;background:transparent;font-size:12px;font-weight:400;color:#475569;border-bottom:2px solid transparent;transition:all .15s}
+.dtab.active{font-weight:700;border-bottom-color:var(--cor-ativa,#818cf8)}
+
+/* CONTEÚDO DIREITA */
+#detail-body{flex:1;overflow-y:auto;padding:16px 20px}
+
+/* ETAPAS */
+.etapa-item{background:#0f172a;border:1px solid #1e293b;border-radius:8px;padding:11px 14px;display:flex;align-items:center;gap:12px;margin-bottom:8px;position:relative;overflow:hidden}
+.etapa-num{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:13px;font-weight:800}
+.etapa-txt{flex:1}
+.etapa-label{font-weight:600;font-size:12px;color:#f1f5f9;margin-bottom:2px}
+.etapa-desc{font-size:11px;color:#475569}
+.etapa-status{border-radius:6px;padding:4px 12px;text-align:center;font-size:12px;font-weight:800;flex-shrink:0}
+
+/* VEREDICTO */
+.veredicto-box{border-radius:10px;padding:14px 18px;margin-bottom:16px}
+.verd-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.verd-lbl{font-size:10px;color:#475569;text-transform:uppercase;letter-spacing:1px;margin-bottom:2px}
+.verd-title{font-size:20px;font-weight:800}
+.verd-score{font-size:26px;font-weight:800;text-align:right}
+.verd-score-l{font-size:9px;color:#475569}
+.verd-etapas{display:flex;gap:4px}
+.verd-etapa{flex:1;border-radius:4px;padding:4px 0;text-align:center}
+.verd-etapa-l{font-size:8px;color:#475569}
+.verd-etapa-v{font-size:11px;font-weight:700}
+
+/* PONTOS */
+.pontos-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.pontos-box{border-radius:8px;padding:12px 14px}
+.pontos-title{font-size:10px;font-weight:600;margin-bottom:8px}
+.ponto-item{font-size:11px;margin-bottom:4px;line-height:1.4}
+
+/* INDICADORES GRADE */
+.ind-grade{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px}
+.ind-item{background:#0f172a;border:1px solid #1e293b;border-radius:8px;padding:10px 12px;text-align:center}
+.ind-l{font-size:10px;color:#475569;margin-bottom:4px}
+.ind-v{font-size:18px;font-weight:800;margin-bottom:6px}
+.ind-bar{background:#1e293b;border-radius:3px;height:3px;overflow:hidden}
+.ind-bar-fill{height:100%;border-radius:3px}
+
+/* BAZIN BOX */
+.bazin-box{background:#0f172a;border:1px solid #78350f;border-radius:8px;padding:12px 16px;margin-bottom:12px}
+.bazin-title{font-size:11px;color:#f59e0b;font-weight:600;margin-bottom:8px}
+.bazin-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:8px}
+.bazin-item{background:#1e293b;border-radius:6px;padding:8px 10px;text-align:center}
+.bazin-item-l{font-size:9px;color:#475569;margin-bottom:3px}
+.bazin-item-v{font-size:14px;font-weight:700}
+.bazin-result{font-size:11px;font-weight:600;padding:6px 10px;border-radius:6px;margin-top:4px}
+
+/* PARES */
+.pares-title{font-size:11px;color:#475569;margin-bottom:8px}
+.par-item{display:flex;align-items:center;gap:8px;padding:6px 8px;border-radius:6px;cursor:pointer;border:1px solid transparent;margin-bottom:3px;transition:background .1s}
+.par-item:hover{background:#1e293b}
+.par-item.selected{border-color:var(--cor-ativa);background:var(--cor-ativa-bg)}
+.par-ticker{font-weight:700;font-size:12px;width:56px}
+.par-mets{flex:1;display:grid;grid-template-columns:repeat(4,1fr);gap:4px}
+.par-met{text-align:center}
+.par-met-l{font-size:8px;color:#334155}
+.par-met-v{font-size:10px;font-weight:600}
+
+/* GRAFICOS */
+.graficos-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+.grafico-box{background:#0f172a;border:1px solid #1e293b;border-radius:8px;padding:12px 14px}
+.grafico-title{font-size:11px;color:#475569;margin-bottom:10px}
+.grafico-canvas{position:relative;height:160px}
+.grafico-canvas-wide{position:relative;height:130px}
+
+/* RESUMO */
+.resumo-box{background:#0f172a;border-radius:8px;padding:14px 16px;margin-bottom:14px;position:relative;overflow:hidden}
+.resumo-accent{position:absolute;top:0;left:0;width:4px;height:100%;background:var(--cor-ativa)}
+.resumo-title{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
+.resumo-text{font-size:13px;color:#94a3b8;line-height:1.8}
+
+/* INFO GRID */
+.info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;background:#0f172a;border:1px solid #1e293b;border-radius:8px;padding:12px 16px;margin-bottom:12px}
+.info-item-l{font-size:10px;color:#475569;margin-bottom:2px}
+.info-item-v{font-size:13px;font-weight:700}
+
+/* EMPTY STATE */
+.empty{flex:1;display:flex;align-items:center;justify-content:center;color:#334155;text-align:center}
+.empty-icon{font-size:48px;margin-bottom:12px}
+.empty-txt{font-size:16px;font-weight:600;color:#475569}
+
+/* CORES helpers */
+.c-green{color:#4ade80}.c-yellow{color:#facc15}.c-red{color:#f87171}.c-blue{color:#818cf8}.c-gray{color:#94a3b8}
+.bg-green{background:#052e16;border:1px solid #16a34a33}.bg-yellow{background:#1c1400;border:1px solid #ca8a0433}.bg-red{background:#3b0000;border:1px solid #dc262633}
+</style>
+</head>
+<body>
+<div id="app">
+  <!-- TOPBAR -->
+  <div id="topbar">
+    <div class="tb-brand">
+      <div>
+        <div class="tb-label">Barsi 50</div>
+        <div class="tb-title">Painel <span>Fundamentalista</span></div>
+      </div>
+      <div class="tb-sep"></div>
+      <div class="tb-stats">
+        <div class="tb-stat"><div class="tb-stat-v" id="st-comprar" style="color:#4ade80">—</div><div class="tb-stat-l">Comprar</div></div>
+        <div class="tb-stat"><div class="tb-stat-v" id="st-dy" style="color:#f59e0b">—</div><div class="tb-stat-l">DY médio</div></div>
+        <div class="tb-stat"><div class="tb-stat-v" id="st-roe" style="color:#818cf8">—</div><div class="tb-stat-l">ROE médio</div></div>
+        <div class="tb-stat"><div class="tb-stat-v" style="color:#94a3b8">50</div><div class="tb-stat-l">Ações B3</div></div>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:14px">
+      <div id="live-badge" style="display:flex;align-items:center;gap:6px;font-size:11px;color:#475569;background:#0f172a;border:1px solid #1e293b;border-radius:6px;padding:5px 10px;cursor:pointer" title="Clique para atualizar cotações agora">
+        <span id="live-dot" style="width:7px;height:7px;border-radius:50%;background:#475569;display:inline-block"></span>
+        <span id="live-text">Carregando cotações...</span>
+      </div>
+      <div class="tb-note">jun/2026 · Não é recomendação de investimento</div>
+    </div>
+  </div>
+
+  <!-- BODY -->
+  <div id="body">
+    <!-- COLUNA ESQUERDA -->
+    <div id="col-left">
+      <div id="filters">
+        <input type="text" id="busca" placeholder="🔍 Ticker ou nome...">
+        <div class="filter-row">
+          <select id="f-setor"><option value="">Todos setores</option></select>
+          <select id="f-rec"><option value="">Todas</option><option value="COMPRAR">Comprar</option><option value="NEUTRO">Neutro</option><option value="AGUARDAR">Aguardar</option></select>
+        </div>
+        <div class="sort-row" id="sort-row">
+          <button class="sort-btn active" data-sort="dy">DY</button>
+          <button class="sort-btn" data-sort="roe">ROE</button>
+          <button class="sort-btn" data-sort="pl">P/L</button>
+          <button class="sort-btn" data-sort="rating">★</button>
+          <button class="sort-btn" data-sort="ticker">A-Z</button>
+        </div>
+        <div id="list-count"></div>
+      </div>
+      <div id="acao-list"></div>
+    </div>
+
+    <!-- COLUNA DIREITA -->
+    <div id="col-right">
+      <div id="detail-header" style="display:none">
+        <div class="dh-row1">
+          <div>
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px;flex-wrap:wrap">
+              <span class="dh-ticker" id="dh-ticker"></span>
+              <span class="dh-nome" id="dh-nome"></span>
+              <span class="dh-setor-badge" id="dh-setor"></span>
+              <span class="dh-perene" id="dh-perene" style="display:none">✓ Perene</span>
+            </div>
+            <div class="dh-resumo" id="dh-resumo"></div>
+          </div>
+          <div class="dh-kpis" id="dh-kpis"></div>
+        </div>
+      </div>
+
+      <div id="detail-tabs" style="display:none">
+        <button class="dtab active" data-tab="analise">📊 Análise Barsi</button>
+        <button class="dtab" data-tab="graficos">📈 Gráficos</button>
+        <button class="dtab" data-tab="indicadores">🔬 Indicadores</button>
+        <button class="dtab" data-tab="resumo">📋 Resumo</button>
+      </div>
+
+      <div id="detail-body">
+        <div class="empty">
+          <div>
+            <div class="empty-icon">📊</div>
+            <div class="empty-txt">Selecione uma ação na lista à esquerda</div>
+            <div style="font-size:12px;color:#334155;margin-top:6px">Todos os critérios Barsi serão analisados</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const CORES_SET = {
+  "Bancos":"#3b82f6","Seguros":"#8b5cf6","Energia Elétrica":"#f59e0b",
+  "Transmissão Elétrica":"#f97316","Saneamento":"#06b6d4","Telecom":"#10b981",
+  "Infraestrutura Financeira":"#a78bfa","Concessões / Logística":"#ec4899",
+  "Consumo não-cíclico":"#84cc16","Saúde":"#ef4444",
+  "Shoppings / Imóveis":"#e879f9","Ind. / Transporte":"#64748b",
+};
+const SETORES_PERENES = ["Bancos","Seguros","Energia Elétrica","Transmissão Elétrica","Saneamento","Telecom","Infraestrutura Financeira"];
+const ANOS_HIST = [2020,2021,2022,2023,2024,2025];
+
+const ACOES = [
+  { ticker:"BBSE3", nome:"BB Seguridade",    setor:"Seguros",
+    cotacao:36.26,pl:9.8,pvp:3.2,roe:32.8,dy:12.7,divEbitda:0.0,margem:45.2,cagrLucro:14.2,rating:5,recomendacao:"COMPRAR",
+    dyHist:{2020:4.2,2021:5.8,2022:8.0,2023:9.8,2024:11.5,2025:9.7},
+    cotHist:{2020:100,2021:96,2022:108,2023:118,2024:148,2025:142},varTotal:42,dividAnual:4.60,
+    resumo:"Holding de seguros do BB com modelo asset-light. ROE de 33% excepcional, payout 90%+. Zero dívida operacional.",
+    pontosFort:["ROE acima de 30% recorrente","Zero dívida operacional","Modelo asset-light"],
+    pontosAten:["Dependência da rede BB","P/VP alto para o setor"]},
+  { ticker:"CXSE3", nome:"Caixa Seguridade", setor:"Seguros",
+    cotacao:13.50,pl:10.2,pvp:2.8,roe:27.5,dy:9.8,divEbitda:0.0,margem:41.0,cagrLucro:18.5,rating:4,recomendacao:"COMPRAR",
+    dyHist:{2020:0,2021:6.5,2022:7.2,2023:8.0,2024:8.8,2025:9.8},
+    cotHist:{2020:100,2021:100,2022:108,2023:118,2024:128,2025:135},varTotal:35,dividAnual:1.32,
+    resumo:"Seguradora da CEF com IPO em 2021. CAGR de 18,5% e DY crescente. Modelo bancassurance robusto.",
+    pontosFort:["CAGR de lucro de 18%","DY de 10%","Expansão de portfólio"],
+    pontosAten:["Histórico curto (IPO 2021)","Risco político via CEF"]},
+  { ticker:"PSSA3", nome:"Porto Seguro",     setor:"Seguros",
+    cotacao:59.00,pl:11.5,pvp:2.9,roe:25.2,dy:8.2,divEbitda:0.0,margem:12.8,cagrLucro:12.0,rating:4,recomendacao:"COMPRAR",
+    dyHist:{2020:5.2,2021:5.8,2022:6.8,2023:7.4,2024:7.8,2025:8.2},
+    cotHist:{2020:100,2021:112,2022:130,2023:148,2024:162,2025:168},varTotal:68,dividAnual:4.84,
+    resumo:"Maior seguradora independente do Brasil, líder em seguro auto. ROE de 25% e dividendos semestrais.",
+    pontosFort:["Liderança em seguro auto","Crescimento em saúde suplementar","Gestão conservadora"],
+    pontosAten:["Sensível a inflação de custos de veículos","Concorrência crescente de insurtechs"]},
+  { ticker:"IRBR3", nome:"IRB Brasil RE",    setor:"Seguros",
+    cotacao:9.50,pl:14.2,pvp:1.8,roe:12.8,dy:7.4,divEbitda:0.0,margem:8.5,cagrLucro:null,rating:2,recomendacao:"AGUARDAR",
+    dyHist:{2020:0,2021:0,2022:2.1,2023:4.5,2024:6.8,2025:7.4},
+    cotHist:{2020:100,2021:38,2022:22,2023:30,2024:32,2025:28},varTotal:-72,dividAnual:0.70,
+    resumo:"Resseguradora em recuperação após escândalo contábil de 2020. Voltou ao lucro em 2023 mas ROE ainda fraco.",
+    pontosFort:["Nicho de resseguro com pouca concorrência","Valuation descontado"],
+    pontosAten:["Histórico de fraude contábil","ROE abaixo do custo de capital","Recuperação lenta"]},
+  { ticker:"ITUB4", nome:"Itaú Unibanco",    setor:"Bancos",
+    cotacao:43.19,pl:10.5,pvp:2.1,roe:21.8,dy:7.3,divEbitda:null,margem:28.5,cagrLucro:15.8,rating:5,recomendacao:"COMPRAR",
+    dyHist:{2020:1.8,2021:3.8,2022:4.2,2023:5.5,2024:6.8,2025:7.3},
+    cotHist:{2020:100,2021:108,2022:118,2023:138,2024:162,2025:178},varTotal:78,dividAnual:3.15,
+    resumo:"Melhor banco privado da AL. ROE de 21,8% consistente, JCP mensal, carteira diversificada.",
+    pontosFort:["ROE líder entre grandes bancos","Inadimplência controlada","JCP mensal"],
+    pontosAten:["P/VP de 2,1x não é barato","Exposição ao risco regulatório"]},
+  { ticker:"ITSA4", nome:"Itaúsa",           setor:"Bancos",
+    cotacao:16.00,pl:9.2,pvp:1.6,roe:18.5,dy:7.0,divEbitda:null,margem:25.0,cagrLucro:12.5,rating:4,recomendacao:"COMPRAR",
+    dyHist:{2020:1.5,2021:5.1,2022:6.4,2023:7.2,2024:7.0,2025:6.8},
+    cotHist:{2020:100,2021:115,2022:128,2023:140,2024:148,2025:148},varTotal:48,dividAnual:1.12,
+    resumo:"Holding do Itaú com desconto de 15-20% sobre o NAV. Diversificação além do Itaú.",
+    pontosFort:["Desconto estrutural sobre o NAV","Diversificação além do Itaú","DY competitivo"],
+    pontosAten:["Desconto pode não se fechar","Resultado depende do Itaú"]},
+  { ticker:"BBAS3", nome:"Banco do Brasil",  setor:"Bancos",
+    cotacao:22.21,pl:4.8,pvp:0.9,roe:19.5,dy:9.5,divEbitda:null,margem:30.2,cagrLucro:18.2,rating:5,recomendacao:"COMPRAR",
+    dyHist:{2020:1.2,2021:4.5,2022:8.2,2023:12.1,2024:10.8,2025:9.5},
+    cotHist:{2020:100,2021:105,2022:148,2023:175,2024:168,2025:125},varTotal:25,dividAnual:2.11,
+    resumo:"Banco mais barato dos grandes (P/L 4,8x) com ROE de 19,5%. Carteira agro defensiva e DY top do setor.",
+    pontosFort:["Valuation mais barato dos bancões","Carteira agro defensiva","DY top do setor"],
+    pontosAten:["Risco de interferência política","P/VP < 1 sinaliza desconfiança"]},
+  { ticker:"SANB11", nome:"Santander BR",    setor:"Bancos",
+    cotacao:33.00,pl:9.8,pvp:1.5,roe:15.8,dy:7.8,divEbitda:null,margem:22.0,cagrLucro:8.5,rating:3,recomendacao:"NEUTRO",
+    dyHist:{2020:1.5,2021:3.5,2022:4.8,2023:6.2,2024:7.5,2025:7.8},
+    cotHist:{2020:100,2021:112,2022:108,2023:118,2024:128,2025:118},varTotal:18,dividAnual:2.57,
+    resumo:"Banco consistente mas sem brilho. ROE mais baixo dos grandes bancos. Payout de 100% sustenta DY.",
+    pontosFort:["Payout de 100% sustenta DY alto","Marca forte com foco em PF premium"],
+    pontosAten:["ROE mais baixo dos grandes bancos","Crescimento lento de carteira"]},
+  { ticker:"BBDC4", nome:"Bradesco",         setor:"Bancos",
+    cotacao:17.00,pl:8.5,pvp:1.0,roe:11.8,dy:6.2,divEbitda:null,margem:15.5,cagrLucro:-4.2,rating:2,recomendacao:"AGUARDAR",
+    dyHist:{2020:1.8,2021:6.5,2022:7.2,2023:5.8,2024:5.1,2025:6.2},
+    cotHist:{2020:100,2021:112,2022:105,2023:78,2024:62,2025:62},varTotal:-38,dividAnual:1.05,
+    resumo:"Piores anos recentes: provisões elevadas, inadimplência alta, ROE abaixo do custo de capital.",
+    pontosFort:["Valuation descontado para eventual recuperação","Rede de distribuição gigante"],
+    pontosAten:["ROE abaixo do custo de capital","Lucro em queda nos últimos 3 anos"]},
+  { ticker:"BPAC11", nome:"BTG Pactual",     setor:"Bancos",
+    cotacao:48.00,pl:12.8,pvp:2.8,roe:22.5,dy:6.5,divEbitda:null,margem:35.8,cagrLucro:28.5,rating:5,recomendacao:"COMPRAR",
+    dyHist:{2020:2.5,2021:3.8,2022:5.1,2023:5.8,2024:6.2,2025:6.5},
+    cotHist:{2020:100,2021:155,2022:195,2023:242,2024:268,2025:285},varTotal:185,dividAnual:3.12,
+    resumo:"Maior banco de investimento da AL. CAGR de 28,5%, expansão em WM e AM. Modelo de fee income resiliente.",
+    pontosFort:["CAGR de lucro de 28,5%","Expansão em WM e AM","Modelo de fee income resiliente"],
+    pontosAten:["P/VP alto (2,8x)","Concentração em pessoas-chave"]},
+  { ticker:"TAEE11", nome:"Taesa",           setor:"Transmissão Elétrica",
+    cotacao:37.00,pl:8.5,pvp:1.8,roe:21.2,dy:8.4,divEbitda:2.8,margem:58.5,cagrLucro:-2.5,rating:4,recomendacao:"COMPRAR",
+    dyHist:{2020:9.5,2021:9.8,2022:11.2,2023:8.5,2024:9.1,2025:8.4},
+    cotHist:{2020:100,2021:118,2022:108,2023:95,2024:98,2025:92},varTotal:-8,dividAnual:3.11,
+    resumo:"100% payout. Receita RAP indexada ao IPCA. Zero risco de demanda. Máquina de dividendos com risco mínimo.",
+    pontosFort:["Receita RAP indexada ao IPCA","Zero risco de demanda","Payout de 100%"],
+    pontosAten:["Sensível à taxa de juros (duration longa)","Leve queda de lucro nos últimos anos"]},
+  { ticker:"TRPL4", nome:"CTEEP",            setor:"Transmissão Elétrica",
+    cotacao:27.00,pl:7.8,pvp:1.5,roe:19.5,dy:8.2,divEbitda:2.2,margem:52.0,cagrLucro:5.2,rating:4,recomendacao:"COMPRAR",
+    dyHist:{2020:8.2,2021:7.1,2022:9.4,2023:8.6,2024:9.0,2025:8.2},
+    cotHist:{2020:100,2021:115,2022:118,2023:112,2024:115,2025:112},varTotal:12,dividAnual:2.21,
+    resumo:"Maior transmissora do Brasil por extensão de rede. Receita RAP garantida, crescimento via leilões.",
+    pontosFort:["Maior rede de transmissão do Brasil","Crescimento via leilões","Receita regulada"],
+    pontosAten:["Depreciação de ativos reduz lucro contábil","Controlador estrangeiro"]},
+  { ticker:"ISAE4", nome:"ISA Energia",      setor:"Transmissão Elétrica",
+    cotacao:25.00,pl:8.2,pvp:1.6,roe:19.8,dy:9.1,divEbitda:2.5,margem:54.0,cagrLucro:7.8,rating:4,recomendacao:"COMPRAR",
+    dyHist:{2020:7.5,2021:7.1,2022:9.4,2023:8.6,2024:9.0,2025:9.1},
+    cotHist:{2020:100,2021:112,2022:118,2023:118,2024:122,2025:115},varTotal:15,dividAnual:2.28,
+    resumo:"Versão unitária da CTEEP. DY acima de 9%, CAGR de 7,8% real. Contrato RAP de longo prazo.",
+    pontosFort:["DY acima de 9%","Crescimento real de lucro","Contrato RAP longo prazo"],
+    pontosAten:["Menor liquidez que TRPL4","Mesmo controlador = risco concentrado"]},
+  { ticker:"EGIE3", nome:"Engie Brasil",     setor:"Energia Elétrica",
+    cotacao:53.00,pl:11.5,pvp:3.5,roe:30.5,dy:6.3,divEbitda:1.8,margem:32.5,cagrLucro:9.5,rating:4,recomendacao:"COMPRAR",
+    dyHist:{2020:5.8,2021:6.2,2022:7.5,2023:7.8,2024:8.0,2025:6.3},
+    cotHist:{2020:100,2021:112,2022:122,2023:128,2024:135,2025:132},varTotal:32,dividAnual:3.34,
+    resumo:"Maior geradora privada do Brasil. ROE de 30,5% líder no setor. Portfólio diversificado.",
+    pontosFort:["ROE líder no setor elétrico","Diversificação de matriz","Gestão exemplar"],
+    pontosAten:["P/VP elevado (3,5x)","DY caiu com reinvestimento em capex"]},
+  { ticker:"CMIG4", nome:"Cemig",            setor:"Energia Elétrica",
+    cotacao:17.00,pl:6.5,pvp:1.8,roe:27.5,dy:11.2,divEbitda:1.5,margem:20.8,cagrLucro:22.5,rating:5,recomendacao:"COMPRAR",
+    dyHist:{2020:5.5,2021:7.5,2022:10.3,2023:9.8,2024:10.5,2025:11.2},
+    cotHist:{2020:100,2021:128,2022:175,2023:208,2024:238,2025:245},varTotal:145,dividAnual:1.90,
+    resumo:"Turnaround de estatal para distribuidora eficiente. ROE de 27,5%, CAGR de 22,5%. DY de 11,2%.",
+    pontosFort:["CAGR de lucro de 22,5%","DY de 11,2% + valuation barato","Desinvestimentos reduziram dívida"],
+    pontosAten:["Controle pelo Governo de MG","Dependência de hidrelétricas"]},
+  { ticker:"CPLE6", nome:"Copel",            setor:"Energia Elétrica",
+    cotacao:12.70,pl:7.2,pvp:1.5,roe:20.8,dy:12.1,divEbitda:1.2,margem:18.5,cagrLucro:35.2,rating:5,recomendacao:"COMPRAR",
+    dyHist:{2020:4.2,2021:4.2,2022:5.5,2023:6.0,2024:8.8,2025:12.1},
+    cotHist:{2020:100,2021:108,2022:112,2023:138,2024:175,2025:195},varTotal:95,dividAnual:1.54,
+    resumo:"Privatização em 2023 acelerou tudo. CAGR de 35,2% e DY de 12,1% — melhor relação risco/retorno do setor.",
+    pontosFort:["Privatização acelerou eficiência","DY de 12,1%","CAGR de 35% — maior do setor"],
+    pontosAten:["Privatização recente = histórico curto","Risco regulatório da ANEEL"]},
+  { ticker:"AXIA6", nome:"Axia Energia",     setor:"Energia Elétrica",
+    cotacao:25.00,pl:6.8,pvp:1.2,roe:17.5,dy:8.7,divEbitda:3.5,margem:22.0,cagrLucro:42.0,rating:4,recomendacao:"COMPRAR",
+    dyHist:{2020:3.5,2021:3.5,2022:4.0,2023:7.2,2024:8.5,2025:8.7},
+    cotHist:{2020:100,2021:100,2022:118,2023:202,2024:268,2025:310},varTotal:210,dividAnual:2.18,
+    resumo:"Maior turnaround pós-privatização da B3. CAGR de 42% desde 2022. P/L de 6,8x atrativo.",
+    pontosFort:["Maior turnaround da B3 pós-privatização","Revisão tarifária a cada ciclo","CAGR de 42%"],
+    pontosAten:["Dívida/EBITDA de 3,5x","Depende de revisões tarifárias favoráveis"]},
+  { ticker:"CPFE3", nome:"CPFL Energia",     setor:"Energia Elétrica",
+    cotacao:33.00,pl:8.8,pvp:2.0,roe:22.8,dy:8.9,divEbitda:2.0,margem:16.5,cagrLucro:10.2,rating:4,recomendacao:"COMPRAR",
+    dyHist:{2020:6.8,2021:7.2,2022:8.5,2023:8.8,2024:9.2,2025:8.9},
+    cotHist:{2020:100,2021:112,2022:118,2023:122,2024:128,2025:128},varTotal:28,dividAnual:2.94,
+    resumo:"Distribuidora eficiente no Sul/Sudeste. ROE de 22,8%, DY de 8,9%. Controlada pela State Grid.",
+    pontosFort:["Distribuição no Sul/Sudeste (menor inadimplência)","State Grid disciplinada","ROE de 22,8%"],
+    pontosAten:["Controle estrangeiro","Capex intensivo"]},
+  { ticker:"ENBR3", nome:"EDP Brasil",       setor:"Energia Elétrica",
+    cotacao:19.50,pl:9.5,pvp:1.8,roe:18.8,dy:6.8,divEbitda:2.2,margem:15.0,cagrLucro:8.5,rating:3,recomendacao:"NEUTRO",
+    dyHist:{2020:4.5,2021:5.2,2022:6.0,2023:6.5,2024:7.0,2025:6.8},
+    cotHist:{2020:100,2021:108,2022:112,2023:118,2024:122,2025:122},varTotal:22,dividAnual:1.33,
+    resumo:"Distribuidora e geradora de qualidade acima da média. Indicadores sólidos mas sem catalisador claro.",
+    pontosFort:["Qualidade de distribuição acima da média","Controlador europeu experiente"],
+    pontosAten:["Sem catalisador claro de reavaliação","P/L não oferece desconto"]},
+  { ticker:"EQTL3", nome:"Equatorial",       setor:"Energia Elétrica",
+    cotacao:31.00,pl:12.5,pvp:2.2,roe:17.5,dy:6.1,divEbitda:3.8,margem:14.2,cagrLucro:18.8,rating:4,recomendacao:"COMPRAR",
+    dyHist:{2020:3.2,2021:4.0,2022:5.5,2023:5.8,2024:6.2,2025:6.1},
+    cotHist:{2020:100,2021:118,2022:128,2023:138,2024:148,2025:155},varTotal:55,dividAnual:1.89,
+    resumo:"Modelo único de turnaround de distribuidoras. CAGR de 18,8%. Risco maior, retorno diferenciado.",
+    pontosFort:["Modelo único de turnaround de distribuidoras","CAGR de lucro de 18,8%","Pipeline de novas concessões"],
+    pontosAten:["Dívida/EBITDA de 3,8x","Risco de inadimplência em regiões pobres"]},
+  { ticker:"AURE3", nome:"Auren Energia",    setor:"Energia Elétrica",
+    cotacao:16.00,pl:10.8,pvp:1.4,roe:13.0,dy:7.8,divEbitda:2.5,margem:28.5,cagrLucro:12.0,rating:3,recomendacao:"NEUTRO",
+    dyHist:{2020:4.5,2021:5.0,2022:6.0,2023:7.2,2024:7.5,2025:7.8},
+    cotHist:{2020:100,2021:108,2022:115,2023:125,2024:132,2025:138},varTotal:38,dividAnual:1.25,
+    resumo:"Geradora renovável (ex-AES Brasil + CESP). Portfólio 100% renovável, crescimento modesto.",
+    pontosFort:["Portfólio 100% renovável","DY de 7,8% consistente"],
+    pontosAten:["ROE baixo para o setor (13%)","Crescimento modesto"]},
+  { ticker:"PETR4", nome:"Petrobras PN",     setor:"Energia Elétrica",
+    cotacao:48.95,pl:5.8,pvp:1.5,roe:26.5,dy:8.3,divEbitda:0.8,margem:24.5,cagrLucro:5.5,rating:4,recomendacao:"COMPRAR",
+    dyHist:{2020:2.5,2021:5.5,2022:46.2,2023:22.0,2024:16.1,2025:8.3},
+    cotHist:{2020:100,2021:88,2022:148,2023:162,2024:168,2025:162},varTotal:62,dividAnual:4.06,
+    resumo:"Fundamentos excepcionais, custo de extração mais baixo do mundo. Risco político permanente.",
+    pontosFort:["Custo de extração mais baixo do mundo","ROE de 26,5%","Dívida baixíssima (0,8x EBITDA)"],
+    pontosAten:["Risco político crônico","DY volátil conforme preço do petróleo"]},
+  { ticker:"PRIO3", nome:"PRIO",             setor:"Energia Elétrica",
+    cotacao:38.00,pl:8.2,pvp:2.2,roe:27.0,dy:7.1,divEbitda:0.5,margem:42.5,cagrLucro:85.0,rating:5,recomendacao:"COMPRAR",
+    dyHist:{2020:0,2021:2.5,2022:4.2,2023:6.0,2024:7.0,2025:7.1},
+    cotHist:{2020:100,2021:168,2022:268,2023:362,2024:418,2025:480},varTotal:380,dividAnual:2.70,
+    resumo:"Melhor petrolífera independente do Brasil. CAGR de 85% em 3 anos, sem risco político, margem de 42,5%.",
+    pontosFort:["CAGR de lucro de 85%","Sem risco político","Margem líquida de 42%","Baixíssima dívida"],
+    pontosAten:["Concentração em poucos campos","Sensível ao preço do petróleo"]},
+  { ticker:"SBSP3", nome:"Sabesp",           setor:"Saneamento",
+    cotacao:66.00,pl:11.8,pvp:2.1,roe:17.8,dy:7.4,divEbitda:3.2,margem:22.5,cagrLucro:28.5,rating:4,recomendacao:"COMPRAR",
+    dyHist:{2020:3.8,2021:4.5,2022:5.2,2023:5.5,2024:6.8,2025:7.4},
+    cotHist:{2020:100,2021:112,2022:118,2023:132,2024:162,2025:175},varTotal:75,dividAnual:4.88,
+    resumo:"Maior saneadora da AL, privatizada em 2023. CAGR de 28,5% com nova política de dividendos.",
+    pontosFort:["Maior saneadora da AL","Privatização trouxe eficiência","Mercado endereçável gigante"],
+    pontosAten:["Dívida/EBITDA de 3,2x","Capex pesado para universalização até 2029"]},
+  { ticker:"SAPR11", nome:"Sanepar",         setor:"Saneamento",
+    cotacao:37.22,pl:8.2,pvp:1.5,roe:18.5,dy:9.3,divEbitda:2.5,margem:25.5,cagrLucro:14.5,rating:5,recomendacao:"COMPRAR",
+    dyHist:{2020:5.8,2021:5.2,2022:6.8,2023:8.1,2024:8.9,2025:9.3},
+    cotHist:{2020:100,2021:108,2022:118,2023:132,2024:142,2025:148},varTotal:48,dividAnual:3.46,
+    resumo:"P/L de 8,2x + DY de 9,3% — combinação rara. Dívida caiu de R$4,7bi para R$1,9bi com precatórios.",
+    pontosFort:["Redução drástica de dívida (precatórios)","DY de 9,3% com P/L de 8,2x","Eficiência acima da média"],
+    pontosAten:["Risco de reajuste tarifário desfavorável","Crescimento limitado ao Paraná"]},
+  { ticker:"CSMG3", nome:"Copasa",           setor:"Saneamento",
+    cotacao:22.00,pl:7.5,pvp:1.4,roe:18.8,dy:9.8,divEbitda:2.2,margem:24.0,cagrLucro:12.8,rating:4,recomendacao:"COMPRAR",
+    dyHist:{2020:5.5,2021:6.0,2022:7.5,2023:8.8,2024:9.5,2025:9.8},
+    cotHist:{2020:100,2021:112,2022:122,2023:138,2024:148,2025:155},varTotal:55,dividAnual:2.16,
+    resumo:"Saneadora de MG. P/L de 7,5x + DY de 9,8%. Dívida confortável, gestão eficiente.",
+    pontosFort:["P/L de 7,5x + DY de 9,8%","ROE de 18,8%","Dívida confortável"],
+    pontosAten:["Controle pelo Governo de MG","Sem perspectiva de privatização próxima"]},
+  { ticker:"VIVT3", nome:"Vivo (Telefônica)", setor:"Telecom",
+    cotacao:55.00,pl:13.5,pvp:2.5,roe:18.5,dy:6.6,divEbitda:1.2,margem:14.8,cagrLucro:8.5,rating:4,recomendacao:"COMPRAR",
+    dyHist:{2020:5.5,2021:5.8,2022:6.4,2023:6.9,2024:7.1,2025:6.6},
+    cotHist:{2020:100,2021:108,2022:112,2023:118,2024:122,2025:125},varTotal:25,dividAnual:3.63,
+    resumo:"Maior telecom do Brasil. Modelo defensivo com receita recorrente. Expansão em FTTH.",
+    pontosFort:["Liderança de mercado em telecom","Expansão em fibra ótica (FTTH)","Dividendos trimestrais"],
+    pontosAten:["P/L de 13,5x acima dos pares","Mercado maduro com crescimento limitado"]},
+  { ticker:"TIMS3", nome:"TIM",              setor:"Telecom",
+    cotacao:20.00,pl:11.8,pvp:2.0,roe:16.8,dy:7.4,divEbitda:0.8,margem:12.5,cagrLucro:11.5,rating:4,recomendacao:"COMPRAR",
+    dyHist:{2020:4.8,2021:5.5,2022:6.2,2023:6.8,2024:7.2,2025:7.4},
+    cotHist:{2020:100,2021:112,2022:118,2023:128,2024:138,2025:142},varTotal:42,dividAnual:1.48,
+    resumo:"Menor dívida do setor telecom. DY mais alto do setor (7,4%). Margem em expansão.",
+    pontosFort:["Menor dívida do setor telecom","DY mais alto do setor (7,4%)","Margem em expansão"],
+    pontosAten:["Menor escala que Vivo","Capex para fibra ainda pressionado"]},
+  { ticker:"B3SA3", nome:"B3",               setor:"Infraestrutura Financeira",
+    cotacao:9.80,pl:12.5,pvp:2.8,roe:22.5,dy:8.1,divEbitda:1.5,margem:38.5,cagrLucro:2.5,rating:3,recomendacao:"NEUTRO",
+    dyHist:{2020:5.0,2021:4.8,2022:5.6,2023:6.2,2024:7.4,2025:8.1},
+    cotHist:{2020:100,2021:112,2022:95,2023:88,2024:85,2025:82},varTotal:-18,dividAnual:0.79,
+    resumo:"Monopólio natural. Margem de 38,5%. Selic alta reduziu giro. DY de 8,1% remunera a espera.",
+    pontosFort:["Monopólio sem concorrente","Margem líquida de 38,5%","DY de 8,1%"],
+    pontosAten:["Lucro praticamente estagnado (CAGR 2,5%)","Juros altos reduzem giro da bolsa"]},
+  { ticker:"TOTS3", nome:"Totvs",            setor:"Infraestrutura Financeira",
+    cotacao:41.00,pl:22.5,pvp:4.5,roe:20.0,dy:6.2,divEbitda:0.5,margem:12.8,cagrLucro:18.5,rating:4,recomendacao:"COMPRAR",
+    dyHist:{2020:3.5,2021:4.0,2022:5.0,2023:5.8,2024:6.2,2025:6.2},
+    cotHist:{2020:100,2021:148,2022:138,2023:155,2024:172,2025:188},varTotal:88,dividAnual:2.54,
+    resumo:"Maior ERP da AL em transição para SaaS (75% recorrente). CAGR de 18,5%, expansão em Techfin.",
+    pontosFort:["Liderança em ERP no Brasil e AL","Transição para SaaS (75% recorrente)","Expansão em Techfin"],
+    pontosAten:["P/L de 22,5x exige crescimento contínuo","Margem ainda baixa para tech"]},
+  { ticker:"CCRO3", nome:"CCR",              setor:"Concessões / Logística",
+    cotacao:18.40,pl:18.5,pvp:3.8,roe:20.5,dy:7.2,divEbitda:4.2,margem:12.5,cagrLucro:5.5,rating:3,recomendacao:"NEUTRO",
+    dyHist:{2020:2.8,2021:3.5,2022:5.5,2023:6.8,2024:7.2,2025:7.2},
+    cotHist:{2020:100,2021:108,2022:115,2023:112,2024:112,2025:108},varTotal:8,dividAnual:1.33,
+    resumo:"Maior concessionária do Brasil. Receita de pedágio indexada. Dívida/EBITDA de 4,2x preocupa.",
+    pontosFort:["Portfólio diversificado de concessões","Receita indexada e previsível"],
+    pontosAten:["Dívida/EBITDA de 4,2x","P/L acima da média do setor"]},
+  { ticker:"ECOR3", nome:"Ecorodovias",      setor:"Concessões / Logística",
+    cotacao:14.50,pl:14.8,pvp:2.2,roe:14.8,dy:8.5,divEbitda:4.8,margem:15.5,cagrLucro:8.5,rating:3,recomendacao:"NEUTRO",
+    dyHist:{2020:3.5,2021:4.5,2022:6.2,2023:7.5,2024:8.2,2025:8.5},
+    cotHist:{2020:100,2021:108,2022:105,2023:98,2024:92,2025:85},varTotal:-15,dividAnual:1.23,
+    resumo:"Rodovias de alto tráfego no Sul/Sudeste. DY de 8,5% mas dívida/EBITDA de 4,8x é o maior risco.",
+    pontosFort:["Rodovias de alto tráfego em regiões ricas","DY de 8,5%"],
+    pontosAten:["Dívida/EBITDA de 4,8x — mais alta do grupo","Selic alta corrói lucro"]},
+  { ticker:"RAIL3", nome:"Rumo",             setor:"Concessões / Logística",
+    cotacao:22.70,pl:18.2,pvp:3.5,roe:19.2,dy:6.3,divEbitda:3.2,margem:28.5,cagrLucro:22.5,rating:4,recomendacao:"COMPRAR",
+    dyHist:{2020:3.0,2021:3.5,2022:4.8,2023:5.8,2024:6.2,2025:6.3},
+    cotHist:{2020:100,2021:115,2022:138,2023:152,2024:162,2025:162},varTotal:62,dividAnual:1.43,
+    resumo:"Maior ferrovia do Brasil. Crescimento da agro brasileira como demanda estrutural. CAGR de 22,5%.",
+    pontosFort:["Vantagem competitiva estrutural (ferrovia vs. rodovia)","Crescimento da agro brasileira","CAGR de 22,5%"],
+    pontosAten:["P/L alto (18,2x)","Atraso em aprovações do FERROGRÃO"]},
+  { ticker:"VBBR3", nome:"Vibra Energia",    setor:"Concessões / Logística",
+    cotacao:27.00,pl:10.8,pvp:2.2,roe:20.5,dy:7.9,divEbitda:1.2,margem:3.8,cagrLucro:14.5,rating:4,recomendacao:"COMPRAR",
+    dyHist:{2020:4.5,2021:5.5,2022:6.8,2023:7.2,2024:7.5,2025:7.9},
+    cotHist:{2020:100,2021:118,2022:128,2023:132,2024:135,2025:135},varTotal:35,dividAnual:2.13,
+    resumo:"Maior distribuidora de combustíveis. Market share acima de 25%. ROE de 20,5%, CAGR de 14,5%.",
+    pontosFort:["Liderança absoluta na distribuição","Expansão em biocombustíveis","ROE de 20,5%"],
+    pontosAten:["Margem líquida estruturalmente baixa","Risco de transição energética no longo prazo"]},
+  { ticker:"UGPA3", nome:"Ultrapar",         setor:"Concessões / Logística",
+    cotacao:27.00,pl:13.5,pvp:2.0,roe:14.8,dy:7.1,divEbitda:2.2,margem:4.5,cagrLucro:10.5,rating:3,recomendacao:"NEUTRO",
+    dyHist:{2020:3.8,2021:4.2,2022:5.5,2023:6.5,2024:7.0,2025:7.1},
+    cotHist:{2020:100,2021:105,2022:112,2023:118,2024:122,2025:122},varTotal:22,dividAnual:1.92,
+    resumo:"Holding de Ipiranga e Ultragaz pós-reestruturação. ROE modesto mas portfólio mais focado.",
+    pontosFort:["Portfólio mais focado pós-reestruturação","DY de 7,1%"],
+    pontosAten:["ROE ainda modesto (14,8%)","Concorrência crescente da Vibra e Raízen"]},
+  { ticker:"RENT3", nome:"Localiza",         setor:"Concessões / Logística",
+    cotacao:44.00,pl:15.5,pvp:3.2,roe:20.8,dy:6.4,divEbitda:3.5,margem:12.5,cagrLucro:18.5,rating:4,recomendacao:"COMPRAR",
+    dyHist:{2020:2.5,2021:3.5,2022:4.8,2023:5.5,2024:6.2,2025:6.4},
+    cotHist:{2020:100,2021:128,2022:115,2023:128,2024:142,2025:148},varTotal:48,dividAnual:2.82,
+    resumo:"Maior locadora do Brasil pós-fusão com Unidas. CAGR de 18,5%, ROE de 20,8%.",
+    pontosFort:["Liderança após fusão com Unidas","CAGR de 18,5%","Modelo escalável"],
+    pontosAten:["Dívida/EBITDA de 3,5x","P/VP de 3,2x não é barato"]},
+  { ticker:"MDIA3", nome:"M. Dias Branco",   setor:"Consumo não-cíclico",
+    cotacao:41.00,pl:12.5,pvp:2.2,roe:17.5,dy:6.8,divEbitda:0.2,margem:9.5,cagrLucro:8.5,rating:4,recomendacao:"COMPRAR",
+    dyHist:{2020:4.5,2021:5.5,2022:6.2,2023:6.5,2024:6.8,2025:6.8},
+    cotHist:{2020:100,2021:108,2022:112,2023:115,2024:118,2025:118},varTotal:18,dividAnual:2.79,
+    resumo:"Líder em massas e biscoitos. Caixa líquido positivo, dividendos mensais, integração vertical no trigo.",
+    pontosFort:["Caixa líquido positivo","Dividendos mensais","Integração vertical no trigo"],
+    pontosAten:["Crescimento modesto (CAGR 8,5%)","Pressão de custos de trigo importado"]},
+  { ticker:"ABEV3", nome:"Ambev",            setor:"Consumo não-cíclico",
+    cotacao:15.70,pl:14.5,pvp:2.8,roe:19.5,dy:6.2,divEbitda:0.0,margem:15.5,cagrLucro:3.5,rating:3,recomendacao:"NEUTRO",
+    dyHist:{2020:2.8,2021:3.5,2022:3.8,2023:4.2,2024:4.8,2025:6.2},
+    cotHist:{2020:100,2021:105,2022:98,2023:92,2024:88,2025:92},varTotal:-8,dividAnual:0.97,
+    resumo:"Maior cervejaria da AL. Líder absoluta mas CAGR de apenas 3,5%. Qualidade sem crescimento.",
+    pontosFort:["Líder absoluta em cervejas","Zero dívida","Marcas perenes"],
+    pontosAten:["CAGR de lucro de apenas 3,5%","Perda de share para craft beers","P/L alto para crescimento baixo"]},
+  { ticker:"GRND3", nome:"Grendene",         setor:"Consumo não-cíclico",
+    cotacao:25.00,pl:11.5,pvp:1.8,roe:15.8,dy:8.3,divEbitda:0.0,margem:16.5,cagrLucro:7.5,rating:4,recomendacao:"COMPRAR",
+    dyHist:{2020:5.5,2021:6.5,2022:7.2,2023:7.8,2024:8.2,2025:8.3},
+    cotHist:{2020:100,2021:118,2022:128,2023:138,2024:148,2025:155},varTotal:55,dividAnual:2.08,
+    resumo:"Melissa, Ipanema, Rider — marcas atemporais. Caixa líquido, DY de 8,3% + extraordinários frequentes.",
+    pontosFort:["Caixa líquido — sem dívida","Marcas icônicas e perenes","DY de 8,3% + extraordinários"],
+    pontosAten:["Crescimento modesto (CAGR 7,5%)","Setor de calçados maduro"]},
+  { ticker:"FLRY3", nome:"Fleury",           setor:"Saúde",
+    cotacao:28.00,pl:15.5,pvp:2.8,roe:18.0,dy:6.5,divEbitda:2.5,margem:14.5,cagrLucro:10.5,rating:3,recomendacao:"NEUTRO",
+    dyHist:{2020:3.5,2021:4.5,2022:5.5,2023:6.0,2024:6.5,2025:6.5},
+    cotHist:{2020:100,2021:115,2022:108,2023:108,2024:112,2025:112},varTotal:12,dividAnual:1.82,
+    resumo:"Maior rede de diagnósticos do Brasil. Marca premium, receita recorrente. P/L sem margem de segurança.",
+    pontosFort:["Marca premium em diagnósticos","Receita altamente recorrente","Expansão geográfica"],
+    pontosAten:["P/L de 15,5x sem margem de segurança","Integração de aquisições ainda pesando"]},
+  { ticker:"HAPV3", nome:"Hapvida",          setor:"Saúde",
+    cotacao:9.90,pl:22.5,pvp:1.8,roe:8.0,dy:6.1,divEbitda:4.5,margem:5.5,cagrLucro:null,rating:2,recomendacao:"AGUARDAR",
+    dyHist:{2020:2.0,2021:2.5,2022:3.5,2023:5.0,2024:5.8,2025:6.1},
+    cotHist:{2020:100,2021:128,2022:85,2023:62,2024:58,2025:55},varTotal:-45,dividAnual:0.60,
+    resumo:"Fusão com GNDI gerou sinistralidade acima do esperado, queda de margens. ROE abaixo do custo de capital.",
+    pontosFort:["Modelo vertical é defensivo se executado","Mercado de saúde privada crescente"],
+    pontosAten:["Dívida/EBITDA de 4,5x","ROE abaixo do custo de capital","Sinistralidade ainda alta"]},
+  { ticker:"HYPE3", nome:"Hypera",           setor:"Saúde",
+    cotacao:43.00,pl:11.8,pvp:2.5,roe:21.5,dy:7.9,divEbitda:1.5,margem:28.5,cagrLucro:14.5,rating:4,recomendacao:"COMPRAR",
+    dyHist:{2020:4.8,2021:5.5,2022:6.5,2023:7.2,2024:7.5,2025:7.9},
+    cotHist:{2020:100,2021:118,2022:128,2023:135,2024:142,2025:142},varTotal:42,dividAnual:3.40,
+    resumo:"Maior farmacêutica do Brasil. Neosaldina, Engov, Benegrip — marcas defensivas. Margem de 28,5%.",
+    pontosFort:["Marcas líderes e defensivas","Margem de 28,5%","DY de 7,9% com crescimento"],
+    pontosAten:["Risco de entrada de genéricos","Concentração em poucos produtos-estrela"]},
+  { ticker:"ALOS3", nome:"Allos",            setor:"Shoppings / Imóveis",
+    cotacao:27.00,pl:14.5,pvp:1.8,roe:12.5,dy:10.5,divEbitda:3.8,margem:38.5,cagrLucro:25.5,rating:4,recomendacao:"COMPRAR",
+    dyHist:{2020:2.5,2021:2.8,2022:3.2,2023:4.5,2024:7.8,2025:10.5},
+    cotHist:{2020:100,2021:95,2022:92,2023:108,2024:135,2025:138},varTotal:38,dividAnual:2.84,
+    resumo:"Maior operadora de shoppings do Brasil. DY de 10,5% garantido até 2028 (R$2,1bi em reservas).",
+    pontosFort:["DY de 10,5% garantido até 2028","CAGR de 25,5%","Dividendos mensais"],
+    pontosAten:["Dívida/EBITDA de 3,8x","ROE de 12,5% modesto"]},
+  { ticker:"MULT3", nome:"Multiplan",        setor:"Shoppings / Imóveis",
+    cotacao:32.00,pl:16.5,pvp:2.5,roe:15.2,dy:7.6,divEbitda:2.8,margem:42.5,cagrLucro:15.5,rating:4,recomendacao:"COMPRAR",
+    dyHist:{2020:2.2,2021:3.5,2022:5.0,2023:6.8,2024:7.2,2025:7.6},
+    cotHist:{2020:100,2021:105,2022:112,2023:128,2024:138,2025:145},varTotal:45,dividAnual:2.43,
+    resumo:"Shoppings premium com vacância histórica abaixo de 4%. Margem de 42,5%.",
+    pontosFort:["Portfólio premium com vacância < 4%","Margem de 42,5%","ABL crescente"],
+    pontosAten:["P/L de 16,5x — não é barato","Concentração em shoppings de alto padrão"]},
+  { ticker:"IGTI11", nome:"Iguatemi",        setor:"Shoppings / Imóveis",
+    cotacao:28.00,pl:14.8,pvp:2.0,roe:13.5,dy:7.2,divEbitda:3.0,margem:38.0,cagrLucro:12.5,rating:3,recomendacao:"NEUTRO",
+    dyHist:{2020:2.0,2021:3.2,2022:4.8,2023:6.5,2024:7.0,2025:7.2},
+    cotHist:{2020:100,2021:105,2022:108,2023:118,2024:125,2025:128},varTotal:28,dividAnual:2.02,
+    resumo:"Shoppings de luxo com alta barreira de entrada. Similar à Multiplan mas com portfólio menor.",
+    pontosFort:["Shoppings de luxo com altíssima barreira","Receita de aluguel indexada"],
+    pontosAten:["ROE abaixo da Multiplan","Portfólio menor e menos diversificado"]},
+  { ticker:"CURY3", nome:"Cury",             setor:"Shoppings / Imóveis",
+    cotacao:23.00,pl:7.2,pvp:3.5,roe:48.5,dy:9.8,divEbitda:0.5,margem:18.5,cagrLucro:38.5,rating:5,recomendacao:"COMPRAR",
+    dyHist:{2020:4.5,2021:6.5,2022:8.5,2023:10.5,2024:12.2,2025:9.8},
+    cotHist:{2020:100,2021:158,2022:235,2023:295,2024:358,2025:385},varTotal:285,dividAnual:2.25,
+    resumo:"ROE de 48,5% — o mais alto das 50 ações. Modelo asset-light MCMV. P/L de 7,2x + DY de 9,8%.",
+    pontosFort:["ROE de 48,5% — líder das 50 ações","CAGR de 38,5%","P/L baixo + DY alto"],
+    pontosAten:["Dependência política do programa MCMV","Escalabilidade limitada ao MCMV"]},
+  { ticker:"DIRR3", nome:"Direcional",       setor:"Shoppings / Imóveis",
+    cotacao:23.60,pl:7.8,pvp:3.2,roe:41.0,dy:8.7,divEbitda:0.4,margem:16.5,cagrLucro:32.5,rating:5,recomendacao:"COMPRAR",
+    dyHist:{2020:5.5,2021:6.8,2022:8.0,2023:12.5,2024:15.2,2025:8.7},
+    cotHist:{2020:100,2021:148,2022:195,2023:258,2024:308,2025:295},varTotal:195,dividAnual:2.05,
+    resumo:"Segunda melhor construtora MCMV. ROE de 41%, CAGR de 32,5%. P/L de 7,8x + DY de 8,7%.",
+    pontosFort:["ROE de 41%","CAGR de 32,5%","Modelo de construção padronizada eficiente"],
+    pontosAten:["Dependência do MCMV","Concentração geográfica no Nordeste/Centro-Oeste"]},
+  { ticker:"CYRE3", nome:"Cyrela",           setor:"Shoppings / Imóveis",
+    cotacao:28.00,pl:9.5,pvp:2.2,roe:23.2,dy:7.9,divEbitda:1.0,margem:20.5,cagrLucro:15.5,rating:4,recomendacao:"COMPRAR",
+    dyHist:{2020:3.5,2021:5.5,2022:6.8,2023:7.5,2024:8.2,2025:7.9},
+    cotHist:{2020:100,2021:118,2022:118,2023:132,2024:145,2025:155},varTotal:55,dividAnual:2.21,
+    resumo:"Maior incorporadora de média-alta renda. ROE de 23,2%, CAGR de 15,5%. Ciclo imobiliário favorável.",
+    pontosFort:["Liderança em média-alta renda","ROE de 23,2%","Geração de caixa consistente"],
+    pontosAten:["Ciclo imobiliário sensível à Selic","Competição crescente das construtoras MCMV"]},
+  { ticker:"POMO4", nome:"Marcopolo",        setor:"Ind. / Transporte",
+    cotacao:21.40,pl:9.8,pvp:2.8,roe:28.5,dy:8.9,divEbitda:0.8,margem:12.5,cagrLucro:28.5,rating:5,recomendacao:"COMPRAR",
+    dyHist:{2020:3.5,2021:4.5,2022:6.5,2023:8.0,2024:9.0,2025:8.9},
+    cotHist:{2020:100,2021:138,2022:188,2023:228,2024:255,2025:268},varTotal:168,dividAnual:1.90,
+    resumo:"Líder mundial em carrocerias de ônibus. Ciclo de eletrificação de frotas como catalisador de longo prazo.",
+    pontosFort:["Liderança global em carrocerias de ônibus","ROE de 28,5%","Ciclo de eletrificação de frotas"],
+    pontosAten:["Sensível a câmbio (exportações)","Ciclo industrial pode desacelerar"]},
+  { ticker:"WEGE3", nome:"WEG",              setor:"Ind. / Transporte",
+    cotacao:48.00,pl:31.5,pvp:8.5,roe:27.0,dy:6.0,divEbitda:0.0,margem:16.5,cagrLucro:22.5,rating:4,recomendacao:"COMPRAR",
+    dyHist:{2020:3.2,2021:3.5,2022:4.5,2023:5.2,2024:5.8,2025:6.0},
+    cotHist:{2020:100,2021:168,2022:168,2023:195,2024:238,2025:265},varTotal:165,dividAnual:2.88,
+    resumo:"Melhor industrial da AL. Zero dívida, CAGR de 22,5%, presença global. P/L de 31,5x é o preço da qualidade.",
+    pontosFort:["Melhor industrial da AL","Zero dívida","Presença global em motores elétricos","CAGR de 22,5%"],
+    pontosAten:["P/L de 31,5x — premia muito crescimento futuro","P/VP de 8,5x — o mais caro das 50 ações"]},
+];
+
+const SETORES_UNICOS = [...new Set(ACOES.map(a => a.setor))].sort();
+
+
+// ─── CONSTANTES ─────────────────────────────────────────────────────────────
+const COR  = s => CORES_SET[s] || "#64748b";
+const PERC = s => SETORES_PERENES.includes(s);
+let ORDEM = "dy", SEL = "BBSE3";
+let chartDY = null, chartCot = null, chartSetor = null;
+
+// ─── VEREDICTO ───────────────────────────────────────────────────────────────
+function veredicto(a) {
+  const pj = a.dividAnual / 0.06;
+  const dy6   = a.dy >= 6;
+  const roe15 = a.roe >= 15;
+  const cagr0 = a.cagrLucro === null || a.cagrLucro >= 0;
+  const divOk = a.divEbitda === null || a.divEbitda <= 3.5;
+  const dyH6  = Object.values(a.dyHist).filter(v => v >= 6).length;
+  const precoOk = a.cotacao <= pj * 1.05;
+  const passou = [dy6, PERC(a.setor), roe15, precoOk, cagr0 && divOk && dyH6 >= 3].filter(Boolean).length;
+  if (passou >= 5 && dy6 && roe15) return {cor:"#4ade80",bg:"bg-green",bginl:"#052e16",bdcor:"#16a34a33",label:"COMPRAR",emoji:"🟢"};
+  if (passou >= 4 && dy6 && roe15) return {cor:"#a3e635",bg:"bg-yellow",bginl:"#1a2e05",bdcor:"#65a30d33",label:"COMPRAR C/ ATENÇÃO",emoji:"🟡"};
+  if (passou >= 3)                  return {cor:"#facc15",bg:"bg-yellow",bginl:"#1c1400",bdcor:"#ca8a0433",label:"AGUARDAR",emoji:"🟡"};
+  return                                   {cor:"#f87171",bg:"bg-red",  bginl:"#3b0000",bdcor:"#dc262633",label:"EVITAR",  emoji:"🔴"};
+}
+
+// ─── ETAPAS ──────────────────────────────────────────────────────────────────
+const ETAPAS = [
+  {n:1,label:"DY ≥ 6%",cor:"#f59e0b",
+   ok:a=>a.dy>=6, bd:a=>a.dy>=5&&a.dy<6,
+   desc:a=>`DY atual: ${a.dy}% · Preço justo Bazin: R$ ${(a.dividAnual/0.06).toFixed(2)} · Cotação: R$ ${a.cotacao}`},
+  {n:2,label:"Setor perene",cor:"#06b6d4",
+   ok:a=>PERC(a.setor), bd:_=>false,
+   desc:a=>PERC(a.setor)?`${a.setor} é setor prioritário de Barsi ✓`:`${a.setor} — fora dos setores prioritários de Barsi`},
+  {n:3,label:"ROE ≥ 15%",cor:"#4ade80",
+   ok:a=>a.roe>=15, bd:a=>a.roe>=12&&a.roe<15,
+   desc:a=>`ROE: ${a.roe}% · CAGR lucro: ${a.cagrLucro!==null?(a.cagrLucro>=0?"+":"")+a.cagrLucro+"%":"sem dados suficientes"}`},
+  {n:4,label:"Preço justo",cor:"#818cf8",
+   ok:a=>a.cotacao<=a.dividAnual/0.06, bd:a=>a.cotacao<=a.dividAnual/0.06*1.1,
+   desc:a=>{const pj=(a.dividAnual/0.06).toFixed(2);return `Preço justo: R$ ${pj} · Cotação: R$ ${a.cotacao} · ${a.cotacao<=pj?"✓ Dentro do justo":"✗ Acima do justo"}`}},
+  {n:5,label:"Lucro recorrente",cor:"#f97316",
+   ok:a=>Object.values(a.dyHist).filter(v=>v>=6).length>=4&&(a.cagrLucro===null||a.cagrLucro>=0)&&(a.divEbitda===null||a.divEbitda<=3.5),
+   bd:a=>Object.values(a.dyHist).filter(v=>v>=6).length>=3,
+   desc:a=>`DY≥6% em ${Object.values(a.dyHist).filter(v=>v>=6).length}/6 anos · Dív/EBITDA: ${a.divEbitda!==null?a.divEbitda+"x":"N/A (banco)"}`},
+  {n:6,label:"Vs. setor",cor:"#ec4899",
+   ok:a=>{const p=ACOES.filter(x=>x.setor===a.setor&&x.ticker!==a.ticker);if(!p.length)return true;const dm=p.reduce((s,x)=>s+x.dy,0)/p.length,rm=p.reduce((s,x)=>s+x.roe,0)/p.length;return a.dy>=dm&&a.roe>=rm},
+   bd:a=>{const p=ACOES.filter(x=>x.setor===a.setor&&x.ticker!==a.ticker);if(!p.length)return false;const dm=p.reduce((s,x)=>s+x.dy,0)/p.length,rm=p.reduce((s,x)=>s+x.roe,0)/p.length;return(a.dy>=dm||a.roe>=rm)&&!(a.dy>=dm&&a.roe>=rm)},
+   desc:a=>{const p=ACOES.filter(x=>x.setor===a.setor&&x.ticker!==a.ticker);if(!p.length)return"Única no setor";const dm=(p.reduce((s,x)=>s+x.dy,0)/p.length).toFixed(1),rm=(p.reduce((s,x)=>s+x.roe,0)/p.length).toFixed(1);return`Média do setor — DY: ${dm}% · ROE: ${rm}%`}},
+];
+
+function etapaStatus(a, et) {
+  if (et.ok(a)) return {cor:"#4ade80", bg:"#052e16", bd:"#16a34a33", txt:"✓ PASSA"};
+  if (et.bd(a)) return {cor:"#facc15", bg:"#1c1400", bd:"#ca8a0433", txt:"⚠ LIMITE"};
+  return              {cor:"#f87171", bg:"#3b0000", bd:"#dc262633", txt:"✗ FALHA"};
+}
+
+function corIndicador(val, bom, medio) {
+  if (val === null || val === undefined) return "#64748b";
+  if (val >= bom) return "#4ade80";
+  if (val >= medio) return "#facc15";
+  return "#f87171";
+}
+
+// ─── LISTA ───────────────────────────────────────────────────────────────────
+function getListaFiltrada() {
+  const q = document.getElementById("busca").value.toLowerCase();
+  const fs = document.getElementById("f-setor").value;
+  const fr = document.getElementById("f-rec").value;
+  return ACOES
+    .filter(a =>
+      (!q || a.ticker.toLowerCase().includes(q) || a.nome.toLowerCase().includes(q)) &&
+      (!fs || a.setor === fs) &&
+      (!fr || a.recomendacao === fr)
+    )
+    .sort((a,b) => {
+      if (ORDEM==="dy")     return b.dy - a.dy;
+      if (ORDEM==="roe")    return b.roe - a.roe;
+      if (ORDEM==="pl")     return (a.pl||99)-(b.pl||99);
+      if (ORDEM==="rating") return b.rating - a.rating;
+      return a.ticker.localeCompare(b.ticker);
+    });
+}
+
+function renderLista() {
+  const lista = getListaFiltrada();
+  document.getElementById("list-count").textContent = lista.length + " ação(ões)";
+  const el = document.getElementById("acao-list");
+  el.innerHTML = "";
+  lista.forEach(a => {
+    const cor = COR(a.setor);
+    const v = veredicto(a);
+    const pj = (a.dividAnual/0.06).toFixed(0);
+    const passaram = ETAPAS.filter(e=>e.ok(a)).length;
+    const div = document.createElement("div");
+    div.className = "acao-card" + (a.ticker===SEL?" selected":"");
+    div.style.setProperty("--cor", cor);
+    div.style.setProperty("--corbg", cor+"14");
+    div.innerHTML = `
+      <div class="card-row1">
+        <div style="display:flex;align-items:center;gap:7px">
+          <span class="card-ticker" style="color:${a.ticker===SEL?cor:"#f1f5f9"}">${a.ticker}</span>
+          <span class="card-nome">${a.nome}</span>
+        </div>
+        <span class="card-badge" style="background:${v.bginl};color:${v.cor};border:1px solid ${v.bdcor}">${v.emoji} ${v.label}</span>
+      </div>
+      <div class="card-metricas">
+        ${[["DY",a.dy+"%",corIndicador(a.dy,8,6)],["ROE",a.roe+"%",corIndicador(a.roe,20,15)],["P/L",(a.pl||"—")+"x",a.pl&&a.pl<10?"#4ade80":a.pl&&a.pl<15?"#facc15":"#94a3b8"],["P/J","R$"+pj,a.cotacao<=(a.dividAnual/0.06)?"#4ade80":"#f87171"],["★",a.rating+"/5",a.rating>=4?"#f59e0b":"#64748b"]]
+          .map(([l,vl,c])=>`<div class="card-met"><div class="card-met-l">${l}</div><div class="card-met-v" style="color:${c}">${vl}</div></div>`).join("")}
+      </div>
+      <div class="card-etapas">
+        ${ETAPAS.map(e=>{const st=etapaStatus(a,e);return`<div class="etapa-bar" style="background:${st.cor}" title="${e.label}"></div>`}).join("")}
+        <span class="etapas-score">${passaram}/6</span>
+      </div>`;
+    div.onclick = () => { SEL = a.ticker; renderAll(); };
+    el.appendChild(div);
+  });
+}
+
+// ─── DETALHE ─────────────────────────────────────────────────────────────────
+let ABA = "analise";
+
+function renderHeader(a) {
+  const cor = COR(a.setor);
+  const v = veredicto(a);
+  document.getElementById("detail-header").style.display = "";
+  document.getElementById("detail-tabs").style.display = "";
+  document.getElementById("dh-ticker").textContent = a.ticker;
+  document.getElementById("dh-ticker").style.color = cor;
+  document.getElementById("dh-nome").textContent = a.nome;
+  const sb = document.getElementById("dh-setor");
+  sb.textContent = a.setor;
+  sb.style.background = cor+"22"; sb.style.color = cor;
+  const pb = document.getElementById("dh-perene");
+  pb.style.display = PERC(a.setor) ? "" : "none";
+  document.getElementById("dh-resumo").textContent = a.resumo;
+
+  // KPIs
+  const kpis = [
+    ["Cotação"+(a.cotacaoLive?" 🟢":""),"R$ "+a.cotacao,"#f1f5f9"],
+    ["DY atual",a.dy+"%",corIndicador(a.dy,8,6)],
+    ["ROE",a.roe+"%",corIndicador(a.roe,20,15)],
+    ["P/L",(a.pl||"—")+"x","#94a3b8"],
+    ["6 anos",(a.varTotal>=0?"+":"")+a.varTotal+"%",a.varTotal>=0?"#4ade80":"#f87171"],
+    ["Veredicto",v.emoji+" "+v.label,v.cor],
+  ];
+  document.getElementById("dh-kpis").innerHTML = kpis.map(([l,vl,c])=>`
+    <div class="dh-kpi"><div class="dh-kpi-l">${l}</div><div class="dh-kpi-v" style="color:${c}">${vl}</div></div>`).join("");
+
+  // Cor ativa para abas
+  document.getElementById("detail-tabs").style.setProperty("--cor-ativa", cor);
+  document.querySelectorAll(".dtab").forEach(t => {
+    t.style.color = t.dataset.tab===ABA ? cor : "#475569";
+    t.style.borderBottomColor = t.dataset.tab===ABA ? cor : "transparent";
+    t.style.fontWeight = t.dataset.tab===ABA ? "700" : "400";
+  });
+}
+
+function renderAbaAnalise(a) {
+  const cor = COR(a.setor);
+  const v = veredicto(a);
+  const passaram = ETAPAS.filter(e=>e.ok(a)).length;
+  let html = `<div style="font-size:11px;color:#475569;text-transform:uppercase;letter-spacing:1.5px;font-weight:600;margin-bottom:12px">6 Etapas — Metodologia Barsi/Bazin</div>`;
+
+  ETAPAS.forEach(et => {
+    const st = etapaStatus(a, et);
+    html += `<div class="etapa-item" style="border-left:3px solid ${et.cor}">
+      <div class="etapa-num" style="background:${et.cor}22;border:1px solid ${et.cor}44;color:${et.cor}">${et.n}</div>
+      <div class="etapa-txt">
+        <div class="etapa-label">${et.label}</div>
+        <div class="etapa-desc">${et.desc(a)}</div>
+      </div>
+      <div class="etapa-status" style="background:${st.bg};border:1px solid ${st.bd};color:${st.cor}">${st.txt}</div>
+    </div>`;
+  });
+
+  // Veredicto
+  html += `<div class="veredicto-box" style="background:${v.bginl};border:1px solid ${v.bdcor}">
+    <div class="verd-row">
+      <div><div class="verd-lbl">Veredicto Barsi</div><div class="verd-title" style="color:${v.cor}">${v.emoji} ${v.label}</div></div>
+      <div><div class="verd-score" style="color:${v.cor}">${passaram}/6</div><div class="verd-score-l">etapas aprovadas</div></div>
+    </div>
+    <div class="verd-etapas">
+      ${ETAPAS.map(et=>{const st=etapaStatus(a,et);return`<div class="verd-etapa" style="background:${st.bg};border:1px solid ${st.bd}"><div class="verd-etapa-l">${et.label.split(" ")[0]}</div><div class="verd-etapa-v" style="color:${st.cor}">${st.txt.split(" ")[0]}</div></div>`}).join("")}
+    </div>
+  </div>`;
+
+  // Pontos
+  html += `<div class="pontos-grid">
+    <div class="pontos-box bg-green">
+      <div class="pontos-title c-green">✅ Pontos Fortes</div>
+      ${a.pontosFort.map(p=>`<div class="ponto-item" style="color:#86efac">· ${p}</div>`).join("")}
+    </div>
+    <div class="pontos-box" style="background:#431407;border:1px solid #ea580c33">
+      <div class="pontos-title" style="color:#fb923c">⚠️ Pontos de Atenção</div>
+      ${a.pontosAten.map(p=>`<div class="ponto-item" style="color:#fdba74">· ${p}</div>`).join("")}
+    </div>
+  </div>`;
+
+  return html;
+}
+
+function renderAbaIndicadores(a) {
+  const cor = COR(a.setor);
+  const pj = (a.dividAnual/0.06).toFixed(2);
+  const pjN = a.dividAnual/0.06;
+
+  const inds = [
+    ["P/L",(a.pl||"—")+"x",a.pl&&a.pl<10?"#4ade80":a.pl&&a.pl<15?"#facc15":"#f87171",60,"Preço / Lucro · Quanto se paga por R$1 de lucro"],
+    ["P/VP",a.pvp+"x",a.pvp<2?"#4ade80":a.pvp<3.5?"#facc15":"#f87171",60,"Preço / Valor Patrimonial · Prêmio sobre o patrimônio"],
+    ["ROE",a.roe+"%",corIndicador(a.roe,20,15),80,"Retorno sobre Patrimônio"],
+    ["DY",a.dy+"%",corIndicador(a.dy,8,6),80,"Dividend Yield · Renda sobre o preço"],
+    ["Dív/EBITDA",a.divEbitda!==null?a.divEbitda+"x":"N/A",a.divEbitda===null?"#64748b":a.divEbitda<=2?"#4ade80":a.divEbitda<=3.5?"#facc15":"#f87171",60,"Anos de caixa para quitar a dívida"],
+    ["Margem",a.margem+"%",corIndicador(a.margem,20,10),60,"Margem Líquida"],
+    ["CAGR Lucro",a.cagrLucro!==null?(a.cagrLucro>=0?"+":"")+a.cagrLucro+"%":"—",a.cagrLucro!==null&&a.cagrLucro>=15?"#818cf8":a.cagrLucro!==null&&a.cagrLucro>=5?"#4ade80":a.cagrLucro!==null&&a.cagrLucro>=0?"#facc15":"#f87171",70,"Crescimento anual composto do lucro (3 anos)"],
+    ["Preço Justo","R$ "+pj,a.cotacao<=pjN?"#4ade80":a.cotacao<=pjN*1.1?"#facc15":"#f87171",60,"Método Bazin: dividendo ÷ 0,06"],
+  ];
+
+  let html = `<div class="ind-grade">`;
+  inds.forEach(([l,v,c,pct,hint]) => {
+    html += `<div class="ind-item" title="${hint}">
+      <div class="ind-l">${l}</div>
+      <div class="ind-v" style="color:${c}">${v}</div>
+      <div class="ind-bar"><div class="ind-bar-fill" style="background:${c};width:${pct}%"></div></div>
+    </div>`;
+  });
+  html += `</div>`;
+
+  // Bazin
+  const precoOk = a.cotacao <= pjN;
+  const precoLimite = !precoOk && a.cotacao <= pjN * 1.1;
+  const bc = precoOk?"#4ade80":precoLimite?"#facc15":"#f87171";
+  const bbg = precoOk?"#052e16":precoLimite?"#1c1400":"#3b0000";
+  const bbd = precoOk?"#16a34a33":precoLimite?"#ca8a0433":"#dc262633";
+  const diff = (((a.cotacao-pjN)/pjN)*100).toFixed(1);
+  html += `<div class="bazin-box">
+    <div class="bazin-title">🧮 Preço Justo — Método Bazin</div>
+    <div class="bazin-grid">
+      <div class="bazin-item"><div class="bazin-item-l">Dividendo/ano</div><div class="bazin-item-v" style="color:#f1f5f9">R$ ${a.dividAnual}</div></div>
+      <div class="bazin-item"><div class="bazin-item-l">÷ 6% (0,06)</div><div class="bazin-item-v" style="color:#64748b">=</div></div>
+      <div class="bazin-item"><div class="bazin-item-l">Preço Justo</div><div class="bazin-item-v" style="color:${bc}">R$ ${pj}</div></div>
+      <div class="bazin-item"><div class="bazin-item-l">Cotação hoje</div><div class="bazin-item-v" style="color:${bc}">R$ ${a.cotacao}</div></div>
+    </div>
+    <div class="bazin-result" style="background:${bbg};border:1px solid ${bbd};color:${bc}">
+      ${precoOk?`✓ R$ ${a.cotacao} está abaixo do preço justo de R$ ${pj}. DY garantido ≥ 6%.`
+        :precoLimite?`⚠ R$ ${a.cotacao} está apenas ${diff}% acima do preço justo. DY próximo do mínimo.`
+        :`✗ R$ ${a.cotacao} está ${diff}% acima do preço justo de R$ ${pj}. DY cai abaixo de 6%.`}
+    </div>
+  </div>`;
+
+  // Pares
+  const pares = ACOES.filter(x=>x.setor===a.setor).sort((x,y)=>y.rating-x.rating);
+  html += `<div style="background:#0f172a;border:1px solid #1e293b;border-radius:8px;padding:12px 14px">
+    <div class="pares-title">Todos os pares do setor "${a.setor}"</div>`;
+  pares.forEach(p => {
+    const vp = veredicto(p); const c2 = COR(p.setor); const dest = p.ticker===a.ticker;
+    html += `<div class="par-item${dest?" selected":""}" style="${dest?`--cor-ativa:${c2};--cor-ativa-bg:${c2}14;border-color:${c2}33;background:${c2}14`:""}" onclick="selectAcao('${p.ticker}')">
+      <span class="par-ticker" style="color:${dest?c2:"#94a3b8"}">${p.ticker}</span>
+      <div class="par-mets">
+        ${[["DY",p.dy+"%",corIndicador(p.dy,8,6)],["ROE",p.roe+"%",corIndicador(p.roe,20,15)],["P/L",(p.pl||"—")+"x","#94a3b8"],["★",p.rating+"/5",p.rating>=4?"#f59e0b":"#64748b"]]
+          .map(([l,v,c3])=>`<div class="par-met"><div class="par-met-l">${l}</div><div class="par-met-v" style="color:${c3}">${v}</div></div>`).join("")}
+      </div>
+      <span style="font-size:9px;background:${vp.bginl};color:${vp.cor};padding:1px 5px;border-radius:3px;border:1px solid ${vp.bdcor}">${vp.emoji} ${vp.label}</span>
+    </div>`;
+  });
+  html += `</div>`;
+  return html;
+}
+
+function renderAbaGraficos(a) {
+  return `
+    <div class="graficos-grid">
+      <div class="grafico-box">
+        <div class="grafico-title">DY Histórico 2020–2025 <span style="color:#f59e0b">· linha = mínimo 6%</span></div>
+        <div class="grafico-canvas"><canvas id="ch-dy"></canvas></div>
+      </div>
+      <div class="grafico-box">
+        <div class="grafico-title">Cotação indexada 2020–2025 <span style="color:#334155">· base 100 = jan/2020</span></div>
+        <div class="grafico-canvas"><canvas id="ch-cot"></canvas></div>
+      </div>
+    </div>
+    <div class="grafico-box">
+      <div class="grafico-title">Comparativo com pares do setor "${a.setor}" · DY atual (%)</div>
+      <div class="grafico-canvas-wide"><canvas id="ch-setor"></canvas></div>
+    </div>`;
+}
+
+function renderAbaResumo(a) {
+  const cor = COR(a.setor);
+  const v = veredicto(a);
+  return `
+    <div class="resumo-box" style="border:1px solid ${cor}33">
+      <div style="width:4px;position:absolute;top:0;left:0;height:100%;background:${cor}"></div>
+      <div class="resumo-title" style="color:${cor}">Análise Qualitativa</div>
+      <div class="resumo-text">${a.resumo}</div>
+    </div>
+    <div class="pontos-grid" style="margin-bottom:14px">
+      <div class="pontos-box bg-green">
+        <div class="pontos-title c-green">✅ Pontos Fortes</div>
+        ${a.pontosFort.map(p=>`<div class="ponto-item" style="color:#86efac;font-size:12px;margin-bottom:5px">· ${p}</div>`).join("")}
+      </div>
+      <div class="pontos-box" style="background:#431407;border:1px solid #ea580c33">
+        <div class="pontos-title" style="color:#fb923c">⚠️ Pontos de Atenção</div>
+        ${a.pontosAten.map(p=>`<div class="ponto-item" style="color:#fdba74;font-size:12px;margin-bottom:5px">· ${p}</div>`).join("")}
+      </div>
+    </div>
+    <div class="info-grid">
+      ${[["Setor",a.setor,COR(a.setor)],["Recomendação",a.recomendacao,v.cor],["Rating","★".repeat(a.rating)+"☆".repeat(5-a.rating),a.rating>=4?"#f59e0b":"#64748b"],
+        ["Cotação","R$ "+a.cotacao,"#f1f5f9"],["Valorização 6a",(a.varTotal>=0?"+":"")+a.varTotal+"%",a.varTotal>=0?"#4ade80":"#f87171"],["Dividendo/ano","R$ "+a.dividAnual+"/ação","#f59e0b"]]
+        .map(([l,v2,c])=>`<div><div class="info-item-l">${l}</div><div class="info-item-v" style="color:${c}">${v2}</div></div>`).join("")}
+    </div>
+    <div class="grafico-box">
+      <div class="grafico-title">DY histórico · linha = mínimo Barsi (6%)</div>
+      <div class="grafico-canvas"><canvas id="ch-dy-resumo"></canvas></div>
+    </div>`;
+}
+
+function buildCharts(a) {
+  const cor = COR(a.setor);
+  const anos = ["2020","2021","2022","2023","2024","2025"];
+  const dyVals = anos.map(y=>a.dyHist[parseInt(y)]);
+  const cotVals = anos.map(y=>a.cotHist[parseInt(y)]);
+  const opts = {
+    responsive:true, maintainAspectRatio:false, animation:{duration:300},
+    plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>ctx.parsed.y+(ctx.dataset.label.includes("DY")?"%":"")}},
+      annotation:{}},
+    scales:{x:{grid:{color:"#1e293b"},ticks:{color:"#475569",font:{size:10}}},
+             y:{grid:{color:"#1e293b"},ticks:{color:"#475569",font:{size:10}}}}
+  };
+
+  const dyEl = document.getElementById("ch-dy");
+  if (dyEl) {
+    if(chartDY){chartDY.destroy();}
+    chartDY = new Chart(dyEl, {type:"bar",data:{labels:anos,datasets:[{label:"DY (%)",data:dyVals,backgroundColor:cor+"cc",borderRadius:3}]},
+      options:{...opts,scales:{...opts.scales,y:{...opts.scales.y,min:0}},
+        plugins:{...opts.plugins,annotation:{annotations:{line1:{type:"line",yMin:6,yMax:6,borderColor:"#f59e0b",borderWidth:1.5,borderDash:[4,3]}}}}}});
+  }
+
+  const cotEl = document.getElementById("ch-cot");
+  if (cotEl) {
+    if(chartCot){chartCot.destroy();}
+    chartCot = new Chart(cotEl, {type:"line",data:{labels:anos,datasets:[{label:"Índice",data:cotVals,borderColor:cor,borderWidth:2.5,pointBackgroundColor:cor,pointRadius:4,tension:0.3,fill:false}]},
+      options:{...opts,plugins:{...opts.plugins,annotation:{annotations:{base:{type:"line",yMin:100,yMax:100,borderColor:"#334155",borderWidth:1,borderDash:[4,3]}}}}}});
+  }
+
+  const pares = ACOES.filter(x=>x.setor===a.setor).sort((x,y)=>y.dy-x.dy);
+  const setorEl = document.getElementById("ch-setor");
+  if (setorEl) {
+    if(chartSetor){chartSetor.destroy();}
+    chartSetor = new Chart(setorEl, {type:"bar",
+      data:{labels:pares.map(x=>x.ticker),
+        datasets:[{label:"DY (%)",data:pares.map(x=>x.dy),
+          backgroundColor:pares.map(x=>x.ticker===a.ticker?cor:cor+"55"),borderRadius:3}]},
+      options:{...opts,scales:{...opts.scales,y:{...opts.scales.y,min:0}},
+        plugins:{...opts.plugins,annotation:{annotations:{min6:{type:"line",yMin:6,yMax:6,borderColor:"#f59e0b",borderWidth:1.5,borderDash:[4,3]}}}}}});
+  }
+
+  const dyResumo = document.getElementById("ch-dy-resumo");
+  if (dyResumo) {
+    new Chart(dyResumo, {type:"bar",data:{labels:anos,datasets:[{label:"DY (%)",data:dyVals,backgroundColor:cor+"cc",borderRadius:3}]},
+      options:{...opts,scales:{...opts.scales,y:{...opts.scales.y,min:0}},
+        plugins:{...opts.plugins,annotation:{annotations:{min6:{type:"line",yMin:6,yMax:6,borderColor:"#f59e0b",borderWidth:1.5,borderDash:[4,3]}}}}}});
+  }
+}
+
+function renderDetail(a) {
+  renderHeader(a);
+  const db = document.getElementById("detail-body");
+  if (ABA==="analise")       db.innerHTML = renderAbaAnalise(a);
+  else if(ABA==="indicadores") db.innerHTML = renderAbaIndicadores(a);
+  else if(ABA==="graficos") { db.innerHTML = renderAbaGraficos(a); setTimeout(()=>buildCharts(a),50); }
+  else if(ABA==="resumo")   { db.innerHTML = renderAbaResumo(a);  setTimeout(()=>buildCharts(a),50); }
+  db.scrollTop = 0;
+}
+
+function renderAll() {
+  renderLista();
+  const a = ACOES.find(x=>x.ticker===SEL);
+  if (a) renderDetail(a);
+}
+
+function selectAcao(ticker) {
+  SEL = ticker;
+  renderAll();
+}
+
+// ─── INICIALIZAÇÃO ────────────────────────────────────────────────────────────
+function init() {
+  // Popular select de setores
+  const sel = document.getElementById("f-setor");
+  SETORES_UNICOS.forEach(s => { const o = document.createElement("option"); o.value=s; o.textContent=s; sel.appendChild(o); });
+
+  // Estatísticas globais
+  document.getElementById("st-comprar").textContent = ACOES.filter(a=>a.recomendacao==="COMPRAR").length+"/50";
+  document.getElementById("st-dy").textContent = (ACOES.reduce((s,a)=>s+a.dy,0)/ACOES.length).toFixed(1)+"%";
+  document.getElementById("st-roe").textContent = (ACOES.reduce((s,a)=>s+a.roe,0)/ACOES.length).toFixed(1)+"%";
+
+  // Eventos
+  document.getElementById("busca").addEventListener("input", renderAll);
+  document.getElementById("f-setor").addEventListener("change", renderAll);
+  document.getElementById("f-rec").addEventListener("change", renderAll);
+
+  document.getElementById("sort-row").querySelectorAll(".sort-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      ORDEM = btn.dataset.sort;
+      document.querySelectorAll(".sort-btn").forEach(b=>b.classList.toggle("active", b.dataset.sort===ORDEM));
+      renderAll();
+    });
+  });
+
+  document.querySelectorAll(".dtab").forEach(tab => {
+    tab.addEventListener("click", () => {
+      ABA = tab.dataset.tab;
+      const a = ACOES.find(x=>x.ticker===SEL);
+      if (a) renderDetail(a);
+    });
+  });
+
+  renderAll();
+}
+
+// Chart.js annotation plugin (embutido inline para não precisar de CDN extra)
+const annotationPlugin = {
+  id:'annotation',
+  afterDraw(chart) {
+    const anns = chart.options.plugins?.annotation?.annotations;
+    if (!anns) return;
+    const ctx = chart.ctx;
+    Object.values(anns).forEach(ann => {
+      if (ann.type==='line' && ann.yMin!==undefined) {
+        const scale = chart.scales.y;
+        const y = scale.getPixelForValue(ann.yMin);
+        ctx.save();
+        ctx.strokeStyle = ann.borderColor || '#fff';
+        ctx.lineWidth = ann.borderWidth || 1;
+        if (ann.borderDash) ctx.setLineDash(ann.borderDash);
+        ctx.beginPath();
+        ctx.moveTo(chart.chartArea.left, y);
+        ctx.lineTo(chart.chartArea.right, y);
+        ctx.stroke();
+        ctx.restore();
+      }
+    });
+  }
+};
+Chart.register(annotationPlugin);
+
+// ─── COTAÇÕES AO VIVO (brapi.dev) ──────────────────────────────────────────────
+// Busca o preço atual de cada ticker e atualiza a.cotacao em memória.
+// Fundamentos (DY, ROE, P/L, etc.) permanecem os valores de referência (jun/2026),
+// mas o "Preço Justo Bazin" e a comparação de preço passam a refletir a cotação real.
+const LIVE_STATE = { ok:0, fail:0, total:ACOES.length, lastUpdate:null };
+
+function setLiveBadge(text, color) {
+  const dot = document.getElementById("live-dot");
+  const txt = document.getElementById("live-text");
+  if (dot) dot.style.background = color;
+  if (txt) txt.textContent = text;
+}
+
+async function fetchChunk(tickers) {
+  const url = "https://brapi.dev/api/quote/" + tickers.join(",");
+  try {
+    const res = await fetch(url);
+    if (!res.ok) throw new Error("HTTP " + res.status);
+    const data = await res.json();
+    if (!data.results) return;
+    data.results.forEach(r => {
+      const a = ACOES.find(x => x.ticker === r.symbol);
+      if (a && typeof r.regularMarketPrice === "number" && r.regularMarketPrice > 0) {
+        a.cotacao = parseFloat(r.regularMarketPrice.toFixed(2));
+        a.cotacaoLive = true;
+        LIVE_STATE.ok++;
+      } else {
+        LIVE_STATE.fail++;
+      }
+    });
+  } catch (e) {
+    LIVE_STATE.fail += tickers.length;
+  }
+}
+
+async function updateLiveQuotes(manual=false) {
+  setLiveBadge(manual ? "Atualizando..." : "Buscando cotações...", "#facc15");
+  LIVE_STATE.ok = 0; LIVE_STATE.fail = 0;
+
+  const tickers = ACOES.map(a => a.ticker);
+  const CHUNK = 10;
+  for (let i = 0; i < tickers.length; i += CHUNK) {
+    await fetchChunk(tickers.slice(i, i + CHUNK));
+    // pequena pausa entre lotes para não estourar rate-limit da API gratuita
+    await new Promise(r => setTimeout(r, 250));
+  }
+
+  LIVE_STATE.lastUpdate = new Date();
+  const hora = LIVE_STATE.lastUpdate.toLocaleTimeString("pt-BR", {hour:"2-digit",minute:"2-digit"});
+
+  if (LIVE_STATE.ok > 0) {
+    setLiveBadge(`🟢 ${LIVE_STATE.ok}/${LIVE_STATE.total} cotações ao vivo · ${hora}`, "#4ade80");
+  } else {
+    setLiveBadge(`⚪ Offline — usando preços de referência (jun/2026)`, "#64748b");
+  }
+
+  renderAll();
+}
+
+window.selectAcao = selectAcao;
+document.addEventListener("DOMContentLoaded", () => {
+  init();
+  updateLiveQuotes();
+  document.getElementById("live-badge").addEventListener("click", () => updateLiveQuotes(true));
+});
+</script>
+</body>
+</html>
