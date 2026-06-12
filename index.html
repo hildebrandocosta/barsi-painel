@@ -267,8 +267,21 @@ const CORES_SET = {
   "Shoppings / Imóveis":"#e879f9","Ind. / Transporte":"#64748b",
 };
 const SETORES_PERENES = ["Bancos","Seguros","Energia Elétrica","Transmissão Elétrica","Saneamento","Telecom","Infraestrutura Financeira"];
-const ANOS_HIST = [2020,2021,2022,2023,2024,2025,2026];
-const HIST6 = [2020,2021,2022,2023,2024,2025]; // anos fechados, usados nos critérios de consistência (exclui 2026 em curso)
+
+// HIST6 = últimos anos fechados com dados reais consolidados (referência: jun/2026).
+// Quando o ano de 2026 fechar, este array (e os dados de DY/cotação de cada ação)
+// devem ser atualizados manualmente: remover 2020, adicionar 2026 com dados reais.
+const HIST6 = [2020,2021,2022,2023,2024,2025];
+
+// CURRENT_YEAR = ano do sistema do usuário, sempre o "ano em curso" no gráfico.
+// Calculado dinamicamente — em jan/2027 este valor passa a ser 2027 automaticamente,
+// usando DY trailing (a.dy) e cotação ao vivo como proxy do ano em andamento.
+const CURRENT_YEAR = new Date().getFullYear();
+
+// ANOS_HIST = os 6 anos fechados + o ano em curso (dinâmico).
+// Se CURRENT_YEAR já estiver em HIST6 (ex: ainda em 2026, igual ao último item),
+// evita duplicar a coluna.
+const ANOS_HIST = HIST6.includes(CURRENT_YEAR) ? [...HIST6] : [...HIST6, CURRENT_YEAR];
 
 const ACOES = [
   { ticker:"BBSE3", nome:"BB Seguridade",    setor:"Seguros",
@@ -623,15 +636,23 @@ const ACOES = [
     pontosAten:["P/L de 31,5x — premia muito crescimento futuro","P/VP de 8,5x — o mais caro das 50 ações"]},
 ];
 
-// ─── 2026 (ano em curso) ────────────────────────────────────────────────────
-// DY 2026 usa o DY atual (trailing 12m). Cotação 2026 começa igual ao índice
-// de 2025 e é recalculada dinamicamente quando a cotação ao vivo é obtida
+// ─── Ano em curso (dinâmico) ────────────────────────────────────────────────
+// DY do ano em curso usa o DY atual (trailing 12m). Cotação começa igual ao
+// índice do último ano fechado e é recalculada quando a cotação ao vivo chega
 // (ver fetchChunk), refletindo a variação do preço desde a referência (jun/2026).
-ACOES.forEach(a => {
-  a.cotacaoRef = a.cotacao;          // preço de referência (jun/2026, estático)
-  a.dyHist[2026] = a.dy;             // DY atual (trailing) como proxy do ano em curso
-  a.cotHist[2026] = a.cotHist[2025]; // ponto de partida; ajustado ao vivo depois
-});
+// Só executa se CURRENT_YEAR não fizer parte dos anos fechados (HIST6).
+if (!HIST6.includes(CURRENT_YEAR)) {
+  const ultimoAnoFechado = HIST6[HIST6.length - 1];
+  ACOES.forEach(a => {
+    a.cotacaoRef = a.cotacao;                    // preço de referência (estático, jun/2026)
+    a.dyHist[CURRENT_YEAR] = a.dy;               // DY atual (trailing) como proxy do ano em curso
+    a.cotHist[CURRENT_YEAR] = a.cotHist[ultimoAnoFechado]; // ponto de partida; ajustado ao vivo depois
+  });
+} else {
+  // CURRENT_YEAR já é o último ano de HIST6: ainda guardamos a referência de
+  // preço para permitir que a cotação ao vivo ajuste o último ponto do gráfico.
+  ACOES.forEach(a => { a.cotacaoRef = a.cotacao; });
+}
 
 const SETORES_UNICOS = [...new Set(ACOES.map(a => a.setor))].sort();
 
@@ -901,14 +922,15 @@ function renderAbaIndicadores(a) {
 }
 
 function renderAbaGraficos(a) {
+  const anoIni = ANOS_HIST[0], anoFim = ANOS_HIST[ANOS_HIST.length-1];
   return `
     <div class="graficos-grid">
       <div class="grafico-box">
-        <div class="grafico-title">DY Histórico 2020–2026 <span style="color:#f59e0b">· linha = mínimo 6%</span> <span style="color:#334155">· 2026 = atual (em curso)</span></div>
+        <div class="grafico-title">DY Histórico ${anoIni}–${anoFim} <span style="color:#f59e0b">· linha = mínimo 6%</span> <span style="color:#334155">· ${CURRENT_YEAR} = atual (em curso)</span></div>
         <div class="grafico-canvas"><canvas id="ch-dy"></canvas></div>
       </div>
       <div class="grafico-box">
-        <div class="grafico-title">Cotação indexada 2020–2026 <span style="color:#334155">· base 100 = jan/2020 · 2026 = ao vivo</span></div>
+        <div class="grafico-title">Cotação indexada ${anoIni}–${anoFim} <span style="color:#334155">· base 100 = jan/${anoIni} · ${CURRENT_YEAR} = ao vivo</span></div>
         <div class="grafico-canvas"><canvas id="ch-cot"></canvas></div>
       </div>
     </div>
@@ -950,7 +972,7 @@ function renderAbaResumo(a) {
 
 function buildCharts(a) {
   const cor = COR(a.setor);
-  const anos = ["2020","2021","2022","2023","2024","2025"];
+  const anos = ANOS_HIST.map(String);
   const dyVals = anos.map(y=>a.dyHist[parseInt(y)]);
   const cotVals = anos.map(y=>a.cotHist[parseInt(y)]);
   const opts = {
@@ -1112,10 +1134,11 @@ async function fetchChunk(tickers) {
       if (a && typeof r.regularMarketPrice === "number" && r.regularMarketPrice > 0) {
         a.cotacao = parseFloat(r.regularMarketPrice.toFixed(2));
         a.cotacaoLive = true;
-        // Atualiza o ponto de 2026 no gráfico de cotação indexada,
+        // Atualiza o ponto do ano em curso no gráfico de cotação indexada,
         // refletindo a variação do preço ao vivo vs. a referência (jun/2026)
         if (a.cotacaoRef > 0) {
-          a.cotHist[2026] = parseFloat((a.cotHist[2025] * (a.cotacao / a.cotacaoRef)).toFixed(1));
+          const ultimoAnoFechado = HIST6[HIST6.length - 1];
+          a.cotHist[CURRENT_YEAR] = parseFloat((a.cotHist[ultimoAnoFechado] * (a.cotacao / a.cotacaoRef)).toFixed(1));
         }
         LIVE_STATE.ok++;
       } else {
