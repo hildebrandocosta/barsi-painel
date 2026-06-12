@@ -267,7 +267,8 @@ const CORES_SET = {
   "Shoppings / Imóveis":"#e879f9","Ind. / Transporte":"#64748b",
 };
 const SETORES_PERENES = ["Bancos","Seguros","Energia Elétrica","Transmissão Elétrica","Saneamento","Telecom","Infraestrutura Financeira"];
-const ANOS_HIST = [2020,2021,2022,2023,2024,2025];
+const ANOS_HIST = [2020,2021,2022,2023,2024,2025,2026];
+const HIST6 = [2020,2021,2022,2023,2024,2025]; // anos fechados, usados nos critérios de consistência (exclui 2026 em curso)
 
 const ACOES = [
   { ticker:"BBSE3", nome:"BB Seguridade",    setor:"Seguros",
@@ -622,6 +623,16 @@ const ACOES = [
     pontosAten:["P/L de 31,5x — premia muito crescimento futuro","P/VP de 8,5x — o mais caro das 50 ações"]},
 ];
 
+// ─── 2026 (ano em curso) ────────────────────────────────────────────────────
+// DY 2026 usa o DY atual (trailing 12m). Cotação 2026 começa igual ao índice
+// de 2025 e é recalculada dinamicamente quando a cotação ao vivo é obtida
+// (ver fetchChunk), refletindo a variação do preço desde a referência (jun/2026).
+ACOES.forEach(a => {
+  a.cotacaoRef = a.cotacao;          // preço de referência (jun/2026, estático)
+  a.dyHist[2026] = a.dy;             // DY atual (trailing) como proxy do ano em curso
+  a.cotHist[2026] = a.cotHist[2025]; // ponto de partida; ajustado ao vivo depois
+});
+
 const SETORES_UNICOS = [...new Set(ACOES.map(a => a.setor))].sort();
 
 
@@ -638,7 +649,7 @@ function veredicto(a) {
   const roe15 = a.roe >= 15;
   const cagr0 = a.cagrLucro === null || a.cagrLucro >= 0;
   const divOk = a.divEbitda === null || a.divEbitda <= 3.5;
-  const dyH6  = Object.values(a.dyHist).filter(v => v >= 6).length;
+  const dyH6  = HIST6.filter(y => a.dyHist[y] >= 6).length;
   const precoOk = a.cotacao <= pj * 1.05;
   const passou = [dy6, PERC(a.setor), roe15, precoOk, cagr0 && divOk && dyH6 >= 3].filter(Boolean).length;
   if (passou >= 5 && dy6 && roe15) return {cor:"#4ade80",bg:"bg-green",bginl:"#052e16",bdcor:"#16a34a33",label:"COMPRAR",emoji:"🟢"};
@@ -662,9 +673,9 @@ const ETAPAS = [
    ok:a=>a.cotacao<=a.dividAnual/0.06, bd:a=>a.cotacao<=a.dividAnual/0.06*1.1,
    desc:a=>{const pj=(a.dividAnual/0.06).toFixed(2);return `Preço justo: R$ ${pj} · Cotação: R$ ${a.cotacao} · ${a.cotacao<=pj?"✓ Dentro do justo":"✗ Acima do justo"}`}},
   {n:5,label:"Lucro recorrente",cor:"#f97316",
-   ok:a=>Object.values(a.dyHist).filter(v=>v>=6).length>=4&&(a.cagrLucro===null||a.cagrLucro>=0)&&(a.divEbitda===null||a.divEbitda<=3.5),
-   bd:a=>Object.values(a.dyHist).filter(v=>v>=6).length>=3,
-   desc:a=>`DY≥6% em ${Object.values(a.dyHist).filter(v=>v>=6).length}/6 anos · Dív/EBITDA: ${a.divEbitda!==null?a.divEbitda+"x":"N/A (banco)"}`},
+   ok:a=>HIST6.filter(y=>a.dyHist[y]>=6).length>=4&&(a.cagrLucro===null||a.cagrLucro>=0)&&(a.divEbitda===null||a.divEbitda<=3.5),
+   bd:a=>HIST6.filter(y=>a.dyHist[y]>=6).length>=3,
+   desc:a=>`DY≥6% em ${HIST6.filter(y=>a.dyHist[y]>=6).length}/6 anos · Dív/EBITDA: ${a.divEbitda!==null?a.divEbitda+"x":"N/A (banco)"}`},
   {n:6,label:"Vs. setor",cor:"#ec4899",
    ok:a=>{const p=ACOES.filter(x=>x.setor===a.setor&&x.ticker!==a.ticker);if(!p.length)return true;const dm=p.reduce((s,x)=>s+x.dy,0)/p.length,rm=p.reduce((s,x)=>s+x.roe,0)/p.length;return a.dy>=dm&&a.roe>=rm},
    bd:a=>{const p=ACOES.filter(x=>x.setor===a.setor&&x.ticker!==a.ticker);if(!p.length)return false;const dm=p.reduce((s,x)=>s+x.dy,0)/p.length,rm=p.reduce((s,x)=>s+x.roe,0)/p.length;return(a.dy>=dm||a.roe>=rm)&&!(a.dy>=dm&&a.roe>=rm)},
@@ -893,11 +904,11 @@ function renderAbaGraficos(a) {
   return `
     <div class="graficos-grid">
       <div class="grafico-box">
-        <div class="grafico-title">DY Histórico 2020–2025 <span style="color:#f59e0b">· linha = mínimo 6%</span></div>
+        <div class="grafico-title">DY Histórico 2020–2026 <span style="color:#f59e0b">· linha = mínimo 6%</span> <span style="color:#334155">· 2026 = atual (em curso)</span></div>
         <div class="grafico-canvas"><canvas id="ch-dy"></canvas></div>
       </div>
       <div class="grafico-box">
-        <div class="grafico-title">Cotação indexada 2020–2025 <span style="color:#334155">· base 100 = jan/2020</span></div>
+        <div class="grafico-title">Cotação indexada 2020–2026 <span style="color:#334155">· base 100 = jan/2020 · 2026 = ao vivo</span></div>
         <div class="grafico-canvas"><canvas id="ch-cot"></canvas></div>
       </div>
     </div>
@@ -1101,6 +1112,11 @@ async function fetchChunk(tickers) {
       if (a && typeof r.regularMarketPrice === "number" && r.regularMarketPrice > 0) {
         a.cotacao = parseFloat(r.regularMarketPrice.toFixed(2));
         a.cotacaoLive = true;
+        // Atualiza o ponto de 2026 no gráfico de cotação indexada,
+        // refletindo a variação do preço ao vivo vs. a referência (jun/2026)
+        if (a.cotacaoRef > 0) {
+          a.cotHist[2026] = parseFloat((a.cotHist[2025] * (a.cotacao / a.cotacaoRef)).toFixed(1));
+        }
         LIVE_STATE.ok++;
       } else {
         LIVE_STATE.fail++;
