@@ -1214,7 +1214,7 @@ function buildRecConteudo(a, rec) {
       <div style="font-size:36px;margin-bottom:12px">🏦</div>
       <div style="font-size:15px;font-weight:600;color:#475569">Recomendações não cadastradas para ${a.ticker}</div>
       <div style="font-size:12px;color:#334155;margin-top:8px;line-height:1.6;max-width:340px">
-        Clique em "Inserir Recomendações" abaixo para adicionar as análises das casas que acompanham este papel.
+        Clique em <strong style="color:#38bdf8">🌐 Atualizar Recomendações</strong> abaixo para buscar automaticamente as análises mais recentes das casas de investimento.
       </div>
     </div>`;
   }
@@ -1490,13 +1490,34 @@ async function buscarRecomendacoesAuto(ticker) {
   const a = ACOES.find(x => x.ticker === ticker);
   if (!a) return;
 
-  // Mostrar estado de carregamento
+  // Garantir que a aba está renderizada (pode ser chamada de ação sem dados)
+  const container = document.getElementById("rec-container");
+  if (!container) {
+    // Re-renderizar a aba toda para garantir o container existe
+    const db = document.getElementById("detail-body");
+    if (db) {
+      db.innerHTML = renderAbaRecomendacoes(a);
+      await new Promise(r => setTimeout(r, 50));
+    }
+  }
+
+  // Mostrar estado de carregamento no conteúdo e no botão
   const btn = document.getElementById("btn-auto-rec-" + ticker);
+  const elConteudo = document.getElementById("rec-conteudo");
+
   if (btn) {
     btn.disabled = true;
     btn.innerHTML = "⏳ Buscando na internet...";
     btn.style.background = "#1c1400";
     btn.style.color = "#facc15";
+  }
+  if (elConteudo) {
+    elConteudo.innerHTML = `
+      <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 20px;color:#475569;text-align:center">
+        <div style="font-size:32px;margin-bottom:12px;animation:spin 1.5s linear infinite">⏳</div>
+        <div style="font-size:14px;font-weight:600;color:#94a3b8">Buscando recomendações para ${ticker}...</div>
+        <div style="font-size:11px;color:#334155;margin-top:6px">Pesquisando BTG, XP, Safra, Genial, Goldman e outras casas</div>
+      </div>`;
   }
 
   const prompt = `Busque na internet as recomendações MAIS RECENTES de analistas de investimento para a ação ${ticker} (${a.nome}) na B3.
@@ -1561,37 +1582,54 @@ Inclua todas as casas que encontrar com dados recentes (últimos 6 meses). Se n�
     // Salvar no localStorage
     saveRec(ticker, recData);
 
-    // Atualizar a aba
-    const elConteudo = document.getElementById("rec-conteudo");
-    if (elConteudo) elConteudo.innerHTML = buildRecConteudo(a, recData);
+    // Atualizar o conteúdo da aba
+    const elConteudo2 = document.getElementById("rec-conteudo");
+    if (elConteudo2) elConteudo2.innerHTML = buildRecConteudo(a, recData);
 
-    // Atualizar botão para sucesso
-    if (btn) {
-      btn.disabled = false;
-      btn.innerHTML = "✅ Atualizado! Clique para buscar novamente";
-      btn.style.background = "#052e16";
-      btn.style.color = "#4ade80";
+    // Atualizar botão de editar para refletir que agora há dados
+    const btnEditar = document.getElementById("btn-editar-rec");
+    if (btnEditar) btnEditar.innerHTML = "✏️ Editar Recomendações";
+
+    // Atualizar botão de busca — re-buscar do DOM pois pode ter sido recriado
+    const btnAtual = document.getElementById("btn-auto-rec-" + ticker);
+    if (btnAtual) {
+      btnAtual.disabled = false;
+      btnAtual.innerHTML = "✅ Atualizado! Clique para buscar novamente";
+      btnAtual.style.background = "#052e16";
+      btnAtual.style.color = "#4ade80";
       setTimeout(() => {
-        if (btn) {
-          btn.innerHTML = "🌐 Atualizar Recomendações (busca automática)";
-          btn.style.background = "#0c4a6e";
-          btn.style.color = "#38bdf8";
+        const b = document.getElementById("btn-auto-rec-" + ticker);
+        if (b) {
+          b.innerHTML = "🌐 Atualizar Recomendações (busca automática)";
+          b.style.background = "#0c4a6e";
+          b.style.color = "#38bdf8";
         }
       }, 3000);
     }
 
   } catch (err) {
     console.error("Erro busca recomendações:", err);
-    if (btn) {
-      btn.disabled = false;
-      btn.innerHTML = "❌ Erro — tente novamente";
-      btn.style.background = "#3b0000";
-      btn.style.color = "#f87171";
+    // Mostrar erro no conteúdo
+    const elErr = document.getElementById("rec-conteudo");
+    if (elErr && !getRec(a)) {
+      elErr.innerHTML = `<div style="padding:20px;text-align:center;color:#f87171;font-size:12px">
+        ❌ Não foi possível buscar os dados. Verifique sua conexão e tente novamente.<br>
+        <span style="color:#475569;font-size:10px">Detalhe: ${err.message}</span>
+      </div>`;
+    }
+    // Re-buscar botão do DOM (pode ter sido recriado)
+    const btnErr = document.getElementById("btn-auto-rec-" + ticker);
+    if (btnErr) {
+      btnErr.disabled = false;
+      btnErr.innerHTML = "❌ Erro — tente novamente";
+      btnErr.style.background = "#3b0000";
+      btnErr.style.color = "#f87171";
       setTimeout(() => {
-        if (btn) {
-          btn.innerHTML = "🌐 Atualizar Recomendações (busca automática)";
-          btn.style.background = "#0c4a6e";
-          btn.style.color = "#38bdf8";
+        const b = document.getElementById("btn-auto-rec-" + ticker);
+        if (b) {
+          b.innerHTML = "🌐 Atualizar Recomendações (busca automática)";
+          b.style.background = "#0c4a6e";
+          b.style.color = "#38bdf8";
         }
       }, 3000);
     }
