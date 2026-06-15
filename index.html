@@ -243,6 +243,7 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Segoe UI',Arial,sa
         <button class="dtab" data-tab="graficos">📈 Gráficos</button>
         <button class="dtab" data-tab="indicadores">🔬 Indicadores</button>
         <button class="dtab" data-tab="resumo">📋 Resumo</button>
+        <button class="dtab" data-tab="recomendacoes">🏦 Recomendações</button>
       </div>
 
       <div id="detail-body">
@@ -291,7 +292,22 @@ const ACOES = [
     roeHist:{2020:64,2021:68,2022:72,2023:77,2024:76,2025:73},margHist:{2020:40,2021:42,2022:45,2023:48,2024:47,2025:45},
     resumo:"Holding de seguros do BB com modelo asset-light. ROE de 33% excepcional, payout 90%+. Zero dívida operacional.",
     pontosFort:["ROE acima de 30% recorrente","Zero dívida operacional","Modelo asset-light"],
-    pontosAten:["Dependência da rede BB","P/VP alto para o setor"]},
+    pontosAten:["Dependência da rede BB","P/VP alto para o setor"],
+    analistas:{
+        atualizacao:"jun/2026",
+        cotacaoRef:37.87,
+        alvoMedio:37.18,alvoMax:46.0,alvoMin:32.0,
+        nAnalistas:12,nComprar:1,nNeutro:9,nVender:2,
+        consenso:"NEUTRO",
+        casas:[
+          {casa:"Goldman Sachs",rec:"COMPRAR",alvo:38.0,nota:"Múltiplo atrativo de 8x o lucro 2026. Dividend yield de ~11% sustentado. Único comprador do consenso."},
+          {casa:"Genial Investimentos",rec:"NEUTRO",alvo:36.8,nota:"Rebaixada de compra para neutro. Ausência de gatilhos de curto prazo. Queda da Selic pressionará resultado financeiro em 2026."},
+          {casa:"BTG Pactual",rec:"NEUTRO",alvo:null,nota:"Guidance 2026 implica queda de 5% no lucro a/a. Resultado financeiro forte mas receita operacional fraca pressionada pelo agro."},
+          {casa:"Safra",rec:"VENDER",alvo:39.0,nota:"Rebaixada de compra para venda em jan/2026. Lucro por ação cresce 0% entre 2025-2028. Bases comparativas difíceis em 2026."},
+          {casa:"Itaú BBA",rec:"VENDER",alvo:32.0,nota:"Preço-alvo mais conservador do consenso. Cenário operacional desafiador, especialmente no segmento agro."},
+          {casa:"HSBC",rec:"COMPRAR",alvo:46.0,nota:"Maior preço-alvo do consenso. Visão positiva sobre o modelo asset-light e geração de caixa consistente."},
+        ]
+      }},
   { ticker:"CXSE3", nome:"Caixa Seguridade", setor:"Seguros",
     cotacao:13.50,pl:10.2,pvp:2.8,roe:27.5,dy:9.8,divEbitda:0.0,margem:41.0,cagrLucro:18.5,rating:4,recomendacao:"COMPRAR",
     dyHist:{2020:0,2021:6.5,2022:7.2,2023:8.0,2024:8.8,2025:9.8},
@@ -323,7 +339,21 @@ const ACOES = [
     roeHist:{2020:17,2021:18,2022:19,2023:21,2024:22,2025:23},margHist:{2020:24,2021:26,2022:27,2023:28,2024:29,2025:29},
     resumo:"Melhor banco privado da AL. ROE de 21,8% consistente, JCP mensal, carteira diversificada.",
     pontosFort:["ROE líder entre grandes bancos","Inadimplência controlada","JCP mensal"],
-    pontosAten:["P/VP de 2,1x não é barato","Exposição ao risco regulatório"]},
+    pontosAten:["P/VP de 2,1x não é barato","Exposição ao risco regulatório"],
+    analistas:{
+        atualizacao:"jun/2026",
+        cotacaoRef:40.6,
+        alvoMedio:49.5,alvoMax:53.0,alvoMin:44.0,
+        nAnalistas:10,nComprar:8,nNeutro:1,nVender:0,
+        consenso:"COMPRAR",
+        casas:[
+          {casa:"XP Investimentos",rec:"COMPRAR",alvo:51.0,nota:"Top pick do setor. ROE de 24,8% sustentado. Lucro 1T26 de R$12,3bi (+10,4% a/a). Potencial de 14% de valorização."},
+          {casa:"BB Investimentos",rec:"COMPRAR",alvo:48.5,nota:"Recomendação de compra desde mai/2020 com +235% de retorno total. Solidez e rentabilidade referência do setor."},
+          {casa:"Genial Investimentos",rec:"COMPRAR",alvo:53.0,nota:"Maior preço-alvo do consenso. ROE de 23,3% acima dos pares. Super App One Itaú em monetização."},
+          {casa:"BTG Pactual",rec:"COMPRAR",alvo:46.8,nota:"Única recomendação de compra entre bancões incumbentes. 'Vencedor de longo prazo' do sistema financeiro."},
+          {casa:"Bradesco BBI",rec:"COMPRAR",alvo:44.0,nota:"Outperform mantido. Banco 'pronto para atacar e defender'. Alta de 34,5% em 2025 não muda a tese."},
+        ]
+      }},
   { ticker:"ITSA4", nome:"Itaúsa",           setor:"Bancos",
     cotacao:16.00,pl:9.2,pvp:1.6,roe:18.5,dy:7.0,divEbitda:null,margem:25.0,cagrLucro:12.5,rating:4,recomendacao:"COMPRAR",
     dyHist:{2020:1.5,2021:5.1,2022:6.4,2023:7.2,2024:7.0,2025:6.8},
@@ -403,7 +433,19 @@ const ACOES = [
     roeHist:{2020:8,2021:12,2022:18,2023:24,2024:27,2025:28},margHist:{2020:8,2021:12,2022:17,2023:21,2024:21,2025:21},
     resumo:"Turnaround de estatal para distribuidora eficiente. ROE de 27,5%, CAGR de 22,5%. DY de 11,2%.",
     pontosFort:["CAGR de lucro de 22,5%","DY de 11,2% + valuation barato","Desinvestimentos reduziram dívida"],
-    pontosAten:["Controle pelo Governo de MG","Dependência de hidrelétricas"]},
+    pontosAten:["Controle pelo Governo de MG","Dependência de hidrelétricas"],
+    analistas:{
+        atualizacao:"jun/2026",
+        cotacaoRef:10.73,
+        alvoMedio:11.76,alvoMax:13.8,alvoMin:9.7,
+        nAnalistas:14,nComprar:0,nNeutro:10,nVender:4,
+        consenso:"NEUTRO",
+        casas:[
+          {casa:"XP Investimentos",rec:"NEUTRO",alvo:14.6,nota:"Payout limitado a 50% até 2028 reduz yield. Privatização oferece pouco upside. TIR real de 10,7% vs média de 12,5% dos pares."},
+          {casa:"Safra",rec:"NEUTRO",alvo:12.5,nota:"Pressão no balanço energético deve continuar em 2026. Potencial de 13% de valorização. Risco de federalização."},
+          {casa:"Consenso (14 analistas)",rec:"NEUTRO",alvo:11.76,nota:"Mediana R$17,41 em plataformas; sem analistas com compra ativa. 4 recomendações de venda. Contexto político e operacional desafiador."},
+        ]
+      }},
   { ticker:"CPLE6", nome:"Copel",            setor:"Energia Elétrica",
     cotacao:12.70,pl:7.2,pvp:1.5,roe:20.8,dy:12.1,divEbitda:1.2,margem:18.5,cagrLucro:35.2,rating:5,recomendacao:"COMPRAR",
     dyHist:{2020:4.2,2021:4.2,2022:5.5,2023:6.0,2024:8.8,2025:12.1},
@@ -1104,13 +1146,467 @@ function buildCharts(a) {
   }
 }
 
+// ─── ABA RECOMENDAÇÕES DE ANALISTAS ────────────────────────────────────────
+// ─── RECOMENDAÇÕES — helpers de localStorage ──────────────────────────────────
+function recKey(ticker) { return "barsi_rec_" + ticker; }
+
+function getRec(a) {
+  // Prioridade: localStorage (edição do usuário) > dados do código
+  try {
+    const saved = localStorage.getItem(recKey(a.ticker));
+    if (saved) return JSON.parse(saved);
+  } catch(e) {}
+  return a.analistas || null;
+}
+
+function saveRec(ticker, data) {
+  try { localStorage.setItem(recKey(ticker), JSON.stringify(data)); return true; }
+  catch(e) { return false; }
+}
+
+function clearRec(ticker) {
+  try { localStorage.removeItem(recKey(ticker)); } catch(e) {}
+}
+
+// ─── RENDER ABA RECOMENDAÇÕES ─────────────────────────────────────────────────
+function renderAbaRecomendacoes(a) {
+  const rec = getRec(a);
+  const temLocalStorage = !!(() => { try { return localStorage.getItem(recKey(a.ticker)); } catch(e){ return null; } })();
+
+  // HTML base — preenchido dinamicamente após renderização
+  const html = `
+    <div id="rec-container" data-ticker="${a.ticker}">
+      <div id="rec-conteudo"></div>
+      <div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap">
+        <button id="btn-auto-rec-${a.ticker}" onclick="buscarRecomendacoesAuto('${a.ticker}')"
+          style="background:#0c4a6e;border:1px solid #0ea5e933;border-radius:6px;padding:9px 18px;color:#38bdf8;font-size:12px;font-weight:700;cursor:pointer">
+          🌐 Atualizar Recomendações (busca automática)
+        </button>
+        <button id="btn-editar-rec" onclick="abrirEditorRec('${a.ticker}')"
+          style="background:#4f46e5;border:none;border-radius:6px;padding:8px 16px;color:#fff;font-size:12px;font-weight:600;cursor:pointer">
+          ✏️ ${rec ? 'Editar Recomendações' : 'Inserir Recomendações'}
+        </button>
+        ${temLocalStorage ? `<button onclick="limparRecLocal('${a.ticker}')"
+          style="background:#1e293b;border:1px solid #334155;border-radius:6px;padding:8px 14px;color:#94a3b8;font-size:11px;cursor:pointer"
+          title="Remove as edições salvas localmente e volta aos dados originais do painel">
+          🔄 Restaurar dados originais
+        </button>` : ''}
+      </div>
+    </div>
+    <div id="editor-rec-overlay" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,.7);z-index:500;overflow-y:auto">
+      <div id="editor-rec-box" style="background:#0f172a;border:1px solid #1e293b;border-radius:12px;max-width:680px;margin:40px auto;padding:24px"></div>
+    </div>`;
+
+  // Preencher conteúdo após inserção no DOM
+  setTimeout(() => {
+    const el = document.getElementById("rec-conteudo");
+    if (el) el.innerHTML = buildRecConteudo(a, getRec(a));
+  }, 0);
+
+  return html;
+}
+
+function buildRecConteudo(a, rec) {
+  const temLocalStorage = !!(() => { try { return localStorage.getItem(recKey(a.ticker)); } catch(e){ return null; } })();
+
+  if (!rec) {
+    return `<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:220px;color:#334155;text-align:center">
+      <div style="font-size:36px;margin-bottom:12px">🏦</div>
+      <div style="font-size:15px;font-weight:600;color:#475569">Recomendações não cadastradas para ${a.ticker}</div>
+      <div style="font-size:12px;color:#334155;margin-top:8px;line-height:1.6;max-width:340px">
+        Clique em "Inserir Recomendações" abaixo para adicionar as análises das casas que acompanham este papel.
+      </div>
+    </div>`;
+  }
+
+  const corCons = rec.consenso==="COMPRAR"?"#4ade80":rec.consenso==="NEUTRO"?"#facc15":"#f87171";
+  const bgCons  = rec.consenso==="COMPRAR"?"#052e16":rec.consenso==="NEUTRO"?"#1c1400":"#3b0000";
+  const bdCons  = rec.consenso==="COMPRAR"?"#16a34a44":rec.consenso==="NEUTRO"?"#ca8a0444":"#dc262644";
+  const upside  = rec.alvoMedio && rec.cotacaoRef
+    ? ((rec.alvoMedio - rec.cotacaoRef) / rec.cotacaoRef * 100).toFixed(1) : null;
+  const total = rec.nAnalistas || 1;
+  const pctC = Math.round(rec.nComprar / total * 100);
+  const pctN = Math.round(rec.nNeutro  / total * 100);
+  const pctV = Math.round(rec.nVender  / total * 100);
+  const corRec = r => r==="COMPRAR"||r==="OUTPERFORM"?"#4ade80":r==="NEUTRO"||r==="MANTER"||r==="HOLD"?"#facc15":"#f87171";
+  const bgRec  = r => r==="COMPRAR"||r==="OUTPERFORM"?"#052e16":r==="NEUTRO"||r==="MANTER"||r==="HOLD"?"#1c1400":"#3b0000";
+
+  return `
+    ${temLocalStorage ? `<div style="margin-bottom:10px;background:#0c1a2e;border:1px solid #0ea5e933;border-radius:6px;padding:6px 12px;font-size:10px;color:#38bdf8">
+      ✏️ Dados editados por você · salvos neste navegador
+    </div>` : ''}
+
+    <!-- Consenso -->
+    <div style="background:${bgCons};border:1px solid ${bdCons};border-radius:10px;padding:14px 18px;margin-bottom:14px;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px">
+      <div>
+        <div style="font-size:10px;color:#475569;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px">
+          Consenso de Mercado · ${rec.nAnalistas} analistas · ${rec.atualizacao}
+        </div>
+        <div style="font-size:22px;font-weight:800;color:${corCons}">${rec.consenso}</div>
+        <div style="font-size:11px;color:#475569;margin-top:4px">Cotação de referência: R$ ${rec.cotacaoRef}</div>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        ${[["Preço-alvo médio","R$ "+rec.alvoMedio.toFixed(2),corCons],
+           ["Upside potencial",upside!==null?(upside>=0?"+":"")+upside+"%":"—",upside!==null&&upside>=0?"#4ade80":"#f87171"],
+           ["Maior alvo","R$ "+rec.alvoMax,"#4ade80"],
+           ["Menor alvo","R$ "+rec.alvoMin,"#f87171"]]
+          .map(([l,v,c])=>`<div style="background:#1e293b;border-radius:6px;padding:8px 12px;text-align:center">
+            <div style="font-size:9px;color:#475569;margin-bottom:3px">${l}</div>
+            <div style="font-size:14px;font-weight:700;color:${c}">${v}</div>
+          </div>`).join("")}
+      </div>
+    </div>
+
+    <!-- Barra de distribuição -->
+    <div style="background:#0f172a;border:1px solid #1e293b;border-radius:8px;padding:12px 16px;margin-bottom:14px">
+      <div style="font-size:11px;color:#475569;margin-bottom:8px">Distribuição das recomendações</div>
+      <div style="display:flex;gap:4px;height:28px;margin-bottom:8px">
+        ${pctC>0?`<div style="flex:${pctC};background:#052e16;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#4ade80">${pctC>10?rec.nComprar+' Compra':''}</div>`:''}
+        ${pctN>0?`<div style="flex:${pctN};background:#1c1400;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#facc15">${pctN>10?rec.nNeutro+' Neutro':''}</div>`:''}
+        ${pctV>0?`<div style="flex:${pctV};background:#3b0000;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#f87171">${pctV>10?rec.nVender+' Venda':''}</div>`:''}
+      </div>
+      <div style="display:flex;gap:16px;font-size:10px">
+        <span style="color:#4ade80">🟢 Comprar: ${rec.nComprar} (${pctC}%)</span>
+        <span style="color:#facc15">🟡 Neutro: ${rec.nNeutro} (${pctN}%)</span>
+        <span style="color:#f87171">🔴 Vender: ${rec.nVender} (${pctV}%)</span>
+      </div>
+    </div>
+
+    <!-- Casas individuais -->
+    <div style="font-size:11px;color:#475569;text-transform:uppercase;letter-spacing:1.5px;font-weight:600;margin-bottom:10px">Recomendações por casa de análise</div>
+    <div style="display:flex;flex-direction:column;gap:8px">
+      ${(rec.casas||[]).map(c=>`
+        <div style="background:#0f172a;border:1px solid #1e293b;border-radius:8px;padding:12px 14px;display:flex;gap:12px;align-items:flex-start;position:relative;overflow:hidden">
+          <div style="position:absolute;top:0;left:0;width:3px;height:100%;background:${corRec(c.rec)}"></div>
+          <div style="flex:1">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:5px;flex-wrap:wrap">
+              <span style="font-weight:700;font-size:13px;color:#f1f5f9">${c.casa}</span>
+              <span style="font-size:9px;background:${bgRec(c.rec)};color:${corRec(c.rec)};padding:2px 7px;border-radius:4px;font-weight:600">${c.rec}</span>
+              ${c.alvo?`<span style="font-size:11px;color:#94a3b8">Alvo: <strong style="color:${corRec(c.rec)}">R$ ${Number(c.alvo).toFixed(2)}</strong></span>`:''}
+              ${c.data?`<span style="font-size:9px;color:#334155">${c.data}</span>`:''}
+            </div>
+            <div style="font-size:11px;color:#64748b;line-height:1.6">${c.nota||''}</div>
+          </div>
+        </div>`).join("")}
+    </div>
+
+    <div style="margin-top:12px;background:#0f172a;border:1px solid #1e293b;border-radius:8px;padding:10px 14px;font-size:10px;color:#475569;line-height:1.6">
+      ⚠️ Recomendações coletadas de fontes públicas. Podem não refletir revisões mais recentes. Última atualização: ${rec.atualizacao}. Não é recomendação de investimento.
+    </div>`;
+}
+
+// ─── EDITOR DE RECOMENDAÇÕES ──────────────────────────────────────────────────
+function abrirEditorRec(ticker) {
+  const a = ACOES.find(x=>x.ticker===ticker);
+  const rec = getRec(a) || {
+    atualizacao:"", cotacaoRef:a.cotacao, alvoMedio:0, alvoMax:0, alvoMin:0,
+    nAnalistas:0, nComprar:0, nNeutro:0, nVender:0, consenso:"NEUTRO", casas:[]
+  };
+
+  const overlay = document.getElementById("editor-rec-overlay");
+  const box     = document.getElementById("editor-rec-box");
+  overlay.style.display = "block";
+
+  function buildCasaRow(c, i) {
+    return `<div id="casa-row-${i}" style="background:#1e293b;border-radius:8px;padding:10px 12px;margin-bottom:8px;display:grid;grid-template-columns:1fr 100px 80px 1fr auto;gap:8px;align-items:start">
+      <input placeholder="Casa (ex: XP Investimentos)" value="${c.casa||''}" data-field="casa" data-idx="${i}"
+        style="background:#0f172a;border:1px solid #334155;border-radius:5px;padding:5px 8px;color:#f1f5f9;font-size:11px;outline:none">
+      <select data-field="rec" data-idx="${i}"
+        style="background:#0f172a;border:1px solid #334155;border-radius:5px;padding:5px;color:#f1f5f9;font-size:11px;outline:none">
+        ${["COMPRAR","OUTPERFORM","NEUTRO","MANTER","HOLD","VENDER","UNDERPERFORM"].map(r=>`<option value="${r}"${(c.rec||"NEUTRO")===r?" selected":""}>${r}</option>`).join("")}
+      </select>
+      <input type="number" placeholder="Alvo R$" value="${c.alvo||''}" data-field="alvo" data-idx="${i}" step="0.01"
+        style="background:#0f172a;border:1px solid #334155;border-radius:5px;padding:5px 8px;color:#f1f5f9;font-size:11px;outline:none">
+      <input placeholder="Nota / comentário" value="${c.nota||''}" data-field="nota" data-idx="${i}"
+        style="background:#0f172a;border:1px solid #334155;border-radius:5px;padding:5px 8px;color:#f1f5f9;font-size:11px;outline:none">
+      <button onclick="removerCasaRow(${i})" style="background:#3b0000;border:1px solid #dc262633;border-radius:5px;color:#f87171;font-size:12px;padding:5px 9px;cursor:pointer">✕</button>
+    </div>`;
+  }
+
+  function render() {
+    const casas = window._editorCasas || rec.casas || [];
+    box.innerHTML = `
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+        <div>
+          <div style="font-size:11px;color:#475569;margin-bottom:2px">Editando recomendações de</div>
+          <div style="font-size:18px;font-weight:800;color:#818cf8">${ticker}</div>
+        </div>
+        <button onclick="fecharEditorRec()" style="background:#1e293b;border:1px solid #334155;border-radius:6px;color:#94a3b8;font-size:18px;padding:4px 12px;cursor:pointer">✕</button>
+      </div>
+
+      <!-- Dados gerais do consenso -->
+      <div style="background:#1e293b;border-radius:8px;padding:12px;margin-bottom:14px">
+        <div style="font-size:11px;color:#475569;font-weight:600;margin-bottom:10px">DADOS GERAIS DO CONSENSO</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:8px">
+          <div>
+            <div style="font-size:9px;color:#475569;margin-bottom:3px">Consenso geral</div>
+            <select id="ed-consenso" style="width:100%;background:#0f172a;border:1px solid #334155;border-radius:5px;padding:6px;color:#f1f5f9;font-size:12px;outline:none">
+              ${["COMPRAR","NEUTRO","VENDER"].map(r=>`<option value="${r}"${rec.consenso===r?" selected":""}>${r}</option>`).join("")}
+            </select>
+          </div>
+          <div>
+            <div style="font-size:9px;color:#475569;margin-bottom:3px">Nº total de analistas</div>
+            <input id="ed-nAnalistas" type="number" value="${rec.nAnalistas||0}" style="width:100%;background:#0f172a;border:1px solid #334155;border-radius:5px;padding:6px;color:#f1f5f9;font-size:12px;outline:none;box-sizing:border-box">
+          </div>
+          <div>
+            <div style="font-size:9px;color:#475569;margin-bottom:3px">Data / período</div>
+            <input id="ed-atualizacao" type="text" placeholder="ex: jun/2026" value="${rec.atualizacao||''}" style="width:100%;background:#0f172a;border:1px solid #334155;border-radius:5px;padding:6px;color:#f1f5f9;font-size:12px;outline:none;box-sizing:border-box">
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px">
+          ${[["ed-nComprar","Comprar",rec.nComprar],["ed-nNeutro","Neutro",rec.nNeutro],["ed-nVender","Vender",rec.nVender],
+             ["ed-alvoMedio","Alvo médio R$",rec.alvoMedio],["ed-cotacaoRef","Cotação ref. R$",rec.cotacaoRef]].map(([id,lbl,val])=>`
+            <div>
+              <div style="font-size:9px;color:#475569;margin-bottom:3px">${lbl}</div>
+              <input id="${id}" type="number" step="0.01" value="${val||0}" style="width:100%;background:#0f172a;border:1px solid #334155;border-radius:5px;padding:6px;color:#f1f5f9;font-size:12px;outline:none;box-sizing:border-box">
+            </div>`).join("")}
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px">
+          ${[["ed-alvoMax","Maior alvo R$",rec.alvoMax],["ed-alvoMin","Menor alvo R$",rec.alvoMin]].map(([id,lbl,val])=>`
+            <div>
+              <div style="font-size:9px;color:#475569;margin-bottom:3px">${lbl}</div>
+              <input id="${id}" type="number" step="0.01" value="${val||0}" style="width:100%;background:#0f172a;border:1px solid #334155;border-radius:5px;padding:6px;color:#f1f5f9;font-size:12px;outline:none;box-sizing:border-box">
+            </div>`).join("")}
+        </div>
+      </div>
+
+      <!-- Casas individuais -->
+      <div style="font-size:11px;color:#475569;font-weight:600;margin-bottom:8px">CASAS DE ANÁLISE · cabeçalho: Casa · Recomendação · Alvo R$ · Nota</div>
+      <div id="casas-rows">
+        ${casas.map((c,i)=>buildCasaRow(c,i)).join("")}
+      </div>
+      <button onclick="adicionarCasaRow()" style="width:100%;background:#1e293b;border:1px dashed #334155;border-radius:6px;color:#64748b;font-size:12px;padding:9px;cursor:pointer;margin-bottom:14px">
+        + Adicionar casa de análise
+      </button>
+
+      <!-- Botões de ação -->
+      <div style="display:flex;gap:8px">
+        <button onclick="salvarEditorRec('${ticker}')" style="flex:1;background:#4f46e5;border:none;border-radius:6px;color:#fff;font-size:13px;font-weight:700;padding:10px;cursor:pointer">
+          💾 Salvar Recomendações
+        </button>
+        <button onclick="fecharEditorRec()" style="background:#1e293b;border:1px solid #334155;border-radius:6px;color:#94a3b8;font-size:12px;padding:10px 16px;cursor:pointer">
+          Cancelar
+        </button>
+      </div>
+      <div id="editor-msg" style="margin-top:8px;font-size:11px;text-align:center"></div>`;
+
+    // Sincronizar array de casas com os inputs do DOM em tempo real
+    document.querySelectorAll("[data-field]").forEach(el => {
+      el.addEventListener("input", () => {
+        const i = parseInt(el.dataset.idx);
+        const f = el.dataset.field;
+        if (!window._editorCasas[i]) window._editorCasas[i] = {};
+        window._editorCasas[i][f] = f==="alvo" ? parseFloat(el.value)||null : el.value;
+      });
+    });
+  }
+
+  window._editorCasas = (rec.casas||[]).map(c=>({...c}));
+  window._editorRender = render;
+  render();
+  overlay.onclick = e => { if(e.target===overlay) fecharEditorRec(); };
+}
+
+function adicionarCasaRow() {
+  window._editorCasas.push({casa:"",rec:"NEUTRO",alvo:null,nota:"",data:""});
+  window._editorRender();
+}
+
+function removerCasaRow(i) {
+  window._editorCasas.splice(i,1);
+  window._editorRender();
+}
+
+function fecharEditorRec() {
+  document.getElementById("editor-rec-overlay").style.display="none";
+  window._editorCasas = [];
+}
+
+function salvarEditorRec(ticker) {
+  // Ler campos gerais
+  const getData = id => document.getElementById(id);
+  const data = {
+    consenso:    getData("ed-consenso").value,
+    nAnalistas:  parseInt(getData("ed-nAnalistas").value)||0,
+    atualizacao: getData("ed-atualizacao").value.trim() || new Date().toLocaleDateString("pt-BR",{month:"short",year:"numeric"}),
+    nComprar:    parseInt(getData("ed-nComprar").value)||0,
+    nNeutro:     parseInt(getData("ed-nNeutro").value)||0,
+    nVender:     parseInt(getData("ed-nVender").value)||0,
+    alvoMedio:   parseFloat(getData("ed-alvoMedio").value)||0,
+    alvoMax:     parseFloat(getData("ed-alvoMax").value)||0,
+    alvoMin:     parseFloat(getData("ed-alvoMin").value)||0,
+    cotacaoRef:  parseFloat(getData("ed-cotacaoRef").value)||0,
+    casas:       (window._editorCasas||[]).filter(c=>c.casa&&c.casa.trim()),
+  };
+
+  // Calcular alvoMedio automaticamente se não preenchido mas temos casas com alvo
+  if (!data.alvoMedio && data.casas.length) {
+    const alvos = data.casas.filter(c=>c.alvo).map(c=>parseFloat(c.alvo));
+    if (alvos.length) data.alvoMedio = parseFloat((alvos.reduce((s,v)=>s+v,0)/alvos.length).toFixed(2));
+  }
+
+  const ok = saveRec(ticker, data);
+  const msg = document.getElementById("editor-msg");
+  if (ok) {
+    msg.style.color="#4ade80";
+    msg.textContent = "✓ Salvo com sucesso! Fechando...";
+    setTimeout(()=>{
+      fecharEditorRec();
+      // Re-renderizar a aba
+      const a = ACOES.find(x=>x.ticker===ticker);
+      const el = document.getElementById("rec-conteudo");
+      if (el) el.innerHTML = buildRecConteudo(a, getRec(a));
+      // Atualizar botão
+      const btn = document.getElementById("btn-editar-rec");
+      if (btn) btn.textContent = "✏️ Editar Recomendações";
+    }, 900);
+  } else {
+    msg.style.color="#f87171";
+    msg.textContent = "Erro ao salvar. Tente novamente.";
+  }
+}
+
+function limparRecLocal(ticker) {
+  if (!confirm(`Remover edições locais de ${ticker} e restaurar dados originais?`)) return;
+  clearRec(ticker);
+  const a = ACOES.find(x=>x.ticker===ticker);
+  const el = document.getElementById("rec-conteudo");
+  if (el) el.innerHTML = buildRecConteudo(a, getRec(a));
+  // Re-renderizar a aba toda para esconder o botão "Restaurar"
+  const db = document.getElementById("detail-body");
+  if (db) db.innerHTML = renderAbaRecomendacoes(a);
+}
+
+// Expor funções globalmente para chamadas inline do HTML
+window.abrirEditorRec   = abrirEditorRec;
+window.fecharEditorRec  = fecharEditorRec;
+window.salvarEditorRec  = salvarEditorRec;
+window.adicionarCasaRow  = adicionarCasaRow;
+window.removerCasaRow    = removerCasaRow;
+window.limparRecLocal    = limparRecLocal;
+
+// ─── BUSCA AUTOMÁTICA VIA API CLAUDE + WEB SEARCH ─────────────────────────────
+async function buscarRecomendacoesAuto(ticker) {
+  const a = ACOES.find(x => x.ticker === ticker);
+  if (!a) return;
+
+  // Mostrar estado de carregamento
+  const btn = document.getElementById("btn-auto-rec-" + ticker);
+  if (btn) {
+    btn.disabled = true;
+    btn.innerHTML = "⏳ Buscando na internet...";
+    btn.style.background = "#1c1400";
+    btn.style.color = "#facc15";
+  }
+
+  const prompt = `Busque na internet as recomendações MAIS RECENTES de analistas de investimento para a ação ${ticker} (${a.nome}) na B3.
+
+Retorne SOMENTE um JSON válido, sem texto adicional, sem markdown, sem blocos de código. O JSON deve ter exatamente esta estrutura:
+{
+  "consenso": "COMPRAR" ou "NEUTRO" ou "VENDER",
+  "nAnalistas": número total de analistas cobrindo a ação,
+  "nComprar": número de analistas com recomendação de compra,
+  "nNeutro": número de analistas com recomendação neutra/manter,
+  "nVender": número de analistas com recomendação de venda,
+  "alvoMedio": preço-alvo médio em reais (número),
+  "alvoMax": maior preço-alvo em reais (número),
+  "alvoMin": menor preço-alvo em reais (número),
+  "cotacaoRef": cotação atual aproximada em reais (número),
+  "atualizacao": "mês/ano da pesquisa ex: jun/2026",
+  "casas": [
+    {
+      "casa": "nome da casa de análise",
+      "rec": "COMPRAR" ou "NEUTRO" ou "VENDER" ou "OUTPERFORM" ou "MANTER",
+      "alvo": preço-alvo numérico ou null,
+      "data": "data aproximada do relatório ex: mai/2026",
+      "nota": "resumo em 1-2 frases da tese ou justificativa"
+    }
+  ]
+}
+
+Inclua todas as casas que encontrar com dados recentes (últimos 6 meses). Se não encontrar dados de uma casa específica, não a inclua. Priorize BTG Pactual, XP, Safra, Itaú BBA, Genial, Goldman Sachs, JP Morgan, Morgan Stanley, Bradesco BBI, BB Investimentos.`;
+
+  try {
+    const response = await fetch("https://api.anthropic.com/v1/messages", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        model: "claude-sonnet-4-6",
+        max_tokens: 1000,
+        tools: [{ type: "web_search_20250305", name: "web_search" }],
+        messages: [{ role: "user", content: prompt }]
+      })
+    });
+
+    if (!response.ok) throw new Error("API error " + response.status);
+    const data = await response.json();
+
+    // Extrair texto da resposta (pode vir após tool_use)
+    const textBlock = data.content
+      .filter(b => b.type === "text")
+      .map(b => b.text)
+      .join("\n");
+
+    // Limpar e parsear JSON
+    const clean = textBlock.replace(/```json|```/g, "").trim();
+    // Encontrar o JSON no texto (pode ter texto antes/depois)
+    const jsonMatch = clean.match(/\{[\s\S]*\}/);
+    if (!jsonMatch) throw new Error("JSON não encontrado na resposta");
+
+    const recData = JSON.parse(jsonMatch[0]);
+
+    // Validar campos essenciais
+    if (!recData.consenso || !recData.casas) throw new Error("Estrutura inválida");
+
+    // Salvar no localStorage
+    saveRec(ticker, recData);
+
+    // Atualizar a aba
+    const elConteudo = document.getElementById("rec-conteudo");
+    if (elConteudo) elConteudo.innerHTML = buildRecConteudo(a, recData);
+
+    // Atualizar botão para sucesso
+    if (btn) {
+      btn.disabled = false;
+      btn.innerHTML = "✅ Atualizado! Clique para buscar novamente";
+      btn.style.background = "#052e16";
+      btn.style.color = "#4ade80";
+      setTimeout(() => {
+        if (btn) {
+          btn.innerHTML = "🌐 Atualizar Recomendações (busca automática)";
+          btn.style.background = "#0c4a6e";
+          btn.style.color = "#38bdf8";
+        }
+      }, 3000);
+    }
+
+  } catch (err) {
+    console.error("Erro busca recomendações:", err);
+    if (btn) {
+      btn.disabled = false;
+      btn.innerHTML = "❌ Erro — tente novamente";
+      btn.style.background = "#3b0000";
+      btn.style.color = "#f87171";
+      setTimeout(() => {
+        if (btn) {
+          btn.innerHTML = "🌐 Atualizar Recomendações (busca automática)";
+          btn.style.background = "#0c4a6e";
+          btn.style.color = "#38bdf8";
+        }
+      }, 3000);
+    }
+  }
+}
+window.buscarRecomendacoesAuto = buscarRecomendacoesAuto;
+
 function renderDetail(a) {
   renderHeader(a);
   const db = document.getElementById("detail-body");
-  if (ABA==="analise")       db.innerHTML = renderAbaAnalise(a);
-  else if(ABA==="indicadores") db.innerHTML = renderAbaIndicadores(a);
-  else if(ABA==="graficos") { db.innerHTML = renderAbaGraficos(a); setTimeout(()=>buildCharts(a),50); }
-  else if(ABA==="resumo")   { db.innerHTML = renderAbaResumo(a);  setTimeout(()=>buildCharts(a),50); }
+  if (ABA==="analise")           db.innerHTML = renderAbaAnalise(a);
+  else if(ABA==="indicadores")   db.innerHTML = renderAbaIndicadores(a);
+  else if(ABA==="graficos")      { db.innerHTML = renderAbaGraficos(a); setTimeout(()=>buildCharts(a),50); }
+  else if(ABA==="resumo")        { db.innerHTML = renderAbaResumo(a);  setTimeout(()=>buildCharts(a),50); }
+  else if(ABA==="recomendacoes") db.innerHTML = renderAbaRecomendacoes(a);
   db.scrollTop = 0;
 }
 
