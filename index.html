@@ -1490,152 +1490,99 @@ async function buscarRecomendacoesAuto(ticker) {
   const a = ACOES.find(x => x.ticker === ticker);
   if (!a) return;
 
-  // Garantir que a aba está renderizada (pode ser chamada de ação sem dados)
+  // Garantir container no DOM
   const container = document.getElementById("rec-container");
   if (!container) {
-    // Re-renderizar a aba toda para garantir o container existe
     const db = document.getElementById("detail-body");
-    if (db) {
-      db.innerHTML = renderAbaRecomendacoes(a);
-      await new Promise(r => setTimeout(r, 50));
-    }
+    if (db) { db.innerHTML = renderAbaRecomendacoes(a); await new Promise(r=>setTimeout(r,50)); }
   }
 
-  // Mostrar estado de carregamento no conteúdo e no botão
-  const btn = document.getElementById("btn-auto-rec-" + ticker);
+  const prompt = `Busque na internet as recomendações MAIS RECENTES de analistas de investimento para a ação ${ticker} (${a.nome}) na B3.\n\nRetorne SOMENTE um JSON válido, sem texto adicional, sem markdown, sem blocos de código:\n{\n  "consenso": "COMPRAR" ou "NEUTRO" ou "VENDER",\n  "nAnalistas": total de analistas,\n  "nComprar": qtd compra,\n  "nNeutro": qtd neutro,\n  "nVender": qtd venda,\n  "alvoMedio": preço-alvo médio (número),\n  "alvoMax": maior alvo (número),\n  "alvoMin": menor alvo (número),\n  "cotacaoRef": cotação atual (número),\n  "atualizacao": "mês/ano ex: jun/2026",\n  "casas": [\n    { "casa": "nome", "rec": "COMPRAR/NEUTRO/VENDER/MANTER/OUTPERFORM", "alvo": número ou null, "data": "mês/ano", "nota": "tese em 1-2 frases" }\n  ]\n}\n\nPriorize: BTG Pactual, XP, Safra, Itaú BBA, Genial, Goldman, JP Morgan, Morgan Stanley, Bradesco BBI, BB Investimentos. Últimos 6 meses.`;
+
+  // Abrir Claude.ai numa nova aba com o prompt
+  const claudeUrl = "https://claude.ai/new?q=" + encodeURIComponent(prompt);
+  window.open(claudeUrl, "_blank");
+
+  // Mostrar painel de cola no painel
   const elConteudo = document.getElementById("rec-conteudo");
-
-  if (btn) {
-    btn.disabled = true;
-    btn.innerHTML = "⏳ Buscando na internet...";
-    btn.style.background = "#1c1400";
-    btn.style.color = "#facc15";
-  }
   if (elConteudo) {
     elConteudo.innerHTML = `
-      <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 20px;color:#475569;text-align:center">
-        <div style="font-size:32px;margin-bottom:12px;animation:spin 1.5s linear infinite">⏳</div>
-        <div style="font-size:14px;font-weight:600;color:#94a3b8">Buscando recomendações para ${ticker}...</div>
-        <div style="font-size:11px;color:#334155;margin-top:6px">Pesquisando BTG, XP, Safra, Genial, Goldman e outras casas</div>
-      </div>`;
+      <div style="background:#0c1a2e;border:1px solid #0ea5e933;border-radius:10px;padding:18px;margin-bottom:4px">
+        <div style="font-size:13px;font-weight:700;color:#38bdf8;margin-bottom:10px">
+          📋 Passos para atualizar ${ticker}
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div style="display:flex;gap:10px;align-items:flex-start">
+            <div style="min-width:22px;height:22px;border-radius:50%;background:#0ea5e9;color:#fff;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px">1</div>
+            <div style="font-size:12px;color:#94a3b8;line-height:1.6">Uma nova aba do <strong style="color:#38bdf8">Claude.ai</strong> foi aberta com o prompt já preenchido. Aguarde a resposta — o Claude vai pesquisar e devolver um JSON.</div>
+          </div>
+          <div style="display:flex;gap:10px;align-items:flex-start">
+            <div style="min-width:22px;height:22px;border-radius:50%;background:#0ea5e9;color:#fff;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px">2</div>
+            <div style="font-size:12px;color:#94a3b8;line-height:1.6"><strong style="color:#f1f5f9">Copie o JSON</strong> que o Claude devolver (todo o bloco entre { e }).</div>
+          </div>
+          <div style="display:flex;gap:10px;align-items:flex-start">
+            <div style="min-width:22px;height:22px;border-radius:50%;background:#0ea5e9;color:#fff;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px">3</div>
+            <div style="font-size:12px;color:#94a3b8;line-height:1.6"><strong style="color:#f1f5f9">Cole abaixo</strong> e clique em Salvar.</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:10px">
+        <textarea id="json-paste-area" placeholder='Cole o JSON aqui...\n{\n  "consenso": "COMPRAR",\n  ...\n}'
+          style="width:100%;height:160px;background:#0f172a;border:1px solid #334155;border-radius:8px;padding:10px;color:#94a3b8;font-size:11px;font-family:monospace;resize:vertical;outline:none;box-sizing:border-box;line-height:1.5"></textarea>
+      </div>
+      <div style="display:flex;gap:8px;margin-top:8px">
+        <button onclick="aplicarJsonColado('${ticker}')"
+          style="flex:1;background:#4f46e5;border:none;border-radius:6px;color:#fff;font-size:13px;font-weight:700;padding:10px;cursor:pointer">
+          💾 Salvar JSON
+        </button>
+        <button onclick="cancelarCola('${ticker}')"
+          style="background:#1e293b;border:1px solid #334155;border-radius:6px;color:#94a3b8;font-size:12px;padding:10px 16px;cursor:pointer">
+          Cancelar
+        </button>
+      </div>
+      <div id="json-paste-msg" style="margin-top:6px;font-size:11px;color:#475569;min-height:16px"></div>`;
   }
-
-  const prompt = `Busque na internet as recomendações MAIS RECENTES de analistas de investimento para a ação ${ticker} (${a.nome}) na B3.
-
-Retorne SOMENTE um JSON válido, sem texto adicional, sem markdown, sem blocos de código. O JSON deve ter exatamente esta estrutura:
-{
-  "consenso": "COMPRAR" ou "NEUTRO" ou "VENDER",
-  "nAnalistas": número total de analistas cobrindo a ação,
-  "nComprar": número de analistas com recomendação de compra,
-  "nNeutro": número de analistas com recomendação neutra/manter,
-  "nVender": número de analistas com recomendação de venda,
-  "alvoMedio": preço-alvo médio em reais (número),
-  "alvoMax": maior preço-alvo em reais (número),
-  "alvoMin": menor preço-alvo em reais (número),
-  "cotacaoRef": cotação atual aproximada em reais (número),
-  "atualizacao": "mês/ano da pesquisa ex: jun/2026",
-  "casas": [
-    {
-      "casa": "nome da casa de análise",
-      "rec": "COMPRAR" ou "NEUTRO" ou "VENDER" ou "OUTPERFORM" ou "MANTER",
-      "alvo": preço-alvo numérico ou null,
-      "data": "data aproximada do relatório ex: mai/2026",
-      "nota": "resumo em 1-2 frases da tese ou justificativa"
-    }
-  ]
 }
 
-Inclua todas as casas que encontrar com dados recentes (últimos 6 meses). Se não encontrar dados de uma casa específica, não a inclua. Priorize BTG Pactual, XP, Safra, Itaú BBA, Genial, Goldman Sachs, JP Morgan, Morgan Stanley, Bradesco BBI, BB Investimentos.`;
+function aplicarJsonColado(ticker) {
+  const a = ACOES.find(x => x.ticker === ticker);
+  const area = document.getElementById("json-paste-area");
+  const msg  = document.getElementById("json-paste-msg");
+  if (!area || !a) return;
 
   try {
-    const response = await fetch("https://api.anthropic.com/v1/messages", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        model: "claude-sonnet-4-6",
-        max_tokens: 1000,
-        tools: [{ type: "web_search_20250305", name: "web_search" }],
-        messages: [{ role: "user", content: prompt }]
-      })
-    });
+    const raw = area.value.trim();
+    const jsonMatch = raw.match(/\{[\s\S]*\}/);
+    if (!jsonMatch) throw new Error("Nenhum JSON encontrado. Copie o bloco completo entre { e }.");
+    const data = JSON.parse(jsonMatch[0]);
+    if (!data.consenso || !data.casas) throw new Error("JSON incompleto — verifique se copiou o bloco inteiro.");
 
-    if (!response.ok) throw new Error("API error " + response.status);
-    const data = await response.json();
+    saveRec(ticker, data);
 
-    // Extrair texto da resposta (pode vir após tool_use)
-    const textBlock = data.content
-      .filter(b => b.type === "text")
-      .map(b => b.text)
-      .join("\n");
-
-    // Limpar e parsear JSON
-    const clean = textBlock.replace(/```json|```/g, "").trim();
-    // Encontrar o JSON no texto (pode ter texto antes/depois)
-    const jsonMatch = clean.match(/\{[\s\S]*\}/);
-    if (!jsonMatch) throw new Error("JSON não encontrado na resposta");
-
-    const recData = JSON.parse(jsonMatch[0]);
-
-    // Validar campos essenciais
-    if (!recData.consenso || !recData.casas) throw new Error("Estrutura inválida");
-
-    // Salvar no localStorage
-    saveRec(ticker, recData);
-
-    // Atualizar o conteúdo da aba
-    const elConteudo2 = document.getElementById("rec-conteudo");
-    if (elConteudo2) elConteudo2.innerHTML = buildRecConteudo(a, recData);
-
-    // Atualizar botão de editar para refletir que agora há dados
+    // Atualizar conteúdo e botões
+    const el = document.getElementById("rec-conteudo");
+    if (el) el.innerHTML = buildRecConteudo(a, data);
     const btnEditar = document.getElementById("btn-editar-rec");
     if (btnEditar) btnEditar.innerHTML = "✏️ Editar Recomendações";
+    const btnAuto = document.getElementById("btn-auto-rec-" + ticker);
+    if (btnAuto) btnAuto.innerHTML = "🌐 Atualizar Recomendações (busca automática)";
 
-    // Atualizar botão de busca — re-buscar do DOM pois pode ter sido recriado
-    const btnAtual = document.getElementById("btn-auto-rec-" + ticker);
-    if (btnAtual) {
-      btnAtual.disabled = false;
-      btnAtual.innerHTML = "✅ Atualizado! Clique para buscar novamente";
-      btnAtual.style.background = "#052e16";
-      btnAtual.style.color = "#4ade80";
-      setTimeout(() => {
-        const b = document.getElementById("btn-auto-rec-" + ticker);
-        if (b) {
-          b.innerHTML = "🌐 Atualizar Recomendações (busca automática)";
-          b.style.background = "#0c4a6e";
-          b.style.color = "#38bdf8";
-        }
-      }, 3000);
-    }
-
-  } catch (err) {
-    console.error("Erro busca recomendações:", err);
-    // Mostrar erro no conteúdo
-    const elErr = document.getElementById("rec-conteudo");
-    if (elErr && !getRec(a)) {
-      elErr.innerHTML = `<div style="padding:20px;text-align:center;color:#f87171;font-size:12px">
-        ❌ Não foi possível buscar os dados. Verifique sua conexão e tente novamente.<br>
-        <span style="color:#475569;font-size:10px">Detalhe: ${err.message}</span>
-      </div>`;
-    }
-    // Re-buscar botão do DOM (pode ter sido recriado)
-    const btnErr = document.getElementById("btn-auto-rec-" + ticker);
-    if (btnErr) {
-      btnErr.disabled = false;
-      btnErr.innerHTML = "❌ Erro — tente novamente";
-      btnErr.style.background = "#3b0000";
-      btnErr.style.color = "#f87171";
-      setTimeout(() => {
-        const b = document.getElementById("btn-auto-rec-" + ticker);
-        if (b) {
-          b.innerHTML = "🌐 Atualizar Recomendações (busca automática)";
-          b.style.background = "#0c4a6e";
-          b.style.color = "#38bdf8";
-        }
-      }, 3000);
-    }
+  } catch(e) {
+    if (msg) { msg.style.color="#f87171"; msg.textContent = "❌ " + e.message; }
   }
 }
+
+function cancelarCola(ticker) {
+  const a = ACOES.find(x => x.ticker === ticker);
+  if (!a) return;
+  const el = document.getElementById("rec-conteudo");
+  if (el) el.innerHTML = buildRecConteudo(a, getRec(a));
+}
+
 window.buscarRecomendacoesAuto = buscarRecomendacoesAuto;
+window.aplicarJsonColado = aplicarJsonColado;
+window.cancelarCola = cancelarCola;
 
 function renderDetail(a) {
   renderHeader(a);
