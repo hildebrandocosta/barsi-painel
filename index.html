@@ -315,7 +315,16 @@ const ACOES = [
     roeHist:{2020:null,2021:22,2022:25,2023:28,2024:30,2025:29},margHist:{2020:null,2021:38,2022:40,2023:42,2024:43,2025:41},
     resumo:"Seguradora da CEF com IPO em 2021. CAGR de 18,5% e DY crescente. Modelo bancassurance robusto.",
     pontosFort:["CAGR de lucro de 18%","DY de 10%","Expansão de portfólio"],
-    pontosAten:["Histórico curto (IPO 2021)","Risco político via CEF"]},
+    pontosAten:["Histórico curto (IPO 2021)","Risco político via CEF"],
+    analistas:{
+      atualizacao:"mai/2026",cotacaoRef:15.00,consenso:"COMPRAR",
+      nAnalistas:7,nComprar:6,nNeutro:1,nVender:0,
+      alvoMedio:19.50,alvoMax:21.00,alvoMin:17.00,
+      casas:[
+        {casa:"XP Investimentos",rec:"COMPRAR",alvo:20.00,data:"nov/2025",nota:"DY de 9%+ e crescimento de LPA de 16%; penetração do produto ainda baixa (~10%) cria longa pista de crescimento."},
+        {casa:"Safra",rec:"COMPRAR",alvo:21.00,data:"jan/2026",nota:"Reitera compra; carrego atrativo com dividendos de 9% e perfil defensivo em ambiente de juros altos."}
+      ]
+    }},
   { ticker:"PSSA3", nome:"Porto Seguro",     setor:"Seguros",
     cotacao:59.00,pl:11.5,pvp:2.9,roe:25.2,dy:8.2,divEbitda:0.0,margem:12.8,cagrLucro:12.0,rating:4,recomendacao:"COMPRAR",
     dyHist:{2020:5.2,2021:5.8,2022:6.8,2023:7.4,2024:7.8,2025:8.2},
@@ -323,7 +332,17 @@ const ACOES = [
     roeHist:{2020:18,2021:20,2022:22,2023:24,2024:25,2025:25},margHist:{2020:10,2021:11,2022:12,2023:12,2024:13,2025:13},
     resumo:"Maior seguradora independente do Brasil, líder em seguro auto. ROE de 25% e dividendos semestrais.",
     pontosFort:["Liderança em seguro auto","Crescimento em saúde suplementar","Gestão conservadora"],
-    pontosAten:["Sensível a inflação de custos de veículos","Concorrência crescente de insurtechs"]},
+    pontosAten:["Sensível a inflação de custos de veículos","Concorrência crescente de insurtechs"],
+    analistas:{
+      atualizacao:"fev/2026",cotacaoRef:55.00,consenso:"COMPRAR",
+      nAnalistas:9,nComprar:6,nNeutro:3,nVender:0,
+      alvoMedio:62.00,alvoMax:70.00,alvoMin:52.00,
+      casas:[
+        {casa:"Safra",rec:"COMPRAR",alvo:61.00,data:"jan/2026",nota:"Preferida do setor; diversificação via Porto Saúde e Porto Bank são motores de crescimento do ROE para 22%."},
+        {casa:"Bradesco BBI",rec:"NEUTRO",alvo:57.00,data:"fev/2026",nota:"Rebaixou de compra para neutro; boa parte dos avanços já está no preço, potencial de alta de apenas 9%."},
+        {casa:"XP Investimentos",rec:"COMPRAR",alvo:68.00,data:"jan/2026",nota:"Mantém compra; diversificação e crescimento das verticais rentáveis suportam expansão estrutural do ROE."}
+      ]
+    }},
   { ticker:"IRBR3", nome:"IRB Brasil RE",    setor:"Seguros",
     cotacao:9.50,pl:14.2,pvp:1.8,roe:12.8,dy:7.4,divEbitda:0.0,margem:8.5,cagrLucro:null,rating:2,recomendacao:"AGUARDAR",
     dyHist:{2020:0,2021:0,2022:2.1,2023:4.5,2024:6.8,2025:7.4},
@@ -331,7 +350,18 @@ const ACOES = [
     roeHist:{2020:-48,2021:-35,2022:2,2023:8,2024:12,2025:13},margHist:{2020:-80,2021:-55,2022:3,2023:8,2024:9,2025:9},
     resumo:"Resseguradora em recuperação após escândalo contábil de 2020. Voltou ao lucro em 2023 mas ROE ainda fraco.",
     pontosFort:["Nicho de resseguro com pouca concorrência","Valuation descontado"],
-    pontosAten:["Histórico de fraude contábil","ROE abaixo do custo de capital","Recuperação lenta"]},
+    pontosAten:["Histórico de fraude contábil","ROE abaixo do custo de capital","Recuperação lenta"],
+    analistas:{
+      atualizacao:"mar/2026",cotacaoRef:57.00,consenso:"COMPRAR",
+      nAnalistas:7,nComprar:4,nNeutro:3,nVender:0,
+      alvoMedio:59.86,alvoMax:66.00,alvoMin:53.00,
+      casas:[
+        {casa:"JPMorgan",rec:"COMPRAR",alvo:64.00,data:"mar/2026",nota:"Top pick do setor; dividendos crescentes como gatilho principal, valuation atrativo a 6,9x lucro de 2026."},
+        {casa:"Citigroup",rec:"COMPRAR",alvo:60.00,data:"mar/2026",nota:"Mantém compra; retomada dos proventos é o principal catalisador, empresa solvente com capital adequado."},
+        {casa:"BTG Pactual",rec:"COMPRAR",alvo:60.00,data:"mar/2026",nota:"Construtivo; valuation ainda atrativo a ~6,9x P/L 2026 e retomada de dividendos reforça a tese."},
+        {casa:"Safra",rec:"NEUTRO",alvo:61.00,data:"jan/2026",nota:"Neutro; DY de 7,5% e P/VP de 1,57x apontam ação descontada, mas dinamismo fraco de receita limita upside."}
+      ]
+    }},
   { ticker:"ITUB4", nome:"Itaú Unibanco",    setor:"Bancos",
     cotacao:43.19,pl:10.5,pvp:2.1,roe:21.8,dy:7.3,divEbitda:null,margem:28.5,cagrLucro:15.8,rating:5,recomendacao:"COMPRAR",
     dyHist:{2020:1.8,2021:3.8,2022:4.2,2023:5.5,2024:6.8,2025:7.3},
@@ -490,7 +520,17 @@ const ACOES = [
     roeHist:{2020:18,2021:20,2022:22,2023:22,2024:21,2025:21},margHist:{2020:52,2021:55,2022:58,2023:58,2024:58,2025:59},
     resumo:"100% payout. Receita RAP indexada ao IPCA. Zero risco de demanda. Máquina de dividendos com risco mínimo.",
     pontosFort:["Receita RAP indexada ao IPCA","Zero risco de demanda","Payout de 100%"],
-    pontosAten:["Sensível à taxa de juros (duration longa)","Leve queda de lucro nos últimos anos"]},
+    pontosAten:["Sensível à taxa de juros (duration longa)","Leve queda de lucro nos últimos anos"],
+    analistas:{
+      atualizacao:"jan/2026",cotacaoRef:37.00,consenso:"NEUTRO",
+      nAnalistas:10,nComprar:2,nNeutro:6,nVender:2,
+      alvoMedio:36.00,alvoMax:44.90,alvoMin:28.00,
+      casas:[
+        {casa:"XP Investimentos",rec:"NEUTRO",alvo:32.70,data:"mai/2026",nota:"Neutro; TIR real de apenas 4,7% vs. ALUP e ISAE4 (8,1% e 7,7%). Tensão entre dividendos elevados, capex e desalavancagem."},
+        {casa:"Itaú BBA",rec:"NEUTRO",alvo:44.90,data:"dez/2025",nota:"Elevou alvo mas mantém neutro; retorno total implícito de 8,2%, abaixo de Alupar. Upside comprimido após alta de 39%."},
+        {casa:"Safra",rec:"NEUTRO",alvo:32.00,data:"jan/2026",nota:"Elevou de Venda para Neutro; empresa entra na fase final de implantação de projetos, reduzindo risco de execução."}
+      ]
+    }},
   { ticker:"TRPL4", nome:"CTEEP",            setor:"Transmissão Elétrica",
     cotacao:27.00,pl:7.8,pvp:1.5,roe:19.5,dy:8.2,divEbitda:2.2,margem:52.0,cagrLucro:5.2,rating:4,recomendacao:"COMPRAR",
     dyHist:{2020:8.2,2021:7.1,2022:9.4,2023:8.6,2024:9.0,2025:8.2},
@@ -498,7 +538,16 @@ const ACOES = [
     roeHist:{2020:17,2021:18,2022:19,2023:19,2024:20,2025:20},margHist:{2020:48,2021:50,2022:51,2023:52,2024:52,2025:52},
     resumo:"Maior transmissora do Brasil por extensão de rede. Receita RAP garantida, crescimento via leilões.",
     pontosFort:["Maior rede de transmissão do Brasil","Crescimento via leilões","Receita regulada"],
-    pontosAten:["Depreciação de ativos reduz lucro contábil","Controlador estrangeiro"]},
+    pontosAten:["Depreciação de ativos reduz lucro contábil","Controlador estrangeiro"],
+    analistas:{
+      atualizacao:"abr/2026",cotacaoRef:27.00,consenso:"NEUTRO",
+      nAnalistas:8,nComprar:3,nNeutro:5,nVender:0,
+      alvoMedio:28.50,alvoMax:34.00,alvoMin:24.00,
+      casas:[
+        {casa:"BTG Pactual",rec:"NEUTRO",alvo:25.00,data:"ago/2024",nota:"Neutro; TIR real de 7% vs. 6% do Tesouro. Risco de pressão por eventual desinvestimento total da Eletrobras (22% das ações)."},
+        {casa:"Genial",rec:"COMPRAR",alvo:28.00,data:"mai/2024",nota:"Compra; incorpora projetos recentes de leilões de transmissão no modelo. Receita anual permitida crescendo."}
+      ]
+    }},
   { ticker:"ISAE4", nome:"ISA Energia",      setor:"Transmissão Elétrica",
     cotacao:25.00,pl:8.2,pvp:1.6,roe:19.8,dy:9.1,divEbitda:2.5,margem:54.0,cagrLucro:7.8,rating:4,recomendacao:"COMPRAR",
     dyHist:{2020:7.5,2021:7.1,2022:9.4,2023:8.6,2024:9.0,2025:9.1},
@@ -506,7 +555,16 @@ const ACOES = [
     roeHist:{2020:17,2021:18,2022:19,2023:19,2024:20,2025:20},margHist:{2020:50,2021:52,2022:53,2023:54,2024:54,2025:54},
     resumo:"Versão unitária da CTEEP. DY acima de 9%, CAGR de 7,8% real. Contrato RAP de longo prazo.",
     pontosFort:["DY acima de 9%","Crescimento real de lucro","Contrato RAP longo prazo"],
-    pontosAten:["Menor liquidez que TRPL4","Mesmo controlador = risco concentrado"]},
+    pontosAten:["Menor liquidez que TRPL4","Mesmo controlador = risco concentrado"],
+    analistas:{
+      atualizacao:"jan/2026",cotacaoRef:25.00,consenso:"NEUTRO",
+      nAnalistas:7,nComprar:2,nNeutro:3,nVender:2,
+      alvoMedio:26.00,alvoMax:31.00,alvoMin:21.00,
+      casas:[
+        {casa:"XP Investimentos",rec:"COMPRAR",alvo:31.00,data:"jan/2026",nota:"Compra; TIR real de 7,7% vs. pares. Portfólio de transmissão regulada com receita previsível e corrigida pelo IPCA."},
+        {casa:"Safra",rec:"VENDER",alvo:22.00,data:"jan/2026",nota:"Venda; TIR real de 8,2% não compensa risco regulatório e estrutura de capital mais alavancada vs. pares."}
+      ]
+    }},
   { ticker:"EGIE3", nome:"Engie Brasil",     setor:"Energia Elétrica",
     cotacao:53.00,pl:11.5,pvp:3.5,roe:30.5,dy:6.3,divEbitda:1.8,margem:32.5,cagrLucro:9.5,rating:4,recomendacao:"COMPRAR",
     dyHist:{2020:5.8,2021:6.2,2022:7.5,2023:7.8,2024:8.0,2025:6.3},
@@ -514,7 +572,17 @@ const ACOES = [
     roeHist:{2020:25,2021:27,2022:29,2023:30,2024:31,2025:31},margHist:{2020:28,2021:30,2022:32,2023:33,2024:33,2025:33},
     resumo:"Maior geradora privada do Brasil. ROE de 30,5% líder no setor. Portfólio diversificado.",
     pontosFort:["ROE líder no setor elétrico","Diversificação de matriz","Gestão exemplar"],
-    pontosAten:["P/VP elevado (3,5x)","DY caiu com reinvestimento em capex"]},
+    pontosAten:["P/VP elevado (3,5x)","DY caiu com reinvestimento em capex"],
+    analistas:{
+      atualizacao:"mai/2026",cotacaoRef:33.00,consenso:"NEUTRO",
+      nAnalistas:9,nComprar:2,nNeutro:7,nVender:0,
+      alvoMedio:33.50,alvoMax:40.00,alvoMin:29.00,
+      casas:[
+        {casa:"XP Investimentos",rec:"NEUTRO",alvo:31.50,data:"mai/2026",nota:"Neutro; TIR real implícita de 8,1% vs. pares Auren (11,9%) e Axia (10,1%). Ciclo de investimentos reduz payout para piso de 55%."},
+        {casa:"JPMorgan",rec:"NEUTRO",alvo:34.00,data:"jan/2026",nota:"Manteve alvo mesmo com cortes nos pares; Engie tem menor exposição ao curtailment por mix mais diversificado."},
+        {casa:"Itaú BBA",rec:"COMPRAR",alvo:40.00,data:"dez/2025",nota:"Compra; portfólio diversificado com transmissão e gás reduz volatilidade vs. puras geradoras renováveis."}
+      ]
+    }},
   { ticker:"CMIG4", nome:"Cemig",            setor:"Energia Elétrica",
     cotacao:17.00,pl:6.5,pvp:1.8,roe:27.5,dy:11.2,divEbitda:1.5,margem:20.8,cagrLucro:22.5,rating:5,recomendacao:"COMPRAR",
     dyHist:{2020:5.5,2021:7.5,2022:10.3,2023:9.8,2024:10.5,2025:11.2},
@@ -542,7 +610,17 @@ const ACOES = [
     roeHist:{2020:8,2021:8,2022:10,2023:16,2024:20,2025:21},margHist:{2020:9,2021:9,2022:11,2023:16,2024:18,2025:19},
     resumo:"Privatização em 2023 acelerou tudo. CAGR de 35,2% e DY de 12,1% — melhor relação risco/retorno do setor.",
     pontosFort:["Privatização acelerou eficiência","DY de 12,1%","CAGR de 35% — maior do setor"],
-    pontosAten:["Privatização recente = histórico curto","Risco regulatório da ANEEL"]},
+    pontosAten:["Privatização recente = histórico curto","Risco regulatório da ANEEL"],
+    analistas:{
+      atualizacao:"mar/2026",cotacaoRef:13.00,consenso:"COMPRAR",
+      nAnalistas:10,nComprar:8,nNeutro:2,nVender:0,
+      alvoMedio:17.50,alvoMax:20.00,alvoMin:14.00,
+      casas:[
+        {casa:"BTG Pactual",rec:"COMPRAR",alvo:18.00,data:"mar/2026",nota:"Elevou alvo de R$14 para R$18; vitória no LRCAP gerou R$6,5bi em VPL. Projeta R$17,9bi em dividendos até 2030."},
+        {casa:"XP Investimentos",rec:"COMPRAR",alvo:17.00,data:"jan/2026",nota:"Compra; potencial de criação de valor via LRCAP e reajuste tarifário da distribuidora. DY de dígito alto a dois dígitos baixos."},
+        {casa:"JPMorgan",rec:"COMPRAR",alvo:16.00,data:"jan/2026",nota:"Positivo; menor exposição relativa a eólicas e solares protege do curtailment. Alta de 18% nos preços de energia favorece."}
+      ]
+    }},
   { ticker:"AXIA6", nome:"Axia Energia",     setor:"Energia Elétrica",
     cotacao:25.00,pl:6.8,pvp:1.2,roe:17.5,dy:8.7,divEbitda:3.5,margem:22.0,cagrLucro:42.0,rating:4,recomendacao:"COMPRAR",
     dyHist:{2020:3.5,2021:3.5,2022:4.0,2023:7.2,2024:8.5,2025:8.7},
@@ -550,7 +628,16 @@ const ACOES = [
     roeHist:{2020:null,2021:null,2022:10,2023:14,2024:16,2025:18},margHist:{2020:null,2021:null,2022:12,2023:18,2024:21,2025:22},
     resumo:"Maior turnaround pós-privatização da B3. CAGR de 42% desde 2022. P/L de 6,8x atrativo.",
     pontosFort:["Maior turnaround da B3 pós-privatização","Revisão tarifária a cada ciclo","CAGR de 42%"],
-    pontosAten:["Dívida/EBITDA de 3,5x","Depende de revisões tarifárias favoráveis"]},
+    pontosAten:["Dívida/EBITDA de 3,5x","Depende de revisões tarifárias favoráveis"],
+    analistas:{
+      atualizacao:"jan/2026",cotacaoRef:25.00,consenso:"COMPRAR",
+      nAnalistas:8,nComprar:6,nNeutro:2,nVender:0,
+      alvoMedio:27.00,alvoMax:32.00,alvoMin:22.00,
+      casas:[
+        {casa:"XP Investimentos",rec:"COMPRAR",alvo:31.65,data:"jan/2026",nota:"Compra; TIR real de 10,1% vs. pares. Upside estrutural com alta de 18% nos preços de energia de longo prazo."},
+        {casa:"JPMorgan",rec:"COMPRAR",alvo:24.00,data:"jan/2026",nota:"Cortou alvo por geração fraca no 4T25, mas vê Axia entre as mais favorecidas pela alta de preços em 2026. Compra."}
+      ]
+    }},
   { ticker:"CPFE3", nome:"CPFL Energia",     setor:"Energia Elétrica",
     cotacao:33.00,pl:8.8,pvp:2.0,roe:22.8,dy:8.9,divEbitda:2.0,margem:16.5,cagrLucro:10.2,rating:4,recomendacao:"COMPRAR",
     dyHist:{2020:6.8,2021:7.2,2022:8.5,2023:8.8,2024:9.2,2025:8.9},
@@ -558,7 +645,16 @@ const ACOES = [
     roeHist:{2020:18,2021:19,2022:21,2023:22,2024:23,2025:23},margHist:{2020:13,2021:14,2022:15,2023:16,2024:17,2025:17},
     resumo:"Distribuidora eficiente no Sul/Sudeste. ROE de 22,8%, DY de 8,9%. Controlada pela State Grid.",
     pontosFort:["Distribuição no Sul/Sudeste (menor inadimplência)","State Grid disciplinada","ROE de 22,8%"],
-    pontosAten:["Controle estrangeiro","Capex intensivo"]},
+    pontosAten:["Controle estrangeiro","Capex intensivo"],
+    analistas:{
+      atualizacao:"abr/2026",cotacaoRef:34.00,consenso:"COMPRAR",
+      nAnalistas:8,nComprar:6,nNeutro:2,nVender:0,
+      alvoMedio:38.00,alvoMax:43.00,alvoMin:33.00,
+      casas:[
+        {casa:"Itaú BBA",rec:"COMPRAR",alvo:40.00,data:"mar/2026",nota:"Compra; distribuidora integrada com menor exposição ao curtailment. Geração de caixa sólida e dividendos consistentes."},
+        {casa:"BTG Pactual",rec:"COMPRAR",alvo:38.00,data:"mar/2026",nota:"Positivo; CPFL se beneficia do aumento de tarifas e da expansão da base de clientes. DY atrativo."}
+      ]
+    }},
   { ticker:"ENBR3", nome:"EDP Brasil",       setor:"Energia Elétrica",
     cotacao:19.50,pl:9.5,pvp:1.8,roe:18.8,dy:6.8,divEbitda:2.2,margem:15.0,cagrLucro:8.5,rating:3,recomendacao:"NEUTRO",
     dyHist:{2020:4.5,2021:5.2,2022:6.0,2023:6.5,2024:7.0,2025:6.8},
@@ -566,7 +662,16 @@ const ACOES = [
     roeHist:{2020:14,2021:16,2022:17,2023:18,2024:19,2025:19},margHist:{2020:12,2021:13,2022:14,2023:14,2024:15,2025:15},
     resumo:"Distribuidora e geradora de qualidade acima da média. Indicadores sólidos mas sem catalisador claro.",
     pontosFort:["Qualidade de distribuição acima da média","Controlador europeu experiente"],
-    pontosAten:["Sem catalisador claro de reavaliação","P/L não oferece desconto"]},
+    pontosAten:["Sem catalisador claro de reavaliação","P/L não oferece desconto"],
+    analistas:{
+      atualizacao:"mar/2026",cotacaoRef:19.50,consenso:"NEUTRO",
+      nAnalistas:7,nComprar:3,nNeutro:4,nVender:0,
+      alvoMedio:21.00,alvoMax:24.00,alvoMin:18.00,
+      casas:[
+        {casa:"XP Investimentos",rec:"NEUTRO",alvo:20.00,data:"fev/2026",nota:"Neutro; EDP possui bom portfólio de distribuição, mas menor upside vs. pares com desconto menor."},
+        {casa:"BTG Pactual",rec:"COMPRAR",alvo:23.00,data:"mar/2026",nota:"Compra; distribuidora com track record consistente, portfólio de geração renovável complementar."}
+      ]
+    }},
   { ticker:"EQTL3", nome:"Equatorial",       setor:"Energia Elétrica",
     cotacao:31.00,pl:12.5,pvp:2.2,roe:17.5,dy:6.1,divEbitda:3.8,margem:14.2,cagrLucro:18.8,rating:4,recomendacao:"COMPRAR",
     dyHist:{2020:3.2,2021:4.0,2022:5.5,2023:5.8,2024:6.2,2025:6.1},
@@ -574,7 +679,17 @@ const ACOES = [
     roeHist:{2020:10,2021:12,2022:14,2023:16,2024:17,2025:18},margHist:{2020:9,2021:10,2022:12,2023:13,2024:14,2025:14},
     resumo:"Modelo único de turnaround de distribuidoras. CAGR de 18,8%. Risco maior, retorno diferenciado.",
     pontosFort:["Modelo único de turnaround de distribuidoras","CAGR de lucro de 18,8%","Pipeline de novas concessões"],
-    pontosAten:["Dívida/EBITDA de 3,8x","Risco de inadimplência em regiões pobres"]},
+    pontosAten:["Dívida/EBITDA de 3,8x","Risco de inadimplência em regiões pobres"],
+    analistas:{
+      atualizacao:"abr/2026",cotacaoRef:31.00,consenso:"COMPRAR",
+      nAnalistas:10,nComprar:8,nNeutro:2,nVender:0,
+      alvoMedio:38.00,alvoMax:44.00,alvoMin:32.00,
+      casas:[
+        {casa:"BTG Pactual",rec:"COMPRAR",alvo:40.00,data:"abr/2026",nota:"Top pick no setor; histórico de M&A disciplinado e turnaround de distribuidoras adquiridas gera valor acima dos pares."},
+        {casa:"XP Investimentos",rec:"COMPRAR",alvo:37.00,data:"abr/2026",nota:"Compra; El Niño favorece distribuidoras via maior consumo. Equatorial tem maior cobertura geográfica no grupo."},
+        {casa:"Safra",rec:"COMPRAR",alvo:38.00,data:"abr/2026",nota:"Favorita entre as distribuidoras em cenário de El Niño; base de clientes diversificada amortece volatilidade tarifária."}
+      ]
+    }},
   { ticker:"AURE3", nome:"Auren Energia",    setor:"Energia Elétrica",
     cotacao:16.00,pl:10.8,pvp:1.4,roe:13.0,dy:7.8,divEbitda:2.5,margem:28.5,cagrLucro:12.0,rating:3,recomendacao:"NEUTRO",
     dyHist:{2020:4.5,2021:5.0,2022:6.0,2023:7.2,2024:7.5,2025:7.8},
@@ -582,7 +697,16 @@ const ACOES = [
     roeHist:{2020:9,2021:10,2022:11,2023:12,2024:13,2025:13},margHist:{2020:22,2021:24,2022:26,2023:27,2024:28,2025:29},
     resumo:"Geradora renovável (ex-AES Brasil + CESP). Portfólio 100% renovável, crescimento modesto.",
     pontosFort:["Portfólio 100% renovável","DY de 7,8% consistente"],
-    pontosAten:["ROE baixo para o setor (13%)","Crescimento modesto"]},
+    pontosAten:["ROE baixo para o setor (13%)","Crescimento modesto"],
+    analistas:{
+      atualizacao:"jan/2026",cotacaoRef:15.00,consenso:"NEUTRO",
+      nAnalistas:8,nComprar:3,nNeutro:5,nVender:0,
+      alvoMedio:14.50,alvoMax:17.00,alvoMin:12.00,
+      casas:[
+        {casa:"XP Investimentos",rec:"NEUTRO",alvo:13.80,data:"jan/2026",nota:"Neutro; TIR real de 11,9% é atrativa vs. pares, mas alta exposição ao curtailment de eólica/solar no curto prazo limita."},
+        {casa:"JPMorgan",rec:"NEUTRO",alvo:12.30,data:"jan/2026",nota:"Neutro; combo negativo de geração fraca no 4T25 e alto risco de cortes em 2026. EBITDA pode vir 16% abaixo do consenso."}
+      ]
+    }},
   { ticker:"PETR4", nome:"Petrobras PN",     setor:"Energia Elétrica",
     cotacao:48.95,pl:5.8,pvp:1.5,roe:26.5,dy:8.3,divEbitda:0.8,margem:24.5,cagrLucro:5.5,rating:4,recomendacao:"COMPRAR",
     dyHist:{2020:2.5,2021:5.5,2022:46.2,2023:22.0,2024:16.1,2025:8.3},
@@ -590,7 +714,17 @@ const ACOES = [
     roeHist:{2020:4,2021:18,2022:35,2023:28,2024:24,2025:27},margHist:{2020:3,2021:15,2022:28,2023:22,2024:20,2025:25},
     resumo:"Fundamentos excepcionais, custo de extração mais baixo do mundo. Risco político permanente.",
     pontosFort:["Custo de extração mais baixo do mundo","ROE de 26,5%","Dívida baixíssima (0,8x EBITDA)"],
-    pontosAten:["Risco político crônico","DY volátil conforme preço do petróleo"]},
+    pontosAten:["Risco político crônico","DY volátil conforme preço do petróleo"],
+    analistas:{
+      atualizacao:"jun/2026",cotacaoRef:41.00,consenso:"COMPRAR",
+      nAnalistas:14,nComprar:9,nNeutro:4,nVender:1,
+      alvoMedio:52.00,alvoMax:63.00,alvoMin:32.00,
+      casas:[
+        {casa:"XP Investimentos",rec:"COMPRAR",alvo:63.00,data:"jun/2026",nota:"Elevou alvo 34%; Brent a US$86 em 2026. FCFE de 13% em 2026 e DY acima de 10% reforçam atratividade para renda."},
+        {casa:"BTG Pactual",rec:"COMPRAR",alvo:56.00,data:"jun/2026",nota:"Compra; DY projetado de 10,2% e crescimento do lucro operacional no 2T26. Retorno total estimado de 48,6% em 12 meses."},
+        {casa:"Goldman Sachs",rec:"COMPRAR",alvo:32.80,data:"jan/2026",nota:"Compra; DY de ~10% como suporte. TIR real defensiva mesmo com cenário conservador de petróleo. PETR3 a R$35."}
+      ]
+    }},
   { ticker:"PRIO3", nome:"PRIO",             setor:"Energia Elétrica",
     cotacao:38.00,pl:8.2,pvp:2.2,roe:27.0,dy:7.1,divEbitda:0.5,margem:42.5,cagrLucro:85.0,rating:5,recomendacao:"COMPRAR",
     dyHist:{2020:0,2021:2.5,2022:4.2,2023:6.0,2024:7.0,2025:7.1},
@@ -598,7 +732,17 @@ const ACOES = [
     roeHist:{2020:3,2021:10,2022:22,2023:28,2024:30,2025:27},margHist:{2020:5,2021:18,2022:35,2023:40,2024:42,2025:43},
     resumo:"Melhor petrolífera independente do Brasil. CAGR de 85% em 3 anos, sem risco político, margem de 42,5%.",
     pontosFort:["CAGR de lucro de 85%","Sem risco político","Margem líquida de 42%","Baixíssima dívida"],
-    pontosAten:["Concentração em poucos campos","Sensível ao preço do petróleo"]},
+    pontosAten:["Concentração em poucos campos","Sensível ao preço do petróleo"],
+    analistas:{
+      atualizacao:"jun/2026",cotacaoRef:38.00,consenso:"COMPRAR",
+      nAnalistas:11,nComprar:10,nNeutro:1,nVender:0,
+      alvoMedio:72.00,alvoMax:80.00,alvoMin:58.00,
+      casas:[
+        {casa:"XP Investimentos",rec:"COMPRAR",alvo:78.00,data:"jun/2026",nota:"Top pick do setor; FCFE de 24% em 2026. Sem subsídios nem controle de preço pelo governo, sente o petróleo diretamente."},
+        {casa:"Goldman Sachs",rec:"COMPRAR",alvo:68.00,data:"jan/2026",nota:"Preferida em E&P; campo de Wahoo impulsiona crescimento de produção e maior visibilidade de dividendos."},
+        {casa:"BTG Pactual",rec:"COMPRAR",alvo:75.00,data:"mai/2026",nota:"Mantém compra; crescimento de produção acelerado e menor risco político vs. Petrobras favorecem múltiplos premium."}
+      ]
+    }},
   { ticker:"SBSP3", nome:"Sabesp",           setor:"Saneamento",
     cotacao:66.00,pl:11.8,pvp:2.1,roe:17.8,dy:7.4,divEbitda:3.2,margem:22.5,cagrLucro:28.5,rating:4,recomendacao:"COMPRAR",
     dyHist:{2020:3.8,2021:4.5,2022:5.2,2023:5.5,2024:6.8,2025:7.4},
@@ -606,7 +750,18 @@ const ACOES = [
     roeHist:{2020:8,2021:9,2022:10,2023:13,2024:17,2025:18},margHist:{2020:12,2021:13,2022:14,2023:18,2024:22,2025:23},
     resumo:"Maior saneadora da AL, privatizada em 2023. CAGR de 28,5% com nova política de dividendos.",
     pontosFort:["Maior saneadora da AL","Privatização trouxe eficiência","Mercado endereçável gigante"],
-    pontosAten:["Dívida/EBITDA de 3,2x","Capex pesado para universalização até 2029"]},
+    pontosAten:["Dívida/EBITDA de 3,2x","Capex pesado para universalização até 2029"],
+    analistas:{
+      atualizacao:"mai/2026",cotacaoRef:65.00,consenso:"COMPRAR",
+      nAnalistas:12,nComprar:10,nNeutro:2,nVender:0,
+      alvoMedio:78.00,alvoMax:90.00,alvoMin:65.00,
+      casas:[
+        {casa:"Safra",rec:"COMPRAR",alvo:80.20,data:"jul/2025",nota:"Compra; privatização acelerou redução de custos acima do esperado. Novos contratos em SP ampliam crescimento."},
+        {casa:"Citigroup",rec:"COMPRAR",alvo:72.00,data:"2024",nota:"Reitera compra; múltiplos baratos e privatização como principal assimetria do setor de utilities brasileiro."},
+        {casa:"JPMorgan",rec:"COMPRAR",alvo:78.00,data:"2024",nota:"Top pick do setor; melhor assimetria de risco com nova administração e reforma operacional pós-privatização."},
+        {casa:"Genial",rec:"COMPRAR",alvo:77.00,data:"2024",nota:"Compra; privatização é evento revolucionário para a tese — eficiência, governança e reprecificação de múltiplos."}
+      ]
+    }},
   { ticker:"SAPR11", nome:"Sanepar",         setor:"Saneamento",
     cotacao:37.22,pl:8.2,pvp:1.5,roe:18.5,dy:9.3,divEbitda:2.5,margem:25.5,cagrLucro:14.5,rating:5,recomendacao:"COMPRAR",
     dyHist:{2020:5.8,2021:5.2,2022:6.8,2023:8.1,2024:8.9,2025:9.3},
@@ -614,7 +769,17 @@ const ACOES = [
     roeHist:{2020:14,2021:15,2022:17,2023:18,2024:19,2025:19},margHist:{2020:22,2021:23,2022:24,2023:25,2024:26,2025:26},
     resumo:"P/L de 8,2x + DY de 9,3% — combinação rara. Dívida caiu de R$4,7bi para R$1,9bi com precatórios.",
     pontosFort:["Redução drástica de dívida (precatórios)","DY de 9,3% com P/L de 8,2x","Eficiência acima da média"],
-    pontosAten:["Risco de reajuste tarifário desfavorável","Crescimento limitado ao Paraná"]},
+    pontosAten:["Risco de reajuste tarifário desfavorável","Crescimento limitado ao Paraná"],
+    analistas:{
+      atualizacao:"mar/2026",cotacaoRef:27.00,consenso:"NEUTRO",
+      nAnalistas:8,nComprar:2,nNeutro:4,nVender:2,
+      alvoMedio:25.00,alvoMax:30.00,alvoMin:20.00,
+      casas:[
+        {casa:"Genial",rec:"NEUTRO",alvo:24.00,data:"2024",nota:"Manter; desconto histórico em relação a Sabesp e Copasa deve persistir dado o risco regulatório elevado e sem perspectiva de privatização."},
+        {casa:"JPMorgan",rec:"NEUTRO",alvo:23.00,data:"2024",nota:"Neutro; desconto vs. pares justificado pelo maior risco regulatório (interferência no processo de revisão tarifária)."},
+        {casa:"Safra",rec:"VENDER",alvo:25.90,data:"ago/2024",nota:"Venda; rebaixou de neutro com maior pessimismo sobre risco regulatório. Alvo implica retorno limitado."}
+      ]
+    }},
   { ticker:"CSMG3", nome:"Copasa",           setor:"Saneamento",
     cotacao:22.00,pl:7.5,pvp:1.4,roe:18.8,dy:9.8,divEbitda:2.2,margem:24.0,cagrLucro:12.8,rating:4,recomendacao:"COMPRAR",
     dyHist:{2020:5.5,2021:6.0,2022:7.5,2023:8.8,2024:9.5,2025:9.8},
@@ -622,7 +787,17 @@ const ACOES = [
     roeHist:{2020:14,2021:15,2022:17,2023:18,2024:19,2025:19},margHist:{2020:20,2021:21,2022:22,2023:24,2024:24,2025:24},
     resumo:"Saneadora de MG. P/L de 7,5x + DY de 9,8%. Dívida confortável, gestão eficiente.",
     pontosFort:["P/L de 7,5x + DY de 9,8%","ROE de 18,8%","Dívida confortável"],
-    pontosAten:["Controle pelo Governo de MG","Sem perspectiva de privatização próxima"]},
+    pontosAten:["Controle pelo Governo de MG","Sem perspectiva de privatização próxima"],
+    analistas:{
+      atualizacao:"mai/2026",cotacaoRef:22.00,consenso:"NEUTRO",
+      nAnalistas:8,nComprar:3,nNeutro:4,nVender:1,
+      alvoMedio:27.00,alvoMax:31.10,alvoMin:22.00,
+      casas:[
+        {casa:"Safra",rec:"NEUTRO",alvo:31.10,data:"jul/2025",nota:"Neutro; retorno de 9,4% limitado. Eficiência operacional boa mas privatização complexa (precisa de 3/5 da ALMG)."},
+        {casa:"Genial",rec:"NEUTRO",alvo:23.00,data:"2024",nota:"Manter; eficiência destacada mas mudança de gestão a partir de 2026 é ponto de atenção para a tese de longo prazo."},
+        {casa:"Safra",rec:"COMPRAR",alvo:27.40,data:"ago/2024",nota:"Elevou de neutro para compra; privatização tem 30% de chance na visão do banco, mas upside já embutido no alvo."}
+      ]
+    }},
   { ticker:"VIVT3", nome:"Vivo (Telefônica)", setor:"Telecom",
     cotacao:55.00,pl:13.5,pvp:2.5,roe:18.5,dy:6.6,divEbitda:1.2,margem:14.8,cagrLucro:8.5,rating:4,recomendacao:"COMPRAR",
     dyHist:{2020:5.5,2021:5.8,2022:6.4,2023:6.9,2024:7.1,2025:6.6},
