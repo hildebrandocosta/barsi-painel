@@ -288,7 +288,9 @@ const ANOS_HIST = HIST6.includes(CURRENT_YEAR) ? [...HIST6] : [...HIST6, CURRENT
 // Inicializado vazio — preenchido por carregarDados() antes do init()
 let ACOES = [];
 
-const SETORES_UNICOS = [...new Set(ACOES.map(a => a.setor))].sort();
+// SETORES_UNICOS é recalculado dinamicamente após ACOES ser carregado
+// Não pode ser const pois ACOES está vazio no momento da declaração
+let SETORES_UNICOS = [];
 
 
 // ─── CONSTANTES ─────────────────────────────────────────────────────────────
@@ -1213,7 +1215,7 @@ Chart.register(annotationPlugin);
 // Busca o preço atual de cada ticker e atualiza a.cotacao em memória.
 // Fundamentos (DY, ROE, P/L, etc.) permanecem os valores de referência (jun/2026),
 // mas o "Preço Justo Bazin" e a comparação de preço passam a refletir a cotação real.
-const LIVE_STATE = { ok:0, fail:0, total:ACOES.length, lastUpdate:null, unauthorized:false, lastError:null };
+const LIVE_STATE = { ok:0, fail:0, get total(){ return ACOES.length; }, lastUpdate:null, unauthorized:false, lastError:null };
 
 function setLiveBadge(text, color) {
   const dot = document.getElementById("live-dot");
@@ -1342,6 +1344,10 @@ async function carregarDados() {
     // Popula variável global ACOES com dados do JSON
     ACOES.length = 0;
     json.acoes.forEach(a => ACOES.push(a));
+
+    // Recalcula SETORES_UNICOS dinamicamente
+    SETORES_UNICOS.length = 0;
+    [...new Set(ACOES.map(a => a.setor))].sort().forEach(s => SETORES_UNICOS.push(s));
 
     // Atualiza HIST6 e ANOS_HIST dinamicamente se JSON tiver hist6
     if (json.meta && json.meta.hist6) {
