@@ -285,15 +285,8 @@ const CURRENT_YEAR = new Date().getFullYear();
 const ANOS_HIST = HIST6.includes(CURRENT_YEAR) ? [...HIST6] : [...HIST6, CURRENT_YEAR];
 
 // ─── DADOS (carregados de barsi-data.json) ──────────────────────────────────
-// Os dados das 50 ações são carregados assincronamente do arquivo barsi-data.json
-// Para rodar localmente sem servidor, abra com: python -m http.server 8080
-// Variável global preenchida por carregarDados() no DOMContentLoaded
-window.ACOES = window.ACOES || [];
-// Proxy para compatibilidade com o código que referencia ACOES diretamente
-const ACOES = new Proxy([], {
-  get(_, prop) { return window.ACOES[prop]; },
-  set(_, prop, val) { window.ACOES[prop] = val; return true; }
-});
+// Inicializado vazio — preenchido por carregarDados() antes do init()
+let ACOES = [];
 
 const SETORES_UNICOS = [...new Set(ACOES.map(a => a.setor))].sort();
 
@@ -1346,14 +1339,14 @@ async function carregarDados() {
     if (!resp.ok) throw new Error('HTTP ' + resp.status);
     const json = await resp.json();
 
-    // Popula variáveis globais com dados do JSON
-    window.ACOES = json.acoes;
-    if (json.meta && json.meta.hist6) window.HIST6_OVERRIDE = json.meta.hist6;
+    // Popula variável global ACOES com dados do JSON
+    ACOES.length = 0;
+    json.acoes.forEach(a => ACOES.push(a));
 
-    // Atualiza HIST6 e ANOS_HIST dinamicamente
-    if (window.HIST6_OVERRIDE) {
+    // Atualiza HIST6 e ANOS_HIST dinamicamente se JSON tiver hist6
+    if (json.meta && json.meta.hist6) {
       HIST6.length = 0;
-      window.HIST6_OVERRIDE.forEach(y => HIST6.push(y));
+      json.meta.hist6.forEach(y => HIST6.push(y));
       ANOS_HIST.length = 0;
       const anos = HIST6.includes(CURRENT_YEAR) ? [...HIST6] : [...HIST6, CURRENT_YEAR];
       anos.forEach(y => ANOS_HIST.push(y));
@@ -1374,9 +1367,8 @@ async function carregarDados() {
     console.log(`✅ barsi-data.json carregado: ${ACOES.length} ações`);
     return true;
   } catch(err) {
-    console.warn('barsi-data.json não encontrado, usando dados embutidos:', err.message);
-    // Fallback: usar ACOES já definido no código (modo offline/legado)
-    if (!window.ACOES) window.ACOES = [];
+    console.warn('barsi-data.json não encontrado, lista vazia:', err.message);
+    // ACOES permanece [] — painel mostrará lista vazia
     return false;
   }
 }
