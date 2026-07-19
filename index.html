@@ -108,11 +108,20 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Segoe UI',Arial,sa
 
 /* INDICADORES GRADE */
 .ind-grade{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px}
-.ind-item{background:#0f172a;border:1px solid #1e293b;border-radius:8px;padding:10px 12px;text-align:center}
+.ind-item{background:#0f172a;border:1px solid #1e293b;border-radius:8px;padding:10px 12px;text-align:center;position:relative}
 .ind-l{font-size:10px;color:#475569;margin-bottom:4px}
-.ind-v{font-size:18px;font-weight:800;margin-bottom:6px}
-.ind-bar{background:#1e293b;border-radius:3px;height:3px;overflow:hidden}
-.ind-bar-fill{height:100%;border-radius:3px}
+.ind-v{font-size:18px;font-weight:800;margin-bottom:8px}
+.ind-badge{display:inline-block;font-size:8px;font-weight:700;padding:2px 7px;border-radius:4px;margin-bottom:8px}
+.ind-ruler{display:flex;height:7px;border-radius:4px;overflow:hidden;gap:1px;margin-bottom:3px;position:relative}
+.ind-ruler-z{flex:1}
+.z-r{background:#ef444488}
+.z-y{background:#facc1588}
+.z-g{background:#4ade8088}
+.z-b{background:#38bdf888}
+.ind-marker-row{position:relative;height:10px;margin-bottom:3px}
+.ind-marker{position:absolute;top:1px;width:9px;height:9px;border-radius:50%;background:white;border:2px solid #020617;transform:translateX(-50%)}
+.ind-scale{display:flex;justify-content:space-between;font-size:7px;color:#334155}
+.ind-hint{font-size:8px;color:#334155;margin-top:5px;line-height:1.4}
 
 /* BAZIN BOX */
 .bazin-box{background:#0f172a;border:1px solid #78350f;border-radius:8px;padding:12px 16px;margin-bottom:12px}
@@ -492,26 +501,105 @@ function renderAbaAnalise(a) {
 
 function renderAbaIndicadores(a) {
   const cor = COR(a.setor);
-  const pj = (a.dividAnual/0.06).toFixed(2);
+  const pj  = (a.dividAnual/0.06).toFixed(2);
   const pjN = a.dividAnual/0.06;
 
+  // Helper: gera a régua de zonas com marcador
+  function ruler(zones, pos, labels, badge, badgeBg, badgeColor) {
+    const zonesHtml = zones.map(([cls,flex]) =>
+      `<div class="ind-ruler-z ${cls}" style="flex:${flex}"></div>`).join("");
+    return `
+      <div class="ind-badge" style="background:${badgeBg};color:${badgeColor}">${badge}</div>
+      <div class="ind-ruler">${zonesHtml}</div>
+      <div class="ind-marker-row"><div class="ind-marker" style="left:${Math.min(Math.max(pos,4),96)}%"></div></div>
+      <div class="ind-scale">${labels.map(l=>`<span>${l}</span>`).join("")}</div>`;
+  }
+
+  // P/L: 0–10 barato, 10–20 justo, 20+ caro
+  function rulerPL(pl) {
+    if (!pl) return `<div class="ind-hint">Dado não disponível</div>`;
+    const pos = Math.min(pl/30*100, 100);
+    const [badge, bg, fg] = pl<=10?["BARATO","#052e16","#4ade80"]:pl<=20?["JUSTO","#1c1400","#facc15"]:["CARO","#3b0000","#f87171"];
+    return ruler([["z-g",2],["z-y",2],["z-r",2]],pos,["0x","10x","20x","30x+"],badge,bg,fg) +
+      `<div class="ind-hint">≤10x = barato · 10–20x = justo · 20x+ = caro</div>`;
+  }
+
+  // P/VP: 0–1.5 atrativo, 1.5–3 neutro, 3+ premium
+  function rulerPVP(pvp) {
+    const pos = Math.min(pvp/5*100, 100);
+    const [badge, bg, fg] = pvp<=1.5?["ATRATIVO","#052e16","#4ade80"]:pvp<=3?["NEUTRO","#1c1400","#facc15"]:["PREMIUM","#3b0000","#f87171"];
+    return ruler([["z-g",2],["z-y",2],["z-r",2]],pos,["0x","1.5x","3x","5x+"],badge,bg,fg) +
+      `<div class="ind-hint">≤1.5x = atrativo · 1.5–3x = neutro · 3x+ = premium</div>`;
+  }
+
+  // ROE: <10 fraco, 10–15 médio, 15–25 bom, 25+ excelente
+  function rulerROE(roe) {
+    const pos = Math.min(roe/35*100, 100);
+    const [badge, bg, fg] = roe>=25?["EXCELENTE","#0c1a2e","#38bdf8"]:roe>=15?["BOM","#052e16","#4ade80"]:roe>=10?["MÉDIO","#1c1400","#facc15"]:["FRACO","#3b0000","#f87171"];
+    return ruler([["z-r",1],["z-y",1],["z-g",2],["z-b",2]],pos,["0%","10%","15%","25%","35%+"],badge,bg,fg) +
+      `<div class="ind-hint">Mínimo Barsi: 15% · Acima de 25% = excelente</div>`;
+  }
+
+  // DY: <4 baixo, 4–6 médio, 6–10 bom, 10+ excelente
+  function rulerDY(dy) {
+    const pos = Math.min(dy/15*100, 100);
+    const [badge, bg, fg] = dy>=10?["EXCELENTE","#0c1a2e","#38bdf8"]:dy>=6?["BOM","#052e16","#4ade80"]:dy>=4?["MÉDIO","#1c1400","#facc15"]:["BAIXO","#3b0000","#f87171"];
+    return ruler([["z-r",1],["z-y",1],["z-g",2],["z-b",2]],pos,["0%","4%","6%","10%","15%+"],badge,bg,fg) +
+      `<div class="ind-hint">Mínimo Bazin: 6% · Acima de 10% = excelente</div>`;
+  }
+
+  // Dív/EBITDA: 0–2 saudável, 2–3.5 atenção, 3.5+ risco
+  function rulerDivEbitda(d) {
+    if (d === null) return `<div class="ind-hint" style="margin-top:8px">N/A — bancos e seguradoras não usam este indicador</div>`;
+    const pos = Math.min(d/5*100, 100);
+    const [badge, bg, fg] = d<=2?["SAUDÁVEL","#052e16","#4ade80"]:d<=3.5?["ATENÇÃO","#1c1400","#facc15"]:["RISCO","#3b0000","#f87171"];
+    return ruler([["z-g",2],["z-y",1],["z-r",2]],pos,["0x","2x","3.5x","5x+"],badge,bg,fg) +
+      `<div class="ind-hint">Barsi: máximo 3.5x · Abaixo de 2x = confortável</div>`;
+  }
+
+  // Margem: <10 baixa, 10–20 boa, 20+ forte
+  function rulerMargem(m) {
+    const pos = Math.min(m/40*100, 100);
+    const [badge, bg, fg] = m>=20?["FORTE","#0c1a2e","#38bdf8"]:m>=10?["BOA","#052e16","#4ade80"]:m>=0?["BAIXA","#1c1400","#facc15"]:["NEGATIVA","#3b0000","#f87171"];
+    return ruler([["z-y",1],["z-g",2],["z-b",2]],pos,["0%","10%","20%","30%","40%+"],badge,bg,fg) +
+      `<div class="ind-hint">Abaixo de 10% = atenção · Acima de 20% = forte</div>`;
+  }
+
+  // CAGR: <0 alerta, 0–5 fraco, 5–15 bom, 15+ excelente
+  function rulerCAGR(c) {
+    if (c === null) return `<div class="ind-hint">Dado não disponível</div>`;
+    const pos = Math.min((c+5)/35*100, 100);
+    const [badge, bg, fg] = c>=15?["EXCELENTE","#0c1a2e","#38bdf8"]:c>=5?["BOM","#052e16","#4ade80"]:c>=0?["FRACO","#1c1400","#facc15"]:["ALERTA","#3b0000","#f87171"];
+    return ruler([["z-r",1],["z-y",1],["z-g",2],["z-b",2]],pos,["<0%","0%","5%","15%","30%+"],badge,bg,fg) +
+      `<div class="ind-hint">Negativo = lucro caindo · Acima de 15% = crescimento forte</div>`;
+  }
+
+  // Preço Justo: compara cotação vs Bazin
+  function rulerPrecoJusto(cot, pj) {
+    const ratio = cot/pj;
+    const pos = Math.min(ratio/2*100, 100);
+    const [badge, bg, fg] = ratio<=1?["ABAIXO ✓","#052e16","#4ade80"]:ratio<=1.1?["NO LIMITE","#1c1400","#facc15"]:["ACIMA ✗","#3b0000","#f87171"];
+    return ruler([["z-g",2],["z-y",1],["z-r",2]],pos,["50%","Justo","110%","150%+"],badge,bg,fg) +
+      `<div class="ind-hint">Cotação vs Preço Justo Bazin (dividendo ÷ 0,06)</div>`;
+  }
+
   const inds = [
-    ["P/L",(a.pl||"—")+"x",a.pl&&a.pl<10?"#4ade80":a.pl&&a.pl<15?"#facc15":"#f87171",60,"Preço / Lucro · Quanto se paga por R$1 de lucro"],
-    ["P/VP",a.pvp+"x",a.pvp<2?"#4ade80":a.pvp<3.5?"#facc15":"#f87171",60,"Preço / Valor Patrimonial · Prêmio sobre o patrimônio"],
-    ["ROE",a.roe+"%",corIndicador(a.roe,20,15),80,"Retorno sobre Patrimônio"],
-    ["DY",a.dy+"%",corIndicador(a.dy,8,6),80,"Dividend Yield · Renda sobre o preço"],
-    ["Dív/EBITDA",a.divEbitda!==null?a.divEbitda+"x":"N/A",a.divEbitda===null?"#64748b":a.divEbitda<=2?"#4ade80":a.divEbitda<=3.5?"#facc15":"#f87171",60,"Anos de caixa para quitar a dívida"],
-    ["Margem",a.margem+"%",corIndicador(a.margem,20,10),60,"Margem Líquida"],
-    ["CAGR Lucro",a.cagrLucro!==null?(a.cagrLucro>=0?"+":"")+a.cagrLucro+"%":"—",a.cagrLucro!==null&&a.cagrLucro>=15?"#818cf8":a.cagrLucro!==null&&a.cagrLucro>=5?"#4ade80":a.cagrLucro!==null&&a.cagrLucro>=0?"#facc15":"#f87171",70,"Crescimento anual composto do lucro (3 anos)"],
-    ["Preço Justo","R$ "+pj,a.cotacao<=pjN?"#4ade80":a.cotacao<=pjN*1.1?"#facc15":"#f87171",60,"Método Bazin: dividendo ÷ 0,06"],
+    {l:"P/L",        v:(a.pl||"—")+"x",       c:a.pl&&a.pl<10?"#4ade80":a.pl&&a.pl<20?"#facc15":"#f87171", ruler:rulerPL(a.pl),              hint:"Preço / Lucro · Quanto se paga por R$1 de lucro"},
+    {l:"P/VP",       v:a.pvp+"x",              c:a.pvp<1.5?"#4ade80":a.pvp<3?"#facc15":"#f87171",           ruler:rulerPVP(a.pvp),            hint:"Preço / Valor Patrimonial"},
+    {l:"ROE",        v:a.roe+"%",              c:corIndicador(a.roe,20,15),                                   ruler:rulerROE(a.roe),            hint:"Retorno sobre Patrimônio Líquido"},
+    {l:"DY",         v:a.dy+"%",               c:corIndicador(a.dy,8,6),                                     ruler:rulerDY(a.dy),              hint:"Dividend Yield · Renda sobre o preço"},
+    {l:"Dív/EBITDA", v:a.divEbitda!==null?a.divEbitda+"x":"N/A", c:a.divEbitda===null?"#64748b":a.divEbitda<=2?"#4ade80":a.divEbitda<=3.5?"#facc15":"#f87171", ruler:rulerDivEbitda(a.divEbitda), hint:"Anos de caixa para quitar a dívida"},
+    {l:"Margem",     v:a.margem+"%",           c:corIndicador(a.margem,20,10),                               ruler:rulerMargem(a.margem),      hint:"Margem Líquida"},
+    {l:"CAGR Lucro", v:a.cagrLucro!==null?(a.cagrLucro>=0?"+":"")+a.cagrLucro+"%":"—", c:a.cagrLucro>=15?"#818cf8":a.cagrLucro>=5?"#4ade80":a.cagrLucro>=0?"#facc15":"#f87171", ruler:rulerCAGR(a.cagrLucro), hint:"Crescimento anual composto do lucro (3 anos)"},
+    {l:"Preço Justo",v:"R$ "+pj,              c:a.cotacao<=pjN?"#4ade80":a.cotacao<=pjN*1.1?"#facc15":"#f87171", ruler:rulerPrecoJusto(a.cotacao,pjN), hint:"Método Bazin: dividendo ÷ 0,06"},
   ];
 
   let html = `<div class="ind-grade">`;
-  inds.forEach(([l,v,c,pct,hint]) => {
+  inds.forEach(({l,v,c,ruler:r,hint}) => {
     html += `<div class="ind-item" title="${hint}">
       <div class="ind-l">${l}</div>
       <div class="ind-v" style="color:${c}">${v}</div>
-      <div class="ind-bar"><div class="ind-bar-fill" style="background:${c};width:${pct}%"></div></div>
+      ${r}
     </div>`;
   });
   html += `</div>`;
