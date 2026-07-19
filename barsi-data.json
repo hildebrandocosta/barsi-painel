@@ -2206,10 +2206,10 @@
       "nome": "Sabesp",
       "setor": "Saneamento",
       "cotacao": 27.52,
-      "pl": 6,
-      "pvp": 1.2,
+      "pl": 14.5,
+      "pvp": 2.8,
       "roe": 17.8,
-      "dy": 4.9,
+      "dy": 2.4,
       "divEbitda": 3.2,
       "margem": 22.5,
       "cagrLucro": 28.5,
@@ -2232,7 +2232,7 @@
         "2025": 175
       },
       "varTotal": 75,
-      "dividAnual": 1.35,
+      "dividAnual": 0.66,
       "roeHist": {
         "2020": 8,
         "2021": 9,
@@ -2260,44 +2260,44 @@
         "Capex pesado para universalização até 2029"
       ],
       "analistas": {
-        "atualizacao": "mai/2026",
-        "cotacaoRef": 65,
+        "atualizacao": "jul/2026",
+        "cotacaoRef": 27.52,
         "consenso": "COMPRAR",
         "nAnalistas": 12,
-        "nComprar": 10,
-        "nNeutro": 2,
+        "nComprar": 9,
+        "nNeutro": 3,
         "nVender": 0,
-        "alvoMedio": 78,
-        "alvoMax": 90,
-        "alvoMin": 65,
+        "alvoMedio": 33.0,
+        "alvoMax": 40.0,
+        "alvoMin": 27.0,
         "casas": [
           {
-            "casa": "Safra",
+            "casa": "XP Investimentos",
             "rec": "COMPRAR",
-            "alvo": 80.2,
-            "data": "jul/2025",
-            "nota": "Compra; privatização acelerou redução de custos acima do esperado. Novos contratos em SP ampliam crescimento."
-          },
-          {
-            "casa": "Citigroup",
-            "rec": "COMPRAR",
-            "alvo": 72,
-            "data": "2024",
-            "nota": "Reitera compra; múltiplos baratos e privatização como principal assimetria do setor de utilities brasileiro."
+            "alvo": 38.3,
+            "data": "jun/2026",
+            "nota": "Compra com alvo R$38,30 para 2026. TIR real de 10,1%. Sabesp se consolida como large cap com tese de crescimento secular e gestão entregando acima das expectativas pós-privatização."
           },
           {
             "casa": "JPMorgan",
             "rec": "COMPRAR",
-            "alvo": 78,
-            "data": "2024",
-            "nota": "Top pick do setor; melhor assimetria de risco com nova administração e reforma operacional pós-privatização."
+            "alvo": 40.0,
+            "data": "mai/2026",
+            "nota": "Uma das mais otimistas pós-split. Vê forte assimetria de risco com nova administração e reforma operacional. Ciclo de investimentos de R$70bi até 2030 como principal catalisador."
+          },
+          {
+            "casa": "Safra",
+            "rec": "NEUTRO",
+            "alvo": 29.2,
+            "data": "jan/2026",
+            "nota": "Rebaixou de Compra para Neutro. Alvo pós-split ~R$29,20 (R$146 pré-split ÷ 5). Upside limitado de ~18% não compensa risco regulatório. TIR de 10,5% e EV/EBITDA 6,9x acima da média histórica."
           },
           {
             "casa": "Genial",
             "rec": "COMPRAR",
-            "alvo": 77,
+            "alvo": 24.0,
             "data": "2024",
-            "nota": "Compra; privatização é evento revolucionário para a tese — eficiência, governança e reprecificação de múltiplos."
+            "nota": "Alvo pós-split R$24 (R$120 pré-split ÷ 5). Compra; privatização é evento revolucionário — eficiência, governança e reprecificação de múltiplos. Extensão de concessões até 2060."
           }
         ]
       }
