@@ -142,7 +142,9 @@
             "nota": "Maior preço-alvo do consenso. Visão positiva sobre o modelo asset-light e geração de caixa consistente."
           }
         ]
-      }
+      },
+      "lpa": 3.8643,
+      "vpa": 11.8344
     },
     {
       "ticker": "CXSE3",
@@ -229,7 +231,9 @@
             "nota": "Reitera compra; carrego atrativo com dividendos de 9% e perfil defensivo em ambiente de juros altos."
           }
         ]
-      }
+      },
+      "lpa": 1.3235,
+      "vpa": 4.8214
     },
     {
       "ticker": "PSSA3",
@@ -323,7 +327,9 @@
             "nota": "Mantém compra; diversificação e crescimento das verticais rentáveis suportam expansão estrutural do ROE."
           }
         ]
-      }
+      },
+      "lpa": 5.1402,
+      "vpa": 18.9655
     },
     {
       "ticker": "IRBR3",
@@ -424,7 +430,9 @@
             "nota": "Neutro; DY de 7,5% e P/VP de 1,57x apontam ação descontada, mas dinamismo fraco de receita limita upside."
           }
         ]
-      }
+      },
+      "lpa": 6.759,
+      "vpa": 43.9333
     },
     {
       "ticker": "ITUB4",
@@ -527,7 +535,9 @@
             "nota": "Outperform mantido. Banco 'pronto para atacar e defender'. Alta de 34,5% em 2025 não muda a tese."
           }
         ]
-      }
+      },
+      "lpa": 4.119,
+      "vpa": 19.6143
     },
     {
       "ticker": "ITSA4",
@@ -621,7 +631,9 @@
             "nota": "Mantém compra; desconto de 22% em relação ao NAV amplia oportunidade vs. ITUB4 diretamente."
           }
         ]
-      }
+      },
+      "lpa": 1.7432,
+      "vpa": 9.9231
     },
     {
       "ticker": "BBAS3",
@@ -722,7 +734,9 @@
             "nota": "Reduz alvo de R$28 para R$27; reforça ciclo de crédito rural normalizando apenas em 2027."
           }
         ]
-      }
+      },
+      "lpa": 4.6333,
+      "vpa": 21.6222
     },
     {
       "ticker": "SANB11",
@@ -822,7 +836,9 @@
             "nota": "Top pick no setor bancário, combinando recuperação de ROE com desconto de valuation atrativo."
           }
         ]
-      }
+      },
+      "lpa": 3.363,
+      "vpa": 22.7
     },
     {
       "ticker": "BBDC4",
@@ -929,7 +945,9 @@
             "nota": "DY de 7,6% e lucro crescendo 12% são atrativos, mas prefere Itaú na relação risco-retorno."
           }
         ]
-      }
+      },
+      "lpa": 2.0941,
+      "vpa": 17.8
     },
     {
       "ticker": "BPAC11",
@@ -1023,7 +1041,9 @@
             "nota": "Mantém compra; plataforma diversificada de receitas reduz volatilidade e suporta múltiplo premium."
           }
         ]
-      }
+      },
+      "lpa": 3.7604,
+      "vpa": 17.9964
     },
     {
       "ticker": "TAEE11",
@@ -1117,7 +1137,9 @@
             "nota": "Elevou de Venda para Neutro; empresa entra na fase final de implantação de projetos, reduzindo risco de execução."
           }
         ]
-      }
+      },
+      "lpa": 4.4706,
+      "vpa": 21.1111
     },
     {
       "ticker": "TRPL4",
@@ -1204,7 +1226,9 @@
             "nota": "Compra; incorpora projetos recentes de leilões de transmissão no modelo. Receita anual permitida crescendo."
           }
         ]
-      }
+      },
+      "lpa": 3.4615,
+      "vpa": 18.0
     },
     {
       "ticker": "ISAE4",
@@ -1291,7 +1315,9 @@
             "nota": "Venda; TIR real de 8,2% não compensa risco regulatório e estrutura de capital mais alavancada vs. pares."
           }
         ]
-      }
+      },
+      "lpa": 3.0488,
+      "vpa": 15.625
     },
     {
       "ticker": "EGIE3",
@@ -1385,7 +1411,9 @@
             "nota": "Compra; portfólio diversificado com transmissão e gás reduz volatilidade vs. puras geradoras renováveis."
           }
         ]
-      }
+      },
+      "lpa": 4.5833,
+      "vpa": 15.0
     },
     {
       "ticker": "CMIG4",
@@ -1476,7 +1504,9 @@
             "nota": "Mediana R$17,41 em plataformas; sem analistas com compra ativa. 4 recomendações de venda. Contexto político e operacional desafiador."
           }
         ]
-      }
+      },
+      "lpa": 2.6463,
+      "vpa": 9.8636
     },
     {
       "ticker": "CPLE6",
@@ -1570,7 +1600,9 @@
             "nota": "Positivo; menor exposição relativa a eólicas e solares protege do curtailment. Alta de 18% nos preços de energia favorece."
           }
         ]
-      }
+      },
+      "lpa": 1.7602,
+      "vpa": 9.1312
     },
     {
       "ticker": "AXIA6",
@@ -1657,7 +1689,9 @@
             "nota": "Cortou alvo por geração fraca no 4T25, mas vê Axia entre as mais favorecidas pela alta de preços em 2026. Compra."
           }
         ]
-      }
+      },
+      "lpa": 3.6879,
+      "vpa": 20.8
     },
     {
       "ticker": "CPFE3",
@@ -1744,7 +1778,9 @@
             "nota": "Positivo; CPFL se beneficia do aumento de tarifas e da expansão da base de clientes. DY atrativo."
           }
         ]
-      }
+      },
+      "lpa": 3.75,
+      "vpa": 16.5
     },
     {
       "ticker": "ENBR3",
@@ -1830,7 +1866,9 @@
             "nota": "Compra; distribuidora com track record consistente, portfólio de geração renovável complementar."
           }
         ]
-      }
+      },
+      "lpa": 2.0526,
+      "vpa": 10.8333
     },
     {
       "ticker": "EQTL3",
@@ -1924,7 +1962,9 @@
             "nota": "Favorita entre as distribuidoras em cenário de El Niño; base de clientes diversificada amortece volatilidade tarifária."
           }
         ]
-      }
+      },
+      "lpa": 2.4853,
+      "vpa": 13.8464
     },
     {
       "ticker": "AURE3",
@@ -2010,7 +2050,9 @@
             "nota": "Neutro; combo negativo de geração fraca no 4T25 e alto risco de cortes em 2026. EBITDA pode vir 16% abaixo do consenso."
           }
         ]
-      }
+      },
+      "lpa": 1.4815,
+      "vpa": 11.4286
     },
     {
       "ticker": "PETR4",
@@ -2104,7 +2146,9 @@
             "nota": "Compra; DY de ~10% como suporte. TIR real defensiva mesmo com cenário conservador de petróleo. PETR3 a R$35."
           }
         ]
-      }
+      },
+      "lpa": 8.5167,
+      "vpa": 27.2533
     },
     {
       "ticker": "PRIO3",
@@ -2199,7 +2243,9 @@
             "nota": "Mantém compra; crescimento de produção acelerado e menor risco político vs. Petrobras favorecem múltiplos premium."
           }
         ]
-      }
+      },
+      "lpa": 3.8823,
+      "vpa": 17.0389
     },
     {
       "ticker": "SBSP3",
@@ -2300,7 +2346,9 @@
             "nota": "Alvo pós-split R$24 (R$120 pré-split ÷ 5). Compra; privatização é evento revolucionário — eficiência, governança e reprecificação de múltiplos. Extensão de concessões até 2060."
           }
         ]
-      }
+      },
+      "lpa": 1.8979,
+      "vpa": 9.8286
     },
     {
       "ticker": "SAPR11",
@@ -2394,17 +2442,19 @@
             "nota": "Venda; rebaixou de neutro com maior pessimismo sobre risco regulatório. Alvo implica retorno limitado."
           }
         ]
-      }
+      },
+      "lpa": 4.5763,
+      "vpa": 24.5455
     },
     {
       "ticker": "CSMG3",
       "nome": "Copasa",
       "setor": "Saneamento",
-      "cotacao": 57.4,
-      "pl": 19.6,
-      "pvp": 3.7,
+      "cotacao": 62.93,
+      "pl": 17.66,
+      "pvp": 2.73,
       "roe": 18.8,
-      "dy": 3.9,
+      "dy": 3.42,
       "divEbitda": 2.2,
       "margem": 24,
       "cagrLucro": 12.8,
@@ -2427,7 +2477,7 @@
         "2025": 320
       },
       "varTotal": 293,
-      "dividAnual": 2.16,
+      "dividAnual": 2.15,
       "roeHist": {
         "2020": 14,
         "2021": 15,
@@ -2488,7 +2538,9 @@
             "nota": "Elevou de neutro para compra; privatização tem 30% de chance na visão do banco, mas upside já embutido no alvo."
           }
         ]
-      }
+      },
+      "lpa": 3.5634,
+      "vpa": 23.0513
     },
     {
       "ticker": "VIVT3",
@@ -2582,7 +2634,9 @@
             "nota": "Compra; DY de 8,1% para 2026, fundamentos sólidos com disciplina de preços no pós-pago."
           }
         ]
-      }
+      },
+      "lpa": 4.0625,
+      "vpa": 21.6667
     },
     {
       "ticker": "TIMS3",
@@ -2676,7 +2730,9 @@
             "nota": "Rebaixou de compra para neutro; deterioração dos indicadores operacionais no curto prazo, mas tese de dividendos intacta."
           }
         ]
-      }
+      },
+      "lpa": 1.6923,
+      "vpa": 10.0
     },
     {
       "ticker": "B3SA3",
@@ -2777,7 +2833,9 @@
             "nota": "P/L de 16x é razoável; revisão de custos e despesas mantém margens saudáveis mesmo com atividade abaixo do ideal."
           }
         ]
-      }
+      },
+      "lpa": 0.781,
+      "vpa": 3.4614
     },
     {
       "ticker": "TOTS3",
@@ -2878,7 +2936,9 @@
             "nota": "Mantém compra; P&D crescendo 26% mostra investimento consistente em IA para os produtos. Tese de crescimento secular."
           }
         ]
-      }
+      },
+      "lpa": 2.2239,
+      "vpa": 9.0303
     },
     {
       "ticker": "CCRO3",
@@ -2971,7 +3031,9 @@
             "nota": "Compra; ciclo robusto de leilões em rodovias favorece posição de longo prazo da CCR no setor de concessões."
           }
         ]
-      }
+      },
+      "lpa": 0.9932,
+      "vpa": 4.8333
     },
     {
       "ticker": "ECOR3",
@@ -3057,7 +3119,9 @@
             "nota": "Neutro; tráfego cresceu 2,1% em linha com estimativas. Leilão da Rota das Gerais amplia presença em corredor logístico estratégico."
           }
         ]
-      }
+      },
+      "lpa": 0.9824,
+      "vpa": 6.6091
     },
     {
       "ticker": "RAIL3",
@@ -3151,7 +3215,9 @@
             "nota": "Compra; nova governança com BTG/Perfin no conselho é positiva para alocação de capital e estratégia de longo prazo."
           }
         ]
-      }
+      },
+      "lpa": 1.5721,
+      "vpa": 6.4381
     },
     {
       "ticker": "VBBR3",
@@ -3245,7 +3311,9 @@
             "nota": "Neutro; geração de caixa relevante mas margens ainda sob pressão competitiva no segmento B2B."
           }
         ]
-      }
+      },
+      "lpa": 2.4915,
+      "vpa": 12.1458
     },
     {
       "ticker": "UGPA3",
@@ -3338,7 +3406,9 @@
             "nota": "Neutro; tese depende de eficiência operacional contínua na Ipiranga e destravar valor na carteira de participações."
           }
         ]
-      }
+      },
+      "lpa": 2.0,
+      "vpa": 13.7778
     },
     {
       "ticker": "RENT3",
@@ -3432,7 +3502,9 @@
             "nota": "Compra; líder de mercado com escala irreplicável. Ciclo de renovação de frota se aproxima e impacto dos juros deve diminuir."
           }
         ]
-      }
+      },
+      "lpa": 2.8462,
+      "vpa": 13.5667
     },
     {
       "ticker": "MDIA3",
@@ -3526,7 +3598,9 @@
             "nota": "Compra; valuation atrativo e dividendos consistentes. Queda do dólar deve reverter pressão de custos no 2S26."
           }
         ]
-      }
+      },
+      "lpa": 3.28,
+      "vpa": 18.6364
     },
     {
       "ticker": "ABEV3",
@@ -3621,7 +3695,9 @@
             "nota": "Venda; volume de cerveja estagnado, dificuldade de repasse de preços com consumidor sob pressão, câmbio desfavorável."
           }
         ]
-      }
+      },
+      "lpa": 1.0856,
+      "vpa": 5.5367
     },
     {
       "ticker": "GRND3",
@@ -3708,7 +3784,9 @@
             "nota": "Compra; modelo asset-light em calçados com geração de caixa previsível e dividend payout elevado."
           }
         ]
-      }
+      },
+      "lpa": 2.1739,
+      "vpa": 13.8889
     },
     {
       "ticker": "FLRY3",
@@ -3802,7 +3880,9 @@
             "nota": "Neutro; empresa bem gerida mas valuation já reflete a recuperação pós-pandemia sem catalisadores relevantes no curto prazo."
           }
         ]
-      }
+      },
+      "lpa": 1.8065,
+      "vpa": 10.0
     },
     {
       "ticker": "HAPV3",
@@ -3896,7 +3976,9 @@
             "nota": "Neutro; integração ainda absorve atenção da gestão; resultados devem melhorar a partir do 2S26 com normalização de sinistros."
           }
         ]
-      }
+      },
+      "lpa": 0.3958,
+      "vpa": 5.4286
     },
     {
       "ticker": "HYPE3",
@@ -3990,7 +4072,9 @@
             "nota": "Neutro; bons resultados já precificados; espera catalisador adicional para elevar para compra."
           }
         ]
-      }
+      },
+      "lpa": 3.6441,
+      "vpa": 17.2
     },
     {
       "ticker": "ALOS3",
@@ -4084,7 +4168,9 @@
             "nota": "Compra; potencial de crescimento de longo prazo ainda não totalmente precificado nos múltiplos atuais."
           }
         ]
-      }
+      },
+      "lpa": 1.8621,
+      "vpa": 15.0
     },
     {
       "ticker": "MULT3",
@@ -4178,7 +4264,9 @@
             "nota": "Neutro; Multiplan é a de maior qualidade mas já negocia a prêmio. Prefere Allos pela assimetria de valuation."
           }
         ]
-      }
+      },
+      "lpa": 1.9385,
+      "vpa": 13.0409
     },
     {
       "ticker": "IGTI11",
@@ -4271,7 +4359,9 @@
             "nota": "Neutro; alta concentração nos dois principais ativos é risco. Prefere Allos e Multiplan pela diversificação."
           }
         ]
-      }
+      },
+      "lpa": 1.8365,
+      "vpa": 13.59
     },
     {
       "ticker": "CURY3",
@@ -4365,7 +4455,9 @@
             "nota": "Principal destaque do setor de MCMV; DY de 15% projetado para 2026/27 com potencial de reprecificação."
           }
         ]
-      }
+      },
+      "lpa": 3.211,
+      "vpa": 6.5531
     },
     {
       "ticker": "DIRR3",
@@ -4459,7 +4551,9 @@
             "nota": "Alternativa defensiva com menor sensibilidade a juros vs. incorporadoras de alto padrão. Boa geração de dividendos."
           }
         ]
-      }
+      },
+      "lpa": 4.0212,
+      "vpa": 7.3722
     },
     {
       "ticker": "CYRE3",
@@ -4553,7 +4647,9 @@
             "nota": "Neutro; balanço sólido mas guidance de 2026 abaixo do esperado limita reação das ações no curto prazo."
           }
         ]
-      }
+      },
+      "lpa": 2.9667,
+      "vpa": 12.5647
     },
     {
       "ticker": "POMO4",
@@ -4647,7 +4743,9 @@
             "nota": "Compra; demanda estrutural por renovação de frotas no Brasil e mercados externos compensam sazonalidade fraca do 1T26."
           }
         ]
-      }
+      },
+      "lpa": 3.2556,
+      "vpa": 7.325
     },
     {
       "ticker": "WEGE3",
@@ -4749,7 +4847,9 @@
             "nota": "Compra; real mais fraco e valuation abaixo da média são suporte. Crescimento estrutural via eletrificação e automação."
           }
         ]
-      }
+      },
+      "lpa": 1.5272,
+      "vpa": 5.5338
     }
   ]
 }
