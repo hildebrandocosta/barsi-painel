@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
@@ -1333,8 +1333,22 @@ async function fetchChunk(tickers) {
       if (a && typeof r.regularMarketPrice === "number" && r.regularMarketPrice > 0) {
         a.cotacao = parseFloat(r.regularMarketPrice.toFixed(2));
         a.cotacaoLive = true;
-        // Atualiza o ponto do ano em curso no gráfico de cotação indexada,
-        // refletindo a variação do preço ao vivo vs. a referência (jun/2026)
+
+        // ── Recalcular P/L e P/VP com cotação ao vivo ──────────────────────
+        // LPA e VPA são fixos (mudam só a cada balanço trimestral)
+        // P/L e P/VP são recalculados dinamicamente com o preço real de mercado
+        if (a.lpa && a.lpa > 0) {
+          a.pl = parseFloat((a.cotacao / a.lpa).toFixed(1));
+        }
+        if (a.vpa && a.vpa > 0) {
+          a.pvp = parseFloat((a.cotacao / a.vpa).toFixed(1));
+        }
+        // Recalcular DY com cotação ao vivo (dividAnual é fixo do balanço)
+        if (a.dividAnual && a.dividAnual > 0) {
+          a.dy = parseFloat((a.dividAnual / a.cotacao * 100).toFixed(1));
+        }
+
+        // Atualizar cotação histórica do ano em curso
         if (a.cotacaoRef > 0) {
           const ultimoAnoFechado = HIST6[HIST6.length - 1];
           a.cotHist[CURRENT_YEAR] = parseFloat((a.cotHist[ultimoAnoFechado] * (a.cotacao / a.cotacaoRef)).toFixed(1));
