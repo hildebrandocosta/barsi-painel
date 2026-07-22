@@ -216,7 +216,7 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Segoe UI',Arial,sa
         <input type="text" id="busca" placeholder="🔍 Ticker ou nome...">
         <div class="filter-row">
           <select id="f-setor"><option value="">Todos setores</option></select>
-          <select id="f-rec"><option value="">Todas</option><option value="COMPRAR">Comprar</option><option value="NEUTRO">Neutro</option><option value="AGUARDAR">Aguardar</option></select>
+          <select id="f-rec"><option value="">Todas</option><option value="COMPRAR">Comprar</option><option value="COMPRAR C/ ATENÇÃO">Comprar c/ Atenção</option><option value="AGUARDAR">Aguardar</option><option value="EVITAR">Evitar</option></select>
         </div>
         <div class="sort-row" id="sort-row">
           <button class="sort-btn active" data-sort="dy">DY</button>
@@ -370,7 +370,7 @@ function getListaFiltrada() {
     .filter(a =>
       (!q || a.ticker.toLowerCase().includes(q) || a.nome.toLowerCase().includes(q)) &&
       (!fs || a.setor === fs) &&
-      (!fr || a.recomendacao === fr)
+      (!fr || veredicto(a).label === fr)
     )
     .sort((a,b) => {
       if (ORDEM==="dy")     return b.dy - a.dy;
@@ -695,7 +695,7 @@ function renderAbaResumo(a) {
       </div>
     </div>
     <div class="info-grid">
-      ${[["Setor",a.setor,COR(a.setor)],["Recomendação",a.recomendacao,v.cor],["Rating","★".repeat(a.rating)+"☆".repeat(5-a.rating),a.rating>=4?"#f59e0b":"#64748b"],
+      ${[["Setor",a.setor,COR(a.setor)],["Recomendação",v.label,v.cor],["Rating","★".repeat(a.rating)+"☆".repeat(5-a.rating),a.rating>=4?"#f59e0b":"#64748b"],
         ["Cotação","R$ "+a.cotacao,"#f1f5f9"],["Valorização 6a",(a.varTotal>=0?"+":"")+a.varTotal+"%",a.varTotal>=0?"#4ade80":"#f87171"],["Dividendo/ano","R$ "+a.dividAnual+"/ação","#f59e0b"]]
         .map(([l,v2,c])=>`<div><div class="info-item-l">${l}</div><div class="info-item-v" style="color:${c}">${v2}</div></div>`).join("")}
     </div>
@@ -1245,7 +1245,7 @@ function init() {
   SETORES_UNICOS.forEach(s => { const o = document.createElement("option"); o.value=s; o.textContent=s; sel.appendChild(o); });
 
   // Estatísticas globais
-  document.getElementById("st-comprar").textContent = ACOES.filter(a=>a.recomendacao==="COMPRAR").length+"/"+ACOES.length;
+  document.getElementById("st-comprar").textContent = ACOES.filter(a=>veredicto(a).label==="COMPRAR").length+"/"+ACOES.length;
   document.getElementById("st-total").textContent = ACOES.length;
   document.getElementById("st-dy").textContent = (ACOES.reduce((s,a)=>s+a.dy,0)/ACOES.length).toFixed(1)+"%";
   document.getElementById("st-roe").textContent = (ACOES.reduce((s,a)=>s+a.roe,0)/ACOES.length).toFixed(1)+"%";
