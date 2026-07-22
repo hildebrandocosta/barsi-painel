@@ -185,7 +185,7 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Segoe UI',Arial,sa
         <div class="tb-stat"><div class="tb-stat-v" id="st-comprar" style="color:#4ade80">—</div><div class="tb-stat-l">Comprar</div></div>
         <div class="tb-stat"><div class="tb-stat-v" id="st-dy" style="color:#f59e0b">—</div><div class="tb-stat-l">DY médio</div></div>
         <div class="tb-stat"><div class="tb-stat-v" id="st-roe" style="color:#818cf8">—</div><div class="tb-stat-l">ROE médio</div></div>
-        <div class="tb-stat"><div class="tb-stat-v" style="color:#94a3b8">50</div><div class="tb-stat-l">Ações B3</div></div>
+        <div class="tb-stat"><div class="tb-stat-v" id="st-total" style="color:#94a3b8">—</div><div class="tb-stat-l">Ações B3</div></div>
       </div>
     </div>
     <div style="display:flex;align-items:center;gap:14px;position:relative">
@@ -1245,7 +1245,8 @@ function init() {
   SETORES_UNICOS.forEach(s => { const o = document.createElement("option"); o.value=s; o.textContent=s; sel.appendChild(o); });
 
   // Estatísticas globais
-  document.getElementById("st-comprar").textContent = ACOES.filter(a=>a.recomendacao==="COMPRAR").length+"/50";
+  document.getElementById("st-comprar").textContent = ACOES.filter(a=>a.recomendacao==="COMPRAR").length+"/"+ACOES.length;
+  document.getElementById("st-total").textContent = ACOES.length;
   document.getElementById("st-dy").textContent = (ACOES.reduce((s,a)=>s+a.dy,0)/ACOES.length).toFixed(1)+"%";
   document.getElementById("st-roe").textContent = (ACOES.reduce((s,a)=>s+a.roe,0)/ACOES.length).toFixed(1)+"%";
 
