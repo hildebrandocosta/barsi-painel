@@ -1,7 +1,7 @@
 {
   "meta": {
     "versao": "1.0",
-    "atualizacao": "2026-06-15",
+    "atualizacao": "2026-07-21",
     "hist6": [
       2020,
       2021,
@@ -39,11 +39,11 @@
       "ticker": "BBSE3",
       "nome": "BB Seguridade",
       "setor": "Seguros",
-      "cotacao": 37.87,
-      "pl": 9.8,
-      "pvp": 3.2,
-      "roe": 32.8,
-      "dy": 12,
+      "cotacao": 41.55,
+      "pl": 8.8,
+      "pvp": 6.38,
+      "roe": 72.72,
+      "dy": 10.95,
       "divEbitda": 0,
       "margem": 45.2,
       "cagrLucro": 14.2,
@@ -66,7 +66,7 @@
         "2025": 142
       },
       "varTotal": 42,
-      "dividAnual": 4.54,
+      "dividAnual": 4.55,
       "roeHist": {
         "2020": 64,
         "2021": 68,
@@ -143,18 +143,19 @@
           }
         ]
       },
-      "lpa": 3.8643,
-      "vpa": 11.8344
+      "lpa": 4.7354,
+      "vpa": 11.8344,
+      "cotacaoRef": 41.55
     },
     {
       "ticker": "CXSE3",
       "nome": "Caixa Seguridade",
       "setor": "Seguros",
-      "cotacao": 13.5,
-      "pl": 10.2,
-      "pvp": 2.8,
-      "roe": 27.5,
-      "dy": 9.8,
+      "cotacao": 22.33,
+      "pl": 15.3,
+      "pvp": 4.86,
+      "roe": 31.89,
+      "dy": 5.87,
       "divEbitda": 0,
       "margem": 41,
       "cagrLucro": 18.5,
@@ -177,7 +178,7 @@
         "2025": 135
       },
       "varTotal": 35,
-      "dividAnual": 1.32,
+      "dividAnual": 1.31,
       "roeHist": {
         "2020": null,
         "2021": 22,
@@ -232,20 +233,21 @@
           }
         ]
       },
-      "lpa": 1.3235,
-      "vpa": 4.8214
+      "lpa": 1.4638,
+      "vpa": 4.8214,
+      "cotacaoRef": 22.33
     },
     {
       "ticker": "PSSA3",
       "nome": "Porto Seguro",
       "setor": "Seguros",
-      "cotacao": 55,
-      "pl": 10.7,
-      "pvp": 2.9,
-      "roe": 25.2,
-      "dy": 8.2,
+      "cotacao": 53.48,
+      "pl": 9.4,
+      "pvp": 2.23,
+      "roe": 23.7,
+      "dy": 5.63,
       "divEbitda": 0,
-      "margem": 12.8,
+      "margem": 8.81,
       "cagrLucro": 12,
       "rating": 4,
       "recomendacao": "COMPRAR",
@@ -266,7 +268,7 @@
         "2025": 168
       },
       "varTotal": 68,
-      "dividAnual": 4.84,
+      "dividAnual": 3.01,
       "roeHist": {
         "2020": 18,
         "2021": 20,
@@ -328,20 +330,21 @@
           }
         ]
       },
-      "lpa": 5.1402,
-      "vpa": 18.9655
+      "lpa": 5.6883,
+      "vpa": 18.9655,
+      "cotacaoRef": 53.48
     },
     {
       "ticker": "IRBR3",
       "nome": "IRB Brasil RE",
       "setor": "Seguros",
-      "cotacao": 52.72,
-      "pl": 7.8,
-      "pvp": 1.2,
-      "roe": 13,
-      "dy": 2.3,
+      "cotacao": 55.8,
+      "pl": 13.0,
+      "pvp": 0.86,
+      "roe": 6.59,
+      "dy": 2.79,
       "divEbitda": 0,
-      "margem": 8.5,
+      "margem": 7.08,
       "cagrLucro": null,
       "rating": 2,
       "recomendacao": "AGUARDAR",
@@ -362,7 +365,7 @@
         "2025": 28
       },
       "varTotal": 455,
-      "dividAnual": 1.22,
+      "dividAnual": 1.56,
       "roeHist": {
         "2020": -48,
         "2021": -35,
@@ -431,20 +434,21 @@
           }
         ]
       },
-      "lpa": 6.759,
-      "vpa": 43.9333
+      "lpa": 4.2868,
+      "vpa": 43.9333,
+      "cotacaoRef": 55.8
     },
     {
       "ticker": "ITUB4",
       "nome": "Itaú Unibanco",
       "setor": "Bancos",
-      "cotacao": 41.19,
-      "pl": 10,
-      "pvp": 2.1,
-      "roe": 21.8,
-      "dy": 6.9,
+      "cotacao": 42.53,
+      "pl": 10.2,
+      "pvp": 2.24,
+      "roe": 21.93,
+      "dy": 7.52,
       "divEbitda": null,
-      "margem": 28.5,
+      "margem": 11.83,
       "cagrLucro": 15.8,
       "rating": 5,
       "recomendacao": "COMPRAR",
@@ -465,7 +469,7 @@
         "2025": 178
       },
       "varTotal": 78,
-      "dividAnual": 2.82,
+      "dividAnual": 3.2,
       "roeHist": {
         "2020": 17,
         "2021": 18,
@@ -536,20 +540,21 @@
           }
         ]
       },
-      "lpa": 4.119,
-      "vpa": 19.6143
+      "lpa": 4.1584,
+      "vpa": 19.0176,
+      "cotacaoRef": 42.53
     },
     {
       "ticker": "ITSA4",
       "nome": "Itaúsa",
       "setor": "Bancos",
-      "cotacao": 12.9,
-      "pl": 7.4,
-      "pvp": 1.3,
-      "roe": 18.5,
-      "dy": 7,
+      "cotacao": 13.62,
+      "pl": 9.0,
+      "pvp": 1.69,
+      "roe": 18.83,
+      "dy": 9.71,
       "divEbitda": null,
-      "margem": 25,
+      "margem": 203.02,
       "cagrLucro": 12.5,
       "rating": 4,
       "recomendacao": "COMPRAR",
@@ -570,7 +575,7 @@
         "2025": 148
       },
       "varTotal": 48,
-      "dividAnual": 1.12,
+      "dividAnual": 1.32,
       "roeHist": {
         "2020": 14,
         "2021": 16,
@@ -632,20 +637,21 @@
           }
         ]
       },
-      "lpa": 1.7432,
-      "vpa": 9.9231
+      "lpa": 1.5165,
+      "vpa": 9.9231,
+      "cotacaoRef": 13.62
     },
     {
       "ticker": "BBAS3",
       "nome": "Banco do Brasil",
       "setor": "Bancos",
-      "cotacao": 19.46,
-      "pl": 4.2,
-      "pvp": 0.9,
-      "roe": 19.5,
-      "dy": 9.5,
+      "cotacao": 20.88,
+      "pl": 9.4,
+      "pvp": 0.62,
+      "roe": 8.2,
+      "dy": 2.64,
       "divEbitda": null,
-      "margem": 30.2,
+      "margem": 4.82,
       "cagrLucro": 18.2,
       "rating": 5,
       "recomendacao": "COMPRAR",
@@ -666,7 +672,7 @@
         "2025": 125
       },
       "varTotal": 25,
-      "dividAnual": 1.85,
+      "dividAnual": 0.55,
       "roeHist": {
         "2020": 10,
         "2021": 13,
@@ -735,20 +741,21 @@
           }
         ]
       },
-      "lpa": 4.6333,
-      "vpa": 21.6222
+      "lpa": 2.217,
+      "vpa": 21.6222,
+      "cotacaoRef": 20.88
     },
     {
       "ticker": "SANB11",
       "nome": "Santander BR",
       "setor": "Bancos",
-      "cotacao": 27.24,
+      "cotacao": 27.21,
       "pl": 8.1,
-      "pvp": 1.2,
-      "roe": 15.8,
-      "dy": 8.5,
+      "pvp": 0.81,
+      "roe": 10.34,
+      "dy": 8.45,
       "divEbitda": null,
-      "margem": 22,
+      "margem": 7.87,
       "cagrLucro": 8.5,
       "rating": 3,
       "recomendacao": "NEUTRO",
@@ -769,7 +776,7 @@
         "2025": 118
       },
       "varTotal": 18,
-      "dividAnual": 2.32,
+      "dividAnual": 2.3,
       "roeHist": {
         "2020": 13,
         "2021": 14,
@@ -838,19 +845,20 @@
         ]
       },
       "lpa": 3.363,
-      "vpa": 22.7
+      "vpa": 22.7,
+      "cotacaoRef": 27.21
     },
     {
       "ticker": "BBDC4",
       "nome": "Bradesco",
       "setor": "Bancos",
-      "cotacao": 17.8,
-      "pl": 8.5,
-      "pvp": 1,
-      "roe": 11.8,
-      "dy": 6.8,
+      "cotacao": 18.55,
+      "pl": 8.4,
+      "pvp": 1.09,
+      "roe": 13.06,
+      "dy": 6.78,
       "divEbitda": null,
-      "margem": 15.5,
+      "margem": 8.15,
       "cagrLucro": -4.2,
       "rating": 2,
       "recomendacao": "AGUARDAR",
@@ -871,7 +879,7 @@
         "2025": 62
       },
       "varTotal": -38,
-      "dividAnual": 1.21,
+      "dividAnual": 1.26,
       "roeHist": {
         "2020": 14,
         "2021": 18,
@@ -946,20 +954,21 @@
           }
         ]
       },
-      "lpa": 2.0941,
-      "vpa": 17.8
+      "lpa": 2.1979,
+      "vpa": 17.8,
+      "cotacaoRef": 18.55
     },
     {
       "ticker": "BPAC11",
       "nome": "BTG Pactual",
       "setor": "Bancos",
-      "cotacao": 50.39,
+      "cotacao": 55.37,
       "pl": 13.4,
-      "pvp": 2.8,
-      "roe": 22.5,
-      "dy": 2.5,
+      "pvp": 2.76,
+      "roe": 22.52,
+      "dy": 2.25,
       "divEbitda": null,
-      "margem": 35.8,
+      "margem": 26.78,
       "cagrLucro": 28.5,
       "rating": 5,
       "recomendacao": "COMPRAR",
@@ -1043,19 +1052,20 @@
         ]
       },
       "lpa": 3.7604,
-      "vpa": 17.9964
+      "vpa": 17.9964,
+      "cotacaoRef": 55.37
     },
     {
       "ticker": "TAEE11",
       "nome": "Taesa",
       "setor": "Transmissão Elétrica",
-      "cotacao": 38,
+      "cotacao": 41.13,
       "pl": 8.5,
-      "pvp": 1.8,
-      "roe": 21.2,
-      "dy": 9,
+      "pvp": 1.78,
+      "roe": 19.7,
+      "dy": 7.96,
       "divEbitda": 2.8,
-      "margem": 58.5,
+      "margem": 33.52,
       "cagrLucro": -2.5,
       "rating": 4,
       "recomendacao": "COMPRAR",
@@ -1076,7 +1086,7 @@
         "2025": 92
       },
       "varTotal": -8,
-      "dividAnual": 3.42,
+      "dividAnual": 3.27,
       "roeHist": {
         "2020": 18,
         "2021": 20,
@@ -1139,108 +1149,20 @@
         ]
       },
       "lpa": 4.4706,
-      "vpa": 21.1111
-    },
-    {
-      "ticker": "TRPL4",
-      "nome": "CTEEP",
-      "setor": "Transmissão Elétrica",
-      "cotacao": 27,
-      "pl": 7.8,
-      "pvp": 1.5,
-      "roe": 19.5,
-      "dy": 8.2,
-      "divEbitda": 2.2,
-      "margem": 52,
-      "cagrLucro": 5.2,
-      "rating": 4,
-      "recomendacao": "COMPRAR",
-      "dyHist": {
-        "2020": 8.2,
-        "2021": 7.1,
-        "2022": 9.4,
-        "2023": 8.6,
-        "2024": 9,
-        "2025": 8.2
-      },
-      "cotHist": {
-        "2020": 100,
-        "2021": 115,
-        "2022": 118,
-        "2023": 112,
-        "2024": 115,
-        "2025": 112
-      },
-      "varTotal": 12,
-      "dividAnual": 2.21,
-      "roeHist": {
-        "2020": 17,
-        "2021": 18,
-        "2022": 19,
-        "2023": 19,
-        "2024": 20,
-        "2025": 20
-      },
-      "margHist": {
-        "2020": 48,
-        "2021": 50,
-        "2022": 51,
-        "2023": 52,
-        "2024": 52,
-        "2025": 52
-      },
-      "resumo": "Maior transmissora do Brasil por extensão de rede. Receita RAP garantida, crescimento via leilões.",
-      "pontosFort": [
-        "Maior rede de transmissão do Brasil",
-        "Crescimento via leilões",
-        "Receita regulada"
-      ],
-      "pontosAten": [
-        "Depreciação de ativos reduz lucro contábil",
-        "Controlador estrangeiro"
-      ],
-      "analistas": {
-        "atualizacao": "abr/2026",
-        "cotacaoRef": 27,
-        "consenso": "NEUTRO",
-        "nAnalistas": 8,
-        "nComprar": 3,
-        "nNeutro": 5,
-        "nVender": 0,
-        "alvoMedio": 28.5,
-        "alvoMax": 34,
-        "alvoMin": 24,
-        "casas": [
-          {
-            "casa": "BTG Pactual",
-            "rec": "NEUTRO",
-            "alvo": 25,
-            "data": "ago/2024",
-            "nota": "Neutro; TIR real de 7% vs. 6% do Tesouro. Risco de pressão por eventual desinvestimento total da Eletrobras (22% das ações)."
-          },
-          {
-            "casa": "Genial",
-            "rec": "COMPRAR",
-            "alvo": 28,
-            "data": "mai/2024",
-            "nota": "Compra; incorpora projetos recentes de leilões de transmissão no modelo. Receita anual permitida crescendo."
-          }
-        ]
-      },
-      "lpa": 3.4615,
-      "vpa": 18.0
+      "vpa": 21.1111,
+      "cotacaoRef": 41.13
     },
     {
       "ticker": "ISAE4",
       "nome": "ISA Energia",
       "setor": "Transmissão Elétrica",
-      "cotacao": 25,
-      "pl": 8.2,
-      "pvp": 1.6,
-      "roe": 19.8,
-      "dy": 9.1,
+      "cotacao": 28.43,
+      "pl": 8.0,
+      "pvp": 0.87,
+      "roe": 10.94,
+      "dy": 6.51,
       "divEbitda": 2.5,
-      "margem": 54,
+      "margem": 24.65,
       "cagrLucro": 7.8,
       "rating": 4,
       "recomendacao": "COMPRAR",
@@ -1261,7 +1183,7 @@
         "2025": 115
       },
       "varTotal": 15,
-      "dividAnual": 2.28,
+      "dividAnual": 1.85,
       "roeHist": {
         "2020": 17,
         "2021": 18,
@@ -1316,20 +1238,21 @@
           }
         ]
       },
-      "lpa": 3.0488,
-      "vpa": 15.625
+      "lpa": 3.5571,
+      "vpa": 15.625,
+      "cotacaoRef": 28.43
     },
     {
       "ticker": "EGIE3",
       "nome": "Engie Brasil",
       "setor": "Energia Elétrica",
-      "cotacao": 33,
-      "pl": 7.2,
-      "pvp": 2.2,
-      "roe": 30.5,
-      "dy": 6.3,
+      "cotacao": 30.34,
+      "pl": 13.5,
+      "pvp": 3.16,
+      "roe": 18.86,
+      "dy": 4.8,
       "divEbitda": 1.8,
-      "margem": 32.5,
+      "margem": 19.35,
       "cagrLucro": 9.5,
       "rating": 4,
       "recomendacao": "COMPRAR",
@@ -1350,7 +1273,7 @@
         "2025": 132
       },
       "varTotal": 32,
-      "dividAnual": 2.08,
+      "dividAnual": 1.46,
       "roeHist": {
         "2020": 25,
         "2021": 27,
@@ -1412,20 +1335,21 @@
           }
         ]
       },
-      "lpa": 4.5833,
-      "vpa": 15.0
+      "lpa": 2.246,
+      "vpa": 15.0,
+      "cotacaoRef": 30.34
     },
     {
       "ticker": "CMIG4",
       "nome": "Cemig",
       "setor": "Energia Elétrica",
-      "cotacao": 10.85,
-      "pl": 4.1,
-      "pvp": 1.1,
-      "roe": 27.5,
-      "dy": 11.7,
+      "cotacao": 11.02,
+      "pl": 6.5,
+      "pvp": 1.09,
+      "roe": 16.75,
+      "dy": 7.47,
       "divEbitda": 1.5,
-      "margem": 20.8,
+      "margem": 11.15,
       "cagrLucro": 22.5,
       "rating": 5,
       "recomendacao": "COMPRAR",
@@ -1446,7 +1370,7 @@
         "2025": 245
       },
       "varTotal": 55,
-      "dividAnual": 1.27,
+      "dividAnual": 0.82,
       "roeHist": {
         "2020": 8,
         "2021": 12,
@@ -1505,20 +1429,21 @@
           }
         ]
       },
-      "lpa": 2.6463,
-      "vpa": 9.8636
+      "lpa": 1.6911,
+      "vpa": 9.8636,
+      "cotacaoRef": 11.02
     },
     {
       "ticker": "CPLE6",
       "nome": "Copel",
       "setor": "Energia Elétrica",
-      "cotacao": 14.61,
-      "pl": 8.3,
-      "pvp": 1.6,
-      "roe": 20.8,
+      "cotacao": 14.22,
+      "pl": 8.1,
+      "pvp": 1.78,
+      "roe": 11.39,
       "dy": 12.1,
       "divEbitda": 1.2,
-      "margem": 18.5,
+      "margem": 9.95,
       "cagrLucro": 35.2,
       "rating": 5,
       "recomendacao": "COMPRAR",
@@ -1605,105 +1530,16 @@
       "vpa": 9.1312
     },
     {
-      "ticker": "AXIA6",
-      "nome": "Axia Energia",
-      "setor": "Energia Elétrica",
-      "cotacao": 52,
-      "pl": 14.1,
-      "pvp": 2.5,
-      "roe": 17.5,
-      "dy": 7.2,
-      "divEbitda": 3.5,
-      "margem": 22,
-      "cagrLucro": 42,
-      "rating": 4,
-      "recomendacao": "COMPRAR",
-      "dyHist": {
-        "2020": 3.5,
-        "2021": 3.5,
-        "2022": 4,
-        "2023": 7.2,
-        "2024": 8.5,
-        "2025": 8.7
-      },
-      "cotHist": {
-        "2020": 100,
-        "2021": 100,
-        "2022": 118,
-        "2023": 202,
-        "2024": 268,
-        "2025": 310
-      },
-      "varTotal": 210,
-      "dividAnual": 3.99,
-      "roeHist": {
-        "2020": null,
-        "2021": null,
-        "2022": 10,
-        "2023": 14,
-        "2024": 16,
-        "2025": 18
-      },
-      "margHist": {
-        "2020": null,
-        "2021": null,
-        "2022": 12,
-        "2023": 18,
-        "2024": 21,
-        "2025": 22
-      },
-      "resumo": "Maior turnaround pós-privatização da B3. CAGR de 42% desde 2022. P/L de 6,8x atrativo.",
-      "pontosFort": [
-        "Maior turnaround da B3 pós-privatização",
-        "Revisão tarifária a cada ciclo",
-        "CAGR de 42%"
-      ],
-      "pontosAten": [
-        "Dívida/EBITDA de 3,5x",
-        "Depende de revisões tarifárias favoráveis"
-      ],
-      "analistas": {
-        "atualizacao": "jan/2026",
-        "cotacaoRef": 25,
-        "consenso": "COMPRAR",
-        "nAnalistas": 8,
-        "nComprar": 6,
-        "nNeutro": 2,
-        "nVender": 0,
-        "alvoMedio": 27,
-        "alvoMax": 32,
-        "alvoMin": 22,
-        "casas": [
-          {
-            "casa": "XP Investimentos",
-            "rec": "COMPRAR",
-            "alvo": 31.65,
-            "data": "jan/2026",
-            "nota": "Compra; TIR real de 10,1% vs. pares. Upside estrutural com alta de 18% nos preços de energia de longo prazo."
-          },
-          {
-            "casa": "JPMorgan",
-            "rec": "COMPRAR",
-            "alvo": 24,
-            "data": "jan/2026",
-            "nota": "Cortou alvo por geração fraca no 4T25, mas vê Axia entre as mais favorecidas pela alta de preços em 2026. Compra."
-          }
-        ]
-      },
-      "lpa": 3.6879,
-      "vpa": 20.8
-    },
-    {
       "ticker": "CPFE3",
       "nome": "CPFL Energia",
       "setor": "Energia Elétrica",
-      "cotacao": 33,
-      "pl": 8.8,
-      "pvp": 2,
-      "roe": 22.8,
-      "dy": 8.9,
+      "cotacao": 46.4,
+      "pl": 9.3,
+      "pvp": 2.2,
+      "roe": 23.72,
+      "dy": 8.05,
       "divEbitda": 2,
-      "margem": 16.5,
+      "margem": 12.79,
       "cagrLucro": 10.2,
       "rating": 4,
       "recomendacao": "COMPRAR",
@@ -1724,7 +1560,7 @@
         "2025": 128
       },
       "varTotal": 28,
-      "dividAnual": 2.94,
+      "dividAnual": 3.74,
       "roeHist": {
         "2020": 18,
         "2021": 19,
@@ -1779,108 +1615,21 @@
           }
         ]
       },
-      "lpa": 3.75,
-      "vpa": 16.5
-    },
-    {
-      "ticker": "ENBR3",
-      "nome": "EDP Brasil",
-      "setor": "Energia Elétrica",
-      "cotacao": 19.5,
-      "pl": 9.5,
-      "pvp": 1.8,
-      "roe": 18.8,
-      "dy": 6.8,
-      "divEbitda": 2.2,
-      "margem": 15,
-      "cagrLucro": 8.5,
-      "rating": 3,
-      "recomendacao": "NEUTRO",
-      "dyHist": {
-        "2020": 4.5,
-        "2021": 5.2,
-        "2022": 6,
-        "2023": 6.5,
-        "2024": 7,
-        "2025": 6.8
-      },
-      "cotHist": {
-        "2020": 100,
-        "2021": 108,
-        "2022": 112,
-        "2023": 118,
-        "2024": 122,
-        "2025": 122
-      },
-      "varTotal": 22,
-      "dividAnual": 1.33,
-      "roeHist": {
-        "2020": 14,
-        "2021": 16,
-        "2022": 17,
-        "2023": 18,
-        "2024": 19,
-        "2025": 19
-      },
-      "margHist": {
-        "2020": 12,
-        "2021": 13,
-        "2022": 14,
-        "2023": 14,
-        "2024": 15,
-        "2025": 15
-      },
-      "resumo": "Distribuidora e geradora de qualidade acima da média. Indicadores sólidos mas sem catalisador claro.",
-      "pontosFort": [
-        "Qualidade de distribuição acima da média",
-        "Controlador europeu experiente"
-      ],
-      "pontosAten": [
-        "Sem catalisador claro de reavaliação",
-        "P/L não oferece desconto"
-      ],
-      "analistas": {
-        "atualizacao": "mar/2026",
-        "cotacaoRef": 19.5,
-        "consenso": "NEUTRO",
-        "nAnalistas": 7,
-        "nComprar": 3,
-        "nNeutro": 4,
-        "nVender": 0,
-        "alvoMedio": 21,
-        "alvoMax": 24,
-        "alvoMin": 18,
-        "casas": [
-          {
-            "casa": "XP Investimentos",
-            "rec": "NEUTRO",
-            "alvo": 20,
-            "data": "fev/2026",
-            "nota": "Neutro; EDP possui bom portfólio de distribuição, mas menor upside vs. pares com desconto menor."
-          },
-          {
-            "casa": "BTG Pactual",
-            "rec": "COMPRAR",
-            "alvo": 23,
-            "data": "mar/2026",
-            "nota": "Compra; distribuidora com track record consistente, portfólio de geração renovável complementar."
-          }
-        ]
-      },
-      "lpa": 2.0526,
-      "vpa": 10.8333
+      "lpa": 5.0017,
+      "vpa": 16.5,
+      "cotacaoRef": 46.4
     },
     {
       "ticker": "EQTL3",
       "nome": "Equatorial",
       "setor": "Energia Elétrica",
-      "cotacao": 38.77,
-      "pl": 15.6,
-      "pvp": 2.8,
-      "roe": 17.5,
-      "dy": 6.1,
+      "cotacao": 38.83,
+      "pl": 31.5,
+      "pvp": 1.89,
+      "roe": 6.02,
+      "dy": 4.92,
       "divEbitda": 3.8,
-      "margem": 14.2,
+      "margem": 2.91,
       "cagrLucro": 18.8,
       "rating": 4,
       "recomendacao": "COMPRAR",
@@ -1901,7 +1650,7 @@
         "2025": 155
       },
       "varTotal": 55,
-      "dividAnual": 1.89,
+      "dividAnual": 1.91,
       "roeHist": {
         "2020": 10,
         "2021": 12,
@@ -1963,20 +1712,21 @@
           }
         ]
       },
-      "lpa": 2.4853,
-      "vpa": 13.8464
+      "lpa": 1.2345,
+      "vpa": 13.8464,
+      "cotacaoRef": 38.83
     },
     {
       "ticker": "AURE3",
       "nome": "Auren Energia",
       "setor": "Energia Elétrica",
-      "cotacao": 16,
-      "pl": 10.8,
-      "pvp": 1.4,
-      "roe": 13,
+      "cotacao": 11.21,
+      "pl": -9.1,
+      "pvp": 0.99,
+      "roe": -10.86,
       "dy": 7.8,
       "divEbitda": 2.5,
-      "margem": 28.5,
+      "margem": -9.73,
       "cagrLucro": 12,
       "rating": 3,
       "recomendacao": "NEUTRO",
@@ -2051,20 +1801,21 @@
           }
         ]
       },
-      "lpa": 1.4815,
-      "vpa": 11.4286
+      "lpa": -1.2383,
+      "vpa": 11.4286,
+      "cotacaoRef": 11.21
     },
     {
       "ticker": "PETR4",
       "nome": "Petrobras PN",
       "setor": "Energia Elétrica",
-      "cotacao": 40.88,
-      "pl": 4.8,
-      "pvp": 1.5,
-      "roe": 26.5,
-      "dy": 8.3,
+      "cotacao": 41.66,
+      "pl": 5.0,
+      "pvp": 1.21,
+      "roe": 24.17,
+      "dy": 6.34,
       "divEbitda": 0.8,
-      "margem": 24.5,
+      "margem": 21.6,
       "cagrLucro": 5.5,
       "rating": 4,
       "recomendacao": "COMPRAR",
@@ -2085,7 +1836,7 @@
         "2025": 162
       },
       "varTotal": 62,
-      "dividAnual": 3.39,
+      "dividAnual": 2.64,
       "roeHist": {
         "2020": 4,
         "2021": 18,
@@ -2147,20 +1898,21 @@
           }
         ]
       },
-      "lpa": 8.5167,
-      "vpa": 27.2533
+      "lpa": 8.3471,
+      "vpa": 34.5409,
+      "cotacaoRef": 41.66
     },
     {
       "ticker": "PRIO3",
       "nome": "PRIO",
       "setor": "Energia Elétrica",
-      "cotacao": 61.34,
-      "pl": 15.8,
-      "pvp": 3.6,
-      "roe": 27,
+      "cotacao": 58.18,
+      "pl": 18.2,
+      "pvp": 1.91,
+      "roe": 9.72,
       "dy": 0,
       "divEbitda": 0.5,
-      "margem": 42.5,
+      "margem": 14.65,
       "cagrLucro": 85,
       "rating": 5,
       "recomendacao": "COMPRAR",
@@ -2244,20 +1996,21 @@
           }
         ]
       },
-      "lpa": 3.8823,
-      "vpa": 17.0389
+      "lpa": 3.1935,
+      "vpa": 17.0389,
+      "cotacaoRef": 58.18
     },
     {
       "ticker": "SBSP3",
       "nome": "Sabesp",
       "setor": "Saneamento",
-      "cotacao": 27.52,
-      "pl": 14.5,
-      "pvp": 2.8,
-      "roe": 17.8,
-      "dy": 2.4,
+      "cotacao": 28.6,
+      "pl": 11.4,
+      "pvp": 2.31,
+      "roe": 19.97,
+      "dy": 2.43,
       "divEbitda": 3.2,
-      "margem": 22.5,
+      "margem": 22.03,
       "cagrLucro": 28.5,
       "rating": 4,
       "recomendacao": "COMPRAR",
@@ -2278,7 +2031,7 @@
         "2025": 175
       },
       "varTotal": 75,
-      "dividAnual": 0.66,
+      "dividAnual": 0.69,
       "roeHist": {
         "2020": 8,
         "2021": 9,
@@ -2347,20 +2100,21 @@
           }
         ]
       },
-      "lpa": 1.8979,
-      "vpa": 9.8286
+      "lpa": 2.4979,
+      "vpa": 9.8286,
+      "cotacaoRef": 28.6
     },
     {
       "ticker": "SAPR11",
       "nome": "Sanepar",
       "setor": "Saneamento",
-      "cotacao": 27,
+      "cotacao": 36.16,
       "pl": 5.9,
-      "pvp": 1.1,
-      "roe": 18.5,
-      "dy": 9.3,
+      "pvp": 0.86,
+      "roe": 9.64,
+      "dy": 1.53,
       "divEbitda": 2.5,
-      "margem": 25.5,
+      "margem": 16.66,
       "cagrLucro": 14.5,
       "rating": 5,
       "recomendacao": "COMPRAR",
@@ -2381,7 +2135,7 @@
         "2025": 148
       },
       "varTotal": 48,
-      "dividAnual": 2.51,
+      "dividAnual": 0.55,
       "roeHist": {
         "2020": 14,
         "2021": 15,
@@ -2444,19 +2198,20 @@
         ]
       },
       "lpa": 4.5763,
-      "vpa": 24.5455
+      "vpa": 24.5455,
+      "cotacaoRef": 36.16
     },
     {
       "ticker": "CSMG3",
       "nome": "Copasa",
       "setor": "Saneamento",
-      "cotacao": 62.93,
-      "pl": 17.66,
-      "pvp": 2.73,
-      "roe": 18.8,
-      "dy": 3.42,
+      "cotacao": 63.16,
+      "pl": 17.7,
+      "pvp": 2.74,
+      "roe": 15.46,
+      "dy": 3.47,
       "divEbitda": 2.2,
-      "margem": 24,
+      "margem": 16.14,
       "cagrLucro": 12.8,
       "rating": 3,
       "recomendacao": "AGUARDAR",
@@ -2477,7 +2232,7 @@
         "2025": 320
       },
       "varTotal": 293,
-      "dividAnual": 2.15,
+      "dividAnual": 2.19,
       "roeHist": {
         "2020": 14,
         "2021": 15,
@@ -2539,20 +2294,21 @@
           }
         ]
       },
-      "lpa": 3.5634,
-      "vpa": 23.0513
+      "lpa": 3.5744,
+      "vpa": 23.0513,
+      "cotacaoRef": 63.16
     },
     {
       "ticker": "VIVT3",
       "nome": "Vivo (Telefônica)",
       "setor": "Telecom",
-      "cotacao": 39,
-      "pl": 9.6,
-      "pvp": 1.8,
-      "roe": 18.5,
-      "dy": 6.6,
+      "cotacao": 35.8,
+      "pl": 18.0,
+      "pvp": 1.66,
+      "roe": 9.17,
+      "dy": 2.97,
       "divEbitda": 1.2,
-      "margem": 14.8,
+      "margem": 10.5,
       "cagrLucro": 8.5,
       "rating": 4,
       "recomendacao": "COMPRAR",
@@ -2573,7 +2329,7 @@
         "2025": 125
       },
       "varTotal": 25,
-      "dividAnual": 2.57,
+      "dividAnual": 1.06,
       "roeHist": {
         "2020": 15,
         "2021": 16,
@@ -2635,20 +2391,21 @@
           }
         ]
       },
-      "lpa": 4.0625,
-      "vpa": 21.6667
+      "lpa": 1.9851,
+      "vpa": 21.6667,
+      "cotacaoRef": 35.8
     },
     {
       "ticker": "TIMS3",
       "nome": "TIM",
       "setor": "Telecom",
-      "cotacao": 22,
-      "pl": 13,
-      "pvp": 2.2,
-      "roe": 16.8,
-      "dy": 7.4,
+      "cotacao": 22.67,
+      "pl": 12.6,
+      "pvp": 4.5,
+      "roe": 16.69,
+      "dy": 7.0,
       "divEbitda": 0.8,
-      "margem": 12.5,
+      "margem": 7.43,
       "cagrLucro": 11.5,
       "rating": 4,
       "recomendacao": "COMPRAR",
@@ -2669,7 +2426,7 @@
         "2025": 142
       },
       "varTotal": 42,
-      "dividAnual": 1.63,
+      "dividAnual": 1.59,
       "roeHist": {
         "2020": 11,
         "2021": 13,
@@ -2731,20 +2488,21 @@
           }
         ]
       },
-      "lpa": 1.6923,
-      "vpa": 10.0
+      "lpa": 1.7995,
+      "vpa": 10.0,
+      "cotacaoRef": 22.67
     },
     {
       "ticker": "B3SA3",
       "nome": "B3",
       "setor": "Infraestrutura Financeira",
-      "cotacao": 15.23,
-      "pl": 19.5,
-      "pvp": 4.4,
-      "roe": 22.5,
-      "dy": 7,
+      "cotacao": 15.17,
+      "pl": 15.7,
+      "pvp": 4.19,
+      "roe": 27.15,
+      "dy": 4.01,
       "divEbitda": 1.5,
-      "margem": 38.5,
+      "margem": 42.49,
       "cagrLucro": 2.5,
       "rating": 3,
       "recomendacao": "NEUTRO",
@@ -2765,7 +2523,7 @@
         "2025": 82
       },
       "varTotal": -18,
-      "dividAnual": 0.81,
+      "dividAnual": 0.61,
       "roeHist": {
         "2020": 28,
         "2021": 30,
@@ -2834,20 +2592,21 @@
           }
         ]
       },
-      "lpa": 0.781,
-      "vpa": 3.4614
+      "lpa": 0.9674,
+      "vpa": 3.4614,
+      "cotacaoRef": 15.17
     },
     {
       "ticker": "TOTS3",
       "nome": "Totvs",
       "setor": "Infraestrutura Financeira",
-      "cotacao": 29.8,
-      "pl": 13.4,
-      "pvp": 3.3,
-      "roe": 20,
-      "dy": 2,
+      "cotacao": 28.57,
+      "pl": 18.1,
+      "pvp": 3.45,
+      "roe": 18.65,
+      "dy": 2.38,
       "divEbitda": 0.5,
-      "margem": 12.8,
+      "margem": 15.41,
       "cagrLucro": 18.5,
       "rating": 4,
       "recomendacao": "COMPRAR",
@@ -2868,7 +2627,7 @@
         "2025": 188
       },
       "varTotal": 88,
-      "dividAnual": 0.61,
+      "dividAnual": 0.68,
       "roeHist": {
         "2020": 14,
         "2021": 16,
@@ -2937,115 +2696,21 @@
           }
         ]
       },
-      "lpa": 2.2239,
-      "vpa": 9.0303
-    },
-    {
-      "ticker": "CCRO3",
-      "nome": "CCR",
-      "setor": "Concessões / Logística",
-      "cotacao": 14.5,
-      "pl": 14.6,
-      "pvp": 3,
-      "roe": 20.5,
-      "dy": 7.2,
-      "divEbitda": 4.2,
-      "margem": 12.5,
-      "cagrLucro": 5.5,
-      "rating": 3,
-      "recomendacao": "NEUTRO",
-      "dyHist": {
-        "2020": 2.8,
-        "2021": 3.5,
-        "2022": 5.5,
-        "2023": 6.8,
-        "2024": 7.2,
-        "2025": 7.2
-      },
-      "cotHist": {
-        "2020": 100,
-        "2021": 108,
-        "2022": 115,
-        "2023": 112,
-        "2024": 112,
-        "2025": 108
-      },
-      "varTotal": 8,
-      "dividAnual": 1.04,
-      "roeHist": {
-        "2020": 12,
-        "2021": 16,
-        "2022": 19,
-        "2023": 20,
-        "2024": 21,
-        "2025": 21
-      },
-      "margHist": {
-        "2020": 9,
-        "2021": 11,
-        "2022": 12,
-        "2023": 12,
-        "2024": 13,
-        "2025": 13
-      },
-      "resumo": "Maior concessionária do Brasil. Receita de pedágio indexada. Dívida/EBITDA de 4,2x preocupa.",
-      "pontosFort": [
-        "Portfólio diversificado de concessões",
-        "Receita indexada e previsível"
-      ],
-      "pontosAten": [
-        "Dívida/EBITDA de 4,2x",
-        "P/L acima da média do setor"
-      ],
-      "analistas": {
-        "atualizacao": "abr/2026",
-        "cotacaoRef": 14.5,
-        "consenso": "NEUTRO",
-        "nAnalistas": 8,
-        "nComprar": 3,
-        "nNeutro": 5,
-        "nVender": 0,
-        "alvoMedio": 16,
-        "alvoMax": 20,
-        "alvoMin": 13,
-        "casas": [
-          {
-            "casa": "BofA",
-            "rec": "NEUTRO",
-            "alvo": 14.5,
-            "data": "2024",
-            "nota": "Neutro; nome defensivo com valuation justo. Cortou alvo de R$16 para R$14,50 refletindo menor crescimento de tráfego."
-          },
-          {
-            "casa": "Santander",
-            "rec": "NEUTRO",
-            "alvo": 16,
-            "data": "abr/2026",
-            "nota": "Neutro; resultados do 2T25 positivos com expansão de tráfego, mas dívida elevada limita retorno para o acionista."
-          },
-          {
-            "casa": "BTG Pactual",
-            "rec": "COMPRAR",
-            "alvo": 19,
-            "data": "mar/2026",
-            "nota": "Compra; ciclo robusto de leilões em rodovias favorece posição de longo prazo da CCR no setor de concessões."
-          }
-        ]
-      },
-      "lpa": 0.9932,
-      "vpa": 4.8333
+      "lpa": 1.5775,
+      "vpa": 9.0303,
+      "cotacaoRef": 28.57
     },
     {
       "ticker": "ECOR3",
       "nome": "Ecorodovias",
       "setor": "Concessões / Logística",
-      "cotacao": 7.27,
-      "pl": 7.4,
-      "pvp": 1.1,
-      "roe": 14.8,
-      "dy": 8.5,
+      "cotacao": 6.8,
+      "pl": 6.5,
+      "pvp": 1.16,
+      "roe": 17.81,
+      "dy": 4.54,
       "divEbitda": 4.8,
-      "margem": 15.5,
+      "margem": 6.26,
       "cagrLucro": 8.5,
       "rating": 3,
       "recomendacao": "NEUTRO",
@@ -3066,7 +2731,7 @@
         "2025": 85
       },
       "varTotal": -15,
-      "dividAnual": 0.89,
+      "dividAnual": 0.31,
       "roeHist": {
         "2020": 10,
         "2021": 12,
@@ -3120,20 +2785,21 @@
           }
         ]
       },
-      "lpa": 0.9824,
-      "vpa": 6.6091
+      "lpa": 1.0482,
+      "vpa": 6.6091,
+      "cotacaoRef": 6.8
     },
     {
       "ticker": "RAIL3",
       "nome": "Rumo",
       "setor": "Concessões / Logística",
-      "cotacao": 13.52,
-      "pl": 8.6,
-      "pvp": 2.1,
-      "roe": 19.2,
-      "dy": 6.3,
+      "cotacao": 13.24,
+      "pl": 23.6,
+      "pvp": 1.77,
+      "roe": 7.49,
+      "dy": 0.82,
       "divEbitda": 3.2,
-      "margem": 28.5,
+      "margem": 7.34,
       "cagrLucro": 22.5,
       "rating": 4,
       "recomendacao": "COMPRAR",
@@ -3154,7 +2820,7 @@
         "2025": 162
       },
       "varTotal": 62,
-      "dividAnual": 0.85,
+      "dividAnual": 0.11,
       "roeHist": {
         "2020": 12,
         "2021": 15,
@@ -3216,20 +2882,21 @@
           }
         ]
       },
-      "lpa": 1.5721,
-      "vpa": 6.4381
+      "lpa": 0.5604,
+      "vpa": 6.4381,
+      "cotacaoRef": 13.24
     },
     {
       "ticker": "VBBR3",
       "nome": "Vibra Energia",
       "setor": "Concessões / Logística",
-      "cotacao": 29.15,
-      "pl": 11.7,
-      "pvp": 2.4,
-      "roe": 20.5,
-      "dy": 7.9,
+      "cotacao": 33.95,
+      "pl": 13.3,
+      "pvp": 1.87,
+      "roe": 13.83,
+      "dy": 4.6,
       "divEbitda": 1.2,
-      "margem": 3.8,
+      "margem": 1.56,
       "cagrLucro": 14.5,
       "rating": 4,
       "recomendacao": "COMPRAR",
@@ -3250,7 +2917,7 @@
         "2025": 135
       },
       "varTotal": 35,
-      "dividAnual": 2.13,
+      "dividAnual": 1.56,
       "roeHist": {
         "2020": 16,
         "2021": 18,
@@ -3312,20 +2979,21 @@
           }
         ]
       },
-      "lpa": 2.4915,
-      "vpa": 12.1458
+      "lpa": 2.5543,
+      "vpa": 12.1458,
+      "cotacaoRef": 33.95
     },
     {
       "ticker": "UGPA3",
       "nome": "Ultrapar",
       "setor": "Concessões / Logística",
-      "cotacao": 24.8,
-      "pl": 12.4,
-      "pvp": 1.8,
-      "roe": 14.8,
-      "dy": 7.1,
+      "cotacao": 31.82,
+      "pl": 11.5,
+      "pvp": 2.16,
+      "roe": 18.19,
+      "dy": 4.09,
       "divEbitda": 2.2,
-      "margem": 4.5,
+      "margem": 2.06,
       "cagrLucro": 10.5,
       "rating": 3,
       "recomendacao": "NEUTRO",
@@ -3346,7 +3014,7 @@
         "2025": 122
       },
       "varTotal": 22,
-      "dividAnual": 1.92,
+      "dividAnual": 1.3,
       "roeHist": {
         "2020": 10,
         "2021": 11,
@@ -3407,20 +3075,21 @@
           }
         ]
       },
-      "lpa": 2.0,
-      "vpa": 13.7778
+      "lpa": 2.7695,
+      "vpa": 13.7778,
+      "cotacaoRef": 31.82
     },
     {
       "ticker": "RENT3",
       "nome": "Localiza",
       "setor": "Concessões / Logística",
-      "cotacao": 40.7,
-      "pl": 14.3,
-      "pvp": 3,
-      "roe": 20.8,
-      "dy": 6.4,
+      "cotacao": 36.55,
+      "pl": 17.4,
+      "pvp": 1.56,
+      "roe": 8.57,
+      "dy": 5.71,
       "divEbitda": 3.5,
-      "margem": 12.5,
+      "margem": 5.13,
       "cagrLucro": 18.5,
       "rating": 4,
       "recomendacao": "COMPRAR",
@@ -3441,7 +3110,7 @@
         "2025": 148
       },
       "varTotal": 48,
-      "dividAnual": 2.82,
+      "dividAnual": 2.09,
       "roeHist": {
         "2020": 14,
         "2021": 16,
@@ -3503,20 +3172,21 @@
           }
         ]
       },
-      "lpa": 2.8462,
-      "vpa": 13.5667
+      "lpa": 2.0947,
+      "vpa": 13.5667,
+      "cotacaoRef": 36.55
     },
     {
       "ticker": "MDIA3",
       "nome": "M. Dias Branco",
       "setor": "Consumo não-cíclico",
-      "cotacao": 41,
-      "pl": 12.5,
-      "pvp": 2.2,
-      "roe": 17.5,
-      "dy": 6.8,
+      "cotacao": 17.52,
+      "pl": 8.4,
+      "pvp": 0.71,
+      "roe": 8.33,
+      "dy": 6.03,
       "divEbitda": 0.2,
-      "margem": 9.5,
+      "margem": 6.67,
       "cagrLucro": 8.5,
       "rating": 4,
       "recomendacao": "COMPRAR",
@@ -3537,7 +3207,7 @@
         "2025": 118
       },
       "varTotal": 18,
-      "dividAnual": 2.79,
+      "dividAnual": 1.06,
       "roeHist": {
         "2020": 14,
         "2021": 15,
@@ -3599,20 +3269,21 @@
           }
         ]
       },
-      "lpa": 3.28,
-      "vpa": 18.6364
+      "lpa": 2.0774,
+      "vpa": 18.6364,
+      "cotacaoRef": 17.52
     },
     {
       "ticker": "ABEV3",
       "nome": "Ambev",
       "setor": "Consumo não-cíclico",
-      "cotacao": 16.61,
-      "pl": 15.3,
-      "pvp": 3,
-      "roe": 19.5,
-      "dy": 6.2,
+      "cotacao": 15.8,
+      "pl": 15.8,
+      "pvp": 2.76,
+      "roe": 17.28,
+      "dy": 8.28,
       "divEbitda": 0,
-      "margem": 15.5,
+      "margem": 17.66,
       "cagrLucro": 3.5,
       "rating": 3,
       "recomendacao": "NEUTRO",
@@ -3633,7 +3304,7 @@
         "2025": 92
       },
       "varTotal": -8,
-      "dividAnual": 0.97,
+      "dividAnual": 1.31,
       "roeHist": {
         "2020": 17,
         "2021": 18,
@@ -3696,20 +3367,21 @@
           }
         ]
       },
-      "lpa": 1.0856,
-      "vpa": 5.5367
+      "lpa": 0.9984,
+      "vpa": 5.5367,
+      "cotacaoRef": 15.8
     },
     {
       "ticker": "GRND3",
       "nome": "Grendene",
       "setor": "Consumo não-cíclico",
-      "cotacao": 25,
-      "pl": 11.5,
-      "pvp": 1.8,
-      "roe": 15.8,
-      "dy": 8.3,
+      "cotacao": 3.78,
+      "pl": 5.4,
+      "pvp": 1.08,
+      "roe": 19.96,
+      "dy": 37.59,
       "divEbitda": 0,
-      "margem": 16.5,
+      "margem": 24.8,
       "cagrLucro": 7.5,
       "rating": 4,
       "recomendacao": "COMPRAR",
@@ -3730,7 +3402,7 @@
         "2025": 155
       },
       "varTotal": 55,
-      "dividAnual": 2.08,
+      "dividAnual": 1.42,
       "roeHist": {
         "2020": 12,
         "2021": 14,
@@ -3785,20 +3457,21 @@
           }
         ]
       },
-      "lpa": 2.1739,
-      "vpa": 13.8889
+      "lpa": 0.7025,
+      "vpa": 13.8889,
+      "cotacaoRef": 3.78
     },
     {
       "ticker": "FLRY3",
       "nome": "Fleury",
       "setor": "Saúde",
-      "cotacao": 28,
-      "pl": 15.5,
-      "pvp": 2.8,
-      "roe": 18,
-      "dy": 6.5,
+      "cotacao": 16.55,
+      "pl": 14.2,
+      "pvp": 1.75,
+      "roe": 12.25,
+      "dy": 6.52,
       "divEbitda": 2.5,
-      "margem": 14.5,
+      "margem": 7.47,
       "cagrLucro": 10.5,
       "rating": 3,
       "recomendacao": "NEUTRO",
@@ -3819,7 +3492,7 @@
         "2025": 112
       },
       "varTotal": 12,
-      "dividAnual": 1.82,
+      "dividAnual": 1.08,
       "roeHist": {
         "2020": 14,
         "2021": 16,
@@ -3881,20 +3554,21 @@
           }
         ]
       },
-      "lpa": 1.8065,
-      "vpa": 10.0
+      "lpa": 1.1647,
+      "vpa": 10.0,
+      "cotacaoRef": 16.55
     },
     {
       "ticker": "HAPV3",
       "nome": "Hapvida",
       "setor": "Saúde",
-      "cotacao": 11.4,
-      "pl": 28.8,
-      "pvp": 2.1,
-      "roe": 8,
-      "dy": 6.1,
+      "cotacao": 11.24,
+      "pl": -12.7,
+      "pvp": 0.12,
+      "roe": -0.89,
+      "dy": 0.0,
       "divEbitda": 4.5,
-      "margem": 5.5,
+      "margem": -1.87,
       "cagrLucro": null,
       "rating": 2,
       "recomendacao": "AGUARDAR",
@@ -3915,7 +3589,7 @@
         "2025": 55
       },
       "varTotal": -45,
-      "dividAnual": 0.6,
+      "dividAnual": 0.0,
       "roeHist": {
         "2020": 10,
         "2021": 14,
@@ -3977,20 +3651,21 @@
           }
         ]
       },
-      "lpa": 0.3958,
-      "vpa": 5.4286
+      "lpa": -0.8822,
+      "vpa": 5.4286,
+      "cotacaoRef": 11.24
     },
     {
       "ticker": "HYPE3",
       "nome": "Hypera",
       "setor": "Saúde",
-      "cotacao": 43,
-      "pl": 11.8,
-      "pvp": 2.5,
-      "roe": 21.5,
-      "dy": 7.9,
+      "cotacao": 20.24,
+      "pl": 7.7,
+      "pvp": 1.01,
+      "roe": 11.91,
+      "dy": 4.19,
       "divEbitda": 1.5,
-      "margem": 28.5,
+      "margem": 19.48,
       "cagrLucro": 14.5,
       "rating": 4,
       "recomendacao": "COMPRAR",
@@ -4011,7 +3686,7 @@
         "2025": 142
       },
       "varTotal": 42,
-      "dividAnual": 3.4,
+      "dividAnual": 0.85,
       "roeHist": {
         "2020": 16,
         "2021": 18,
@@ -4073,20 +3748,21 @@
           }
         ]
       },
-      "lpa": 3.6441,
-      "vpa": 17.2
+      "lpa": 2.6372,
+      "vpa": 17.2,
+      "cotacaoRef": 20.24
     },
     {
       "ticker": "ALOS3",
       "nome": "Allos",
       "setor": "Shoppings / Imóveis",
-      "cotacao": 27,
-      "pl": 14.5,
-      "pvp": 1.8,
-      "roe": 12.5,
-      "dy": 10.5,
+      "cotacao": 27.1,
+      "pl": 12.5,
+      "pvp": 1.05,
+      "roe": 6.39,
+      "dy": 10.14,
       "divEbitda": 3.8,
-      "margem": 38.5,
+      "margem": 28.81,
       "cagrLucro": 25.5,
       "rating": 4,
       "recomendacao": "COMPRAR",
@@ -4107,7 +3783,7 @@
         "2025": 138
       },
       "varTotal": 38,
-      "dividAnual": 2.84,
+      "dividAnual": 2.75,
       "roeHist": {
         "2020": 6,
         "2021": 7,
@@ -4169,20 +3845,21 @@
           }
         ]
       },
-      "lpa": 1.8621,
-      "vpa": 15.0
+      "lpa": 2.1671,
+      "vpa": 15.0,
+      "cotacaoRef": 27.1
     },
     {
       "ticker": "MULT3",
       "nome": "Multiplan",
       "setor": "Shoppings / Imóveis",
-      "cotacao": 28.69,
-      "pl": 14.8,
-      "pvp": 2.2,
-      "roe": 15.2,
-      "dy": 7.6,
+      "cotacao": 28.35,
+      "pl": 11.3,
+      "pvp": 2.25,
+      "roe": 18.89,
+      "dy": 2.95,
       "divEbitda": 2.8,
-      "margem": 42.5,
+      "margem": 40.23,
       "cagrLucro": 15.5,
       "rating": 4,
       "recomendacao": "COMPRAR",
@@ -4203,7 +3880,7 @@
         "2025": 145
       },
       "varTotal": 45,
-      "dividAnual": 2.18,
+      "dividAnual": 0.84,
       "roeHist": {
         "2020": 8,
         "2021": 10,
@@ -4265,20 +3942,21 @@
           }
         ]
       },
-      "lpa": 1.9385,
-      "vpa": 13.0409
+      "lpa": 2.5001,
+      "vpa": 13.0409,
+      "cotacaoRef": 28.35
     },
     {
       "ticker": "IGTI11",
       "nome": "Iguatemi",
       "setor": "Shoppings / Imóveis",
-      "cotacao": 27.18,
+      "cotacao": 24.59,
       "pl": 14.8,
-      "pvp": 2,
-      "roe": 13.5,
-      "dy": 7.2,
+      "pvp": 2.03,
+      "roe": 14.63,
+      "dy": 2.06,
       "divEbitda": 3,
-      "margem": 38,
+      "margem": 46.51,
       "cagrLucro": 12.5,
       "rating": 3,
       "recomendacao": "NEUTRO",
@@ -4299,7 +3977,7 @@
         "2025": 128
       },
       "varTotal": 28,
-      "dividAnual": 2.02,
+      "dividAnual": 0.51,
       "roeHist": {
         "2020": 7,
         "2021": 9,
@@ -4361,19 +4039,20 @@
         ]
       },
       "lpa": 1.8365,
-      "vpa": 13.59
+      "vpa": 13.59,
+      "cotacaoRef": 24.59
     },
     {
       "ticker": "CURY3",
       "nome": "Cury",
       "setor": "Shoppings / Imóveis",
-      "cotacao": 32.11,
-      "pl": 10,
-      "pvp": 4.9,
-      "roe": 48.5,
-      "dy": 13.6,
+      "cotacao": 29.95,
+      "pl": 8.4,
+      "pvp": 5.97,
+      "roe": 68.95,
+      "dy": 14.07,
       "divEbitda": 0.5,
-      "margem": 18.5,
+      "margem": 18.37,
       "cagrLucro": 38.5,
       "rating": 5,
       "recomendacao": "COMPRAR",
@@ -4394,7 +4073,7 @@
         "2025": 385
       },
       "varTotal": 285,
-      "dividAnual": 4.57,
+      "dividAnual": 4.21,
       "roeHist": {
         "2020": 30,
         "2021": 38,
@@ -4456,20 +4135,21 @@
           }
         ]
       },
-      "lpa": 3.211,
-      "vpa": 6.5531
+      "lpa": 3.5825,
+      "vpa": 6.5531,
+      "cotacaoRef": 29.95
     },
     {
       "ticker": "DIRR3",
       "nome": "Direcional",
       "setor": "Shoppings / Imóveis",
-      "cotacao": 13.27,
-      "pl": 3.3,
-      "pvp": 1.8,
-      "roe": 41,
-      "dy": 15,
+      "cotacao": 11.53,
+      "pl": 7.1,
+      "pvp": 2.82,
+      "roe": 39.35,
+      "dy": 13.44,
       "divEbitda": 0.4,
-      "margem": 16.5,
+      "margem": 18.16,
       "cagrLucro": 32.5,
       "rating": 5,
       "recomendacao": "COMPRAR",
@@ -4490,7 +4170,7 @@
         "2025": 295
       },
       "varTotal": 195,
-      "dividAnual": 1.99,
+      "dividAnual": 1.55,
       "roeHist": {
         "2020": 22,
         "2021": 28,
@@ -4552,20 +4232,21 @@
           }
         ]
       },
-      "lpa": 4.0212,
-      "vpa": 7.3722
+      "lpa": 1.6127,
+      "vpa": 7.3722,
+      "cotacaoRef": 11.53
     },
     {
       "ticker": "CYRE3",
       "nome": "Cyrela",
       "setor": "Shoppings / Imóveis",
-      "cotacao": 21.36,
-      "pl": 7.2,
-      "pvp": 1.7,
-      "roe": 23.2,
-      "dy": 7.9,
+      "cotacao": 21.18,
+      "pl": 4.0,
+      "pvp": 0.9,
+      "roe": 18.6,
+      "dy": 12.89,
       "divEbitda": 1,
-      "margem": 20.5,
+      "margem": 20.81,
       "cagrLucro": 15.5,
       "rating": 4,
       "recomendacao": "COMPRAR",
@@ -4586,7 +4267,7 @@
         "2025": 155
       },
       "varTotal": 55,
-      "dividAnual": 2.21,
+      "dividAnual": 2.73,
       "roeHist": {
         "2020": 14,
         "2021": 18,
@@ -4648,20 +4329,21 @@
           }
         ]
       },
-      "lpa": 2.9667,
-      "vpa": 12.5647
+      "lpa": 5.2649,
+      "vpa": 12.5647,
+      "cotacaoRef": 21.18
     },
     {
       "ticker": "POMO4",
       "nome": "Marcopolo",
       "setor": "Ind. / Transporte",
-      "cotacao": 5.86,
-      "pl": 1.8,
-      "pvp": 0.8,
-      "roe": 28.5,
-      "dy": 8.9,
+      "cotacao": 5.1,
+      "pl": 5.0,
+      "pvp": 1.57,
+      "roe": 30.72,
+      "dy": 20.2,
       "divEbitda": 0.8,
-      "margem": 12.5,
+      "margem": 13.81,
       "cagrLucro": 28.5,
       "rating": 5,
       "recomendacao": "COMPRAR",
@@ -4682,7 +4364,7 @@
         "2025": 268
       },
       "varTotal": 168,
-      "dividAnual": 0.62,
+      "dividAnual": 1.03,
       "roeHist": {
         "2020": 14,
         "2021": 20,
@@ -4744,20 +4426,21 @@
           }
         ]
       },
-      "lpa": 3.2556,
-      "vpa": 7.325
+      "lpa": 1.0275,
+      "vpa": 7.325,
+      "cotacaoRef": 5.1
     },
     {
       "ticker": "WEGE3",
       "nome": "WEG",
       "setor": "Ind. / Transporte",
-      "cotacao": 42.61,
-      "pl": 27.9,
-      "pvp": 7.7,
-      "roe": 27,
-      "dy": 6,
+      "cotacao": 42.47,
+      "pl": 28.3,
+      "pvp": 10.05,
+      "roe": 35.43,
+      "dy": 3.18,
       "divEbitda": 0,
-      "margem": 16.5,
+      "margem": 15.64,
       "cagrLucro": 22.5,
       "rating": 4,
       "recomendacao": "COMPRAR",
@@ -4778,7 +4461,7 @@
         "2025": 265
       },
       "varTotal": 165,
-      "dividAnual": 2.82,
+      "dividAnual": 1.35,
       "roeHist": {
         "2020": 22,
         "2021": 26,
@@ -4848,8 +4531,195 @@
           }
         ]
       },
-      "lpa": 1.5272,
-      "vpa": 5.5338
+      "lpa": 1.4985,
+      "vpa": 5.5338,
+      "cotacaoRef": 42.47
+    },
+    {
+      "ticker": "MOTV3",
+      "nome": "Motiva",
+      "setor": "Concessões / Logística",
+      "cotacao": 14.46,
+      "pl": 8.7,
+      "pvp": 1.78,
+      "roe": 20.58,
+      "dy": 2.69,
+      "divEbitda": 4.2,
+      "margem": 18.04,
+      "cagrLucro": 5.5,
+      "rating": 3,
+      "recomendacao": "NEUTRO",
+      "dyHist": {
+        "2020": 2.8,
+        "2021": 3.5,
+        "2022": 5.5,
+        "2023": 6.8,
+        "2024": 7.2,
+        "2025": 7.2
+      },
+      "cotHist": {
+        "2020": 100,
+        "2021": 108,
+        "2022": 115,
+        "2023": 112,
+        "2024": 112,
+        "2025": 108
+      },
+      "varTotal": 8,
+      "dividAnual": 0.39,
+      "roeHist": {
+        "2020": 12,
+        "2021": 16,
+        "2022": 19,
+        "2023": 20,
+        "2024": 21,
+        "2025": 21
+      },
+      "margHist": {
+        "2020": 9,
+        "2021": 11,
+        "2022": 12,
+        "2023": 12,
+        "2024": 13,
+        "2025": 13
+      },
+      "resumo": "Maior concessionária do Brasil. Receita de pedágio indexada. Dívida/EBITDA de 4,2x preocupa.",
+      "pontosFort": [
+        "Portfólio diversificado de concessões",
+        "Receita indexada e previsível"
+      ],
+      "pontosAten": [
+        "Dívida/EBITDA de 4,2x",
+        "P/L acima da média do setor"
+      ],
+      "analistas": {
+        "atualizacao": "abr/2026",
+        "cotacaoRef": 14.5,
+        "consenso": "NEUTRO",
+        "nAnalistas": 8,
+        "nComprar": 3,
+        "nNeutro": 5,
+        "nVender": 0,
+        "alvoMedio": 16,
+        "alvoMax": 20,
+        "alvoMin": 13,
+        "casas": [
+          {
+            "casa": "BofA",
+            "rec": "NEUTRO",
+            "alvo": 14.5,
+            "data": "2024",
+            "nota": "Neutro; nome defensivo com valuation justo. Cortou alvo de R$16 para R$14,50 refletindo menor crescimento de tráfego."
+          },
+          {
+            "casa": "Santander",
+            "rec": "NEUTRO",
+            "alvo": 16,
+            "data": "abr/2026",
+            "nota": "Neutro; resultados do 2T25 positivos com expansão de tráfego, mas dívida elevada limita retorno para o acionista."
+          },
+          {
+            "casa": "BTG Pactual",
+            "rec": "COMPRAR",
+            "alvo": 19,
+            "data": "mar/2026",
+            "nota": "Compra; ciclo robusto de leilões em rodovias favorece posição de longo prazo da CCR no setor de concessões."
+          }
+        ]
+      },
+      "lpa": 1.6719,
+      "vpa": 8.1236,
+      "cotacaoRef": 14.46
+    },
+    {
+      "ticker": "AXIA3",
+      "nome": "Axia Energia",
+      "setor": "Energia Elétrica",
+      "cotacao": 50.46,
+      "pl": 14.9,
+      "pvp": 1.23,
+      "roe": 7.88,
+      "dy": 7.23,
+      "divEbitda": 3.5,
+      "margem": 21.89,
+      "cagrLucro": 42,
+      "rating": 4,
+      "recomendacao": "COMPRAR",
+      "dyHist": {
+        "2020": 3.5,
+        "2021": 3.5,
+        "2022": 4,
+        "2023": 7.2,
+        "2024": 8.5,
+        "2025": 8.7
+      },
+      "cotHist": {
+        "2020": 100,
+        "2021": 100,
+        "2022": 118,
+        "2023": 202,
+        "2024": 268,
+        "2025": 310
+      },
+      "varTotal": 210,
+      "dividAnual": 3.65,
+      "roeHist": {
+        "2020": null,
+        "2021": null,
+        "2022": 10,
+        "2023": 14,
+        "2024": 16,
+        "2025": 18
+      },
+      "margHist": {
+        "2020": null,
+        "2021": null,
+        "2022": 12,
+        "2023": 18,
+        "2024": 21,
+        "2025": 22
+      },
+      "resumo": "Maior turnaround pós-privatização da B3. CAGR de 42% desde 2022. P/L de 6,8x atrativo.",
+      "pontosFort": [
+        "Maior turnaround da B3 pós-privatização",
+        "Revisão tarifária a cada ciclo",
+        "CAGR de 42%"
+      ],
+      "pontosAten": [
+        "Dívida/EBITDA de 3,5x",
+        "Depende de revisões tarifárias favoráveis"
+      ],
+      "analistas": {
+        "atualizacao": "jan/2026",
+        "cotacaoRef": 25,
+        "consenso": "COMPRAR",
+        "nAnalistas": 8,
+        "nComprar": 6,
+        "nNeutro": 2,
+        "nVender": 0,
+        "alvoMedio": 27,
+        "alvoMax": 32,
+        "alvoMin": 22,
+        "casas": [
+          {
+            "casa": "XP Investimentos",
+            "rec": "COMPRAR",
+            "alvo": 31.65,
+            "data": "jan/2026",
+            "nota": "Compra; TIR real de 10,1% vs. pares. Upside estrutural com alta de 18% nos preços de energia de longo prazo."
+          },
+          {
+            "casa": "JPMorgan",
+            "rec": "COMPRAR",
+            "alvo": 24,
+            "data": "jan/2026",
+            "nota": "Cortou alvo por geração fraca no 4T25, mas vê Axia entre as mais favorecidas pela alta de preços em 2026. Compra."
+          }
+        ]
+      },
+      "lpa": 3.3932,
+      "vpa": 41.0244,
+      "cotacaoRef": 50.46
     }
   ]
 }
