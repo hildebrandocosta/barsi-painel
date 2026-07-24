@@ -1,7 +1,7 @@
 {
   "meta": {
     "versao": "1.0",
-    "atualizacao": "2026-07-21",
+    "atualizacao": "2026-07-23",
     "hist6": [
       2020,
       2021,
@@ -39,8 +39,8 @@
       "ticker": "BBSE3",
       "nome": "BB Seguridade",
       "setor": "Seguros",
-      "cotacao": 41.55,
-      "pl": 8.8,
+      "cotacao": 42.4,
+      "pl": 9.0,
       "pvp": 6.38,
       "roe": 72.72,
       "dy": 10.95,
@@ -145,13 +145,13 @@
       },
       "lpa": 4.7354,
       "vpa": 11.8344,
-      "cotacaoRef": 41.55
+      "cotacaoRef": 42.4
     },
     {
       "ticker": "CXSE3",
       "nome": "Caixa Seguridade",
       "setor": "Seguros",
-      "cotacao": 22.33,
+      "cotacao": 22.44,
       "pl": 15.3,
       "pvp": 4.86,
       "roe": 31.89,
@@ -235,14 +235,14 @@
       },
       "lpa": 1.4638,
       "vpa": 4.8214,
-      "cotacaoRef": 22.33
+      "cotacaoRef": 22.44
     },
     {
       "ticker": "PSSA3",
       "nome": "Porto Seguro",
       "setor": "Seguros",
-      "cotacao": 53.48,
-      "pl": 9.4,
+      "cotacao": 55.18,
+      "pl": 9.7,
       "pvp": 2.23,
       "roe": 23.7,
       "dy": 5.63,
@@ -332,14 +332,14 @@
       },
       "lpa": 5.6883,
       "vpa": 18.9655,
-      "cotacaoRef": 53.48
+      "cotacaoRef": 55.18
     },
     {
       "ticker": "IRBR3",
       "nome": "IRB Brasil RE",
       "setor": "Seguros",
-      "cotacao": 55.8,
-      "pl": 13.0,
+      "cotacao": 54.1,
+      "pl": 12.6,
       "pvp": 0.86,
       "roe": 6.59,
       "dy": 2.79,
@@ -436,13 +436,13 @@
       },
       "lpa": 4.2868,
       "vpa": 43.9333,
-      "cotacaoRef": 55.8
+      "cotacaoRef": 54.1
     },
     {
       "ticker": "ITUB4",
       "nome": "Itaú Unibanco",
       "setor": "Bancos",
-      "cotacao": 42.53,
+      "cotacao": 42.56,
       "pl": 10.2,
       "pvp": 2.24,
       "roe": 21.93,
@@ -542,14 +542,14 @@
       },
       "lpa": 4.1584,
       "vpa": 19.0176,
-      "cotacaoRef": 42.53
+      "cotacaoRef": 42.56
     },
     {
       "ticker": "ITSA4",
       "nome": "Itaúsa",
       "setor": "Bancos",
-      "cotacao": 13.62,
-      "pl": 9.0,
+      "cotacao": 13.73,
+      "pl": 9.1,
       "pvp": 1.69,
       "roe": 18.83,
       "dy": 9.71,
@@ -639,13 +639,13 @@
       },
       "lpa": 1.5165,
       "vpa": 9.9231,
-      "cotacaoRef": 13.62
+      "cotacaoRef": 13.73
     },
     {
       "ticker": "BBAS3",
       "nome": "Banco do Brasil",
       "setor": "Bancos",
-      "cotacao": 20.88,
+      "cotacao": 20.93,
       "pl": 9.4,
       "pvp": 0.62,
       "roe": 8.2,
@@ -743,13 +743,13 @@
       },
       "lpa": 2.217,
       "vpa": 21.6222,
-      "cotacaoRef": 20.88
+      "cotacaoRef": 20.93
     },
     {
       "ticker": "SANB11",
       "nome": "Santander BR",
       "setor": "Bancos",
-      "cotacao": 27.21,
+      "cotacao": 26.63,
       "pl": 8.1,
       "pvp": 0.81,
       "roe": 10.34,
@@ -846,14 +846,14 @@
       },
       "lpa": 3.363,
       "vpa": 22.7,
-      "cotacaoRef": 27.21
+      "cotacaoRef": 26.63
     },
     {
       "ticker": "BBDC4",
       "nome": "Bradesco",
       "setor": "Bancos",
-      "cotacao": 18.55,
-      "pl": 8.4,
+      "cotacao": 18.72,
+      "pl": 8.5,
       "pvp": 1.09,
       "roe": 13.06,
       "dy": 6.78,
@@ -956,13 +956,13 @@
       },
       "lpa": 2.1979,
       "vpa": 17.8,
-      "cotacaoRef": 18.55
+      "cotacaoRef": 18.72
     },
     {
       "ticker": "BPAC11",
       "nome": "BTG Pactual",
       "setor": "Bancos",
-      "cotacao": 55.37,
+      "cotacao": 56.3,
       "pl": 13.4,
       "pvp": 2.76,
       "roe": 22.52,
@@ -1053,13 +1053,13 @@
       },
       "lpa": 3.7604,
       "vpa": 17.9964,
-      "cotacaoRef": 55.37
+      "cotacaoRef": 56.3
     },
     {
       "ticker": "TAEE11",
       "nome": "Taesa",
       "setor": "Transmissão Elétrica",
-      "cotacao": 41.13,
+      "cotacao": 41.42,
       "pl": 8.5,
       "pvp": 1.78,
       "roe": 19.7,
@@ -1150,13 +1150,13 @@
       },
       "lpa": 4.4706,
       "vpa": 21.1111,
-      "cotacaoRef": 41.13
+      "cotacaoRef": 41.42
     },
     {
       "ticker": "ISAE4",
       "nome": "ISA Energia",
       "setor": "Transmissão Elétrica",
-      "cotacao": 28.43,
+      "cotacao": 28.5,
       "pl": 8.0,
       "pvp": 0.87,
       "roe": 10.94,
@@ -1240,14 +1240,14 @@
       },
       "lpa": 3.5571,
       "vpa": 15.625,
-      "cotacaoRef": 28.43
+      "cotacaoRef": 28.5
     },
     {
       "ticker": "EGIE3",
       "nome": "Engie Brasil",
       "setor": "Energia Elétrica",
-      "cotacao": 30.34,
-      "pl": 13.5,
+      "cotacao": 30.15,
+      "pl": 13.4,
       "pvp": 3.16,
       "roe": 18.86,
       "dy": 4.8,
@@ -1337,14 +1337,14 @@
       },
       "lpa": 2.246,
       "vpa": 15.0,
-      "cotacaoRef": 30.34
+      "cotacaoRef": 30.15
     },
     {
       "ticker": "CMIG4",
       "nome": "Cemig",
       "setor": "Energia Elétrica",
-      "cotacao": 11.02,
-      "pl": 6.5,
+      "cotacao": 11.19,
+      "pl": 6.6,
       "pvp": 1.09,
       "roe": 16.75,
       "dy": 7.47,
@@ -1431,7 +1431,7 @@
       },
       "lpa": 1.6911,
       "vpa": 9.8636,
-      "cotacaoRef": 11.02
+      "cotacaoRef": 11.19
     },
     {
       "ticker": "CPLE6",
@@ -1533,8 +1533,8 @@
       "ticker": "CPFE3",
       "nome": "CPFL Energia",
       "setor": "Energia Elétrica",
-      "cotacao": 46.4,
-      "pl": 9.3,
+      "cotacao": 46.22,
+      "pl": 9.2,
       "pvp": 2.2,
       "roe": 23.72,
       "dy": 8.05,
@@ -1617,14 +1617,14 @@
       },
       "lpa": 5.0017,
       "vpa": 16.5,
-      "cotacaoRef": 46.4
+      "cotacaoRef": 46.22
     },
     {
       "ticker": "EQTL3",
       "nome": "Equatorial",
       "setor": "Energia Elétrica",
-      "cotacao": 38.83,
-      "pl": 31.5,
+      "cotacao": 39.02,
+      "pl": 31.6,
       "pvp": 1.89,
       "roe": 6.02,
       "dy": 4.92,
@@ -1714,14 +1714,14 @@
       },
       "lpa": 1.2345,
       "vpa": 13.8464,
-      "cotacaoRef": 38.83
+      "cotacaoRef": 39.02
     },
     {
       "ticker": "AURE3",
       "nome": "Auren Energia",
       "setor": "Energia Elétrica",
-      "cotacao": 11.21,
-      "pl": -9.1,
+      "cotacao": 11.39,
+      "pl": -9.2,
       "pvp": 0.99,
       "roe": -10.86,
       "dy": 7.8,
@@ -1803,14 +1803,14 @@
       },
       "lpa": -1.2383,
       "vpa": 11.4286,
-      "cotacaoRef": 11.21
+      "cotacaoRef": 11.39
     },
     {
       "ticker": "PETR4",
       "nome": "Petrobras PN",
       "setor": "Energia Elétrica",
-      "cotacao": 41.66,
-      "pl": 5.0,
+      "cotacao": 42.95,
+      "pl": 5.1,
       "pvp": 1.21,
       "roe": 24.17,
       "dy": 6.34,
@@ -1900,14 +1900,14 @@
       },
       "lpa": 8.3471,
       "vpa": 34.5409,
-      "cotacaoRef": 41.66
+      "cotacaoRef": 42.95
     },
     {
       "ticker": "PRIO3",
       "nome": "PRIO",
       "setor": "Energia Elétrica",
-      "cotacao": 58.18,
-      "pl": 18.2,
+      "cotacao": 60.54,
+      "pl": 19.0,
       "pvp": 1.91,
       "roe": 9.72,
       "dy": 0,
@@ -1998,14 +1998,14 @@
       },
       "lpa": 3.1935,
       "vpa": 17.0389,
-      "cotacaoRef": 58.18
+      "cotacaoRef": 60.54
     },
     {
       "ticker": "SBSP3",
       "nome": "Sabesp",
       "setor": "Saneamento",
-      "cotacao": 28.6,
-      "pl": 11.4,
+      "cotacao": 28.75,
+      "pl": 11.5,
       "pvp": 2.31,
       "roe": 19.97,
       "dy": 2.43,
@@ -2102,13 +2102,13 @@
       },
       "lpa": 2.4979,
       "vpa": 9.8286,
-      "cotacaoRef": 28.6
+      "cotacaoRef": 28.75
     },
     {
       "ticker": "SAPR11",
       "nome": "Sanepar",
       "setor": "Saneamento",
-      "cotacao": 36.16,
+      "cotacao": 36.47,
       "pl": 5.9,
       "pvp": 0.86,
       "roe": 9.64,
@@ -2199,14 +2199,14 @@
       },
       "lpa": 4.5763,
       "vpa": 24.5455,
-      "cotacaoRef": 36.16
+      "cotacaoRef": 36.47
     },
     {
       "ticker": "CSMG3",
       "nome": "Copasa",
       "setor": "Saneamento",
-      "cotacao": 63.16,
-      "pl": 17.7,
+      "cotacao": 63.95,
+      "pl": 17.9,
       "pvp": 2.74,
       "roe": 15.46,
       "dy": 3.47,
@@ -2296,14 +2296,14 @@
       },
       "lpa": 3.5744,
       "vpa": 23.0513,
-      "cotacaoRef": 63.16
+      "cotacaoRef": 63.95
     },
     {
       "ticker": "VIVT3",
       "nome": "Vivo (Telefônica)",
       "setor": "Telecom",
-      "cotacao": 35.8,
-      "pl": 18.0,
+      "cotacao": 34.7,
+      "pl": 17.5,
       "pvp": 1.66,
       "roe": 9.17,
       "dy": 2.97,
@@ -2393,14 +2393,14 @@
       },
       "lpa": 1.9851,
       "vpa": 21.6667,
-      "cotacaoRef": 35.8
+      "cotacaoRef": 34.7
     },
     {
       "ticker": "TIMS3",
       "nome": "TIM",
       "setor": "Telecom",
-      "cotacao": 22.67,
-      "pl": 12.6,
+      "cotacao": 21.25,
+      "pl": 11.8,
       "pvp": 4.5,
       "roe": 16.69,
       "dy": 7.0,
@@ -2490,14 +2490,14 @@
       },
       "lpa": 1.7995,
       "vpa": 10.0,
-      "cotacaoRef": 22.67
+      "cotacaoRef": 21.25
     },
     {
       "ticker": "B3SA3",
       "nome": "B3",
       "setor": "Infraestrutura Financeira",
-      "cotacao": 15.17,
-      "pl": 15.7,
+      "cotacao": 15.65,
+      "pl": 16.2,
       "pvp": 4.19,
       "roe": 27.15,
       "dy": 4.01,
@@ -2594,14 +2594,14 @@
       },
       "lpa": 0.9674,
       "vpa": 3.4614,
-      "cotacaoRef": 15.17
+      "cotacaoRef": 15.65
     },
     {
       "ticker": "TOTS3",
       "nome": "Totvs",
       "setor": "Infraestrutura Financeira",
-      "cotacao": 28.57,
-      "pl": 18.1,
+      "cotacao": 27.05,
+      "pl": 17.1,
       "pvp": 3.45,
       "roe": 18.65,
       "dy": 2.38,
@@ -2698,14 +2698,14 @@
       },
       "lpa": 1.5775,
       "vpa": 9.0303,
-      "cotacaoRef": 28.57
+      "cotacaoRef": 27.05
     },
     {
       "ticker": "ECOR3",
       "nome": "Ecorodovias",
       "setor": "Concessões / Logística",
-      "cotacao": 6.8,
-      "pl": 6.5,
+      "cotacao": 6.96,
+      "pl": 6.6,
       "pvp": 1.16,
       "roe": 17.81,
       "dy": 4.54,
@@ -2787,14 +2787,14 @@
       },
       "lpa": 1.0482,
       "vpa": 6.6091,
-      "cotacaoRef": 6.8
+      "cotacaoRef": 6.96
     },
     {
       "ticker": "RAIL3",
       "nome": "Rumo",
       "setor": "Concessões / Logística",
-      "cotacao": 13.24,
-      "pl": 23.6,
+      "cotacao": 13.96,
+      "pl": 24.9,
       "pvp": 1.77,
       "roe": 7.49,
       "dy": 0.82,
@@ -2884,14 +2884,14 @@
       },
       "lpa": 0.5604,
       "vpa": 6.4381,
-      "cotacaoRef": 13.24
+      "cotacaoRef": 13.96
     },
     {
       "ticker": "VBBR3",
       "nome": "Vibra Energia",
       "setor": "Concessões / Logística",
-      "cotacao": 33.95,
-      "pl": 13.3,
+      "cotacao": 35.6,
+      "pl": 13.9,
       "pvp": 1.87,
       "roe": 13.83,
       "dy": 4.6,
@@ -2981,14 +2981,14 @@
       },
       "lpa": 2.5543,
       "vpa": 12.1458,
-      "cotacaoRef": 33.95
+      "cotacaoRef": 35.6
     },
     {
       "ticker": "UGPA3",
       "nome": "Ultrapar",
       "setor": "Concessões / Logística",
-      "cotacao": 31.82,
-      "pl": 11.5,
+      "cotacao": 33.39,
+      "pl": 12.1,
       "pvp": 2.16,
       "roe": 18.19,
       "dy": 4.09,
@@ -3077,14 +3077,14 @@
       },
       "lpa": 2.7695,
       "vpa": 13.7778,
-      "cotacaoRef": 31.82
+      "cotacaoRef": 33.39
     },
     {
       "ticker": "RENT3",
       "nome": "Localiza",
       "setor": "Concessões / Logística",
-      "cotacao": 36.55,
-      "pl": 17.4,
+      "cotacao": 37.14,
+      "pl": 17.7,
       "pvp": 1.56,
       "roe": 8.57,
       "dy": 5.71,
@@ -3174,14 +3174,14 @@
       },
       "lpa": 2.0947,
       "vpa": 13.5667,
-      "cotacaoRef": 36.55
+      "cotacaoRef": 37.14
     },
     {
       "ticker": "MDIA3",
       "nome": "M. Dias Branco",
       "setor": "Consumo não-cíclico",
-      "cotacao": 17.52,
-      "pl": 8.4,
+      "cotacao": 17.29,
+      "pl": 8.3,
       "pvp": 0.71,
       "roe": 8.33,
       "dy": 6.03,
@@ -3271,14 +3271,14 @@
       },
       "lpa": 2.0774,
       "vpa": 18.6364,
-      "cotacaoRef": 17.52
+      "cotacaoRef": 17.29
     },
     {
       "ticker": "ABEV3",
       "nome": "Ambev",
       "setor": "Consumo não-cíclico",
-      "cotacao": 15.8,
-      "pl": 15.8,
+      "cotacao": 15.92,
+      "pl": 15.9,
       "pvp": 2.76,
       "roe": 17.28,
       "dy": 8.28,
@@ -3369,14 +3369,14 @@
       },
       "lpa": 0.9984,
       "vpa": 5.5367,
-      "cotacaoRef": 15.8
+      "cotacaoRef": 15.92
     },
     {
       "ticker": "GRND3",
       "nome": "Grendene",
       "setor": "Consumo não-cíclico",
-      "cotacao": 3.78,
-      "pl": 5.4,
+      "cotacao": 3.66,
+      "pl": 5.2,
       "pvp": 1.08,
       "roe": 19.96,
       "dy": 37.59,
@@ -3459,13 +3459,13 @@
       },
       "lpa": 0.7025,
       "vpa": 13.8889,
-      "cotacaoRef": 3.78
+      "cotacaoRef": 3.66
     },
     {
       "ticker": "FLRY3",
       "nome": "Fleury",
       "setor": "Saúde",
-      "cotacao": 16.55,
+      "cotacao": 16.58,
       "pl": 14.2,
       "pvp": 1.75,
       "roe": 12.25,
@@ -3556,14 +3556,14 @@
       },
       "lpa": 1.1647,
       "vpa": 10.0,
-      "cotacaoRef": 16.55
+      "cotacaoRef": 16.58
     },
     {
       "ticker": "HAPV3",
       "nome": "Hapvida",
       "setor": "Saúde",
-      "cotacao": 11.24,
-      "pl": -12.7,
+      "cotacao": 10.47,
+      "pl": -11.9,
       "pvp": 0.12,
       "roe": -0.89,
       "dy": 0.0,
@@ -3653,14 +3653,14 @@
       },
       "lpa": -0.8822,
       "vpa": 5.4286,
-      "cotacaoRef": 11.24
+      "cotacaoRef": 10.47
     },
     {
       "ticker": "HYPE3",
       "nome": "Hypera",
       "setor": "Saúde",
-      "cotacao": 20.24,
-      "pl": 7.7,
+      "cotacao": 20.1,
+      "pl": 7.6,
       "pvp": 1.01,
       "roe": 11.91,
       "dy": 4.19,
@@ -3750,14 +3750,14 @@
       },
       "lpa": 2.6372,
       "vpa": 17.2,
-      "cotacaoRef": 20.24
+      "cotacaoRef": 20.1
     },
     {
       "ticker": "ALOS3",
       "nome": "Allos",
       "setor": "Shoppings / Imóveis",
-      "cotacao": 27.1,
-      "pl": 12.5,
+      "cotacao": 26.93,
+      "pl": 12.4,
       "pvp": 1.05,
       "roe": 6.39,
       "dy": 10.14,
@@ -3847,14 +3847,14 @@
       },
       "lpa": 2.1671,
       "vpa": 15.0,
-      "cotacaoRef": 27.1
+      "cotacaoRef": 26.93
     },
     {
       "ticker": "MULT3",
       "nome": "Multiplan",
       "setor": "Shoppings / Imóveis",
-      "cotacao": 28.35,
-      "pl": 11.3,
+      "cotacao": 28.43,
+      "pl": 11.4,
       "pvp": 2.25,
       "roe": 18.89,
       "dy": 2.95,
@@ -3944,13 +3944,13 @@
       },
       "lpa": 2.5001,
       "vpa": 13.0409,
-      "cotacaoRef": 28.35
+      "cotacaoRef": 28.43
     },
     {
       "ticker": "IGTI11",
       "nome": "Iguatemi",
       "setor": "Shoppings / Imóveis",
-      "cotacao": 24.59,
+      "cotacao": 24.73,
       "pl": 14.8,
       "pvp": 2.03,
       "roe": 14.63,
@@ -4040,14 +4040,14 @@
       },
       "lpa": 1.8365,
       "vpa": 13.59,
-      "cotacaoRef": 24.59
+      "cotacaoRef": 24.73
     },
     {
       "ticker": "CURY3",
       "nome": "Cury",
       "setor": "Shoppings / Imóveis",
-      "cotacao": 29.95,
-      "pl": 8.4,
+      "cotacao": 29.62,
+      "pl": 8.3,
       "pvp": 5.97,
       "roe": 68.95,
       "dy": 14.07,
@@ -4137,14 +4137,14 @@
       },
       "lpa": 3.5825,
       "vpa": 6.5531,
-      "cotacaoRef": 29.95
+      "cotacaoRef": 29.62
     },
     {
       "ticker": "DIRR3",
       "nome": "Direcional",
       "setor": "Shoppings / Imóveis",
-      "cotacao": 11.53,
-      "pl": 7.1,
+      "cotacao": 11.63,
+      "pl": 7.2,
       "pvp": 2.82,
       "roe": 39.35,
       "dy": 13.44,
@@ -4234,14 +4234,14 @@
       },
       "lpa": 1.6127,
       "vpa": 7.3722,
-      "cotacaoRef": 11.53
+      "cotacaoRef": 11.63
     },
     {
       "ticker": "CYRE3",
       "nome": "Cyrela",
       "setor": "Shoppings / Imóveis",
-      "cotacao": 21.18,
-      "pl": 4.0,
+      "cotacao": 20.66,
+      "pl": 3.9,
       "pvp": 0.9,
       "roe": 18.6,
       "dy": 12.89,
@@ -4331,14 +4331,14 @@
       },
       "lpa": 5.2649,
       "vpa": 12.5647,
-      "cotacaoRef": 21.18
+      "cotacaoRef": 20.66
     },
     {
       "ticker": "POMO4",
       "nome": "Marcopolo",
       "setor": "Ind. / Transporte",
-      "cotacao": 5.1,
-      "pl": 5.0,
+      "cotacao": 5.26,
+      "pl": 5.1,
       "pvp": 1.57,
       "roe": 30.72,
       "dy": 20.2,
@@ -4428,14 +4428,14 @@
       },
       "lpa": 1.0275,
       "vpa": 7.325,
-      "cotacaoRef": 5.1
+      "cotacaoRef": 5.26
     },
     {
       "ticker": "WEGE3",
       "nome": "WEG",
       "setor": "Ind. / Transporte",
-      "cotacao": 42.47,
-      "pl": 28.3,
+      "cotacao": 45.67,
+      "pl": 30.6,
       "pvp": 10.05,
       "roe": 35.43,
       "dy": 3.18,
@@ -4531,15 +4531,15 @@
           }
         ]
       },
-      "lpa": 1.4985,
+      "lpa": 1.4906,
       "vpa": 5.5338,
-      "cotacaoRef": 42.47
+      "cotacaoRef": 45.67
     },
     {
       "ticker": "MOTV3",
       "nome": "Motiva",
       "setor": "Concessões / Logística",
-      "cotacao": 14.46,
+      "cotacao": 14.5,
       "pl": 8.7,
       "pvp": 1.78,
       "roe": 20.58,
@@ -4629,14 +4629,14 @@
       },
       "lpa": 1.6719,
       "vpa": 8.1236,
-      "cotacaoRef": 14.46
+      "cotacaoRef": 14.5
     },
     {
       "ticker": "AXIA3",
       "nome": "Axia Energia",
       "setor": "Energia Elétrica",
-      "cotacao": 50.46,
-      "pl": 14.9,
+      "cotacao": 51.39,
+      "pl": 15.1,
       "pvp": 1.23,
       "roe": 7.88,
       "dy": 7.23,
@@ -4719,7 +4719,7 @@
       },
       "lpa": 3.3932,
       "vpa": 41.0244,
-      "cotacaoRef": 50.46
+      "cotacaoRef": 51.39
     }
   ]
 }
