@@ -38,7 +38,7 @@ GITHUB_REPO_PATH = Path(__file__).parent.parent
 
 TICKERS = [
   "BBSE3","CXSE3","PSSA3","IRBR3","ITUB4","ITSA4","BBAS3","SANB11","BBDC4","BPAC11",
-  "TAEE11","ISAE4","EGIE3","CMIG4","CPLE6","AXIA3","CPFE3","EQTL3",
+  "TAEE11","ISAE4","EGIE3","CMIG4","CPLE3","AXIA3","CPFE3","EQTL3",
   "AURE3","PETR4","PRIO3","SBSP3","SAPR11","CSMG3","VIVT3","TIMS3","B3SA3","TOTS3",
   "MOTV3","ECOR3","RAIL3","VBBR3","UGPA3","RENT3","MDIA3","ABEV3","GRND3","FLRY3",
   "HAPV3","HYPE3","ALOS3","MULT3","IGTI11","CURY3","DIRR3","CYRE3","POMO4","WEGE3",
@@ -56,7 +56,7 @@ def carregar_json():
         return json.load(f)
 
 def salvar_json(data):
-    data["meta"]["atualizacao"] = datetime.now().strftime("%Y-%m-%d")
+    # Datas dos dados só avançam após resposta válida do provedor.
     with open(JSON_PATH, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
     log(f"barsi-data.json salvo: {JSON_PATH.stat().st_size:,} bytes", "💾")
@@ -64,7 +64,7 @@ def salvar_json(data):
 # ─── 1. COTAÇÕES + FUNDAMENTOS via brapi.dev ──────────────────────────────────
 def atualizar_fundamentos(data, tickers=None):
     import requests
-    tickers = tickers or TICKERS
+    tickers = tickers or [a["ticker"] for a in data["acoes"]]
     log(f"Buscando cotações e fundamentos de {len(tickers)} ações...", "📡")
 
     acoes_map = {a["ticker"]: a for a in data["acoes"]}
@@ -73,7 +73,8 @@ def atualizar_fundamentos(data, tickers=None):
 
     for ticker in tickers:  # 1 por vez — plano gratuito da brapi
         url = f"https://brapi.dev/api/quote/{ticker}"
-        params = {"token": BRAPI_TOKEN}
+        params = {"modules": "defaultKeyStatistics,financialData"}
+        if BRAPI_TOKEN: params["token"] = BRAPI_TOKEN
         try:
             r = requests.get(url, params=params, timeout=15)
             if r.status_code == 401:
@@ -85,12 +86,31 @@ def atualizar_fundamentos(data, tickers=None):
             results = r.json().get("results", [])
             if not results:
                 erros.append(ticker); continue
-            res = results[0]
+            res = next((r for r in results if r.get("symbol") == ticker), None)
+            if not res:
+                erros.append(ticker); continue
 
+            # Rejeita números não finitos e tipos inesperados sem tocar na reserva.
+            import math
+            def sane(value):
+                if isinstance(value, dict): return {k: sane(v) for k, v in value.items()}
+                if isinstance(value, float) and not math.isfinite(value): return None
+                return value
+            res = sane(res)
             a = acoes_map.get(ticker)
             if not a:
                 continue
 
+            from math import isfinite
+            preco = res.get("regularMarketPrice")
+            if not isinstance(preco, (int, float)) or isinstance(preco, bool) or not isfinite(preco) or preco <= 0:
+                erros.append(ticker); continue
+            market_date = res.get("regularMarketTime")
+            if not isinstance(market_date, str):
+                erros.append(ticker); continue
+            if a.get("cotacaoData") and market_date[:10] < a["cotacaoData"][:10]:
+                erros.append(ticker); continue
+            a["cotacaoData"] = market_date
             # ── Cotação ──────────────────────────────────────────────────────
             preco = res.get("regularMarketPrice")
             if preco and preco > 0:
@@ -125,17 +145,19 @@ def atualizar_fundamentos(data, tickers=None):
                     if preco:
                         a["vpa"] = round(preco / ptb, 4)
 
+            if stats or findata:
+                a["fundamentosConsulta"] = datetime.now().isoformat()
             roe = findata.get("returnOnEquity")
-            if roe:
+            if roe is not None:
                 a["roe"] = round(float(roe) * 100, 1)
 
             margem = findata.get("profitMargins")
-            if margem:
+            if margem is not None:
                 a["margem"] = round(float(margem) * 100, 1)
 
             # ── Dividendos → DY ──────────────────────────────────────────────
             div_rate = res.get("dividendRate")           # R$/ação 12m
-            if div_rate and div_rate > 0:
+            if div_rate is not None and div_rate >= 0:
                 a["dividAnual"] = round(float(div_rate), 2)
                 if preco:
                     a["dy"] = round(div_rate / preco * 100, 1)
@@ -145,11 +167,18 @@ def atualizar_fundamentos(data, tickers=None):
                     a["dy"] = round(float(dy_pct), 1)
                     a["dividAnual"] = round(preco * float(dy_pct) / 100, 2)
 
+            # Recalcula múltiplos mesmo quando o provedor só entrega a cotação.
+            if a.get("lpa"):
+                a["pl"] = round(preco / a["lpa"], 2)
+            if a.get("vpa"):
+                a["pvp"] = round(preco / a["vpa"], 2)
+            if a.get("dividAnual") is not None:
+                a["dy"] = round(a["dividAnual"] / preco * 100, 2)
             atualizados += 1
             log(f"  {ticker}: R${a.get('cotacao','?')} | P/L {a.get('pl','?')} | P/VP {a.get('pvp','?')} | ROE {a.get('roe','?')}% | DY {a.get('dy','?')}%", "✅")
 
         except Exception as e:
-            log(f"  {ticker}: {e}", "⚠️")
+            log(f"  {ticker}: {type(e).__name__}; dados preservados", "⚠️")
             erros.append(ticker)
 
         time.sleep(0.4)  # rate-limit
@@ -171,7 +200,7 @@ def atualizar_recomendacoes(data, tickers=None):
         return 0
 
     client = anthropic.Anthropic(api_key=ANTHROPIC_KEY)
-    tickers = tickers or TICKERS
+    tickers = tickers or [a["ticker"] for a in data["acoes"]]
     log(f"Buscando recomendações de {len(tickers)} ações via Claude...", "🤖")
 
     acoes_map = {a["ticker"]: a for a in data["acoes"]}
@@ -203,7 +232,7 @@ Priorize BTG, XP, Safra, Itaú BBA, Genial, Goldman, JPMorgan. Últimos 6 meses.
                 atualizados += 1
                 log(f"  {ticker}: {rec['consenso']} | alvo R${rec.get('alvoMedio','?')}", "✅")
         except Exception as e:
-            log(f"  {ticker}: {e}", "⚠️")
+            log(f"  {ticker}: {type(e).__name__}; dados preservados", "⚠️")
         time.sleep(2)
 
     log(f"Recomendações: {atualizados}/{len(tickers)}", "📊")
@@ -248,7 +277,11 @@ def main():
     if not args.so_cotacoes:
         rec_ok = atualizar_recomendacoes(data, tickers)
 
-    salvar_json(data)
+    if fund_ok or rec_ok:
+        salvar_json(data)
+    else:
+        log("Nenhum dado validado; arquivo e datas preservados", "⚠️")
+        return
 
     if not args.sem_push:
         partes = []

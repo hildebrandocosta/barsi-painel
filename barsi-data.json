@@ -32,7 +32,11 @@
       "Saúde": "#ef4444",
       "Shoppings / Imóveis": "#e879f9",
       "Ind. / Transporte": "#64748b"
-    }
+    },
+    "revisaoTecnica": "2026-10-21",
+    "tickerSources": [
+      "https://www.copel.com/site/noticias/copel-ingressa-no-rol-das-empresas-com-padroes-mais-elevados-de-governanca-corporativa/"
+    ]
   },
   "acoes": [
     {
@@ -145,7 +149,9 @@
       },
       "lpa": 4.7354,
       "vpa": 11.8344,
-      "cotacaoRef": 42.4
+      "cotacaoRef": 42.4,
+      "cotacaoData": "2026-07-23",
+      "fundamentosData": null
     },
     {
       "ticker": "CXSE3",
@@ -235,7 +241,9 @@
       },
       "lpa": 1.4638,
       "vpa": 4.8214,
-      "cotacaoRef": 22.44
+      "cotacaoRef": 22.44,
+      "cotacaoData": "2026-07-23",
+      "fundamentosData": null
     },
     {
       "ticker": "PSSA3",
@@ -332,7 +340,9 @@
       },
       "lpa": 5.6883,
       "vpa": 18.9655,
-      "cotacaoRef": 55.18
+      "cotacaoRef": 55.18,
+      "cotacaoData": "2026-07-23",
+      "fundamentosData": null
     },
     {
       "ticker": "IRBR3",
@@ -436,7 +446,9 @@
       },
       "lpa": 4.2868,
       "vpa": 43.9333,
-      "cotacaoRef": 54.1
+      "cotacaoRef": 54.1,
+      "cotacaoData": "2026-07-23",
+      "fundamentosData": null
     },
     {
       "ticker": "ITUB4",
@@ -542,7 +554,9 @@
       },
       "lpa": 4.1584,
       "vpa": 19.0176,
-      "cotacaoRef": 42.56
+      "cotacaoRef": 42.56,
+      "cotacaoData": "2026-07-23",
+      "fundamentosData": null
     },
     {
       "ticker": "ITSA4",
@@ -639,7 +653,9 @@
       },
       "lpa": 1.5165,
       "vpa": 9.9231,
-      "cotacaoRef": 13.73
+      "cotacaoRef": 13.73,
+      "cotacaoData": "2026-07-23",
+      "fundamentosData": null
     },
     {
       "ticker": "BBAS3",
@@ -743,7 +759,9 @@
       },
       "lpa": 2.217,
       "vpa": 21.6222,
-      "cotacaoRef": 20.93
+      "cotacaoRef": 20.93,
+      "cotacaoData": "2026-07-23",
+      "fundamentosData": null
     },
     {
       "ticker": "SANB11",
@@ -846,7 +864,9 @@
       },
       "lpa": 3.363,
       "vpa": 22.7,
-      "cotacaoRef": 26.63
+      "cotacaoRef": 26.63,
+      "cotacaoData": "2026-07-23",
+      "fundamentosData": null
     },
     {
       "ticker": "BBDC4",
@@ -956,7 +976,9 @@
       },
       "lpa": 2.1979,
       "vpa": 17.8,
-      "cotacaoRef": 18.72
+      "cotacaoRef": 18.72,
+      "cotacaoData": "2026-07-23",
+      "fundamentosData": null
     },
     {
       "ticker": "BPAC11",
@@ -1053,7 +1075,9 @@
       },
       "lpa": 3.7604,
       "vpa": 17.9964,
-      "cotacaoRef": 56.3
+      "cotacaoRef": 56.3,
+      "cotacaoData": "2026-07-23",
+      "fundamentosData": null
     },
     {
       "ticker": "TAEE11",
@@ -1150,7 +1174,9 @@
       },
       "lpa": 4.4706,
       "vpa": 21.1111,
-      "cotacaoRef": 41.42
+      "cotacaoRef": 41.42,
+      "cotacaoData": "2026-07-23",
+      "fundamentosData": null
     },
     {
       "ticker": "ISAE4",
@@ -1240,7 +1266,9 @@
       },
       "lpa": 3.5571,
       "vpa": 15.625,
-      "cotacaoRef": 28.5
+      "cotacaoRef": 28.5,
+      "cotacaoData": "2026-07-23",
+      "fundamentosData": null
     },
     {
       "ticker": "EGIE3",
@@ -1337,7 +1365,9 @@
       },
       "lpa": 2.246,
       "vpa": 15.0,
-      "cotacaoRef": 30.15
+      "cotacaoRef": 30.15,
+      "cotacaoData": "2026-07-23",
+      "fundamentosData": null
     },
     {
       "ticker": "CMIG4",
@@ -1431,10 +1461,12 @@
       },
       "lpa": 1.6911,
       "vpa": 9.8636,
-      "cotacaoRef": 11.19
+      "cotacaoRef": 11.19,
+      "cotacaoData": "2026-07-23",
+      "fundamentosData": null
     },
     {
-      "ticker": "CPLE6",
+      "ticker": "CPLE3",
       "nome": "Copel",
       "setor": "Energia Elétrica",
       "cotacao": 14.22,
@@ -1488,6 +1520,7 @@
         "CAGR de 35% — maior do setor"
       ],
       "pontosAten": [
+        "Conversão CPLE6 → CPLE3: dados legados por ação e históricos pendentes de reconciliação; não usar para decisão de compra.",
         "Privatização recente = histórico curto",
         "Risco regulatório da ANEEL"
       ],
@@ -1527,7 +1560,11 @@
         ]
       },
       "lpa": 1.7602,
-      "vpa": 9.1312
+      "vpa": 9.1312,
+      "cotacaoData": "2026-07-23",
+      "fundamentosData": null,
+      "tickerAnterior": "CPLE6",
+      "revisaoPendente": true
     },
     {
       "ticker": "CPFE3",
@@ -1617,7 +1654,9 @@
       },
       "lpa": 5.0017,
       "vpa": 16.5,
-      "cotacaoRef": 46.22
+      "cotacaoRef": 46.22,
+      "cotacaoData": "2026-07-23",
+      "fundamentosData": null
     },
     {
       "ticker": "EQTL3",
@@ -1714,7 +1753,9 @@
       },
       "lpa": 1.2345,
       "vpa": 13.8464,
-      "cotacaoRef": 39.02
+      "cotacaoRef": 39.02,
+      "cotacaoData": "2026-07-23",
+      "fundamentosData": null
     },
     {
       "ticker": "AURE3",
@@ -1803,7 +1844,9 @@
       },
       "lpa": -1.2383,
       "vpa": 11.4286,
-      "cotacaoRef": 11.39
+      "cotacaoRef": 11.39,
+      "cotacaoData": "2026-07-23",
+      "fundamentosData": null
     },
     {
       "ticker": "PETR4",
@@ -1900,7 +1943,9 @@
       },
       "lpa": 8.3471,
       "vpa": 34.5409,
-      "cotacaoRef": 42.95
+      "cotacaoRef": 42.95,
+      "cotacaoData": "2026-07-23",
+      "fundamentosData": null
     },
     {
       "ticker": "PRIO3",
@@ -1998,7 +2043,9 @@
       },
       "lpa": 3.1935,
       "vpa": 17.0389,
-      "cotacaoRef": 60.54
+      "cotacaoRef": 60.54,
+      "cotacaoData": "2026-07-23",
+      "fundamentosData": null
     },
     {
       "ticker": "SBSP3",
@@ -2102,7 +2149,9 @@
       },
       "lpa": 2.4979,
       "vpa": 9.8286,
-      "cotacaoRef": 28.75
+      "cotacaoRef": 28.75,
+      "cotacaoData": "2026-07-23",
+      "fundamentosData": null
     },
     {
       "ticker": "SAPR11",
@@ -2199,7 +2248,9 @@
       },
       "lpa": 4.5763,
       "vpa": 24.5455,
-      "cotacaoRef": 36.47
+      "cotacaoRef": 36.47,
+      "cotacaoData": "2026-07-23",
+      "fundamentosData": null
     },
     {
       "ticker": "CSMG3",
@@ -2296,7 +2347,9 @@
       },
       "lpa": 3.5744,
       "vpa": 23.0513,
-      "cotacaoRef": 63.95
+      "cotacaoRef": 63.95,
+      "cotacaoData": "2026-07-23",
+      "fundamentosData": null
     },
     {
       "ticker": "VIVT3",
@@ -2393,7 +2446,9 @@
       },
       "lpa": 1.9851,
       "vpa": 21.6667,
-      "cotacaoRef": 34.7
+      "cotacaoRef": 34.7,
+      "cotacaoData": "2026-07-23",
+      "fundamentosData": null
     },
     {
       "ticker": "TIMS3",
@@ -2490,7 +2545,9 @@
       },
       "lpa": 1.7995,
       "vpa": 10.0,
-      "cotacaoRef": 21.25
+      "cotacaoRef": 21.25,
+      "cotacaoData": "2026-07-23",
+      "fundamentosData": null
     },
     {
       "ticker": "B3SA3",
@@ -2594,7 +2651,9 @@
       },
       "lpa": 0.9674,
       "vpa": 3.4614,
-      "cotacaoRef": 15.65
+      "cotacaoRef": 15.65,
+      "cotacaoData": "2026-07-23",
+      "fundamentosData": null
     },
     {
       "ticker": "TOTS3",
@@ -2698,7 +2757,9 @@
       },
       "lpa": 1.5775,
       "vpa": 9.0303,
-      "cotacaoRef": 27.05
+      "cotacaoRef": 27.05,
+      "cotacaoData": "2026-07-23",
+      "fundamentosData": null
     },
     {
       "ticker": "ECOR3",
@@ -2787,7 +2848,9 @@
       },
       "lpa": 1.0482,
       "vpa": 6.6091,
-      "cotacaoRef": 6.96
+      "cotacaoRef": 6.96,
+      "cotacaoData": "2026-07-23",
+      "fundamentosData": null
     },
     {
       "ticker": "RAIL3",
@@ -2884,7 +2947,9 @@
       },
       "lpa": 0.5604,
       "vpa": 6.4381,
-      "cotacaoRef": 13.96
+      "cotacaoRef": 13.96,
+      "cotacaoData": "2026-07-23",
+      "fundamentosData": null
     },
     {
       "ticker": "VBBR3",
@@ -2981,7 +3046,9 @@
       },
       "lpa": 2.5543,
       "vpa": 12.1458,
-      "cotacaoRef": 35.6
+      "cotacaoRef": 35.6,
+      "cotacaoData": "2026-07-23",
+      "fundamentosData": null
     },
     {
       "ticker": "UGPA3",
@@ -3077,7 +3144,9 @@
       },
       "lpa": 2.7695,
       "vpa": 13.7778,
-      "cotacaoRef": 33.39
+      "cotacaoRef": 33.39,
+      "cotacaoData": "2026-07-23",
+      "fundamentosData": null
     },
     {
       "ticker": "RENT3",
@@ -3174,7 +3243,9 @@
       },
       "lpa": 2.0947,
       "vpa": 13.5667,
-      "cotacaoRef": 37.14
+      "cotacaoRef": 37.14,
+      "cotacaoData": "2026-07-23",
+      "fundamentosData": null
     },
     {
       "ticker": "MDIA3",
@@ -3271,7 +3342,9 @@
       },
       "lpa": 2.0774,
       "vpa": 18.6364,
-      "cotacaoRef": 17.29
+      "cotacaoRef": 17.29,
+      "cotacaoData": "2026-07-23",
+      "fundamentosData": null
     },
     {
       "ticker": "ABEV3",
@@ -3369,7 +3442,9 @@
       },
       "lpa": 0.9984,
       "vpa": 5.5367,
-      "cotacaoRef": 15.92
+      "cotacaoRef": 15.92,
+      "cotacaoData": "2026-07-23",
+      "fundamentosData": null
     },
     {
       "ticker": "GRND3",
@@ -3459,7 +3534,9 @@
       },
       "lpa": 0.7025,
       "vpa": 13.8889,
-      "cotacaoRef": 3.66
+      "cotacaoRef": 3.66,
+      "cotacaoData": "2026-07-23",
+      "fundamentosData": null
     },
     {
       "ticker": "FLRY3",
@@ -3556,7 +3633,9 @@
       },
       "lpa": 1.1647,
       "vpa": 10.0,
-      "cotacaoRef": 16.58
+      "cotacaoRef": 16.58,
+      "cotacaoData": "2026-07-23",
+      "fundamentosData": null
     },
     {
       "ticker": "HAPV3",
@@ -3653,7 +3732,9 @@
       },
       "lpa": -0.8822,
       "vpa": 5.4286,
-      "cotacaoRef": 10.47
+      "cotacaoRef": 10.47,
+      "cotacaoData": "2026-07-23",
+      "fundamentosData": null
     },
     {
       "ticker": "HYPE3",
@@ -3750,7 +3831,9 @@
       },
       "lpa": 2.6372,
       "vpa": 17.2,
-      "cotacaoRef": 20.1
+      "cotacaoRef": 20.1,
+      "cotacaoData": "2026-07-23",
+      "fundamentosData": null
     },
     {
       "ticker": "ALOS3",
@@ -3847,7 +3930,9 @@
       },
       "lpa": 2.1671,
       "vpa": 15.0,
-      "cotacaoRef": 26.93
+      "cotacaoRef": 26.93,
+      "cotacaoData": "2026-07-23",
+      "fundamentosData": null
     },
     {
       "ticker": "MULT3",
@@ -3944,7 +4029,9 @@
       },
       "lpa": 2.5001,
       "vpa": 13.0409,
-      "cotacaoRef": 28.43
+      "cotacaoRef": 28.43,
+      "cotacaoData": "2026-07-23",
+      "fundamentosData": null
     },
     {
       "ticker": "IGTI11",
@@ -4040,7 +4127,9 @@
       },
       "lpa": 1.8365,
       "vpa": 13.59,
-      "cotacaoRef": 24.73
+      "cotacaoRef": 24.73,
+      "cotacaoData": "2026-07-23",
+      "fundamentosData": null
     },
     {
       "ticker": "CURY3",
@@ -4137,7 +4226,9 @@
       },
       "lpa": 3.5825,
       "vpa": 6.5531,
-      "cotacaoRef": 29.62
+      "cotacaoRef": 29.62,
+      "cotacaoData": "2026-07-23",
+      "fundamentosData": null
     },
     {
       "ticker": "DIRR3",
@@ -4234,7 +4325,9 @@
       },
       "lpa": 1.6127,
       "vpa": 7.3722,
-      "cotacaoRef": 11.63
+      "cotacaoRef": 11.63,
+      "cotacaoData": "2026-07-23",
+      "fundamentosData": null
     },
     {
       "ticker": "CYRE3",
@@ -4331,7 +4424,9 @@
       },
       "lpa": 5.2649,
       "vpa": 12.5647,
-      "cotacaoRef": 20.66
+      "cotacaoRef": 20.66,
+      "cotacaoData": "2026-07-23",
+      "fundamentosData": null
     },
     {
       "ticker": "POMO4",
@@ -4428,7 +4523,9 @@
       },
       "lpa": 1.0275,
       "vpa": 7.325,
-      "cotacaoRef": 5.26
+      "cotacaoRef": 5.26,
+      "cotacaoData": "2026-07-23",
+      "fundamentosData": null
     },
     {
       "ticker": "WEGE3",
@@ -4533,7 +4630,9 @@
       },
       "lpa": 1.4906,
       "vpa": 5.5338,
-      "cotacaoRef": 45.67
+      "cotacaoRef": 45.67,
+      "cotacaoData": "2026-07-23",
+      "fundamentosData": null
     },
     {
       "ticker": "MOTV3",
@@ -4629,7 +4728,9 @@
       },
       "lpa": 1.6719,
       "vpa": 8.1236,
-      "cotacaoRef": 14.5
+      "cotacaoRef": 14.5,
+      "cotacaoData": "2026-07-23",
+      "fundamentosData": null
     },
     {
       "ticker": "AXIA3",
@@ -4719,7 +4820,9 @@
       },
       "lpa": 3.3932,
       "vpa": 41.0244,
-      "cotacaoRef": 51.39
+      "cotacaoRef": 51.39,
+      "cotacaoData": "2026-07-23",
+      "fundamentosData": null
     }
   ]
 }
