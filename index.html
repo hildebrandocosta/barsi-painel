@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Barsi 50 — Dashboard Fundamentalista</title>
+<title>Barsi — Dashboard Fundamentalista</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
@@ -308,16 +308,23 @@ const PERC = s => SETORES_PERENES.includes(s);
 let ORDEM = "dy", SEL = "BBSE3";
 let chartDY = null, chartCot = null, chartSetor = null;
 
+let META = {};
+function dadosAtuais(a) {
+  if (a.revisaoPendente) return false;
+  const recente = (date, dias) => {
+    const age = Date.now() - Date.parse(date);
+    return Number.isFinite(age) && age >= -86400000 && age <= dias * 86400000;
+  };
+  return recente(a.cotacaoData, 7) &&
+    recente(a.fundamentosData, 120);
+}
+
 // ─── VEREDICTO ───────────────────────────────────────────────────────────────
 function veredicto(a) {
-  const pj = a.dividAnual / 0.06;
-  const dy6   = a.dy >= 6;
-  const roe15 = a.roe >= 15;
-  const cagr0 = a.cagrLucro === null || a.cagrLucro >= 0;
-  const divOk = a.divEbitda === null || a.divEbitda <= 3.5;
-  const dyH6  = HIST6.filter(y => a.dyHist[y] >= 6).length;
-  const precoOk = a.cotacao <= pj * 1.05;
-  const passou = [dy6, PERC(a.setor), roe15, precoOk, cagr0 && divOk && dyH6 >= 3].filter(Boolean).length;
+  const dy6 = Number.isFinite(a.dy) && a.dy >= 6;
+  const roe15 = Number.isFinite(a.roe) && a.roe >= 15;
+  const passou = ETAPAS.filter(e => e.ok(a)).length;
+  if (!dadosAtuais(a)) return {cor:"#facc15",bg:"bg-yellow",bginl:"#1c1400",bdcor:"#ca8a0433",label:"AGUARDAR",emoji:"🟡"};
   if (passou >= 5 && dy6 && roe15) return {cor:"#4ade80",bg:"bg-green",bginl:"#052e16",bdcor:"#16a34a33",label:"COMPRAR",emoji:"🟢"};
   if (passou >= 4 && dy6 && roe15) return {cor:"#a3e635",bg:"bg-yellow",bginl:"#1a2e05",bdcor:"#65a30d33",label:"COMPRAR C/ ATENÇÃO",emoji:"🟡"};
   if (passou >= 3)                  return {cor:"#facc15",bg:"bg-yellow",bginl:"#1c1400",bdcor:"#ca8a0433",label:"AGUARDAR",emoji:"🟡"};
@@ -459,7 +466,7 @@ function renderAbaAnalise(a) {
   const cor = COR(a.setor);
   const v = veredicto(a);
   const passaram = ETAPAS.filter(e=>e.ok(a)).length;
-  let html = `<div style="font-size:11px;color:#475569;text-transform:uppercase;letter-spacing:1.5px;font-weight:600;margin-bottom:12px">6 Etapas — Metodologia Barsi/Bazin</div>`;
+  let html = `<div style="font-size:12px;color:#facc15;margin-bottom:12px">${dadosAtuais(a)?"":"Dados antigos ou revisão pendente: compra automática suspensa. "}Cotação: ${a.cotacaoData || (a.cotacaoConsulta ? "consulta em " + a.cotacaoConsulta + " (pregão não informado)" : "sem data")} · Fundamentos: ${a.fundamentosData || "sem data comprovada"}</div><div style="font-size:11px;color:#475569;text-transform:uppercase;letter-spacing:1.5px;font-weight:600;margin-bottom:12px">6 Etapas — Metodologia Barsi/Bazin</div>`;
 
   ETAPAS.forEach(et => {
     const st = etapaStatus(a, et);
@@ -517,7 +524,8 @@ function renderAbaIndicadores(a) {
 
   // P/L: 0–10 barato, 10–20 justo, 20+ caro
   function rulerPL(pl) {
-    if (!pl) return `<div class="ind-hint">Dado não disponível</div>`;
+    if (!Number.isFinite(pl) || pl === 0) return `<div class="ind-hint">Dado não disponível</div>`;
+    if (pl < 0) return `<div class="ind-hint" style="color:#f87171">P/L negativo: prejuízo na base de cálculo</div>`;
     const pos = Math.min(pl/30*100, 100);
     const [badge, bg, fg] = pl<=10?["BARATO","#052e16","#4ade80"]:pl<=20?["JUSTO","#1c1400","#facc15"]:["CARO","#3b0000","#f87171"];
     return ruler([["z-g",2],["z-y",2],["z-r",2]],pos,["0x","10x","20x","30x+"],badge,bg,fg) +
@@ -526,6 +534,8 @@ function renderAbaIndicadores(a) {
 
   // P/VP: 0–1.5 atrativo, 1.5–3 neutro, 3+ premium
   function rulerPVP(pvp) {
+    if (!Number.isFinite(pvp)) return `<div class="ind-hint">Dado não disponível</div>`;
+    if (pvp < 0) return `<div class="ind-hint" style="color:#f87171">Patrimônio líquido negativo</div>`;
     const pos = Math.min(pvp/5*100, 100);
     const [badge, bg, fg] = pvp<=1.5?["ATRATIVO","#052e16","#4ade80"]:pvp<=3?["NEUTRO","#1c1400","#facc15"]:["PREMIUM","#3b0000","#f87171"];
     return ruler([["z-g",2],["z-y",2],["z-r",2]],pos,["0x","1.5x","3x","5x+"],badge,bg,fg) +
@@ -576,6 +586,7 @@ function renderAbaIndicadores(a) {
 
   // Preço Justo: compara cotação vs Bazin
   function rulerPrecoJusto(cot, pj) {
+    if (!Number.isFinite(pj) || pj <= 0) return `<div class="ind-hint">Sem dividendo anual positivo para calcular Bazin</div>`;
     const ratio = cot/pj;
     const pos = Math.min(ratio/2*100, 100);
     const [badge, bg, fg] = ratio<=1?["ABAIXO ✓","#052e16","#4ade80"]:ratio<=1.1?["NO LIMITE","#1c1400","#facc15"]:["ACIMA ✗","#3b0000","#f87171"];
@@ -584,8 +595,8 @@ function renderAbaIndicadores(a) {
   }
 
   const inds = [
-    {l:"P/L",        v:(a.pl||"—")+"x",       c:a.pl&&a.pl<10?"#4ade80":a.pl&&a.pl<20?"#facc15":"#f87171", ruler:rulerPL(a.pl),              hint:"Preço / Lucro · Quanto se paga por R$1 de lucro"},
-    {l:"P/VP",       v:a.pvp+"x",              c:a.pvp<1.5?"#4ade80":a.pvp<3?"#facc15":"#f87171",           ruler:rulerPVP(a.pvp),            hint:"Preço / Valor Patrimonial"},
+    {l:"P/L",        v:(a.pl||"—")+"x",       c:a.pl>0&&a.pl<10?"#4ade80":a.pl>0&&a.pl<20?"#facc15":"#f87171", ruler:rulerPL(a.pl),              hint:"Preço / Lucro · Quanto se paga por R$1 de lucro"},
+    {l:"P/VP",       v:(Number.isFinite(a.pvp)?a.pvp:"—")+"x",              c:a.pvp<1.5?"#4ade80":a.pvp<3?"#facc15":"#f87171",           ruler:rulerPVP(a.pvp),            hint:"Preço / Valor Patrimonial"},
     {l:"ROE",        v:a.roe+"%",              c:corIndicador(a.roe,20,15),                                   ruler:rulerROE(a.roe),            hint:"Retorno sobre Patrimônio Líquido"},
     {l:"DY",         v:a.dy+"%",               c:corIndicador(a.dy,8,6),                                     ruler:rulerDY(a.dy),              hint:"Dividend Yield · Renda sobre o preço"},
     {l:"Dív/EBITDA", v:a.divEbitda!==null?a.divEbitda+"x":"N/A", c:a.divEbitda===null?"#64748b":a.divEbitda<=2?"#4ade80":a.divEbitda<=3.5?"#facc15":"#f87171", ruler:rulerDivEbitda(a.divEbitda), hint:"Anos de caixa para quitar a dívida"},
@@ -610,17 +621,17 @@ function renderAbaIndicadores(a) {
   const bc = precoOk?"#4ade80":precoLimite?"#facc15":"#f87171";
   const bbg = precoOk?"#052e16":precoLimite?"#1c1400":"#3b0000";
   const bbd = precoOk?"#16a34a33":precoLimite?"#ca8a0433":"#dc262633";
-  const diff = (((a.cotacao-pjN)/pjN)*100).toFixed(1);
+  const diff = pjN > 0 ? (((a.cotacao-pjN)/pjN)*100).toFixed(1) : null;
   html += `<div class="bazin-box">
     <div class="bazin-title">🧮 Preço Justo — Método Bazin</div>
     <div class="bazin-grid">
       <div class="bazin-item"><div class="bazin-item-l">Dividendo/ano</div><div class="bazin-item-v" style="color:#f1f5f9">R$ ${a.dividAnual}</div></div>
       <div class="bazin-item"><div class="bazin-item-l">÷ 6% (0,06)</div><div class="bazin-item-v" style="color:#64748b">=</div></div>
       <div class="bazin-item"><div class="bazin-item-l">Preço Justo</div><div class="bazin-item-v" style="color:${bc}">R$ ${pj}</div></div>
-      <div class="bazin-item"><div class="bazin-item-l">Cotação hoje</div><div class="bazin-item-v" style="color:${bc}">R$ ${a.cotacao}</div></div>
+      <div class="bazin-item"><div class="bazin-item-l">Cotação disponível</div><div class="bazin-item-v" style="color:${bc}">R$ ${a.cotacao}</div></div>
     </div>
     <div class="bazin-result" style="background:${bbg};border:1px solid ${bbd};color:${bc}">
-      ${precoOk?`✓ R$ ${a.cotacao} está abaixo do preço justo de R$ ${pj}. DY garantido ≥ 6%.`
+      ${pjN <= 0 ? "Sem dividendo anual positivo; comparação percentual Bazin indisponível." : precoOk?`✓ R$ ${a.cotacao} está abaixo do preço justo de R$ ${pj}. DY histórico equivalente ≥ 6%; proventos futuros podem variar.`
         :precoLimite?`⚠ R$ ${a.cotacao} está apenas ${diff}% acima do preço justo. DY próximo do mínimo.`
         :`✗ R$ ${a.cotacao} está ${diff}% acima do preço justo de R$ ${pj}. DY cai abaixo de 6%.`}
     </div>
@@ -706,6 +717,7 @@ function renderAbaResumo(a) {
 }
 
 function buildCharts(a) {
+  if (typeof Chart === 'undefined') return;
   const cor = COR(a.setor);
   const anosDY = HIST6.map(String);
   const anosCot = ANOS_HIST.map(String);
@@ -1227,7 +1239,16 @@ function renderDetail(a) {
   db.scrollTop = 0;
 }
 
+function atualizarEstatisticas() {
+  document.getElementById('st-comprar').textContent = ACOES.filter(a=>veredicto(a).label==='COMPRAR').length+'/'+ACOES.length;
+  document.getElementById('st-total').textContent = ACOES.length;
+  for (const campo of ['dy','roe']) {
+    const valores = ACOES.map(a=>a[campo]).filter(Number.isFinite);
+    document.getElementById('st-'+campo).textContent = valores.length ? (valores.reduce((s,v)=>s+v,0)/valores.length).toFixed(1)+'%' : '—';
+  }
+}
 function renderAll() {
+  atualizarEstatisticas();
   renderLista();
   const a = ACOES.find(x=>x.ticker===SEL);
   if (a) renderDetail(a);
@@ -1244,11 +1265,7 @@ function init() {
   const sel = document.getElementById("f-setor");
   SETORES_UNICOS.forEach(s => { const o = document.createElement("option"); o.value=s; o.textContent=s; sel.appendChild(o); });
 
-  // Estatísticas globais
-  document.getElementById("st-comprar").textContent = ACOES.filter(a=>veredicto(a).label==="COMPRAR").length+"/"+ACOES.length;
-  document.getElementById("st-total").textContent = ACOES.length;
-  document.getElementById("st-dy").textContent = (ACOES.reduce((s,a)=>s+a.dy,0)/ACOES.length).toFixed(1)+"%";
-  document.getElementById("st-roe").textContent = (ACOES.reduce((s,a)=>s+a.roe,0)/ACOES.length).toFixed(1)+"%";
+  atualizarEstatisticas();
 
   // Eventos
   document.getElementById("busca").addEventListener("input", renderAll);
@@ -1298,13 +1315,13 @@ const annotationPlugin = {
     });
   }
 };
-Chart.register(annotationPlugin);
+if (typeof Chart !== 'undefined') Chart.register(annotationPlugin);
 
 // ─── COTAÇÕES AO VIVO (brapi.dev) ──────────────────────────────────────────────
 // Busca o preço atual de cada ticker e atualiza a.cotacao em memória.
 // Fundamentos (DY, ROE, P/L, etc.) permanecem os valores de referência (jun/2026),
 // mas o "Preço Justo Bazin" e a comparação de preço passam a refletir a cotação real.
-const LIVE_STATE = { ok:0, fail:0, get total(){ return ACOES.length; }, lastUpdate:null, unauthorized:false, lastError:null };
+const LIVE_STATE = { running:false, ok:0, fail:0, get total(){ return ACOES.length; }, lastUpdate:null, unauthorized:false, lastError:null };
 
 function setLiveBadge(text, color) {
   const dot = document.getElementById("live-dot");
@@ -1313,84 +1330,89 @@ function setLiveBadge(text, color) {
   if (txt) txt.textContent = text;
 }
 
-async function fetchChunk(tickers) {
-  const token = localStorage.getItem("brapi_token");
-  let url = "https://brapi.dev/api/quote/" + tickers.join(",");
-  if (token) url += "?token=" + encodeURIComponent(token);
+function storageGet(key) { try { return localStorage.getItem(key); } catch (_) { return null; } }
+function storageSet(key, value) { try { localStorage.setItem(key, value); } catch (_) {} }
+function dataValida(value) {
+  if (typeof value !== 'string') return false;
+  const t = Date.parse(value);
+  return Number.isFinite(t) && t <= Date.now();
+}
+function recalcularMultiplos(a) {
+  a.pl = Number.isFinite(a.lpa) && a.lpa !== 0 ? +(a.cotacao / a.lpa).toFixed(2) : null;
+  a.pvp = Number.isFinite(a.vpa) && a.vpa !== 0 ? +(a.cotacao / a.vpa).toFixed(2) : null;
+  a.dy = Number.isFinite(a.dividAnual) && a.dividAnual >= 0 ? +(a.dividAnual / a.cotacao * 100).toFixed(2) : null;
+}
+function aceitarCotacao(a, r) {
+  if (!a || r.symbol !== a.ticker || !Number.isFinite(r.regularMarketPrice) ||
+      r.regularMarketPrice <= 0 || !dataValida(r.regularMarketTime)) return false;
+  if (dataValida(a.cotacaoData) && Date.parse(r.regularMarketTime) < Date.parse(a.cotacaoData)) return false;
+  if (r.regularMarketPrice / a.cotacao > 2 || r.regularMarketPrice / a.cotacao < .5) {
+    a.revisaoPendente = true;
+    a.motivoRevisao = 'Conferir eventos corporativos e fundamentos por ação após mudança de base superior a 2x.';
+  }
+  a.cotacao = +r.regularMarketPrice.toFixed(2);
+  a.cotacaoData = r.regularMarketTime;
+  a.cotacaoLive = true;
+  recalcularMultiplos(a);
+  if (a.cotacaoRef > 0) {
+    const ultimo = HIST6[HIST6.length - 1];
+    a.cotHist[CURRENT_YEAR] = +(a.cotHist[ultimo] * a.cotacao / a.cotacaoRef).toFixed(1);
+  }
   try {
-    const res = await fetch(url);
+    const cache = JSON.parse(storageGet('barsi_quotes_v1') || '{}');
+    cache[a.ticker] = {symbol:a.ticker, regularMarketPrice:a.cotacao, regularMarketTime:a.cotacaoData};
+    storageSet('barsi_quotes_v1', JSON.stringify(cache));
+  } catch (_) {}
+  return true;
+}
+async function fetchChunk(tickers) {
+  const token = storageGet("brapi_token");
+  const headers = token ? {Authorization: 'Bearer ' + token} : {};
+  try {
+    const res = await fetch("https://brapi.dev/api/quote/" + tickers.join(","), {headers, signal:AbortSignal.timeout(12000)});
     if (res.status === 401) { LIVE_STATE.unauthorized = true; LIVE_STATE.fail += tickers.length; return; }
-    if (!res.ok) {
-      const body = await res.text().catch(()=>"");
-      console.warn("brapi error", res.status, tickers.join(","), body.slice(0,300));
-      LIVE_STATE.lastError = res.status + ": " + body.slice(0,150);
-      LIVE_STATE.fail += tickers.length;
-      return;
-    }
+    if (!res.ok) { LIVE_STATE.lastError = String(res.status); LIVE_STATE.fail += tickers.length; return; }
     const data = await res.json();
-    if (!data.results) return;
-    data.results.forEach(r => {
-      const a = ACOES.find(x => x.ticker === r.symbol);
-      if (a && typeof r.regularMarketPrice === "number" && r.regularMarketPrice > 0) {
-        a.cotacao = parseFloat(r.regularMarketPrice.toFixed(2));
-        a.cotacaoLive = true;
-
-        // ── Recalcular P/L e P/VP com cotação ao vivo ──────────────────────
-        // LPA e VPA são fixos (mudam só a cada balanço trimestral)
-        // P/L e P/VP são recalculados dinamicamente com o preço real de mercado
-        if (a.lpa && a.lpa > 0) {
-          a.pl = parseFloat((a.cotacao / a.lpa).toFixed(1));
-        }
-        if (a.vpa && a.vpa > 0) {
-          a.pvp = parseFloat((a.cotacao / a.vpa).toFixed(1));
-        }
-        // Recalcular DY com cotação ao vivo (dividAnual é fixo do balanço)
-        if (a.dividAnual && a.dividAnual > 0) {
-          a.dy = parseFloat((a.dividAnual / a.cotacao * 100).toFixed(1));
-        }
-
-        // Atualizar cotação histórica do ano em curso
-        if (a.cotacaoRef > 0) {
-          const ultimoAnoFechado = HIST6[HIST6.length - 1];
-          a.cotHist[CURRENT_YEAR] = parseFloat((a.cotHist[ultimoAnoFechado] * (a.cotacao / a.cotacaoRef)).toFixed(1));
-        }
-        LIVE_STATE.ok++;
-      } else {
-        LIVE_STATE.fail++;
-      }
-    });
-  } catch (e) {
+    const results = Array.isArray(data.results) ? data.results : [];
+    for (const ticker of tickers) {
+      const r = results.find(r => r && r.symbol === ticker);
+      const a = ACOES.find(a => a.ticker === ticker);
+      if (r && aceitarCotacao(a, r)) LIVE_STATE.ok++;
+      else LIVE_STATE.fail++;
+    }
+  } catch (_) {
     LIVE_STATE.fail += tickers.length;
-    LIVE_STATE.lastError = String(e);
+    LIVE_STATE.lastError = 'conexão indisponível';
   }
 }
 
 async function updateLiveQuotes(manual=false) {
+  if (LIVE_STATE.running) return;
+  LIVE_STATE.running = true;
   setLiveBadge(manual ? "Atualizando..." : "Buscando cotações...", "#facc15");
   LIVE_STATE.ok = 0; LIVE_STATE.fail = 0; LIVE_STATE.unauthorized = false; LIVE_STATE.lastError = null;
-
-  const tickers = ACOES.map(a => a.ticker);
-  const CHUNK = 1; // plano gratuito da brapi.dev costuma limitar a 1 ticker por requisição
-  for (let i = 0; i < tickers.length; i += CHUNK) {
-    await fetchChunk(tickers.slice(i, i + CHUNK));
-    // pequena pausa entre requisições para não estourar rate-limit da API gratuita
-    await new Promise(r => setTimeout(r, 120));
+  try {
+    const token = storageGet('brapi_token');
+    // Sem token, consulta apenas os ativos liberados pelo provedor.
+    const tickers = ACOES.map(a => a.ticker).filter(t => token || ['ITUB4','PETR4','VALE3','MGLU3'].includes(t));
+    for (const ticker of tickers) {
+      await fetchChunk([ticker]);
+      if (LIVE_STATE.unauthorized || LIVE_STATE.lastError === '429') break;
+      await new Promise(r => setTimeout(r, 120));
+    }
+    LIVE_STATE.lastUpdate = new Date();
+    const hora = LIVE_STATE.lastUpdate.toLocaleTimeString("pt-BR", {hour:"2-digit",minute:"2-digit"});
+    if (LIVE_STATE.ok > 0) {
+      setLiveBadge(`${LIVE_STATE.ok}/${LIVE_STATE.total} cotações datadas consultadas · ${hora} · demais: reserva`, "#4ade80");
+    } else if (LIVE_STATE.unauthorized) {
+      setLiveBadge('🔑 Token necessário ou inválido · dados de reserva mantidos', '#facc15');
+    } else {
+      setLiveBadge(`⚪ ${LIVE_STATE.lastError || 'Sem novas cotações'} · reserva mantida`, '#facc15');
+    }
+    renderAll();
+  } finally {
+    LIVE_STATE.running = false;
   }
-
-  LIVE_STATE.lastUpdate = new Date();
-  const hora = LIVE_STATE.lastUpdate.toLocaleTimeString("pt-BR", {hour:"2-digit",minute:"2-digit"});
-
-  if (LIVE_STATE.ok > 0) {
-    setLiveBadge(`🟢 ${LIVE_STATE.ok}/${LIVE_STATE.total} cotações ao vivo · ${hora}`, "#4ade80");
-  } else if (LIVE_STATE.unauthorized) {
-    setLiveBadge(`🔑 Token necessário — clique em ⚙️`, "#facc15");
-  } else if (LIVE_STATE.lastError) {
-    setLiveBadge(`⚠ Erro: ${LIVE_STATE.lastError.slice(0,60)}`, "#f87171");
-  } else {
-    setLiveBadge(`⚪ Offline — usando preços de referência (jun/2026)`, "#64748b");
-  }
-
-  renderAll();
 }
 
 // ─── PAINEL DE CONFIGURAÇÕES (token) ───────────────────────────────────────────
@@ -1436,13 +1458,34 @@ function initSettingsPanel() {
 
 window.selectAcao = selectAcao;
 // ─── INICIALIZAÇÃO COM JSON EXTERNO ──────────────────────────────────────────
+function baseValida(json) {
+  if (!json || !Array.isArray(json.acoes) || !json.acoes.length) return false;
+  const tickers = json.acoes.map(a=>a?.ticker);
+  return new Set(tickers).size === tickers.length && json.acoes.every(a =>
+    /^[A-Z][A-Z0-9]{3}\d{1,2}$/.test(a.ticker) && typeof a.nome === 'string' && typeof a.setor === 'string' &&
+    Number.isFinite(a.cotacao) && a.cotacao > 0 &&
+    a.dyHist && a.cotHist && a.roeHist && a.margHist &&
+    Array.isArray(a.pontosFort) && Array.isArray(a.pontosAten));
+}
 async function carregarDados() {
   try {
     // Tenta carregar barsi-data.json (versão do sistema)
     // Fallback: dados embutidos em ACOES_FALLBACK (se existir)
-    const resp = await fetch('barsi-data.json?v=' + Date.now());
-    if (!resp.ok) throw new Error('HTTP ' + resp.status);
-    const json = await resp.json();
+    let json;
+    try {
+      const resp = await fetch('barsi-data.json?v=' + Date.now(), {signal: AbortSignal.timeout(12000)});
+      if (!resp.ok) throw new Error('HTTP ' + resp.status);
+      json = await resp.json();
+      if (!baseValida(json)) throw new Error('Base inválida');
+      try { localStorage.setItem('barsi_data_cache', JSON.stringify(json)); } catch (_) {}
+    } catch (error) {
+      json = JSON.parse(localStorage.getItem('barsi_data_cache') || 'null');
+      if (!json) throw error;
+    }
+    if (!baseValida(json)) throw new Error("Base inválida");
+    META = json.meta || {};
+    document.querySelector(".tb-label").textContent = `Barsi · ${json.acoes.length} ações`;
+    document.querySelector(".tb-note").textContent = `Consulta: ${META.atualizacaoParcial?.dataConsulta || META.atualizacao || "sem data"} · Fundamentos parcialmente legados · Não é recomendação`;
 
     // Popula variável global ACOES com dados do JSON
     ACOES.length = 0;
@@ -1473,6 +1516,10 @@ async function carregarDados() {
       ACOES.forEach(a => { a.cotacaoRef = a.cotacao; });
     }
 
+    try {
+      const cache = JSON.parse(storageGet('barsi_quotes_v1') || '{}');
+      ACOES.forEach(a => { if (cache[a.ticker]) aceitarCotacao(a, cache[a.ticker]); });
+    } catch (_) {}
     console.log(`✅ barsi-data.json carregado: ${ACOES.length} ações`);
     return true;
   } catch(err) {
@@ -1487,7 +1534,12 @@ document.addEventListener("DOMContentLoaded", async () => {
   document.getElementById("detail-body").innerHTML =
     '<div class="empty"><div><div class="empty-icon">⏳</div><div class="empty-txt">Carregando dados...</div></div></div>';
 
-  await carregarDados();
+  const loaded = await carregarDados();
+  if (!loaded) {
+    document.getElementById('detail-body').textContent = 'Não foi possível carregar a base. Recarregue a página quando a conexão voltar.';
+    setLiveBadge('Base indisponível; nenhuma recomendação calculada', '#facc15');
+    return;
+  }
 
   init();
   initSettingsPanel();
