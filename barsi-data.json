@@ -36,7 +36,15 @@
     "revisaoTecnica": "2026-10-21",
     "tickerSources": [
       "https://www.copel.com/site/noticias/copel-ingressa-no-rol-das-empresas-com-padroes-mais-elevados-de-governanca-corporativa/"
-    ]
+    ],
+    "ultimaTentativa": "2026-10-21",
+    "atualizacaoParcial": {
+      "ativos": [
+        "ITUB4",
+        "PETR4"
+      ],
+      "observacao": "Datas por ativo. Dividendos e outros 46 ativos permanecem na reserva."
+    }
   },
   "acoes": [
     {
@@ -454,13 +462,13 @@
       "ticker": "ITUB4",
       "nome": "Itaú Unibanco",
       "setor": "Bancos",
-      "cotacao": 42.56,
-      "pl": 10.2,
-      "pvp": 2.24,
-      "roe": 21.93,
-      "dy": 7.52,
+      "cotacao": 48.92,
+      "pl": 11.53,
+      "pvp": 2.48,
+      "roe": 21.502532,
+      "dy": 6.54,
       "divEbitda": null,
-      "margem": 11.83,
+      "margem": 12.420949,
       "cagrLucro": 15.8,
       "rating": 5,
       "recomendacao": "COMPRAR",
@@ -552,11 +560,25 @@
           }
         ]
       },
-      "lpa": 4.1584,
-      "vpa": 19.0176,
-      "cotacaoRef": 42.56,
-      "cotacaoData": "2026-07-23",
-      "fundamentosData": null
+      "lpa": 4.2425595,
+      "vpa": 19.74985,
+      "cotacaoRef": 48.92,
+      "cotacaoData": "2026-10-21T14:49:30.000Z",
+      "fundamentosData": null,
+      "proveniencia": {
+        "cotacao": "https://brapi.dev/api/quote/ITUB4",
+        "fundamentos": "https://brapi.dev/api/quote/ITUB4?modules=defaultKeyStatistics,financialData",
+        "fundamentosSnapshot": "2026-10-06T15:34:38.147Z",
+        "periodoFundamentos": "2026-06-30",
+        "camposAtualizados": [
+          "cotacao",
+          "lpa",
+          "vpa",
+          "roe",
+          "margem"
+        ],
+        "dividendos": "Reserva anterior preservada; série de proventos não renovada"
+      }
     },
     {
       "ticker": "ITSA4",
@@ -1852,13 +1874,13 @@
       "ticker": "PETR4",
       "nome": "Petrobras PN",
       "setor": "Energia Elétrica",
-      "cotacao": 42.95,
-      "pl": 5.1,
-      "pvp": 1.21,
-      "roe": 24.17,
-      "dy": 6.34,
+      "cotacao": 48.72,
+      "pl": 4.71,
+      "pvp": 1.31,
+      "roe": 27.731782,
+      "dy": 5.42,
       "divEbitda": 0.8,
-      "margem": 21.6,
+      "margem": 24.38609,
       "cagrLucro": 5.5,
       "rating": 4,
       "recomendacao": "COMPRAR",
@@ -1941,11 +1963,25 @@
           }
         ]
       },
-      "lpa": 8.3471,
-      "vpa": 34.5409,
-      "cotacaoRef": 42.95,
-      "cotacaoData": "2026-07-23",
-      "fundamentosData": null
+      "lpa": 10.3482633,
+      "vpa": 37.315536,
+      "cotacaoRef": 48.72,
+      "cotacaoData": "2026-09-28T23:33:57.000Z",
+      "fundamentosData": null,
+      "proveniencia": {
+        "cotacao": "https://brapi.dev/api/quote/PETR4",
+        "fundamentos": "https://brapi.dev/api/quote/PETR4?modules=defaultKeyStatistics,financialData",
+        "fundamentosSnapshot": "2026-09-28T23:44:19.064Z",
+        "periodoFundamentos": "2026-06-30",
+        "camposAtualizados": [
+          "cotacao",
+          "lpa",
+          "vpa",
+          "roe",
+          "margem"
+        ],
+        "dividendos": "Reserva anterior preservada; série de proventos não renovada"
+      }
     },
     {
       "ticker": "PRIO3",

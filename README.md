@@ -64,3 +64,7 @@ O atualizador deriva o universo do JSON, pede os módulos de fundamentos explici
 Falhas de cotação preservam os valores em memória; falha de carregamento do JSON recupera a última base válida salva neste navegador, quando disponível. As chamadas têm timeout; 401 e 429 interrompem a rodada. Sem token, o provedor só disponibiliza alguns ativos de demonstração, conforme https://brapi.dev/docs/acoes.
 
 Validação: `node tests/painel.test.cjs` e `python -m py_compile update/update.py`.
+
+### Nova tentativa em 21/10/2026
+
+Atualização parcial validada: ITUB4 com cotação de R$48,92 em 21/10/2026 às 14:49:30 UTC; PETR4 com R$48,72 em 28/09/2026 às 23:33:57 UTC. LPA, VPA, ROE e margem foram renovados com os snapshots disponíveis do provedor (06/10 para ITUB4 e 28/09 para PETR4), relativos ao trimestre de 30/06/2026. P/L, P/VP e DY foram recalculados; os dividendos anuais continuam na reserva anterior. A data global da reserva não foi avançada. Os outros 46 ativos não foram renovados; consultas a BBSE3 e CPLE3 não retornaram dados acessíveis. Não há liberação de compra automática com fundamentos parcialmente reconciliados. Fontes e datas por ativo estão no campo `proveniencia`.
