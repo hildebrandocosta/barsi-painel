@@ -23,7 +23,11 @@ Pré-requisitos (instalar uma vez):
 import os, sys, json, time, argparse, subprocess, re
 from datetime import datetime
 from pathlib import Path
-from dotenv import load_dotenv
+try:
+    from dotenv import load_dotenv
+except ImportError:
+    def load_dotenv(*args):
+        pass
 
 if sys.stdout.encoding and sys.stdout.encoding.lower() != "utf-8":
     sys.stdout.reconfigure(encoding="utf-8")
@@ -36,13 +40,6 @@ ANTHROPIC_KEY    = os.getenv("ANTHROPIC_API_KEY")
 JSON_PATH        = Path(__file__).parent.parent / "barsi-data.json"
 GITHUB_REPO_PATH = Path(__file__).parent.parent
 
-TICKERS = [
-  "BBSE3","CXSE3","PSSA3","IRBR3","ITUB4","ITSA4","BBAS3","SANB11","BBDC4","BPAC11",
-  "TAEE11","ISAE4","EGIE3","CMIG4","CPLE3","AXIA3","CPFE3","EQTL3",
-  "AURE3","PETR4","PRIO3","SBSP3","SAPR11","CSMG3","VIVT3","TIMS3","B3SA3","TOTS3",
-  "MOTV3","ECOR3","RAIL3","VBBR3","UGPA3","RENT3","MDIA3","ABEV3","GRND3","FLRY3",
-  "HAPV3","HYPE3","ALOS3","MULT3","IGTI11","CURY3","DIRR3","CYRE3","POMO4","WEGE3",
-]
 
 def log(msg, emoji="📌"):
     ts = datetime.now().strftime("%H:%M:%S")
@@ -57,136 +54,158 @@ def carregar_json():
 
 def salvar_json(data):
     # Datas dos dados só avançam após resposta válida do provedor.
-    with open(JSON_PATH, "w", encoding="utf-8") as f:
-        json.dump(data, f, ensure_ascii=False, indent=2)
+    tmp = JSON_PATH.with_suffix(".json.tmp")
+    with open(tmp, "w", encoding="utf-8") as f:
+        json.dump(data, f, ensure_ascii=False, indent=2, allow_nan=False)
+    tmp.replace(JSON_PATH)
     log(f"barsi-data.json salvo: {JSON_PATH.stat().st_size:,} bytes", "💾")
 
 # ─── 1. COTAÇÕES + FUNDAMENTOS via brapi.dev ──────────────────────────────────
+def numero(value):
+    import math
+    return isinstance(value, (int, float)) and not isinstance(value, bool) and math.isfinite(value)
+
+
+def data_iso(value):
+    from datetime import timezone
+    if not isinstance(value, str):
+        return None
+    try:
+        dt = datetime.fromisoformat(value.replace('Z', '+00:00'))
+        dt = dt.replace(tzinfo=dt.tzinfo or timezone.utc)
+        return dt if dt <= datetime.now(timezone.utc) else None
+    except ValueError:
+        return None
+
+
+def recalcular(a):
+    preco = a.get('cotacao')
+    if not numero(preco) or preco <= 0:
+        return
+    for campo, base in [('pl', 'lpa'), ('pvp', 'vpa')]:
+        valor = a.get(base)
+        a[campo] = round(preco / valor, 2) if numero(valor) and valor != 0 else None
+    div = a.get('dividAnual')
+    a['dy'] = round(div / preco * 100, 2) if numero(div) and div >= 0 else None
+
+
+def aplicar_cotacao(a, res):
+    """Valida antes de alterar. Data de consulta não equivale a data de pregão."""
+    from copy import deepcopy
+    if not isinstance(res, dict) or res.get('symbol') != a['ticker']:
+        return False
+    preco, quando = res.get('regularMarketPrice'), data_iso(res.get('regularMarketTime'))
+    anterior = data_iso(a.get('cotacaoData'))
+    if not numero(preco) or preco <= 0 or quando is None or (anterior and quando < anterior):
+        return False
+    novo = deepcopy(a)
+    novo.update(cotacao=round(preco, 2), cotacaoRef=round(preco, 2), cotacaoData=res['regularMarketTime'])
+    stats = res.get('defaultKeyStatistics')
+    stats = stats if isinstance(stats, dict) else {}
+    fin = res.get('financialData')
+    fin = fin if isinstance(fin, dict) else {}
+    datas = novo.setdefault('camposData', {})
+    # Nunca transforma uma atualização parcial em fundamentos totalmente atuais.
+    campos = {'lpa': res.get('earningsPerShare'), 'vpa': stats.get('bookValue'),
+              'roe': fin.get('returnOnEquity'), 'margem': fin.get('profitMargins'),
+              'dividAnual': res.get('dividendRate')}
+    snapshot = res.get('requestedAt') or res['regularMarketTime']
+    periodo = stats.get('mostRecentQuarter')
+    for campo, valor in campos.items():
+        if not numero(valor) or (campo == 'dividAnual' and valor < 0):
+            continue
+        campo_anterior = data_iso(datas.get(campo, {}).get('snapshot'))
+        if campo_anterior and data_iso(snapshot) and data_iso(snapshot) < campo_anterior:
+            continue
+        novo[campo] = round(valor * 100 if campo in ('roe', 'margem') else valor, 6)
+        datas[campo] = {'snapshot': snapshot, 'periodo': periodo}
+    fonte = 'https://brapi.dev/api/quote/' + a['ticker']
+    novo.setdefault('proveniencia', {}).update(cotacao=fonte, tipoCotacao='Cotação individual datada')
+    if stats or fin:
+        novo['fundamentosConsulta'] = snapshot
+    if numero(a.get('cotacao')) and (preco / a['cotacao'] > 2 or preco / a['cotacao'] < 0.5):
+        novo['revisaoPendente'] = True
+        novo['motivoRevisao'] = 'Variação de base superior a 2x: conferir eventos corporativos e fundamentos por ação.'
+    recalcular(novo)
+    a.clear()
+    a.update(novo)
+    return True
+
+
+def aplicar_lista(a, item, consulta):
+    """Preço indicativo de listagem sem timestamp individual; não libera compra."""
+    from copy import deepcopy
+    if item.get('stock') != a['ticker'] or not numero(item.get('close')) or item['close'] <= 0:
+        return False
+    novo = deepcopy(a)
+    fonte = novo.setdefault('proveniencia', {})
+    fonte.setdefault('reservaAnterior', {'cotacao': a['cotacao'], 'data': a.get('cotacaoData')})
+    if item['close'] / a['cotacao'] > 2 or item['close'] / a['cotacao'] < 0.5:
+        novo['revisaoPendente'] = True
+        novo['motivoRevisao'] = 'Variação de base superior a 2x: conferir eventos corporativos e fundamentos por ação.'
+    novo.update(cotacao=round(item['close'], 2), cotacaoRef=round(item['close'], 2),
+                cotacaoData=None, cotacaoConsulta=consulta)
+    fonte.update(cotacao='https://brapi.dev/api/quote/list', tipoCotacao='Listagem sem data de pregão individual')
+    recalcular(novo)
+    a.clear()
+    a.update(novo)
+    return True
+
+
+def consultar(url, params=None):
+    from urllib.request import Request, urlopen
+    from urllib.parse import urlencode
+    if params:
+        url += '?' + urlencode(params)
+    headers = {'Accept': 'application/json'}
+    if BRAPI_TOKEN:
+        headers['Authorization'] = 'Bearer ' + BRAPI_TOKEN
+    with urlopen(Request(url, headers=headers), timeout=12) as resp:
+        return json.load(resp)
+
+
 def atualizar_fundamentos(data, tickers=None):
-    import requests
-    tickers = tickers or [a["ticker"] for a in data["acoes"]]
-    log(f"Buscando cotações e fundamentos de {len(tickers)} ações...", "📡")
-
-    acoes_map = {a["ticker"]: a for a in data["acoes"]}
-    atualizados = 0
-    erros = []
-
-    for ticker in tickers:  # 1 por vez — plano gratuito da brapi
-        url = f"https://brapi.dev/api/quote/{ticker}"
-        params = {"modules": "defaultKeyStatistics,financialData"}
-        if BRAPI_TOKEN: params["token"] = BRAPI_TOKEN
+    from urllib.error import HTTPError
+    selecionados = set(tickers or [a['ticker'] for a in data['acoes']])
+    acoes = [a for a in data['acoes'] if a['ticker'] in selecionados]
+    alterados = set()
+    # Sem token, a listagem pública ainda permite conferir o universo e os preços.
+    if not BRAPI_TOKEN:
         try:
-            r = requests.get(url, params=params, timeout=15)
-            if r.status_code == 401:
-                log("BRAPI_TOKEN inválido! Configure no .env", "❌")
+            lista = consultar('https://brapi.dev/api/quote/list')
+            itens = {i['stock']: i for i in lista.get('stocks', []) if isinstance(i, dict) and 'stock' in i}
+            for a in acoes:
+                if a['ticker'] in itens and aplicar_lista(a, itens[a['ticker']], datetime.now().strftime('%Y-%m-%d')):
+                    alterados.add(a['ticker'])
+        except Exception as exc:
+            log(f'Listagem indisponível ({type(exc).__name__}); reserva preservada', '⚠️')
+    for a in acoes:
+        ticker = a['ticker']
+        if not BRAPI_TOKEN and ticker not in ('PETR4', 'ITUB4', 'VALE3', 'MGLU3'):
+            continue
+        url = 'https://brapi.dev/api/quote/' + ticker
+        try:
+            try:
+                payload = consultar(url, {'modules': 'defaultKeyStatistics,financialData'})
+            except HTTPError as exc:
+                if exc.code not in (400, 402, 403):
+                    raise
+                payload = consultar(url)  # Plano sem módulos: ainda tenta a cotação básica.
+            for res in payload.get('results', []):
+                res = dict(res, requestedAt=payload.get('requestedAt'))
+                if aplicar_cotacao(a, res):
+                    alterados.add(ticker)
+                    log(f'{ticker}: dados disponíveis aceitos', '✅')
+                    break
+        except HTTPError as exc:
+            log(f'{ticker}: HTTP {exc.code}; reserva preservada', '⚠️')
+            if exc.code in (401, 429):
                 break
-            if not r.ok:
-                erros.append(ticker); continue
-
-            results = r.json().get("results", [])
-            if not results:
-                erros.append(ticker); continue
-            res = next((r for r in results if r.get("symbol") == ticker), None)
-            if not res:
-                erros.append(ticker); continue
-
-            # Rejeita números não finitos e tipos inesperados sem tocar na reserva.
-            import math
-            def sane(value):
-                if isinstance(value, dict): return {k: sane(v) for k, v in value.items()}
-                if isinstance(value, float) and not math.isfinite(value): return None
-                return value
-            res = sane(res)
-            a = acoes_map.get(ticker)
-            if not a:
-                continue
-
-            from math import isfinite
-            preco = res.get("regularMarketPrice")
-            if not isinstance(preco, (int, float)) or isinstance(preco, bool) or not isfinite(preco) or preco <= 0:
-                erros.append(ticker); continue
-            market_date = res.get("regularMarketTime")
-            if not isinstance(market_date, str):
-                erros.append(ticker); continue
-            if a.get("cotacaoData") and market_date[:10] < a["cotacaoData"][:10]:
-                erros.append(ticker); continue
-            a["cotacaoData"] = market_date
-            # ── Cotação ──────────────────────────────────────────────────────
-            preco = res.get("regularMarketPrice")
-            if preco and preco > 0:
-                a["cotacao"]    = round(preco, 2)
-                a["cotacaoRef"] = round(preco, 2)
-
-            # ── P/L direto + LPA ─────────────────────────────────────────────
-            pe  = res.get("priceEarnings")
-            eps = res.get("earningsPerShare")
-            if eps and eps != 0:
-                a["lpa"] = round(float(eps), 4)          # LPA (base p/ recálculo dinâmico)
-                if preco:
-                    a["pl"] = round(preco / eps, 1)
-            elif pe and pe > 0:
-                a["pl"]  = round(float(pe), 1)
-                if preco:
-                    a["lpa"] = round(preco / pe, 4)
-
-            # ── Módulos: P/VP, VPA, ROE, margem ─────────────────────────────
-            stats   = res.get("defaultKeyStatistics") or {}
-            findata = res.get("financialData") or {}
-
-            book = stats.get("bookValue")                # VPA direto
-            if book and book > 0:
-                a["vpa"] = round(float(book), 4)
-                if preco:
-                    a["pvp"] = round(preco / book, 1)
-            else:
-                ptb = stats.get("priceToBook")
-                if ptb and ptb > 0:
-                    a["pvp"] = round(float(ptb), 1)
-                    if preco:
-                        a["vpa"] = round(preco / ptb, 4)
-
-            if stats or findata:
-                a["fundamentosConsulta"] = datetime.now().isoformat()
-            roe = findata.get("returnOnEquity")
-            if roe is not None:
-                a["roe"] = round(float(roe) * 100, 1)
-
-            margem = findata.get("profitMargins")
-            if margem is not None:
-                a["margem"] = round(float(margem) * 100, 1)
-
-            # ── Dividendos → DY ──────────────────────────────────────────────
-            div_rate = res.get("dividendRate")           # R$/ação 12m
-            if div_rate is not None and div_rate >= 0:
-                a["dividAnual"] = round(float(div_rate), 2)
-                if preco:
-                    a["dy"] = round(div_rate / preco * 100, 1)
-            else:
-                dy_pct = res.get("dividendYield")
-                if dy_pct and preco:
-                    a["dy"] = round(float(dy_pct), 1)
-                    a["dividAnual"] = round(preco * float(dy_pct) / 100, 2)
-
-            # Recalcula múltiplos mesmo quando o provedor só entrega a cotação.
-            if a.get("lpa"):
-                a["pl"] = round(preco / a["lpa"], 2)
-            if a.get("vpa"):
-                a["pvp"] = round(preco / a["vpa"], 2)
-            if a.get("dividAnual") is not None:
-                a["dy"] = round(a["dividAnual"] / preco * 100, 2)
-            atualizados += 1
-            log(f"  {ticker}: R${a.get('cotacao','?')} | P/L {a.get('pl','?')} | P/VP {a.get('pvp','?')} | ROE {a.get('roe','?')}% | DY {a.get('dy','?')}%", "✅")
-
-        except Exception as e:
-            log(f"  {ticker}: {type(e).__name__}; dados preservados", "⚠️")
-            erros.append(ticker)
-
-        time.sleep(0.4)  # rate-limit
-
-    log(f"Fundamentos: {atualizados} atualizados, {len(erros)} erros", "📊")
-    if erros:
-        log(f"Falhas: {', '.join(erros)} — verifique tickers na brapi", "⚠️")
-    return atualizados
+        except Exception as exc:
+            log(f'{ticker}: {type(exc).__name__}; reserva preservada', '⚠️')
+        time.sleep(0.4)
+    log(f'{len(alterados)}/{len(acoes)} ativos com dados disponíveis atualizados', '📊')
+    return len(alterados)
 
 # ─── 2. RECOMENDAÇÕES via Claude + web search (opcional) ──────────────────────
 def atualizar_recomendacoes(data, tickers=None):

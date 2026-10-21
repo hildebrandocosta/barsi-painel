@@ -39,23 +39,32 @@
     ],
     "ultimaTentativa": "2026-10-21",
     "atualizacaoParcial": {
-      "ativos": [
-        "ITUB4",
-        "PETR4"
-      ],
-      "observacao": "Datas por ativo. Dividendos e outros 46 ativos permanecem na reserva."
-    }
+      "cotacoesDisponiveis": 48,
+      "cotacoesComDataPregao": 2,
+      "fundamentosParciais": 2,
+      "dataConsulta": "2026-10-21",
+      "fonteCotacoes": "https://brapi.dev/api/quote/list",
+      "observacao": "46 preços sem data individual de pregão; dividendos não renovados. Datas da consulta e do pregão são distintas."
+    },
+    "tickerVerificacao": {
+      "total": 48,
+      "presentesNaListagem": 48,
+      "duplicados": 0,
+      "data": "2026-10-21",
+      "fonte": "https://brapi.dev/api/quote/list"
+    },
+    "dadosLegados": "Dividendos anuais, históricos, CAGR, consensos e textos não renovados permanecem com suas bases anteriores. O campo recomendacao é legado; o veredicto exibido é calculado em index.html."
   },
   "acoes": [
     {
       "ticker": "BBSE3",
       "nome": "BB Seguridade",
       "setor": "Seguros",
-      "cotacao": 42.4,
-      "pl": 9.0,
-      "pvp": 6.38,
+      "cotacao": 42.46,
+      "pl": 8.97,
+      "pvp": 3.59,
       "roe": 72.72,
-      "dy": 10.95,
+      "dy": 10.72,
       "divEbitda": 0,
       "margem": 45.2,
       "cagrLucro": 14.2,
@@ -157,19 +166,33 @@
       },
       "lpa": 4.7354,
       "vpa": 11.8344,
-      "cotacaoRef": 42.4,
-      "cotacaoData": "2026-07-23",
-      "fundamentosData": null
+      "cotacaoRef": 42.46,
+      "cotacaoData": null,
+      "fundamentosData": null,
+      "proveniencia": {
+        "reservaAnterior": {
+          "cotacao": 42.4,
+          "data": "2026-07-23"
+        },
+        "cotacao": "https://brapi.dev/api/quote/list",
+        "tipoCotacao": "Listagem sem data de pregão individual"
+      },
+      "cotacaoConsulta": "2026-10-21",
+      "tickerVerificacao": {
+        "data": "2026-10-21",
+        "fonte": "https://brapi.dev/api/quote/list",
+        "status": "presente na listagem"
+      }
     },
     {
       "ticker": "CXSE3",
       "nome": "Caixa Seguridade",
       "setor": "Seguros",
-      "cotacao": 22.44,
-      "pl": 15.3,
-      "pvp": 4.86,
+      "cotacao": 21.38,
+      "pl": 14.61,
+      "pvp": 4.43,
       "roe": 31.89,
-      "dy": 5.87,
+      "dy": 6.13,
       "divEbitda": 0,
       "margem": 41,
       "cagrLucro": 18.5,
@@ -249,19 +272,33 @@
       },
       "lpa": 1.4638,
       "vpa": 4.8214,
-      "cotacaoRef": 22.44,
-      "cotacaoData": "2026-07-23",
-      "fundamentosData": null
+      "cotacaoRef": 21.38,
+      "cotacaoData": null,
+      "fundamentosData": null,
+      "proveniencia": {
+        "reservaAnterior": {
+          "cotacao": 22.44,
+          "data": "2026-07-23"
+        },
+        "cotacao": "https://brapi.dev/api/quote/list",
+        "tipoCotacao": "Listagem sem data de pregão individual"
+      },
+      "cotacaoConsulta": "2026-10-21",
+      "tickerVerificacao": {
+        "data": "2026-10-21",
+        "fonte": "https://brapi.dev/api/quote/list",
+        "status": "presente na listagem"
+      }
     },
     {
       "ticker": "PSSA3",
       "nome": "Porto Seguro",
       "setor": "Seguros",
-      "cotacao": 55.18,
-      "pl": 9.7,
-      "pvp": 2.23,
+      "cotacao": 51.73,
+      "pl": 9.09,
+      "pvp": 2.73,
       "roe": 23.7,
-      "dy": 5.63,
+      "dy": 5.82,
       "divEbitda": 0,
       "margem": 8.81,
       "cagrLucro": 12,
@@ -348,19 +385,33 @@
       },
       "lpa": 5.6883,
       "vpa": 18.9655,
-      "cotacaoRef": 55.18,
-      "cotacaoData": "2026-07-23",
-      "fundamentosData": null
+      "cotacaoRef": 51.73,
+      "cotacaoData": null,
+      "fundamentosData": null,
+      "proveniencia": {
+        "reservaAnterior": {
+          "cotacao": 55.18,
+          "data": "2026-07-23"
+        },
+        "cotacao": "https://brapi.dev/api/quote/list",
+        "tipoCotacao": "Listagem sem data de pregão individual"
+      },
+      "cotacaoConsulta": "2026-10-21",
+      "tickerVerificacao": {
+        "data": "2026-10-21",
+        "fonte": "https://brapi.dev/api/quote/list",
+        "status": "presente na listagem"
+      }
     },
     {
       "ticker": "IRBR3",
       "nome": "IRB Brasil RE",
       "setor": "Seguros",
-      "cotacao": 54.1,
-      "pl": 12.6,
-      "pvp": 0.86,
+      "cotacao": 66.95,
+      "pl": 15.62,
+      "pvp": 1.52,
       "roe": 6.59,
-      "dy": 2.79,
+      "dy": 2.33,
       "divEbitda": 0,
       "margem": 7.08,
       "cagrLucro": null,
@@ -454,15 +505,29 @@
       },
       "lpa": 4.2868,
       "vpa": 43.9333,
-      "cotacaoRef": 54.1,
-      "cotacaoData": "2026-07-23",
-      "fundamentosData": null
+      "cotacaoRef": 66.95,
+      "cotacaoData": null,
+      "fundamentosData": null,
+      "proveniencia": {
+        "reservaAnterior": {
+          "cotacao": 54.1,
+          "data": "2026-07-23"
+        },
+        "cotacao": "https://brapi.dev/api/quote/list",
+        "tipoCotacao": "Listagem sem data de pregão individual"
+      },
+      "cotacaoConsulta": "2026-10-21",
+      "tickerVerificacao": {
+        "data": "2026-10-21",
+        "fonte": "https://brapi.dev/api/quote/list",
+        "status": "presente na listagem"
+      }
     },
     {
       "ticker": "ITUB4",
       "nome": "Itaú Unibanco",
       "setor": "Bancos",
-      "cotacao": 48.92,
+      "cotacao": 48.9,
       "pl": 11.53,
       "pvp": 2.48,
       "roe": 21.502532,
@@ -560,10 +625,10 @@
           }
         ]
       },
-      "lpa": 4.2425595,
+      "lpa": 4.242559,
       "vpa": 19.74985,
-      "cotacaoRef": 48.92,
-      "cotacaoData": "2026-10-21T14:49:30.000Z",
+      "cotacaoRef": 48.9,
+      "cotacaoData": "2026-10-21T21:30:30.000Z",
       "fundamentosData": null,
       "proveniencia": {
         "cotacao": "https://brapi.dev/api/quote/ITUB4",
@@ -577,18 +642,47 @@
           "roe",
           "margem"
         ],
-        "dividendos": "Reserva anterior preservada; série de proventos não renovada"
+        "dividendos": "Reserva anterior preservada; série de proventos não renovada",
+        "reservaAnterior": {
+          "cotacao": 48.92,
+          "data": "2026-10-21T14:49:30.000Z"
+        },
+        "tipoCotacao": "Cotação individual datada"
+      },
+      "cotacaoConsulta": "2026-10-21",
+      "tickerVerificacao": {
+        "data": "2026-10-21",
+        "fonte": "https://brapi.dev/api/quote/list",
+        "status": "presente na listagem"
+      },
+      "camposData": {
+        "lpa": {
+          "snapshot": "2026-10-21T21:30:30.000Z",
+          "periodo": null
+        },
+        "vpa": {
+          "periodo": "2026-06-30",
+          "snapshot": "2026-10-06T15:34:38.147Z"
+        },
+        "roe": {
+          "periodo": "2026-06-30",
+          "snapshot": "2026-10-06T15:34:38.147Z"
+        },
+        "margem": {
+          "periodo": "2026-06-30",
+          "snapshot": "2026-10-06T15:34:38.147Z"
+        }
       }
     },
     {
       "ticker": "ITSA4",
       "nome": "Itaúsa",
       "setor": "Bancos",
-      "cotacao": 13.73,
-      "pl": 9.1,
-      "pvp": 1.69,
+      "cotacao": 15.71,
+      "pl": 10.36,
+      "pvp": 1.58,
       "roe": 18.83,
-      "dy": 9.71,
+      "dy": 8.4,
       "divEbitda": null,
       "margem": 203.02,
       "cagrLucro": 12.5,
@@ -675,19 +769,33 @@
       },
       "lpa": 1.5165,
       "vpa": 9.9231,
-      "cotacaoRef": 13.73,
-      "cotacaoData": "2026-07-23",
-      "fundamentosData": null
+      "cotacaoRef": 15.71,
+      "cotacaoData": null,
+      "fundamentosData": null,
+      "proveniencia": {
+        "reservaAnterior": {
+          "cotacao": 13.73,
+          "data": "2026-07-23"
+        },
+        "cotacao": "https://brapi.dev/api/quote/list",
+        "tipoCotacao": "Listagem sem data de pregão individual"
+      },
+      "cotacaoConsulta": "2026-10-21",
+      "tickerVerificacao": {
+        "data": "2026-10-21",
+        "fonte": "https://brapi.dev/api/quote/list",
+        "status": "presente na listagem"
+      }
     },
     {
       "ticker": "BBAS3",
       "nome": "Banco do Brasil",
       "setor": "Bancos",
-      "cotacao": 20.93,
-      "pl": 9.4,
-      "pvp": 0.62,
+      "cotacao": 24.1,
+      "pl": 10.87,
+      "pvp": 1.11,
       "roe": 8.2,
-      "dy": 2.64,
+      "dy": 2.28,
       "divEbitda": null,
       "margem": 4.82,
       "cagrLucro": 18.2,
@@ -781,19 +889,33 @@
       },
       "lpa": 2.217,
       "vpa": 21.6222,
-      "cotacaoRef": 20.93,
-      "cotacaoData": "2026-07-23",
-      "fundamentosData": null
+      "cotacaoRef": 24.1,
+      "cotacaoData": null,
+      "fundamentosData": null,
+      "proveniencia": {
+        "reservaAnterior": {
+          "cotacao": 20.93,
+          "data": "2026-07-23"
+        },
+        "cotacao": "https://brapi.dev/api/quote/list",
+        "tipoCotacao": "Listagem sem data de pregão individual"
+      },
+      "cotacaoConsulta": "2026-10-21",
+      "tickerVerificacao": {
+        "data": "2026-10-21",
+        "fonte": "https://brapi.dev/api/quote/list",
+        "status": "presente na listagem"
+      }
     },
     {
       "ticker": "SANB11",
       "nome": "Santander BR",
       "setor": "Bancos",
-      "cotacao": 26.63,
-      "pl": 8.1,
-      "pvp": 0.81,
+      "cotacao": 28.13,
+      "pl": 8.36,
+      "pvp": 1.24,
       "roe": 10.34,
-      "dy": 8.45,
+      "dy": 8.18,
       "divEbitda": null,
       "margem": 7.87,
       "cagrLucro": 8.5,
@@ -886,19 +1008,33 @@
       },
       "lpa": 3.363,
       "vpa": 22.7,
-      "cotacaoRef": 26.63,
-      "cotacaoData": "2026-07-23",
-      "fundamentosData": null
+      "cotacaoRef": 28.13,
+      "cotacaoData": null,
+      "fundamentosData": null,
+      "proveniencia": {
+        "reservaAnterior": {
+          "cotacao": 26.63,
+          "data": "2026-07-23"
+        },
+        "cotacao": "https://brapi.dev/api/quote/list",
+        "tipoCotacao": "Listagem sem data de pregão individual"
+      },
+      "cotacaoConsulta": "2026-10-21",
+      "tickerVerificacao": {
+        "data": "2026-10-21",
+        "fonte": "https://brapi.dev/api/quote/list",
+        "status": "presente na listagem"
+      }
     },
     {
       "ticker": "BBDC4",
       "nome": "Bradesco",
       "setor": "Bancos",
-      "cotacao": 18.72,
-      "pl": 8.5,
-      "pvp": 1.09,
+      "cotacao": 20.65,
+      "pl": 9.4,
+      "pvp": 1.16,
       "roe": 13.06,
-      "dy": 6.78,
+      "dy": 6.1,
       "divEbitda": null,
       "margem": 8.15,
       "cagrLucro": -4.2,
@@ -998,19 +1134,33 @@
       },
       "lpa": 2.1979,
       "vpa": 17.8,
-      "cotacaoRef": 18.72,
-      "cotacaoData": "2026-07-23",
-      "fundamentosData": null
+      "cotacaoRef": 20.65,
+      "cotacaoData": null,
+      "fundamentosData": null,
+      "proveniencia": {
+        "reservaAnterior": {
+          "cotacao": 18.72,
+          "data": "2026-07-23"
+        },
+        "cotacao": "https://brapi.dev/api/quote/list",
+        "tipoCotacao": "Listagem sem data de pregão individual"
+      },
+      "cotacaoConsulta": "2026-10-21",
+      "tickerVerificacao": {
+        "data": "2026-10-21",
+        "fonte": "https://brapi.dev/api/quote/list",
+        "status": "presente na listagem"
+      }
     },
     {
       "ticker": "BPAC11",
       "nome": "BTG Pactual",
       "setor": "Bancos",
-      "cotacao": 56.3,
-      "pl": 13.4,
-      "pvp": 2.76,
+      "cotacao": 80.56,
+      "pl": 21.42,
+      "pvp": 4.48,
       "roe": 22.52,
-      "dy": 2.25,
+      "dy": 1.55,
       "divEbitda": null,
       "margem": 26.78,
       "cagrLucro": 28.5,
@@ -1097,19 +1247,33 @@
       },
       "lpa": 3.7604,
       "vpa": 17.9964,
-      "cotacaoRef": 56.3,
-      "cotacaoData": "2026-07-23",
-      "fundamentosData": null
+      "cotacaoRef": 80.56,
+      "cotacaoData": null,
+      "fundamentosData": null,
+      "proveniencia": {
+        "reservaAnterior": {
+          "cotacao": 56.3,
+          "data": "2026-07-23"
+        },
+        "cotacao": "https://brapi.dev/api/quote/list",
+        "tipoCotacao": "Listagem sem data de pregão individual"
+      },
+      "cotacaoConsulta": "2026-10-21",
+      "tickerVerificacao": {
+        "data": "2026-10-21",
+        "fonte": "https://brapi.dev/api/quote/list",
+        "status": "presente na listagem"
+      }
     },
     {
       "ticker": "TAEE11",
       "nome": "Taesa",
       "setor": "Transmissão Elétrica",
-      "cotacao": 41.42,
-      "pl": 8.5,
-      "pvp": 1.78,
+      "cotacao": 45.24,
+      "pl": 10.12,
+      "pvp": 2.14,
       "roe": 19.7,
-      "dy": 7.96,
+      "dy": 7.23,
       "divEbitda": 2.8,
       "margem": 33.52,
       "cagrLucro": -2.5,
@@ -1196,19 +1360,33 @@
       },
       "lpa": 4.4706,
       "vpa": 21.1111,
-      "cotacaoRef": 41.42,
-      "cotacaoData": "2026-07-23",
-      "fundamentosData": null
+      "cotacaoRef": 45.24,
+      "cotacaoData": null,
+      "fundamentosData": null,
+      "proveniencia": {
+        "reservaAnterior": {
+          "cotacao": 41.42,
+          "data": "2026-07-23"
+        },
+        "cotacao": "https://brapi.dev/api/quote/list",
+        "tipoCotacao": "Listagem sem data de pregão individual"
+      },
+      "cotacaoConsulta": "2026-10-21",
+      "tickerVerificacao": {
+        "data": "2026-10-21",
+        "fonte": "https://brapi.dev/api/quote/list",
+        "status": "presente na listagem"
+      }
     },
     {
       "ticker": "ISAE4",
       "nome": "ISA Energia",
       "setor": "Transmissão Elétrica",
-      "cotacao": 28.5,
-      "pl": 8.0,
-      "pvp": 0.87,
+      "cotacao": 28.98,
+      "pl": 8.15,
+      "pvp": 1.85,
       "roe": 10.94,
-      "dy": 6.51,
+      "dy": 6.38,
       "divEbitda": 2.5,
       "margem": 24.65,
       "cagrLucro": 7.8,
@@ -1288,19 +1466,33 @@
       },
       "lpa": 3.5571,
       "vpa": 15.625,
-      "cotacaoRef": 28.5,
-      "cotacaoData": "2026-07-23",
-      "fundamentosData": null
+      "cotacaoRef": 28.98,
+      "cotacaoData": null,
+      "fundamentosData": null,
+      "proveniencia": {
+        "reservaAnterior": {
+          "cotacao": 28.5,
+          "data": "2026-07-23"
+        },
+        "cotacao": "https://brapi.dev/api/quote/list",
+        "tipoCotacao": "Listagem sem data de pregão individual"
+      },
+      "cotacaoConsulta": "2026-10-21",
+      "tickerVerificacao": {
+        "data": "2026-10-21",
+        "fonte": "https://brapi.dev/api/quote/list",
+        "status": "presente na listagem"
+      }
     },
     {
       "ticker": "EGIE3",
       "nome": "Engie Brasil",
       "setor": "Energia Elétrica",
-      "cotacao": 30.15,
-      "pl": 13.4,
-      "pvp": 3.16,
+      "cotacao": 31.1,
+      "pl": 13.85,
+      "pvp": 2.07,
       "roe": 18.86,
-      "dy": 4.8,
+      "dy": 4.69,
       "divEbitda": 1.8,
       "margem": 19.35,
       "cagrLucro": 9.5,
@@ -1387,19 +1579,33 @@
       },
       "lpa": 2.246,
       "vpa": 15.0,
-      "cotacaoRef": 30.15,
-      "cotacaoData": "2026-07-23",
-      "fundamentosData": null
+      "cotacaoRef": 31.1,
+      "cotacaoData": null,
+      "fundamentosData": null,
+      "proveniencia": {
+        "reservaAnterior": {
+          "cotacao": 30.15,
+          "data": "2026-07-23"
+        },
+        "cotacao": "https://brapi.dev/api/quote/list",
+        "tipoCotacao": "Listagem sem data de pregão individual"
+      },
+      "cotacaoConsulta": "2026-10-21",
+      "tickerVerificacao": {
+        "data": "2026-10-21",
+        "fonte": "https://brapi.dev/api/quote/list",
+        "status": "presente na listagem"
+      }
     },
     {
       "ticker": "CMIG4",
       "nome": "Cemig",
       "setor": "Energia Elétrica",
-      "cotacao": 11.19,
-      "pl": 6.6,
-      "pvp": 1.09,
+      "cotacao": 11.7,
+      "pl": 6.92,
+      "pvp": 1.19,
       "roe": 16.75,
-      "dy": 7.47,
+      "dy": 7.01,
       "divEbitda": 1.5,
       "margem": 11.15,
       "cagrLucro": 22.5,
@@ -1483,19 +1689,33 @@
       },
       "lpa": 1.6911,
       "vpa": 9.8636,
-      "cotacaoRef": 11.19,
-      "cotacaoData": "2026-07-23",
-      "fundamentosData": null
+      "cotacaoRef": 11.7,
+      "cotacaoData": null,
+      "fundamentosData": null,
+      "proveniencia": {
+        "reservaAnterior": {
+          "cotacao": 11.19,
+          "data": "2026-07-23"
+        },
+        "cotacao": "https://brapi.dev/api/quote/list",
+        "tipoCotacao": "Listagem sem data de pregão individual"
+      },
+      "cotacaoConsulta": "2026-10-21",
+      "tickerVerificacao": {
+        "data": "2026-10-21",
+        "fonte": "https://brapi.dev/api/quote/list",
+        "status": "presente na listagem"
+      }
     },
     {
       "ticker": "CPLE3",
       "nome": "Copel",
       "setor": "Energia Elétrica",
-      "cotacao": 14.22,
-      "pl": 8.1,
-      "pvp": 1.78,
+      "cotacao": 17.36,
+      "pl": 9.86,
+      "pvp": 1.9,
       "roe": 11.39,
-      "dy": 12.1,
+      "dy": 9.62,
       "divEbitda": 1.2,
       "margem": 9.95,
       "cagrLucro": 35.2,
@@ -1583,20 +1803,35 @@
       },
       "lpa": 1.7602,
       "vpa": 9.1312,
-      "cotacaoData": "2026-07-23",
+      "cotacaoData": null,
       "fundamentosData": null,
       "tickerAnterior": "CPLE6",
-      "revisaoPendente": true
+      "revisaoPendente": true,
+      "proveniencia": {
+        "reservaAnterior": {
+          "cotacao": 14.22,
+          "data": "2026-07-23"
+        },
+        "cotacao": "https://brapi.dev/api/quote/list",
+        "tipoCotacao": "Listagem sem data de pregão individual"
+      },
+      "cotacaoRef": 17.36,
+      "cotacaoConsulta": "2026-10-21",
+      "tickerVerificacao": {
+        "data": "2026-10-21",
+        "fonte": "https://brapi.dev/api/quote/list",
+        "status": "presente na listagem"
+      }
     },
     {
       "ticker": "CPFE3",
       "nome": "CPFL Energia",
       "setor": "Energia Elétrica",
-      "cotacao": 46.22,
-      "pl": 9.2,
-      "pvp": 2.2,
+      "cotacao": 49.51,
+      "pl": 9.9,
+      "pvp": 3.0,
       "roe": 23.72,
-      "dy": 8.05,
+      "dy": 7.55,
       "divEbitda": 2,
       "margem": 12.79,
       "cagrLucro": 10.2,
@@ -1676,19 +1911,33 @@
       },
       "lpa": 5.0017,
       "vpa": 16.5,
-      "cotacaoRef": 46.22,
-      "cotacaoData": "2026-07-23",
-      "fundamentosData": null
+      "cotacaoRef": 49.51,
+      "cotacaoData": null,
+      "fundamentosData": null,
+      "proveniencia": {
+        "reservaAnterior": {
+          "cotacao": 46.22,
+          "data": "2026-07-23"
+        },
+        "cotacao": "https://brapi.dev/api/quote/list",
+        "tipoCotacao": "Listagem sem data de pregão individual"
+      },
+      "cotacaoConsulta": "2026-10-21",
+      "tickerVerificacao": {
+        "data": "2026-10-21",
+        "fonte": "https://brapi.dev/api/quote/list",
+        "status": "presente na listagem"
+      }
     },
     {
       "ticker": "EQTL3",
       "nome": "Equatorial",
       "setor": "Energia Elétrica",
-      "cotacao": 39.02,
-      "pl": 31.6,
-      "pvp": 1.89,
+      "cotacao": 48.63,
+      "pl": 39.39,
+      "pvp": 3.51,
       "roe": 6.02,
-      "dy": 4.92,
+      "dy": 3.93,
       "divEbitda": 3.8,
       "margem": 2.91,
       "cagrLucro": 18.8,
@@ -1775,19 +2024,33 @@
       },
       "lpa": 1.2345,
       "vpa": 13.8464,
-      "cotacaoRef": 39.02,
-      "cotacaoData": "2026-07-23",
-      "fundamentosData": null
+      "cotacaoRef": 48.63,
+      "cotacaoData": null,
+      "fundamentosData": null,
+      "proveniencia": {
+        "reservaAnterior": {
+          "cotacao": 39.02,
+          "data": "2026-07-23"
+        },
+        "cotacao": "https://brapi.dev/api/quote/list",
+        "tipoCotacao": "Listagem sem data de pregão individual"
+      },
+      "cotacaoConsulta": "2026-10-21",
+      "tickerVerificacao": {
+        "data": "2026-10-21",
+        "fonte": "https://brapi.dev/api/quote/list",
+        "status": "presente na listagem"
+      }
     },
     {
       "ticker": "AURE3",
       "nome": "Auren Energia",
       "setor": "Energia Elétrica",
-      "cotacao": 11.39,
-      "pl": -9.2,
-      "pvp": 0.99,
+      "cotacao": 15.23,
+      "pl": -12.3,
+      "pvp": 1.33,
       "roe": -10.86,
-      "dy": 7.8,
+      "dy": 8.21,
       "divEbitda": 2.5,
       "margem": -9.73,
       "cagrLucro": 12,
@@ -1866,19 +2129,33 @@
       },
       "lpa": -1.2383,
       "vpa": 11.4286,
-      "cotacaoRef": 11.39,
-      "cotacaoData": "2026-07-23",
-      "fundamentosData": null
+      "cotacaoRef": 15.23,
+      "cotacaoData": null,
+      "fundamentosData": null,
+      "proveniencia": {
+        "reservaAnterior": {
+          "cotacao": 11.39,
+          "data": "2026-07-23"
+        },
+        "cotacao": "https://brapi.dev/api/quote/list",
+        "tipoCotacao": "Listagem sem data de pregão individual"
+      },
+      "cotacaoConsulta": "2026-10-21",
+      "tickerVerificacao": {
+        "data": "2026-10-21",
+        "fonte": "https://brapi.dev/api/quote/list",
+        "status": "presente na listagem"
+      }
     },
     {
       "ticker": "PETR4",
       "nome": "Petrobras PN",
       "setor": "Energia Elétrica",
-      "cotacao": 48.72,
-      "pl": 4.71,
-      "pvp": 1.31,
+      "cotacao": 57.75,
+      "pl": 5.58,
+      "pvp": 1.55,
       "roe": 27.731782,
-      "dy": 5.42,
+      "dy": 4.57,
       "divEbitda": 0.8,
       "margem": 24.38609,
       "cagrLucro": 5.5,
@@ -1963,10 +2240,10 @@
           }
         ]
       },
-      "lpa": 10.3482633,
+      "lpa": 10.348263,
       "vpa": 37.315536,
-      "cotacaoRef": 48.72,
-      "cotacaoData": "2026-09-28T23:33:57.000Z",
+      "cotacaoRef": 57.75,
+      "cotacaoData": "2026-10-21T21:30:30.000Z",
       "fundamentosData": null,
       "proveniencia": {
         "cotacao": "https://brapi.dev/api/quote/PETR4",
@@ -1980,18 +2257,47 @@
           "roe",
           "margem"
         ],
-        "dividendos": "Reserva anterior preservada; série de proventos não renovada"
+        "dividendos": "Reserva anterior preservada; série de proventos não renovada",
+        "reservaAnterior": {
+          "cotacao": 48.72,
+          "data": "2026-09-28T23:33:57.000Z"
+        },
+        "tipoCotacao": "Cotação individual datada"
+      },
+      "cotacaoConsulta": "2026-10-21",
+      "tickerVerificacao": {
+        "data": "2026-10-21",
+        "fonte": "https://brapi.dev/api/quote/list",
+        "status": "presente na listagem"
+      },
+      "camposData": {
+        "lpa": {
+          "snapshot": "2026-10-21T21:30:30.000Z",
+          "periodo": null
+        },
+        "vpa": {
+          "periodo": "2026-06-30",
+          "snapshot": "2026-09-28T23:44:19.064Z"
+        },
+        "roe": {
+          "periodo": "2026-06-30",
+          "snapshot": "2026-09-28T23:44:19.064Z"
+        },
+        "margem": {
+          "periodo": "2026-06-30",
+          "snapshot": "2026-09-28T23:44:19.064Z"
+        }
       }
     },
     {
       "ticker": "PRIO3",
       "nome": "PRIO",
       "setor": "Energia Elétrica",
-      "cotacao": 60.54,
-      "pl": 19.0,
-      "pvp": 1.91,
+      "cotacao": 71.31,
+      "pl": 22.33,
+      "pvp": 4.19,
       "roe": 9.72,
-      "dy": 0,
+      "dy": 0.0,
       "divEbitda": 0.5,
       "margem": 14.65,
       "cagrLucro": 85,
@@ -2079,19 +2385,33 @@
       },
       "lpa": 3.1935,
       "vpa": 17.0389,
-      "cotacaoRef": 60.54,
-      "cotacaoData": "2026-07-23",
-      "fundamentosData": null
+      "cotacaoRef": 71.31,
+      "cotacaoData": null,
+      "fundamentosData": null,
+      "proveniencia": {
+        "reservaAnterior": {
+          "cotacao": 60.54,
+          "data": "2026-07-23"
+        },
+        "cotacao": "https://brapi.dev/api/quote/list",
+        "tipoCotacao": "Listagem sem data de pregão individual"
+      },
+      "cotacaoConsulta": "2026-10-21",
+      "tickerVerificacao": {
+        "data": "2026-10-21",
+        "fonte": "https://brapi.dev/api/quote/list",
+        "status": "presente na listagem"
+      }
     },
     {
       "ticker": "SBSP3",
       "nome": "Sabesp",
       "setor": "Saneamento",
-      "cotacao": 28.75,
-      "pl": 11.5,
-      "pvp": 2.31,
+      "cotacao": 32.03,
+      "pl": 12.82,
+      "pvp": 3.26,
       "roe": 19.97,
-      "dy": 2.43,
+      "dy": 2.15,
       "divEbitda": 3.2,
       "margem": 22.03,
       "cagrLucro": 28.5,
@@ -2185,19 +2505,33 @@
       },
       "lpa": 2.4979,
       "vpa": 9.8286,
-      "cotacaoRef": 28.75,
-      "cotacaoData": "2026-07-23",
-      "fundamentosData": null
+      "cotacaoRef": 32.03,
+      "cotacaoData": null,
+      "fundamentosData": null,
+      "proveniencia": {
+        "reservaAnterior": {
+          "cotacao": 28.75,
+          "data": "2026-07-23"
+        },
+        "cotacao": "https://brapi.dev/api/quote/list",
+        "tipoCotacao": "Listagem sem data de pregão individual"
+      },
+      "cotacaoConsulta": "2026-10-21",
+      "tickerVerificacao": {
+        "data": "2026-10-21",
+        "fonte": "https://brapi.dev/api/quote/list",
+        "status": "presente na listagem"
+      }
     },
     {
       "ticker": "SAPR11",
       "nome": "Sanepar",
       "setor": "Saneamento",
-      "cotacao": 36.47,
-      "pl": 5.9,
-      "pvp": 0.86,
+      "cotacao": 41.11,
+      "pl": 8.98,
+      "pvp": 1.67,
       "roe": 9.64,
-      "dy": 1.53,
+      "dy": 1.34,
       "divEbitda": 2.5,
       "margem": 16.66,
       "cagrLucro": 14.5,
@@ -2284,19 +2618,33 @@
       },
       "lpa": 4.5763,
       "vpa": 24.5455,
-      "cotacaoRef": 36.47,
-      "cotacaoData": "2026-07-23",
-      "fundamentosData": null
+      "cotacaoRef": 41.11,
+      "cotacaoData": null,
+      "fundamentosData": null,
+      "proveniencia": {
+        "reservaAnterior": {
+          "cotacao": 36.47,
+          "data": "2026-07-23"
+        },
+        "cotacao": "https://brapi.dev/api/quote/list",
+        "tipoCotacao": "Listagem sem data de pregão individual"
+      },
+      "cotacaoConsulta": "2026-10-21",
+      "tickerVerificacao": {
+        "data": "2026-10-21",
+        "fonte": "https://brapi.dev/api/quote/list",
+        "status": "presente na listagem"
+      }
     },
     {
       "ticker": "CSMG3",
       "nome": "Copasa",
       "setor": "Saneamento",
-      "cotacao": 63.95,
-      "pl": 17.9,
-      "pvp": 2.74,
+      "cotacao": 63,
+      "pl": 17.63,
+      "pvp": 2.73,
       "roe": 15.46,
-      "dy": 3.47,
+      "dy": 3.48,
       "divEbitda": 2.2,
       "margem": 16.14,
       "cagrLucro": 12.8,
@@ -2383,19 +2731,33 @@
       },
       "lpa": 3.5744,
       "vpa": 23.0513,
-      "cotacaoRef": 63.95,
-      "cotacaoData": "2026-07-23",
-      "fundamentosData": null
+      "cotacaoRef": 63,
+      "cotacaoData": null,
+      "fundamentosData": null,
+      "proveniencia": {
+        "reservaAnterior": {
+          "cotacao": 63.95,
+          "data": "2026-07-23"
+        },
+        "cotacao": "https://brapi.dev/api/quote/list",
+        "tipoCotacao": "Listagem sem data de pregão individual"
+      },
+      "cotacaoConsulta": "2026-10-21",
+      "tickerVerificacao": {
+        "data": "2026-10-21",
+        "fonte": "https://brapi.dev/api/quote/list",
+        "status": "presente na listagem"
+      }
     },
     {
       "ticker": "VIVT3",
       "nome": "Vivo (Telefônica)",
       "setor": "Telecom",
-      "cotacao": 34.7,
-      "pl": 17.5,
-      "pvp": 1.66,
+      "cotacao": 32.64,
+      "pl": 16.44,
+      "pvp": 1.51,
       "roe": 9.17,
-      "dy": 2.97,
+      "dy": 3.25,
       "divEbitda": 1.2,
       "margem": 10.5,
       "cagrLucro": 8.5,
@@ -2482,19 +2844,33 @@
       },
       "lpa": 1.9851,
       "vpa": 21.6667,
-      "cotacaoRef": 34.7,
-      "cotacaoData": "2026-07-23",
-      "fundamentosData": null
+      "cotacaoRef": 32.64,
+      "cotacaoData": null,
+      "fundamentosData": null,
+      "proveniencia": {
+        "reservaAnterior": {
+          "cotacao": 34.7,
+          "data": "2026-07-23"
+        },
+        "cotacao": "https://brapi.dev/api/quote/list",
+        "tipoCotacao": "Listagem sem data de pregão individual"
+      },
+      "cotacaoConsulta": "2026-10-21",
+      "tickerVerificacao": {
+        "data": "2026-10-21",
+        "fonte": "https://brapi.dev/api/quote/list",
+        "status": "presente na listagem"
+      }
     },
     {
       "ticker": "TIMS3",
       "nome": "TIM",
       "setor": "Telecom",
-      "cotacao": 21.25,
-      "pl": 11.8,
-      "pvp": 4.5,
+      "cotacao": 19.37,
+      "pl": 10.76,
+      "pvp": 1.94,
       "roe": 16.69,
-      "dy": 7.0,
+      "dy": 8.21,
       "divEbitda": 0.8,
       "margem": 7.43,
       "cagrLucro": 11.5,
@@ -2581,19 +2957,33 @@
       },
       "lpa": 1.7995,
       "vpa": 10.0,
-      "cotacaoRef": 21.25,
-      "cotacaoData": "2026-07-23",
-      "fundamentosData": null
+      "cotacaoRef": 19.37,
+      "cotacaoData": null,
+      "fundamentosData": null,
+      "proveniencia": {
+        "reservaAnterior": {
+          "cotacao": 21.25,
+          "data": "2026-07-23"
+        },
+        "cotacao": "https://brapi.dev/api/quote/list",
+        "tipoCotacao": "Listagem sem data de pregão individual"
+      },
+      "cotacaoConsulta": "2026-10-21",
+      "tickerVerificacao": {
+        "data": "2026-10-21",
+        "fonte": "https://brapi.dev/api/quote/list",
+        "status": "presente na listagem"
+      }
     },
     {
       "ticker": "B3SA3",
       "nome": "B3",
       "setor": "Infraestrutura Financeira",
-      "cotacao": 15.65,
-      "pl": 16.2,
-      "pvp": 4.19,
+      "cotacao": 23.51,
+      "pl": 24.3,
+      "pvp": 6.79,
       "roe": 27.15,
-      "dy": 4.01,
+      "dy": 2.59,
       "divEbitda": 1.5,
       "margem": 42.49,
       "cagrLucro": 2.5,
@@ -2687,19 +3077,33 @@
       },
       "lpa": 0.9674,
       "vpa": 3.4614,
-      "cotacaoRef": 15.65,
-      "cotacaoData": "2026-07-23",
-      "fundamentosData": null
+      "cotacaoRef": 23.51,
+      "cotacaoData": null,
+      "fundamentosData": null,
+      "proveniencia": {
+        "reservaAnterior": {
+          "cotacao": 15.65,
+          "data": "2026-07-23"
+        },
+        "cotacao": "https://brapi.dev/api/quote/list",
+        "tipoCotacao": "Listagem sem data de pregão individual"
+      },
+      "cotacaoConsulta": "2026-10-21",
+      "tickerVerificacao": {
+        "data": "2026-10-21",
+        "fonte": "https://brapi.dev/api/quote/list",
+        "status": "presente na listagem"
+      }
     },
     {
       "ticker": "TOTS3",
       "nome": "Totvs",
       "setor": "Infraestrutura Financeira",
-      "cotacao": 27.05,
-      "pl": 17.1,
-      "pvp": 3.45,
+      "cotacao": 43.24,
+      "pl": 27.41,
+      "pvp": 4.79,
       "roe": 18.65,
-      "dy": 2.38,
+      "dy": 1.57,
       "divEbitda": 0.5,
       "margem": 15.41,
       "cagrLucro": 18.5,
@@ -2793,19 +3197,33 @@
       },
       "lpa": 1.5775,
       "vpa": 9.0303,
-      "cotacaoRef": 27.05,
-      "cotacaoData": "2026-07-23",
-      "fundamentosData": null
+      "cotacaoRef": 43.24,
+      "cotacaoData": null,
+      "fundamentosData": null,
+      "proveniencia": {
+        "reservaAnterior": {
+          "cotacao": 27.05,
+          "data": "2026-07-23"
+        },
+        "cotacao": "https://brapi.dev/api/quote/list",
+        "tipoCotacao": "Listagem sem data de pregão individual"
+      },
+      "cotacaoConsulta": "2026-10-21",
+      "tickerVerificacao": {
+        "data": "2026-10-21",
+        "fonte": "https://brapi.dev/api/quote/list",
+        "status": "presente na listagem"
+      }
     },
     {
       "ticker": "ECOR3",
       "nome": "Ecorodovias",
       "setor": "Concessões / Logística",
-      "cotacao": 6.96,
-      "pl": 6.6,
-      "pvp": 1.16,
+      "cotacao": 13.33,
+      "pl": 12.72,
+      "pvp": 2.02,
       "roe": 17.81,
-      "dy": 4.54,
+      "dy": 2.33,
       "divEbitda": 4.8,
       "margem": 6.26,
       "cagrLucro": 8.5,
@@ -2884,19 +3302,33 @@
       },
       "lpa": 1.0482,
       "vpa": 6.6091,
-      "cotacaoRef": 6.96,
-      "cotacaoData": "2026-07-23",
-      "fundamentosData": null
+      "cotacaoRef": 13.33,
+      "cotacaoData": null,
+      "fundamentosData": null,
+      "proveniencia": {
+        "reservaAnterior": {
+          "cotacao": 6.96,
+          "data": "2026-07-23"
+        },
+        "cotacao": "https://brapi.dev/api/quote/list",
+        "tipoCotacao": "Listagem sem data de pregão individual"
+      },
+      "cotacaoConsulta": "2026-10-21",
+      "tickerVerificacao": {
+        "data": "2026-10-21",
+        "fonte": "https://brapi.dev/api/quote/list",
+        "status": "presente na listagem"
+      }
     },
     {
       "ticker": "RAIL3",
       "nome": "Rumo",
       "setor": "Concessões / Logística",
-      "cotacao": 13.96,
-      "pl": 24.9,
-      "pvp": 1.77,
+      "cotacao": 18.96,
+      "pl": 33.83,
+      "pvp": 2.94,
       "roe": 7.49,
-      "dy": 0.82,
+      "dy": 0.58,
       "divEbitda": 3.2,
       "margem": 7.34,
       "cagrLucro": 22.5,
@@ -2983,19 +3415,33 @@
       },
       "lpa": 0.5604,
       "vpa": 6.4381,
-      "cotacaoRef": 13.96,
-      "cotacaoData": "2026-07-23",
-      "fundamentosData": null
+      "cotacaoRef": 18.96,
+      "cotacaoData": null,
+      "fundamentosData": null,
+      "proveniencia": {
+        "reservaAnterior": {
+          "cotacao": 13.96,
+          "data": "2026-07-23"
+        },
+        "cotacao": "https://brapi.dev/api/quote/list",
+        "tipoCotacao": "Listagem sem data de pregão individual"
+      },
+      "cotacaoConsulta": "2026-10-21",
+      "tickerVerificacao": {
+        "data": "2026-10-21",
+        "fonte": "https://brapi.dev/api/quote/list",
+        "status": "presente na listagem"
+      }
     },
     {
       "ticker": "VBBR3",
       "nome": "Vibra Energia",
       "setor": "Concessões / Logística",
-      "cotacao": 35.6,
-      "pl": 13.9,
-      "pvp": 1.87,
+      "cotacao": 36.83,
+      "pl": 14.42,
+      "pvp": 3.03,
       "roe": 13.83,
-      "dy": 4.6,
+      "dy": 4.24,
       "divEbitda": 1.2,
       "margem": 1.56,
       "cagrLucro": 14.5,
@@ -3082,19 +3528,33 @@
       },
       "lpa": 2.5543,
       "vpa": 12.1458,
-      "cotacaoRef": 35.6,
-      "cotacaoData": "2026-07-23",
-      "fundamentosData": null
+      "cotacaoRef": 36.83,
+      "cotacaoData": null,
+      "fundamentosData": null,
+      "proveniencia": {
+        "reservaAnterior": {
+          "cotacao": 35.6,
+          "data": "2026-07-23"
+        },
+        "cotacao": "https://brapi.dev/api/quote/list",
+        "tipoCotacao": "Listagem sem data de pregão individual"
+      },
+      "cotacaoConsulta": "2026-10-21",
+      "tickerVerificacao": {
+        "data": "2026-10-21",
+        "fonte": "https://brapi.dev/api/quote/list",
+        "status": "presente na listagem"
+      }
     },
     {
       "ticker": "UGPA3",
       "nome": "Ultrapar",
       "setor": "Concessões / Logística",
-      "cotacao": 33.39,
-      "pl": 12.1,
-      "pvp": 2.16,
+      "cotacao": 40.03,
+      "pl": 14.45,
+      "pvp": 2.91,
       "roe": 18.19,
-      "dy": 4.09,
+      "dy": 3.25,
       "divEbitda": 2.2,
       "margem": 2.06,
       "cagrLucro": 10.5,
@@ -3180,19 +3640,33 @@
       },
       "lpa": 2.7695,
       "vpa": 13.7778,
-      "cotacaoRef": 33.39,
-      "cotacaoData": "2026-07-23",
-      "fundamentosData": null
+      "cotacaoRef": 40.03,
+      "cotacaoData": null,
+      "fundamentosData": null,
+      "proveniencia": {
+        "reservaAnterior": {
+          "cotacao": 33.39,
+          "data": "2026-07-23"
+        },
+        "cotacao": "https://brapi.dev/api/quote/list",
+        "tipoCotacao": "Listagem sem data de pregão individual"
+      },
+      "cotacaoConsulta": "2026-10-21",
+      "tickerVerificacao": {
+        "data": "2026-10-21",
+        "fonte": "https://brapi.dev/api/quote/list",
+        "status": "presente na listagem"
+      }
     },
     {
       "ticker": "RENT3",
       "nome": "Localiza",
       "setor": "Concessões / Logística",
-      "cotacao": 37.14,
-      "pl": 17.7,
-      "pvp": 1.56,
+      "cotacao": 52.54,
+      "pl": 25.08,
+      "pvp": 3.87,
       "roe": 8.57,
-      "dy": 5.71,
+      "dy": 3.98,
       "divEbitda": 3.5,
       "margem": 5.13,
       "cagrLucro": 18.5,
@@ -3279,19 +3753,33 @@
       },
       "lpa": 2.0947,
       "vpa": 13.5667,
-      "cotacaoRef": 37.14,
-      "cotacaoData": "2026-07-23",
-      "fundamentosData": null
+      "cotacaoRef": 52.54,
+      "cotacaoData": null,
+      "fundamentosData": null,
+      "proveniencia": {
+        "reservaAnterior": {
+          "cotacao": 37.14,
+          "data": "2026-07-23"
+        },
+        "cotacao": "https://brapi.dev/api/quote/list",
+        "tipoCotacao": "Listagem sem data de pregão individual"
+      },
+      "cotacaoConsulta": "2026-10-21",
+      "tickerVerificacao": {
+        "data": "2026-10-21",
+        "fonte": "https://brapi.dev/api/quote/list",
+        "status": "presente na listagem"
+      }
     },
     {
       "ticker": "MDIA3",
       "nome": "M. Dias Branco",
       "setor": "Consumo não-cíclico",
-      "cotacao": 17.29,
-      "pl": 8.3,
-      "pvp": 0.71,
+      "cotacao": 19.35,
+      "pl": 9.31,
+      "pvp": 1.04,
       "roe": 8.33,
-      "dy": 6.03,
+      "dy": 5.48,
       "divEbitda": 0.2,
       "margem": 6.67,
       "cagrLucro": 8.5,
@@ -3378,19 +3866,33 @@
       },
       "lpa": 2.0774,
       "vpa": 18.6364,
-      "cotacaoRef": 17.29,
-      "cotacaoData": "2026-07-23",
-      "fundamentosData": null
+      "cotacaoRef": 19.35,
+      "cotacaoData": null,
+      "fundamentosData": null,
+      "proveniencia": {
+        "reservaAnterior": {
+          "cotacao": 17.29,
+          "data": "2026-07-23"
+        },
+        "cotacao": "https://brapi.dev/api/quote/list",
+        "tipoCotacao": "Listagem sem data de pregão individual"
+      },
+      "cotacaoConsulta": "2026-10-21",
+      "tickerVerificacao": {
+        "data": "2026-10-21",
+        "fonte": "https://brapi.dev/api/quote/list",
+        "status": "presente na listagem"
+      }
     },
     {
       "ticker": "ABEV3",
       "nome": "Ambev",
       "setor": "Consumo não-cíclico",
-      "cotacao": 15.92,
-      "pl": 15.9,
-      "pvp": 2.76,
+      "cotacao": 16.69,
+      "pl": 16.72,
+      "pvp": 3.01,
       "roe": 17.28,
-      "dy": 8.28,
+      "dy": 7.85,
       "divEbitda": 0,
       "margem": 17.66,
       "cagrLucro": 3.5,
@@ -3478,19 +3980,33 @@
       },
       "lpa": 0.9984,
       "vpa": 5.5367,
-      "cotacaoRef": 15.92,
-      "cotacaoData": "2026-07-23",
-      "fundamentosData": null
+      "cotacaoRef": 16.69,
+      "cotacaoData": null,
+      "fundamentosData": null,
+      "proveniencia": {
+        "reservaAnterior": {
+          "cotacao": 15.92,
+          "data": "2026-07-23"
+        },
+        "cotacao": "https://brapi.dev/api/quote/list",
+        "tipoCotacao": "Listagem sem data de pregão individual"
+      },
+      "cotacaoConsulta": "2026-10-21",
+      "tickerVerificacao": {
+        "data": "2026-10-21",
+        "fonte": "https://brapi.dev/api/quote/list",
+        "status": "presente na listagem"
+      }
     },
     {
       "ticker": "GRND3",
       "nome": "Grendene",
       "setor": "Consumo não-cíclico",
-      "cotacao": 3.66,
-      "pl": 5.2,
-      "pvp": 1.08,
+      "cotacao": 4.68,
+      "pl": 6.66,
+      "pvp": 0.34,
       "roe": 19.96,
-      "dy": 37.59,
+      "dy": 30.34,
       "divEbitda": 0,
       "margem": 24.8,
       "cagrLucro": 7.5,
@@ -3570,19 +4086,33 @@
       },
       "lpa": 0.7025,
       "vpa": 13.8889,
-      "cotacaoRef": 3.66,
-      "cotacaoData": "2026-07-23",
-      "fundamentosData": null
+      "cotacaoRef": 4.68,
+      "cotacaoData": null,
+      "fundamentosData": null,
+      "proveniencia": {
+        "reservaAnterior": {
+          "cotacao": 3.66,
+          "data": "2026-07-23"
+        },
+        "cotacao": "https://brapi.dev/api/quote/list",
+        "tipoCotacao": "Listagem sem data de pregão individual"
+      },
+      "cotacaoConsulta": "2026-10-21",
+      "tickerVerificacao": {
+        "data": "2026-10-21",
+        "fonte": "https://brapi.dev/api/quote/list",
+        "status": "presente na listagem"
+      }
     },
     {
       "ticker": "FLRY3",
       "nome": "Fleury",
       "setor": "Saúde",
-      "cotacao": 16.58,
-      "pl": 14.2,
-      "pvp": 1.75,
+      "cotacao": 28.12,
+      "pl": 24.14,
+      "pvp": 2.81,
       "roe": 12.25,
-      "dy": 6.52,
+      "dy": 3.84,
       "divEbitda": 2.5,
       "margem": 7.47,
       "cagrLucro": 10.5,
@@ -3669,17 +4199,31 @@
       },
       "lpa": 1.1647,
       "vpa": 10.0,
-      "cotacaoRef": 16.58,
-      "cotacaoData": "2026-07-23",
-      "fundamentosData": null
+      "cotacaoRef": 28.12,
+      "cotacaoData": null,
+      "fundamentosData": null,
+      "proveniencia": {
+        "reservaAnterior": {
+          "cotacao": 16.58,
+          "data": "2026-07-23"
+        },
+        "cotacao": "https://brapi.dev/api/quote/list",
+        "tipoCotacao": "Listagem sem data de pregão individual"
+      },
+      "cotacaoConsulta": "2026-10-21",
+      "tickerVerificacao": {
+        "data": "2026-10-21",
+        "fonte": "https://brapi.dev/api/quote/list",
+        "status": "presente na listagem"
+      }
     },
     {
       "ticker": "HAPV3",
       "nome": "Hapvida",
       "setor": "Saúde",
-      "cotacao": 10.47,
-      "pl": -11.9,
-      "pvp": 0.12,
+      "cotacao": 8.74,
+      "pl": -9.91,
+      "pvp": 1.61,
       "roe": -0.89,
       "dy": 0.0,
       "divEbitda": 4.5,
@@ -3768,19 +4312,33 @@
       },
       "lpa": -0.8822,
       "vpa": 5.4286,
-      "cotacaoRef": 10.47,
-      "cotacaoData": "2026-07-23",
-      "fundamentosData": null
+      "cotacaoRef": 8.74,
+      "cotacaoData": null,
+      "fundamentosData": null,
+      "proveniencia": {
+        "reservaAnterior": {
+          "cotacao": 10.47,
+          "data": "2026-07-23"
+        },
+        "cotacao": "https://brapi.dev/api/quote/list",
+        "tipoCotacao": "Listagem sem data de pregão individual"
+      },
+      "cotacaoConsulta": "2026-10-21",
+      "tickerVerificacao": {
+        "data": "2026-10-21",
+        "fonte": "https://brapi.dev/api/quote/list",
+        "status": "presente na listagem"
+      }
     },
     {
       "ticker": "HYPE3",
       "nome": "Hypera",
       "setor": "Saúde",
-      "cotacao": 20.1,
-      "pl": 7.6,
-      "pvp": 1.01,
+      "cotacao": 26.81,
+      "pl": 10.17,
+      "pvp": 1.56,
       "roe": 11.91,
-      "dy": 4.19,
+      "dy": 3.17,
       "divEbitda": 1.5,
       "margem": 19.48,
       "cagrLucro": 14.5,
@@ -3867,19 +4425,33 @@
       },
       "lpa": 2.6372,
       "vpa": 17.2,
-      "cotacaoRef": 20.1,
-      "cotacaoData": "2026-07-23",
-      "fundamentosData": null
+      "cotacaoRef": 26.81,
+      "cotacaoData": null,
+      "fundamentosData": null,
+      "proveniencia": {
+        "reservaAnterior": {
+          "cotacao": 20.1,
+          "data": "2026-07-23"
+        },
+        "cotacao": "https://brapi.dev/api/quote/list",
+        "tipoCotacao": "Listagem sem data de pregão individual"
+      },
+      "cotacaoConsulta": "2026-10-21",
+      "tickerVerificacao": {
+        "data": "2026-10-21",
+        "fonte": "https://brapi.dev/api/quote/list",
+        "status": "presente na listagem"
+      }
     },
     {
       "ticker": "ALOS3",
       "nome": "Allos",
       "setor": "Shoppings / Imóveis",
-      "cotacao": 26.93,
-      "pl": 12.4,
-      "pvp": 1.05,
+      "cotacao": 35.26,
+      "pl": 16.27,
+      "pvp": 2.35,
       "roe": 6.39,
-      "dy": 10.14,
+      "dy": 7.8,
       "divEbitda": 3.8,
       "margem": 28.81,
       "cagrLucro": 25.5,
@@ -3966,19 +4538,33 @@
       },
       "lpa": 2.1671,
       "vpa": 15.0,
-      "cotacaoRef": 26.93,
-      "cotacaoData": "2026-07-23",
-      "fundamentosData": null
+      "cotacaoRef": 35.26,
+      "cotacaoData": null,
+      "fundamentosData": null,
+      "proveniencia": {
+        "reservaAnterior": {
+          "cotacao": 26.93,
+          "data": "2026-07-23"
+        },
+        "cotacao": "https://brapi.dev/api/quote/list",
+        "tipoCotacao": "Listagem sem data de pregão individual"
+      },
+      "cotacaoConsulta": "2026-10-21",
+      "tickerVerificacao": {
+        "data": "2026-10-21",
+        "fonte": "https://brapi.dev/api/quote/list",
+        "status": "presente na listagem"
+      }
     },
     {
       "ticker": "MULT3",
       "nome": "Multiplan",
       "setor": "Shoppings / Imóveis",
-      "cotacao": 28.43,
-      "pl": 11.4,
-      "pvp": 2.25,
+      "cotacao": 37.25,
+      "pl": 14.9,
+      "pvp": 2.86,
       "roe": 18.89,
-      "dy": 2.95,
+      "dy": 2.26,
       "divEbitda": 2.8,
       "margem": 40.23,
       "cagrLucro": 15.5,
@@ -4065,19 +4651,33 @@
       },
       "lpa": 2.5001,
       "vpa": 13.0409,
-      "cotacaoRef": 28.43,
-      "cotacaoData": "2026-07-23",
-      "fundamentosData": null
+      "cotacaoRef": 37.25,
+      "cotacaoData": null,
+      "fundamentosData": null,
+      "proveniencia": {
+        "reservaAnterior": {
+          "cotacao": 28.43,
+          "data": "2026-07-23"
+        },
+        "cotacao": "https://brapi.dev/api/quote/list",
+        "tipoCotacao": "Listagem sem data de pregão individual"
+      },
+      "cotacaoConsulta": "2026-10-21",
+      "tickerVerificacao": {
+        "data": "2026-10-21",
+        "fonte": "https://brapi.dev/api/quote/list",
+        "status": "presente na listagem"
+      }
     },
     {
       "ticker": "IGTI11",
       "nome": "Iguatemi",
       "setor": "Shoppings / Imóveis",
-      "cotacao": 24.73,
-      "pl": 14.8,
-      "pvp": 2.03,
+      "cotacao": 31.97,
+      "pl": 17.41,
+      "pvp": 2.35,
       "roe": 14.63,
-      "dy": 2.06,
+      "dy": 1.6,
       "divEbitda": 3,
       "margem": 46.51,
       "cagrLucro": 12.5,
@@ -4163,19 +4763,33 @@
       },
       "lpa": 1.8365,
       "vpa": 13.59,
-      "cotacaoRef": 24.73,
-      "cotacaoData": "2026-07-23",
-      "fundamentosData": null
+      "cotacaoRef": 31.97,
+      "cotacaoData": null,
+      "fundamentosData": null,
+      "proveniencia": {
+        "reservaAnterior": {
+          "cotacao": 24.73,
+          "data": "2026-07-23"
+        },
+        "cotacao": "https://brapi.dev/api/quote/list",
+        "tipoCotacao": "Listagem sem data de pregão individual"
+      },
+      "cotacaoConsulta": "2026-10-21",
+      "tickerVerificacao": {
+        "data": "2026-10-21",
+        "fonte": "https://brapi.dev/api/quote/list",
+        "status": "presente na listagem"
+      }
     },
     {
       "ticker": "CURY3",
       "nome": "Cury",
       "setor": "Shoppings / Imóveis",
-      "cotacao": 29.62,
-      "pl": 8.3,
-      "pvp": 5.97,
+      "cotacao": 32.36,
+      "pl": 9.03,
+      "pvp": 4.94,
       "roe": 68.95,
-      "dy": 14.07,
+      "dy": 13.01,
       "divEbitda": 0.5,
       "margem": 18.37,
       "cagrLucro": 38.5,
@@ -4262,19 +4876,33 @@
       },
       "lpa": 3.5825,
       "vpa": 6.5531,
-      "cotacaoRef": 29.62,
-      "cotacaoData": "2026-07-23",
-      "fundamentosData": null
+      "cotacaoRef": 32.36,
+      "cotacaoData": null,
+      "fundamentosData": null,
+      "proveniencia": {
+        "reservaAnterior": {
+          "cotacao": 29.62,
+          "data": "2026-07-23"
+        },
+        "cotacao": "https://brapi.dev/api/quote/list",
+        "tipoCotacao": "Listagem sem data de pregão individual"
+      },
+      "cotacaoConsulta": "2026-10-21",
+      "tickerVerificacao": {
+        "data": "2026-10-21",
+        "fonte": "https://brapi.dev/api/quote/list",
+        "status": "presente na listagem"
+      }
     },
     {
       "ticker": "DIRR3",
       "nome": "Direcional",
       "setor": "Shoppings / Imóveis",
-      "cotacao": 11.63,
-      "pl": 7.2,
-      "pvp": 2.82,
+      "cotacao": 11.46,
+      "pl": 7.11,
+      "pvp": 1.55,
       "roe": 39.35,
-      "dy": 13.44,
+      "dy": 13.53,
       "divEbitda": 0.4,
       "margem": 18.16,
       "cagrLucro": 32.5,
@@ -4361,19 +4989,33 @@
       },
       "lpa": 1.6127,
       "vpa": 7.3722,
-      "cotacaoRef": 11.63,
-      "cotacaoData": "2026-07-23",
-      "fundamentosData": null
+      "cotacaoRef": 11.46,
+      "cotacaoData": null,
+      "fundamentosData": null,
+      "proveniencia": {
+        "reservaAnterior": {
+          "cotacao": 11.63,
+          "data": "2026-07-23"
+        },
+        "cotacao": "https://brapi.dev/api/quote/list",
+        "tipoCotacao": "Listagem sem data de pregão individual"
+      },
+      "cotacaoConsulta": "2026-10-21",
+      "tickerVerificacao": {
+        "data": "2026-10-21",
+        "fonte": "https://brapi.dev/api/quote/list",
+        "status": "presente na listagem"
+      }
     },
     {
       "ticker": "CYRE3",
       "nome": "Cyrela",
       "setor": "Shoppings / Imóveis",
-      "cotacao": 20.66,
-      "pl": 3.9,
-      "pvp": 0.9,
+      "cotacao": 34.39,
+      "pl": 6.53,
+      "pvp": 2.74,
       "roe": 18.6,
-      "dy": 12.89,
+      "dy": 7.94,
       "divEbitda": 1,
       "margem": 20.81,
       "cagrLucro": 15.5,
@@ -4460,19 +5102,33 @@
       },
       "lpa": 5.2649,
       "vpa": 12.5647,
-      "cotacaoRef": 20.66,
-      "cotacaoData": "2026-07-23",
-      "fundamentosData": null
+      "cotacaoRef": 34.39,
+      "cotacaoData": null,
+      "fundamentosData": null,
+      "proveniencia": {
+        "reservaAnterior": {
+          "cotacao": 20.66,
+          "data": "2026-07-23"
+        },
+        "cotacao": "https://brapi.dev/api/quote/list",
+        "tipoCotacao": "Listagem sem data de pregão individual"
+      },
+      "cotacaoConsulta": "2026-10-21",
+      "tickerVerificacao": {
+        "data": "2026-10-21",
+        "fonte": "https://brapi.dev/api/quote/list",
+        "status": "presente na listagem"
+      }
     },
     {
       "ticker": "POMO4",
       "nome": "Marcopolo",
       "setor": "Ind. / Transporte",
-      "cotacao": 5.26,
-      "pl": 5.1,
-      "pvp": 1.57,
+      "cotacao": 4.68,
+      "pl": 4.55,
+      "pvp": 0.64,
       "roe": 30.72,
-      "dy": 20.2,
+      "dy": 22.01,
       "divEbitda": 0.8,
       "margem": 13.81,
       "cagrLucro": 28.5,
@@ -4559,19 +5215,33 @@
       },
       "lpa": 1.0275,
       "vpa": 7.325,
-      "cotacaoRef": 5.26,
-      "cotacaoData": "2026-07-23",
-      "fundamentosData": null
+      "cotacaoRef": 4.68,
+      "cotacaoData": null,
+      "fundamentosData": null,
+      "proveniencia": {
+        "reservaAnterior": {
+          "cotacao": 5.26,
+          "data": "2026-07-23"
+        },
+        "cotacao": "https://brapi.dev/api/quote/list",
+        "tipoCotacao": "Listagem sem data de pregão individual"
+      },
+      "cotacaoConsulta": "2026-10-21",
+      "tickerVerificacao": {
+        "data": "2026-10-21",
+        "fonte": "https://brapi.dev/api/quote/list",
+        "status": "presente na listagem"
+      }
     },
     {
       "ticker": "WEGE3",
       "nome": "WEG",
       "setor": "Ind. / Transporte",
-      "cotacao": 45.67,
-      "pl": 30.6,
-      "pvp": 10.05,
+      "cotacao": 45.21,
+      "pl": 30.33,
+      "pvp": 8.17,
       "roe": 35.43,
-      "dy": 3.18,
+      "dy": 2.99,
       "divEbitda": 0,
       "margem": 15.64,
       "cagrLucro": 22.5,
@@ -4666,19 +5336,33 @@
       },
       "lpa": 1.4906,
       "vpa": 5.5338,
-      "cotacaoRef": 45.67,
-      "cotacaoData": "2026-07-23",
-      "fundamentosData": null
+      "cotacaoRef": 45.21,
+      "cotacaoData": null,
+      "fundamentosData": null,
+      "proveniencia": {
+        "reservaAnterior": {
+          "cotacao": 45.67,
+          "data": "2026-07-23"
+        },
+        "cotacao": "https://brapi.dev/api/quote/list",
+        "tipoCotacao": "Listagem sem data de pregão individual"
+      },
+      "cotacaoConsulta": "2026-10-21",
+      "tickerVerificacao": {
+        "data": "2026-10-21",
+        "fonte": "https://brapi.dev/api/quote/list",
+        "status": "presente na listagem"
+      }
     },
     {
       "ticker": "MOTV3",
       "nome": "Motiva",
       "setor": "Concessões / Logística",
-      "cotacao": 14.5,
-      "pl": 8.7,
-      "pvp": 1.78,
+      "cotacao": 20.4,
+      "pl": 12.2,
+      "pvp": 2.51,
       "roe": 20.58,
-      "dy": 2.69,
+      "dy": 1.91,
       "divEbitda": 4.2,
       "margem": 18.04,
       "cagrLucro": 5.5,
@@ -4764,19 +5448,33 @@
       },
       "lpa": 1.6719,
       "vpa": 8.1236,
-      "cotacaoRef": 14.5,
-      "cotacaoData": "2026-07-23",
-      "fundamentosData": null
+      "cotacaoRef": 20.4,
+      "cotacaoData": null,
+      "fundamentosData": null,
+      "proveniencia": {
+        "reservaAnterior": {
+          "cotacao": 14.5,
+          "data": "2026-07-23"
+        },
+        "cotacao": "https://brapi.dev/api/quote/list",
+        "tipoCotacao": "Listagem sem data de pregão individual"
+      },
+      "cotacaoConsulta": "2026-10-21",
+      "tickerVerificacao": {
+        "data": "2026-10-21",
+        "fonte": "https://brapi.dev/api/quote/list",
+        "status": "presente na listagem"
+      }
     },
     {
       "ticker": "AXIA3",
       "nome": "Axia Energia",
       "setor": "Energia Elétrica",
-      "cotacao": 51.39,
-      "pl": 15.1,
-      "pvp": 1.23,
+      "cotacao": 58.58,
+      "pl": 17.26,
+      "pvp": 1.43,
       "roe": 7.88,
-      "dy": 7.23,
+      "dy": 6.23,
       "divEbitda": 3.5,
       "margem": 21.89,
       "cagrLucro": 42,
@@ -4856,9 +5554,23 @@
       },
       "lpa": 3.3932,
       "vpa": 41.0244,
-      "cotacaoRef": 51.39,
-      "cotacaoData": "2026-07-23",
-      "fundamentosData": null
+      "cotacaoRef": 58.58,
+      "cotacaoData": null,
+      "fundamentosData": null,
+      "proveniencia": {
+        "reservaAnterior": {
+          "cotacao": 51.39,
+          "data": "2026-07-23"
+        },
+        "cotacao": "https://brapi.dev/api/quote/list",
+        "tipoCotacao": "Listagem sem data de pregão individual"
+      },
+      "cotacaoConsulta": "2026-10-21",
+      "tickerVerificacao": {
+        "data": "2026-10-21",
+        "fonte": "https://brapi.dev/api/quote/list",
+        "status": "presente na listagem"
+      }
     }
   ]
 }

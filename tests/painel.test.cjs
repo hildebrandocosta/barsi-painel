@@ -31,5 +31,17 @@ vm.runInContext(live,ctx);
  ctx.fetch=async()=>{throw Error('offline')};
  await vm.runInContext('fetchChunk([test.ticker])',ctx);
  assert.equal(vm.runInContext('test.cotacao',ctx),100);
- console.log('PASS: 48 tickers, regras, validade, 401, 429, vazio e offline');
+ for (const patch of [
+   {regularMarketPrice:Infinity}, {regularMarketPrice:NaN}, {regularMarketPrice:-1},
+   {regularMarketTime:'invalid'}, {regularMarketTime:'2099-01-01'}, {symbol:'WRNG3'}
+ ]) {
+   ctx.fetch=async()=>({ok:true,json:async()=>({results:[{symbol:base.acoes[0].ticker,regularMarketPrice:99,regularMarketTime:new Date().toISOString(),...patch}]})});
+   await vm.runInContext('fetchChunk([test.ticker])',ctx);
+   assert.equal(vm.runInContext('test.cotacao',ctx),100);
+ }
+ vm.runInContext('test.cotacaoData=new Date().toISOString()',ctx);
+ ctx.fetch=async()=>({ok:true,json:async()=>({results:[{symbol:base.acoes[0].ticker,regularMarketPrice:99,regularMarketTime:'2020-01-01'}]})});
+ await vm.runInContext('fetchChunk([test.ticker])',ctx);
+ assert.equal(vm.runInContext('test.cotacao',ctx),100);
+ console.log('PASS: universo, regras, validade, falhas da API e rejeição de cotação inválida/antiga');
 })().catch(e=>{console.error(e);process.exitCode=1});
